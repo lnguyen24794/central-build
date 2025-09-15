@@ -1,0 +1,132 @@
+/* Blog Styles for index.php */
+
+/* Post Meta Styles */
+.post-meta {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #888;
+}
+
+.post-date {
+    color: #666;
+}
+
+.post-categories a {
+    color: #007cba;
+    text-decoration: none;
+}
+
+.post-categories a:hover {
+    text-decoration: underline;
+}
+
+/* Post Title Link */
+.post-title-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.post-title-link:hover {
+    color: #007cba;
+}
+
+/* Read More Link */
+.read-more-link {
+    display: inline-block;
+    margin-top: 15px;
+    color: #007cba;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.read-more-link:hover {
+    color: #005a87;
+}
+
+/* Posts Container */
+.posts-container .home-one-project-block {
+    margin-bottom: 30px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #eee;
+}
+
+.posts-container .home-one-project-block:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+/* Pagination Styles */
+.posts-pagination {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.posts-pagination .page-numbers {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 0 4px;
+    background: #f8f9fa;
+    color: #333;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.posts-pagination .page-numbers:hover,
+.posts-pagination .page-numbers.current {
+    background: #007cba;
+    color: white;
+}
+
+.posts-pagination .prev,
+.posts-pagination .next {
+    font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    .home-one-why-us-flex {
+        flex-direction: column;
+    }
+    
+    .home-one-why-us-left,
+    .home-one-why-us-right {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    
+    .posts-container .home-one-project-block {
+        margin-bottom: 25px;
+        padding-bottom: 20px;
+    }
+}
+
+/* Search form styling */
+.search-form {
+    margin-top: 20px;
+}
+
+.search-form input[type="search"] {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 300px;
+    margin-right: 10px;
+}
+
+.search-form input[type="submit"] {
+    padding: 10px 20px;
+    background: #007cba;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.search-form input[type="submit"]:hover {
+    background: #005a87;
+}
