@@ -10,46 +10,19 @@
 
     // DOM Ready
     $(document).ready(function() {
-        initWebFonts();
         initMobileMenu();
         initSmoothScroll();
         initScrollToTop();
         initLazyLoading();
         initAnimations();
         initContactForm();
-    });
-
-    // Window Load
-    $(window).on('load', function() {
-        initPreloader();
-    });
-
-    // Window Resize
-    $(window).on('resize', function() {
-        handleResize();
+        initFAQAccordion();
     });
 
     // Window Scroll
     $(window).on('scroll', function() {
         handleScroll();
     });
-
-    /**
-     * Initialize Web Fonts
-     */
-    function initWebFonts() {
-        if (typeof WebFont !== 'undefined') {
-            WebFont.load({
-                google: {
-                    families: ["Roboto:300,regular,500"]
-                },
-                custom: {
-                    families: ['Oswald:n2,n3,n4,n5,n6,n7'],
-                    urls: [central_build_theme.template_url + '/css/main.min.css']
-                }
-            });
-        }
-    }
 
     /**
      * Initialize Mobile Menu
@@ -73,13 +46,6 @@
             $('body').toggleClass('menu-open');
         });
 
-        // Close mobile menu when clicking outside
-        $(document).on('click', function(e) {
-            if (!$(e.target).closest('.main-navigation, .menu-toggle, .hamburgar-wrap').length) {
-                closeMobileMenu();
-            }
-        });
-
         // Handle dropdown menus
         $('.menu-item-has-children > a').on('click', function(e) {
             if ($(window).width() <= 768) {
@@ -88,17 +54,6 @@
                 $(this).parent().toggleClass('dropdown-open');
             }
         });
-    }
-
-    /**
-     * Close Mobile Menu
-     */
-    function closeMobileMenu() {
-        $('.menu-toggle, .hamburgar-wrap').removeClass('active');
-        $('.main-navigation').removeClass('mobile-menu-open');
-        $('.nav-menu').slideUp(300);
-        $('body').removeClass('menu-open');
-        $('.hamburgar-line-one, .hamburgar-line-two, .hamburgar-line-three').removeClass('active');
     }
 
     /**
@@ -114,9 +69,6 @@
                 $('html, body').animate({
                     scrollTop: target.offset().top - 80
                 }, 800, 'easeInOutQuart');
-                
-                // Close mobile menu if open
-                closeMobileMenu();
             }
         });
     }
@@ -249,22 +201,145 @@
     }
 
     /**
-     * Initialize Preloader
+     * Initialize FAQ Accordion
      */
-    function initPreloader() {
-        $('.preloader').fadeOut(500, function() {
-            $(this).remove();
+    function initFAQAccordion() {
+        // Check if FAQ elements exist
+        if (!$('.faq-accodian-wrapper').length) {
+            console.log('FAQ: No FAQ elements found');
+            return;
+        }
+
+        console.log('FAQ: Initializing accordion for', $('.faq-accodian-wrapper').length, 'items');
+
+        $('.faq-accodian-wrapper .w-dropdown-toggle').on('click', function(e) {
+            e.preventDefault();
+            
+            const $toggle = $(this);
+            const $wrapper = $toggle.closest('.faq-accodian-wrapper');
+            const $dropdown = $wrapper.find('.w-dropdown-list');
+            const $content = $wrapper.find('.accordion-one-dropdown-contain');
+            const $icon = $wrapper.find('.faq-open-2');            
+            
+            // Validate elements
+            if (!$dropdown.length || !$content.length || !$icon.length) {
+                console.error('FAQ: Missing required elements');
+                return;
+            }
+            
+            // Check if this FAQ is currently open
+            const isOpen = $dropdown.hasClass('w--open');
+            
+            if (isOpen) {
+                // Close this FAQ
+                closeFAQItem($wrapper, $dropdown, $content, $icon, $toggle);
+            } else {
+                // Close all other FAQs first
+                $('.faq-accodian-wrapper').each(function() {
+                    const $otherWrapper = $(this);
+                    if (!$otherWrapper.is($wrapper)) {
+                        const $otherDropdown = $otherWrapper.find('.w-dropdown-list');
+                        const $otherContent = $otherWrapper.find('.accordion-one-dropdown-contain');
+                        const $otherIcon = $otherWrapper.find('.faq-open-2');
+                        const $otherToggle = $otherWrapper.find('.w-dropdown-toggle');
+                        
+                        if ($otherDropdown.hasClass('w--open')) {
+                            closeFAQItem($otherWrapper, $otherDropdown, $otherContent, $otherIcon, $otherToggle);
+                        }
+                    }
+                });
+                
+                // Open this FAQ
+                openFAQItem($wrapper, $dropdown, $content, $icon, $toggle);
+            }
+        });
+
+        // Handle keyboard navigation
+        $('.faq-accodian-wrapper .w-dropdown-toggle').on('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                $(this).trigger('click');
+            }
         });
     }
 
     /**
-     * Handle Window Resize
+     * Open FAQ Item
      */
-    function handleResize() {
-        // Close mobile menu on resize to desktop
-        if ($(window).width() > 768) {
-            closeMobileMenu();
+    function openFAQItem($wrapper, $dropdown, $content, $icon, $toggle) {
+        // Ensure we have jQuery objects
+        if (!$dropdown.length || typeof $dropdown.css !== 'function') {
+            console.error('FAQ: Invalid jQuery object for dropdown');
+            return;
         }
+        
+        // Get content height for smooth animation
+        $content.css('opacity', '0');
+        $dropdown.css('height', 'auto');
+        const contentHeight = $dropdown.outerHeight();
+        $dropdown.css('height', '0px');
+        
+        // Add open classes
+        $dropdown.addClass('w--open');
+        $content.addClass('active');
+        $icon.addClass('active');
+        
+        // Update ARIA attributes
+        $toggle.attr('aria-expanded', 'true');
+        
+        // Use CSS transitions instead of jQuery animate
+        setTimeout(function() {
+            $dropdown.css('height', contentHeight + 'px');
+            $content.css('opacity', '1');
+        }, 10);
+        
+        // Set height to auto after animation completes
+        setTimeout(function() {
+            if ($dropdown.hasClass('w--open')) {
+                $dropdown.css('height', 'auto');
+            }
+        }, 350);
+        
+        // Rotate icon
+        $icon.css({
+            'transform': 'translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg)',
+            'transform-style': 'preserve-3d'
+        });
+    }
+
+    /**
+     * Close FAQ Item
+     */
+    function closeFAQItem($wrapper, $dropdown, $content, $icon, $toggle) {
+        // Ensure we have jQuery objects
+        if (!$dropdown.length || typeof $dropdown.css !== 'function') {
+            console.error('FAQ: Invalid jQuery object for dropdown');
+            return;
+        }
+        
+        // Get current height before closing
+        const currentHeight = $dropdown.outerHeight();
+        $dropdown.css('height', currentHeight + 'px');
+        
+        // Remove classes
+        $dropdown.removeClass('w--open');
+        $content.removeClass('active');
+        $icon.removeClass('active');
+        
+        // Update ARIA attributes
+        $toggle.attr('aria-expanded', 'false');
+        
+        // Use CSS transitions
+        setTimeout(function() {
+            $dropdown.css('height', '0px');
+            $content.css('opacity', '0');
+        }, 10);
+        
+        // Rotate icon back
+        $icon.css({
+            'transform': 'translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(-90deg) skew(0deg, 0deg)',
+            'transform-style': 'preserve-3d'
+        });
     }
 
     /**
@@ -378,33 +453,4 @@
         }
     });
 
-    // Expose functions globally if needed
-    window.CentralBuild = {
-        closeMobileMenu: closeMobileMenu,
-        initGoogleMaps: initGoogleMaps
-    };
-
 })(jQuery);
-
-// Vanilla JS for performance-critical features
-document.addEventListener('DOMContentLoaded', function() {
-    
-    // Add loading class to images
-    const images = document.querySelectorAll('img');
-    images.forEach(function(img) {
-        img.addEventListener('load', function() {
-            this.classList.add('loaded');
-        });
-        
-        if (img.complete) {
-            img.classList.add('loaded');
-        }
-    });
-    
-    // Service worker registration (if available)
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('/sw.js').catch(function(error) {
-            console.log('ServiceWorker registration failed: ', error);
-        });
-    }
-});

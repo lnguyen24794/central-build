@@ -5,6 +5,84 @@
  * @since 1.0.0
  */
 
+/* FAQ Accordion Enhancements */
+.faq-accodian-wrapper {
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+}
+
+.faq-accodian-wrapper .w-dropdown-toggle {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.faq-accodian-wrapper .w-dropdown-toggle:hover {
+    background-color: rgba(255, 179, 0, 0.05);
+}
+
+.faq-accodian-wrapper .w-dropdown-list {
+    overflow: hidden;
+    transition: height 0.3s ease-in-out;
+    height: 0px;
+}
+
+.faq-accodian-wrapper .w-dropdown-list.w--open {
+    display: block;
+}
+
+.faq-accodian-wrapper .faq-open-2 {
+    transition: transform 0.3s ease-in-out;
+    transform-origin: center;
+    transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(-90deg) skew(0deg, 0deg);
+    transform-style: preserve-3d;
+}
+
+.faq-accodian-wrapper .faq-open-2.active {
+    transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+    transform-style: preserve-3d;
+}
+
+.faq-accodian-wrapper .accordion-one-dropdown-contain {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    padding: 15px 0;
+}
+
+.faq-accodian-wrapper .accordion-one-dropdown-contain.active {
+    opacity: 1;
+}
+
+/* Accessibility improvements */
+.faq-accodian-wrapper .w-dropdown-toggle:focus {
+    outline: 2px solid #ffb300;
+    outline-offset: 2px;
+}
+
+/* FAQ Icon Styles */
+.faq-open-close {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.faq-close-2,
+.faq-open-2 {
+    position: absolute;
+    width: 2px;
+    height: 12px;
+    background-color: currentColor;
+}
+
+.faq-close-2 {
+    transform: rotate(90deg);
+}
+
+.faq-open-2 {
+    transform: rotate(0deg);
+}
+
 /* ==========================================================================
    Components
    ========================================================================== */
@@ -16,7 +94,7 @@
     display: inline-block;
     position: relative;
     padding: 15px 30px;
-    background: linear-gradient(135deg, #007BFF 0%, #0056b3 100%);
+    background: linear-gradient(135deg, #ffb300 0%, #ff8800 100%);
     color: #ffffff;
     text-decoration: none;
     border-radius: 8px;

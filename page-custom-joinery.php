@@ -241,7 +241,7 @@ get_header(); ?>
 
 <!-- CTA Section -->
 <section class="home-one-faq-section-copy">
-    <div class="w-layout-blockcontainer container-one-2 w-container">
+    <div class="my-container container">
         <div class="w-layout-hflex freely-ask-flex-2">
             <div class="freely-ask-right-2">
                 <div class="w-layout-hflex heading-box-3">

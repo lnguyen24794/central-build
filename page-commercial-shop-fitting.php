@@ -411,7 +411,7 @@ get_header(); ?>
 
 <!-- Testimonials Section -->
 <section class="home-three-testimonial-section-2">
-    <div class="w-layout-blockcontainer container-one-2 w-container">
+    <div class="my-container container">
         <div class="w-layout-hflex home-three-testimonial-flex-2 space-between">
             <div class="home-three-testimonial-left left">
                 <div class="w-layout-hflex home-one-hero-heading-flex-2 home-three-testemonial-heading-wrap">
@@ -455,7 +455,7 @@ get_header(); ?>
 
 <!-- FAQ Section -->
 <section class="home-one-faq-section-copy">
-    <div class="w-layout-blockcontainer container-one-2 w-container">
+    <div class="my-container container">
         <div class="w-layout-hflex freely-ask-flex-2">
             <div class="freely-ask-left">
                 <div class="home-one-faq-block">

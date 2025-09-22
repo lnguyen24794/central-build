@@ -15,50 +15,14 @@
     
     <?php wp_head(); ?>
     
-    <style>
-    @media (min-width:992px) {
-        html.w-mod-js:not(.w-mod-ix) [data-w-id="3de9e9fa-b38d-5f0a-de5d-ec28d085a4de"] {opacity:0;}
-        html.w-mod-js:not(.w-mod-ix) [data-w-id="3de9e9fa-b38d-5f0a-de5d-ec28d085a544"] {opacity:0;}
-        html.w-mod-js:not(.w-mod-ix) [data-w-id="489dfaf7-b299-4a69-34e9-2bcb4ca4e019"] {opacity:0;}
-        html.w-mod-js:not(.w-mod-ix) [data-w-id="63eda76c-1eca-a647-61b0-147677936d70"] {opacity:0;}
-        html.w-mod-js:not(.w-mod-ix) [data-w-id="63eda76c-1eca-a647-61b0-147677936d76"] {opacity:0;}
-        html.w-mod-js:not(.w-mod-ix) [data-w-id="f301c813-dca0-2b10-b926-a2e492fcfb4b"] {opacity:0;}
-        html.w-mod-js:not(.w-mod-ix) [data-w-id="c3542558-2437-f7d4-a69a-e7b4f24e81a0"] {opacity:0;}
-        html.w-mod-js:not(.w-mod-ix) [data-w-id="5da63d8e-b997-6525-7cf8-065118d94558"] {opacity:0;}
-        html.w-mod-js:not(.w-mod-ix) [data-w-id="5da63d8e-b997-6525-7cf8-065118d9455d"] {opacity:0;}
-        html.w-mod-js:not(.w-mod-ix) [data-w-id="0e331148-2df2-4cc1-ea98-909bd35be7ea"] {opacity:0;}
-        html.w-mod-js:not(.w-mod-ix) [data-w-id="0e331148-2df2-4cc1-ea98-909bd35be813"] {opacity:0;}
-        html.w-mod-js:not(.w-mod-ix) [data-w-id="0e331148-2df2-4cc1-ea98-909bd35be81e"] {opacity:0;}
-    }
-    </style>
-    
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
     
     <link href="<?php echo get_template_directory_uri(); ?>/images/67624b469230f78408d127c9_66f5ef0f300ba05756664c1f_Untitled%20design%20%282%29%20%28Custom%29.png" rel="shortcut icon" type="image/x-icon">
     <link href="<?php echo get_template_directory_uri(); ?>/images/67624b50f5ed113a6d144492_66f5eee1b9d1bc07e2c176ba_Untitled%20design%20%282%29.png" rel="apple-touch-icon">
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "GeneralContractor",
-      "name": "ENP Fitouts",
-      "url": "<?php echo home_url(); ?>",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Unit 4/126-130 Compton Rd",
-        "addressLocality": "Brisbane",
-        "addressRegion": "QLD",
-        "postalCode": "4114",
-        "addressCountry": "AU"
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.8",
-        "reviewCount": "25"
-      }
-    }
-    </script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script>
+    <script src="<?php echo get_template_directory_uri(); ?>/js/swiper-bundle.min.js"></script>
 </head>
 <body <?php body_class(); ?>>
 
@@ -94,83 +58,51 @@
     </section>
     
     <!-- Main Header Section -->
-    <header class="style-three-header">
+    <header class="style-three-header shadow">
         <div class="w-layout-blockcontainer container-one container-gap w-container">
             <div class="navbar-wrapper">
                 <a href="<?php echo home_url(); ?>" role="link" aria-current="page" class="home-three-nav-menu-brand w-nav-brand w--current">
+                    <?php if (has_custom_logo()) :
+                        $custom_logo_id = get_theme_mod('custom_logo');
+                        $logo = wp_get_attachment_image_src($custom_logo_id, 'full');
+                        ?>
+                    <img width="121" height="38" src="<?php echo esc_url($logo[0]); ?>" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" class="image-height-auto">
+                    <?php else : ?>
                     <img width="121" height="38" alt="<?php bloginfo('name'); ?>" src="<?php echo get_template_directory_uri(); ?>/images/674e51fad943a77607127b0b_ENP%20transparent%20white%20cropped.webp" sizes="121px" srcset="<?php echo get_template_directory_uri(); ?>/images/674e51fad943a77607127b0b_ENP%20transparent%20white%20cropped.webp 500w, <?php echo get_template_directory_uri(); ?>/images/674e51fad943a77607127b0b_ENP%20transparent%20white%20cropped.webp 800w, <?php echo get_template_directory_uri(); ?>/images/674e51fad943a77607127b0b_ENP%20transparent%20white%20cropped.webp 1080w, <?php echo get_template_directory_uri(); ?>/images/674e51fad943a77607127b0b_ENP%20transparent%20white%20cropped.webp 1529w" class="image-height-auto">
+                    <?php endif; ?>
                 </a>
                 
-                <div class="nav-menu-link-wrap">
-                    <!-- About Us Dropdown -->
-                    <div data-hover="true" data-delay="0" data-w-id="8ee6d367-033f-9608-e712-32e0786a3562" class="home-three-dropdaown display-block w-dropdown">
-                        <div class="style-three-menu-dropdown-toggle w-dropdown-toggle">
-                            <div data-w-id="8ee6d367-033f-9608-e712-32e0786a3564" class="home-three-dropdown">
-                                <div class="home-three-dropdown-menu">About Us</div>
-                                <div class="home-three-dropdown-menu">About Us</div>
-                            </div>
-                            <img src="<?php echo get_template_directory_uri(); ?>/images/66f1ffecdef9310969f57a9c_Menu-Arrow.svg" alt="Menu Arrow" width="8" height="5" class="home-three-dropdown-icon">
-                        </div>
-                        <nav class="home-three-dropdown-list w-dropdown-list">
-                            <div class="home-three-dropdown-block">
-                                <a href="<?php echo home_url('/our-values'); ?>" role="link" class="home-three-dropdown-link w-dropdown-link">Our Values</a>
-                                <a href="<?php echo home_url('/enp-fitouts-csr-commitments'); ?>" role="link" class="home-three-dropdown-link w-dropdown-link">ENP Fitouts CSR Commitments</a>
-                                <a href="<?php echo home_url('/testimonials'); ?>" role="link" class="home-three-dropdown-link w-dropdown-link">Testimonials</a>
-                            </div>
-                        </nav>
+                 <!-- Navigation -->
+                 <nav class="nav">
+                    <?php
+                        // Check if primary menu is set
+                        if (has_nav_menu('primary')) {
+                            wp_nav_menu(array(
+                                'theme_location' => 'primary',
+                                'menu_class'     => 'nav-links',
+                                'container'      => false,
+                                'walker'         => new Central_Build_Walker_Nav_Menu(),
+                                'fallback_cb'    => false,
+                            ));
+                        } else {
+                            // Fallback menu if no menu is assigned
+                            echo '<ul class="nav-links">';
+                            echo '<li><a href="' . home_url() . '">Home</a></li>';
+                            echo '<li><a href="' . home_url('/contact') . '">Contact</a></li>';
+                            echo '</ul>';
+                        }
+?>
+                    <div class="burger">
+                        <div class="line1"></div>
+                        <div class="line2"></div>
+                        <div class="line3"></div>
                     </div>
-                    
-                    <!-- Services Dropdown -->
-                    <div data-hover="true" data-delay="0" data-w-id="8ee6d367-033f-9608-e712-32e0786a3572" class="home-three-dropdaown display-block w-dropdown">
-                        <div class="style-three-menu-dropdown-toggle w-dropdown-toggle">
-                            <div data-w-id="8ee6d367-033f-9608-e712-32e0786a3574" class="home-three-dropdown">
-                                <div class="home-three-dropdown-menu">Services</div>
-                                <div class="home-three-dropdown-menu">Services</div>
-                            </div>
-                            <img src="<?php echo get_template_directory_uri(); ?>/images/66f1ffecdef9310969f57a9c_Menu-Arrow.svg" alt="Menu Arrow" width="8" height="5" class="home-three-dropdown-icon">
-                        </div>
-                        <nav class="home-three-dropdown-list w-dropdown-list">
-                            <div class="home-three-dropdown-block">
-                                <a href="<?php echo home_url('/commercial-shop-fitting'); ?>" role="link" class="home-three-dropdown-link w-dropdown-link">Commercial Shop Fiting</a>
-                                <a href="<?php echo home_url('/concreet'); ?>" role="link" class="home-three-dropdown-link w-dropdown-link">Concreet</a>
-                                <a href="<?php echo home_url('/custom-joinery'); ?>" role="link" class="home-three-dropdown-link w-dropdown-link">Custom Joinery</a>
-                            </div>
-                        </nav>
-                    </div>
-                    
-                    <!-- Portfolio Dropdown -->
-                    <div data-hover="true" data-delay="0" data-w-id="8ee6d367-033f-9608-e712-32e0786a3586" class="home-three-dropdaown display-block w-dropdown">
-                        <div class="style-three-menu-dropdown-toggle w-dropdown-toggle">
-                            <div data-w-id="8ee6d367-033f-9608-e712-32e0786a3588" class="home-three-dropdown">
-                                <div class="home-three-dropdown-menu">Portfolio</div>
-                                <div class="home-three-dropdown-menu">Fitout Sectors</div>
-                            </div>
-                            <img src="<?php echo get_template_directory_uri(); ?>/images/66f1ffecdef9310969f57a9c_Menu-Arrow.svg" alt="Menu Arrow" width="8" height="5" class="home-three-dropdown-icon">
-                        </div>
-                        <nav class="home-three-dropdown-list w-dropdown-list">
-                            <div class="home-three-dropdown-block">
-                                <a href="<?php echo home_url('/hospitality-fitout'); ?>" role="link" class="home-three-dropdown-link w-dropdown-link">Hospitality Fitout</a>
-                                <a href="<?php echo home_url('/retail-fitout'); ?>" role="link" class="home-three-dropdown-link w-dropdown-link">Retail Fitout</a>
-                                <a href="<?php echo home_url('/office-fitout'); ?>" role="link" class="home-three-dropdown-link w-dropdown-link">Office Fitout</a>
-                                <a href="<?php echo home_url('/medical-fitout'); ?>" role="link" class="home-three-dropdown-link w-dropdown-link">Medical Fitout</a>
-                                <a href="<?php echo home_url('/mezzanine-fitout'); ?>" role="link" class="home-three-dropdown-link w-dropdown-link">Mezzanine Fitout</a>
-                                <a href="<?php echo home_url('/beauty-wellness-fitout'); ?>" role="link" class="home-three-dropdown-link w-dropdown-link">Beauty & Wellness Fitout</a>
-                            </div>
-                        </nav>
-                    </div>
-                </div>
+                </nav>
                 
-                <div data-w-id="8ee6d367-033f-9608-e712-32e0786a3596" class="hamburgar-wrap">
-                    <div class="hamburgar-line-one"></div>
-                    <div class="hamburgar-line-two"></div>
-                    <div class="hamburgar-line-three"></div>
-                </div>
-                
-                <a href="<?php echo home_url('/contact'); ?>" data-w-id="8ee6d367-033f-9608-e712-32e0786a359a" class="hero-buttonabove-all-else nav-bar-button w-inline-block">
+                <a href="<?php echo home_url('/contact'); ?>" class="hero-button mb-0 above-all-else nav-bar-button w-inline-block">
                     <div class="button-mask">
                         <div class="link-text-wrp">
-                            <div class="text-block-2">Contact Us</div>
-                            <div class="secondt-btn-text">Get A quote</div>
+                            <div class="text-block-2">Get A quote</div>
                         </div>
                     </div>
                 </a>
@@ -178,3 +110,70 @@
         </div>
     </header>
 </div>
+
+<script>
+    const navSlide = () => {
+        const burger = document.querySelector(".burger");
+        const nav = document.querySelector(".nav-links");
+        const navLinks = document.querySelectorAll(".nav-links a");
+        const dropdowns = document.querySelectorAll(".dropdown");
+
+        // Mobile menu toggle
+        burger.addEventListener("click", () => {
+            nav.classList.toggle("nav-active");
+
+            navLinks.forEach((link, index) => {
+                if (link.style.animation) {
+                    link.style.animation = "";
+                } else {
+                    link.style.animation = `navLinkFade 0.3s ease forwards 0.3s `;
+                }
+            });
+            burger.classList.toggle("toggle");
+        });
+
+        // Mobile dropdown functionality
+        dropdowns.forEach(dropdown => {
+            const dropbtn = dropdown.querySelector(".dropbtn");
+            
+            dropbtn.addEventListener("click", (e) => {
+                // Only handle on mobile
+                if (window.innerWidth <= 991) {
+                    e.preventDefault();
+                    
+                    // Close other dropdowns
+                    dropdowns.forEach(otherDropdown => {
+                        if (otherDropdown !== dropdown) {
+                            otherDropdown.classList.remove("mobile-open");
+                        }
+                    });
+                    
+                    // Toggle current dropdown
+                    dropdown.classList.toggle("mobile-open");
+                }
+            });
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener("click", (e) => {
+            if (!e.target.closest(".dropdown")) {
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove("mobile-open");
+                });
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener("resize", () => {
+            if (window.innerWidth > 991) {
+                // Close mobile dropdowns on desktop
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove("mobile-open");
+                });
+            }
+        });
+    };
+
+    // Initialize navigation when DOM is ready
+    document.addEventListener("DOMContentLoaded", navSlide);
+</script>

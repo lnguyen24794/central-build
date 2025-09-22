@@ -1,0 +1,138 @@
+<!-- Testimonials Section -->
+<section class="home-three-testimonial-section-2">
+    <div class="my-container container">
+        <div class="w-layout-hflex home-three-testimonial-flex-2 space-between">
+            
+            <!-- Left Content -->
+            <div class="home-three-testimonial-left mt-5 left">
+                
+                <!-- Section Header -->
+                <div class="row gap-3 m-3">
+                    <div class="p-0 relative" style="width: 30px">
+                        <div class="tag-wrap w-100 absolute" style="top: 70px; left: -20px;">
+                            <div class="tag-2-different dark-tab">
+                                <?php
+                                $testimonials_tag = get_option('central_build_testimonials_tag', __('Testimonial', 'central-build'));
+                                echo esc_html($testimonials_tag);
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h2 class="home-three-testimonial-heading margin-none">
+                            <?php
+                            $testimonials_title = get_option('central_build_testimonials_title', __('Words from Those Who\'ve Trusted Us', 'central-build'));
+                            echo esc_html($testimonials_title);
+                            ?>
+                        </h2>
+                    </div>
+                </div>
+                
+                <p class="home-three-slider-paragraph-2">
+                    <?php
+                    $testimonials_description = get_option(
+                        'central_build_testimonials_description',
+                        __('Discover why clients trust us for their Fitouts. Our commitment to quality and on-time delivery is reflected in their positive feedback.', 'central-build')
+                    );
+                    echo esc_html($testimonials_description);
+                    ?>
+                </p>
+                
+                <?php
+                $testimonials_button_text = get_option('central_build_testimonials_button_text', __('Testimonials', 'central-build'));
+                $testimonials_button_subtext = get_option('central_build_testimonials_button_subtext', __('Learn more', 'central-build'));
+                $testimonials_button_url = get_option('central_build_testimonials_button_url', home_url('/testimonials'));
+                ?>
+                <a href="<?php echo esc_url($testimonials_button_url); ?>" role="button" class="hero-button-2 w-inline-block">
+                    <div class="button-mask">
+                        <div class="link-text-wrp">
+                            <div><?php echo esc_html($testimonials_button_text); ?></div>
+                            <div class="secondt-btn-text"><?php echo esc_html($testimonials_button_subtext); ?></div>
+                        </div>
+                    </div>
+                </a>
+                <!-- Swiper -->
+                <div class="swiper mySwiper mt-3" style="width: 100%;">
+                    <?php
+                        $testimonials = central_build_get_testimonials();
+                    ?>
+                    <div class="swiper-wrapper">
+                        <?php  if (!empty($testimonials)) :
+                            foreach ($testimonials as $testimonial) :
+                                if (!empty($testimonial['content'])) :
+                        ?>
+                        
+                        <div class="swiper-slide h-100 home-three-testimonial-box">
+                            <div class="testimonial-content-block" style="min-height: 112px;">
+                                <div class="counter-paragraph-2 body-font">
+                                    "<?php echo esc_html($testimonial['content']); ?>"
+                                </div>
+                            </div>
+                            <div class="testimonial-author-block" style="min-height: 123px;">
+                                <?php if (!empty($testimonial['image'])) : ?>
+                                    <div class="testimonial-author-img">
+                                        <img width="70" height="70" 
+                                                alt="<?php echo esc_attr($testimonial['name'] ?? ''); ?>" 
+                                                src="<?php echo esc_url($testimonial['image']); ?>" 
+                                                class="autofit-3">
+                                    </div>
+                                <?php endif; ?>
+                                <div class="testimonial-author-text">
+                                    <div class="heading-six-2 margin-top-none">
+                                        <?php echo esc_html($testimonial['name'] ?? ''); ?>
+                                    </div>
+                                    <p class="margin-bottom-zero-2 margin-top-four">
+                                        <?php echo esc_html($testimonial['position'] ?? ''); ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <?php 
+                            endif;
+                            endforeach;
+                        endif;
+                        ?>
+                    </div>
+
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+            
+            <!-- Right Image -->
+            <div class="home-three-testimonial-right right">
+                <?php
+                $testimonials_image = get_option('central_build_testimonials_image');
+                if ($testimonials_image) : ?>
+                    <img width="630" height="550" 
+                         alt="<?php esc_attr_e('Testimonials Image', 'central-build'); ?>" 
+                         src="<?php echo esc_url($testimonials_image); ?>" 
+                         loading="lazy" 
+                         class="autofit-3 responsive-full-width">
+                <?php else : ?>
+                    <img width="630" height="550" 
+                         alt="<?php esc_attr_e('Que Dining Hospitality Fitout', 'central-build'); ?>" 
+                         src="<?php echo esc_url(get_template_directory_uri() . '/images/testimonials-default.jpg'); ?>" 
+                         loading="lazy" 
+                         class="autofit-3 responsive-full-width">
+                <?php endif; ?>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+<!-- Initialize Swiper -->
+<script>
+    new Swiper(".mySwiper", {
+        loop: true,
+        autoplay: {
+            delay: 3000, // Chuyển động liên tục (0ms để mượt mà)
+        },
+        speed: 3500, // Tốc độ chuyển động (5 giây cho 1 slide)
+        pagination: {
+            el: ".swiper-pagination",
+        },
+        spaceBetween: 30,
+    });
+  </script>

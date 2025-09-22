@@ -36,7 +36,7 @@ get_header(); ?>
 
 <!-- Testimonials Grid Section -->
 <section class="service-two-section-four">
-    <div class="w-layout-blockcontainer container-one-2 w-container">
+    <div class="my-container container">
         <div class="w-layout-vflex helping-flex service-two-building-heading">
             <h2 class="margin-top-zero margin-bottom-twenty service-two-assigned-heading">Check out our testimonials</h2>
         </div>
@@ -83,7 +83,6 @@ get_header(); ?>
     </div>
 </section>
 
-<!-- CTA Section -->
 <section class="cta-section">
     <div class="w-layout-blockcontainer container-one cta-container w-container">
         <div class="cta">

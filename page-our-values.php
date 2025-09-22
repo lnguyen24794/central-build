@@ -235,7 +235,7 @@ get_header(); ?>
             </div>
         </div>
         
-        <div class="w-layout-blockcontainer container-one-2 w-container">
+        <div class="my-container container">
             <div class="service-two-mission-tag-2 why-chosse-hero-tag">
                 <div class="w-layout-hflex home-one-hero-heading-flex-2 why-choose-us-hero-heading">
                     <div class="why-choose-us-tag-wrap padding-none">
@@ -250,7 +250,7 @@ get_header(); ?>
     
     <!-- Services Section -->
     <section class="why-choose-section-two">
-        <div class="w-layout-blockcontainer container-one-2 w-container">
+        <div class="my-container container">
             <div class="w-layout-hflex why-choose-hero-flex">
                 <div class="why-choose-hero-left">
                     <div class="why-choose-image-block image-block-one"></div>

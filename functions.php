@@ -17,7 +17,8 @@ if (!defined('ABSPATH')) {
  * @param string $template_path Path to template file
  * @param array $args Arguments to pass to template
  */
-function loadView($template_path, $args = array()) {
+function loadView($template_path, $args = array())
+{
     if (file_exists($template_path)) {
         // Make args available as variables in template
         extract($args);
@@ -28,7 +29,8 @@ function loadView($template_path, $args = array()) {
 /**
  * Theme setup
  */
-function central_build_setup() {
+function central_build_setup()
+{
     // Add theme support for various features
     add_theme_support('title-tag');
     add_theme_support('post-thumbnails');
@@ -76,28 +78,117 @@ function central_build_setup() {
 add_action('after_setup_theme', 'central_build_setup');
 
 /**
+ * Custom Walker Class for Navigation Menu with Dropdown Support
+ */
+class Central_Build_Walker_Nav_Menu extends Walker_Nav_Menu {
+    
+    // Start Level
+    function start_lvl(&$output, $depth = 0, $args = null) {
+        $indent = str_repeat("\t", $depth);
+        $output .= "\n$indent<div class=\"dropdown-content\">\n";
+    }
+
+    // End Level
+    function end_lvl(&$output, $depth = 0, $args = null) {
+        $indent = str_repeat("\t", $depth);
+        $output .= "$indent</div>\n";
+    }
+
+    // Start Element
+    function start_el(&$output, $item, $depth = 0, $args = null, $id = 0) {
+        $indent = ($depth) ? str_repeat("\t", $depth) : '';
+
+        $classes = empty($item->classes) ? array() : (array) $item->classes;
+        $classes[] = 'menu-item-' . $item->ID;
+
+        // Check if item has children
+        $has_children = in_array('menu-item-has-children', $classes);
+        
+        if ($depth == 0) {
+            if ($has_children) {
+                $output .= $indent . '<li class="dropdown">';
+            } else {
+                $output .= $indent . '<li>';
+            }
+        }
+
+        $attributes = ! empty($item->attr_title) ? ' title="'  . esc_attr($item->attr_title) .'"' : '';
+        $attributes .= ! empty($item->target)     ? ' target="' . esc_attr($item->target     ) .'"' : '';
+        $attributes .= ! empty($item->xfn)        ? ' rel="'    . esc_attr($item->xfn        ) .'"' : '';
+        $attributes .= ! empty($item->url)        ? ' href="'   . esc_attr($item->url        ) .'"' : '';
+
+        $item_output = isset($args->before) ? $args->before : '';
+        
+        if ($depth == 0 && $has_children) {
+            $item_output .= '<a class="dropbtn"' . $attributes . '>';
+        } else {
+            $item_output .= '<a' . $attributes . '>';
+        }
+        
+        $item_output .= (isset($args->link_before) ? $args->link_before : '') . apply_filters('the_title', $item->title, $item->ID) . (isset($args->link_after) ? $args->link_after : '');
+        
+        if ($depth == 0 && $has_children) {
+            $item_output .= ' <i class="arrow-down"></i>';
+        }
+        
+        $item_output .= '</a>';
+        $item_output .= isset($args->after) ? $args->after : '';
+
+        $output .= apply_filters('walker_nav_menu_start_el', $item_output, $item, $depth, $args);
+    }
+
+    // End Element
+    function end_el(&$output, $item, $depth = 0, $args = null) {
+        if ($depth == 0) {
+            $output .= "</li>\n";
+        }
+    }
+}
+
+/**
  * Enqueue scripts and styles
  */
-function central_build_scripts() {
+function central_build_scripts()
+{
     // Enqueue main JavaScript (our custom scripts)
     wp_enqueue_script('central-build-main', 'https://code.jquery.com/jquery-3.7.1.slim.min.js"', array('jquery'), '1.0.0', true);
 
-    wp_enqueue_script('central-build-main', get_template_directory_uri() . '/js/bootstraps.min.js', array('jquery'), '1.0.0', true);
+    wp_enqueue_script('central-build-bootstraps', get_template_directory_uri() . '/js/bootstraps.min.js', array('jquery'), '1.0.0', true);
+
+    wp_enqueue_script('central-build-custom', get_template_directory_uri() . '/js/main.js', array('jquery'), '1.0.0', true);
+
+    // Enqueue Swiper bundle JavaScript
+    wp_enqueue_script('swiper-bundle', get_template_directory_uri() . '/js/swiper-bundle.min.js', array('jquery'), '1.0.0', true);
+
+    // Enqueue Bootstrap JavaScript
+    wp_enqueue_script('bootstrap-js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js', array('jquery'), '5.3.2', true);
     // Enqueue Webflow CSS (main template styles)
     wp_enqueue_style('central-build-webflow', get_template_directory_uri() . '/css/main.min.css', array(), '1.0.0');
-    
+
     // Enqueue main stylesheet (our custom styles)
     wp_enqueue_style('central-build-style', get_stylesheet_uri(), array('central-build-webflow'), '1.0.0');
-    
+
     // Enqueue components CSS
     wp_enqueue_style('central-build-components', get_template_directory_uri() . '/css/components.css', array('central-build-style'), '1.0.0');
-    
-    // Enqueue Webflow overrides CSS
-    wp_enqueue_style('central-build-webflow-overrides', get_template_directory_uri() . '/css/webflow-overrides.css', array('central-build-components'), '1.0.0');
+
+    // Enqueue animation CSS
+    wp_enqueue_style('animation', get_template_directory_uri() . '/css/animate.min.css', array('central-build-style'), '1.0.0');
+
+    // Enqueue Bootstrap CSS (before webflow-overrides so it can be overridden)
+    wp_enqueue_style('bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css', array('central-build-components', 'animation'), '5.3.2');
+
+    // Enqueue Bootstrap custom utilities (safe Bootstrap utilities)
+    wp_enqueue_style('bootstrap-custom', get_template_directory_uri() . '/css/bootstrap-custom.min.css', array('bootstrap'), '1.0.0');
+
+    // Enqueue Swiper bundle CSS
+    wp_enqueue_style('swiper-bundle', get_template_directory_uri() . '/css/swiper-bundle.min.css', array('bootstrap-custom'), '1.0.0');
+
+    // Enqueue Webflow overrides CSS (this will override Bootstrap when needed)
+    wp_enqueue_style('central-build-webflow-overrides', get_template_directory_uri() . '/css/webflow-overrides.css', array('bootstrap-custom', 'swiper-bundle', 'animation'), '1.0.0');
 
     // Enqueue Google Fonts (Roboto) and Oswald from template
     wp_enqueue_style('central-build-fonts', 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap', array(), null);
-    
+
     // Enqueue WebFont loader
     wp_enqueue_script('central-build-webfont', get_template_directory_uri() . '/js/webfont.js', array(), '1.0.0', false);
 
@@ -107,7 +198,7 @@ function central_build_scripts() {
     if (is_singular() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');
     }
-    
+
     wp_localize_script('central-build-main', 'central_build_theme', array(
         'template_url' => get_template_directory_uri(),
         'home_url'     => home_url('/'),
@@ -118,7 +209,8 @@ add_action('wp_enqueue_scripts', 'central_build_scripts');
 /**
  * Register widget areas
  */
-function central_build_widgets_init() {
+function central_build_widgets_init()
+{
     register_sidebar(array(
         'name'          => esc_html__('Main Sidebar', 'central-build'),
         'id'            => 'sidebar-1',
@@ -164,7 +256,8 @@ add_action('widgets_init', 'central_build_widgets_init');
 /**
  * Custom excerpt length
  */
-function central_build_excerpt_length($length) {
+function central_build_excerpt_length($length)
+{
     return 30;
 }
 add_filter('excerpt_length', 'central_build_excerpt_length');
@@ -172,7 +265,8 @@ add_filter('excerpt_length', 'central_build_excerpt_length');
 /**
  * Custom excerpt more
  */
-function central_build_excerpt_more($more) {
+function central_build_excerpt_more($more)
+{
     return '...';
 }
 add_filter('excerpt_more', 'central_build_excerpt_more');
@@ -180,7 +274,8 @@ add_filter('excerpt_more', 'central_build_excerpt_more');
 /**
  * Add custom image sizes
  */
-function central_build_image_sizes() {
+function central_build_image_sizes()
+{
     add_image_size('central-build-featured', 800, 450, true);
     add_image_size('central-build-thumbnail', 300, 200, true);
     add_image_size('central-build-gallery', 600, 400, true);
@@ -190,7 +285,8 @@ add_action('after_setup_theme', 'central_build_image_sizes');
 /**
  * Enqueue page-specific assets
  */
-function central_build_page_assets() {
+function central_build_page_assets()
+{
     // Home page assets
     if (is_front_page()) {
         wp_enqueue_style('central-build-home-min', get_template_directory_uri() . '/css/home.min.css', array('central-build-webflow'), '1.0.0');
@@ -204,8 +300,8 @@ function central_build_page_assets() {
     }
 
     // Service pages assets
-    if (is_page_template('page-commercial-shop-fitting.php') || 
-        is_page_template('page-concreet.php') || 
+    if (is_page_template('page-commercial-shop-fitting.php') ||
+        is_page_template('page-concreet.php') ||
         is_page_template('page-custom-joinery.php')) {
         wp_enqueue_style('central-build-services', get_template_directory_uri() . '/css/services.css', array('central-build-style'), '1.0.0');
         wp_enqueue_script('central-build-services-js', get_template_directory_uri() . '/js/services.js', array('jquery'), '1.0.0', true);
@@ -231,12 +327,545 @@ function central_build_page_assets() {
 add_action('wp_enqueue_scripts', 'central_build_page_assets');
 
 /**
- * Customizer additions
+ * Include admin options
  */
-function central_build_customize_register($wp_customize) {
+require_once get_template_directory() . '/inc/admin-options.php';
+
+/**
+ * Include fitout sector custom post type
+ */
+require_once get_template_directory() . '/inc/fitout-sector-post-type.php';
+
+/**
+ * Include fitout sector sample data (for development/testing)
+ */
+require_once get_template_directory() . '/inc/fitout-sector-sample-data.php';
+
+/**
+ * Get fitout sector projects for commercial section
+ */
+function central_build_get_fitout_projects($limit = 8)
+{
+    $fitout_query = new WP_Query(array(
+        'post_type' => 'fitout_sector',
+        'posts_per_page' => $limit,
+        'post_status' => 'publish',
+        'orderby' => 'date',
+        'order' => 'DESC'
+    ));
+
+    $projects = array();
+
+    if ($fitout_query->have_posts()) {
+        while ($fitout_query->have_posts()) {
+            $fitout_query->the_post();
+            
+            $hero_image = get_post_meta(get_the_ID(), '_fitout_hero_image', true);
+            $client = get_post_meta(get_the_ID(), '_fitout_client', true);
+            $categories = get_the_terms(get_the_ID(), 'fitout_category');
+            $category_name = $categories && !is_wp_error($categories) ? $categories[0]->name : '';
+            
+            // Fallback image if no hero image is set
+            if (!$hero_image && has_post_thumbnail()) {
+                $hero_image = get_the_post_thumbnail_url(get_the_ID(), 'large');
+            }
+            if (!$hero_image) {
+                $hero_image = 'https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f579c4_Image-Bg-Section.webp';
+            }
+
+            $projects[] = array(
+                'title' => get_the_title(),
+                'image' => $hero_image,
+                'url' => get_permalink(),
+                'alt' => get_the_title() . ' - ' . $category_name,
+                'client' => $client,
+                'category' => $category_name,
+                'excerpt' => get_the_excerpt()
+            );
+        }
+        wp_reset_postdata();
+    }
+
+    return $projects;
+}
+
+/**
+ * Flush rewrite rules when theme is activated
+ */
+function central_build_flush_rewrite_rules() {
+    central_build_register_fitout_sector_post_type();
+    central_build_register_fitout_category_taxonomy();
+    flush_rewrite_rules();
+}
+add_action('after_switch_theme', 'central_build_flush_rewrite_rules');
+
+/**
+ * Custom template for fitout category taxonomy
+ */
+function central_build_fitout_category_template($template) {
+    if (is_tax('fitout_category')) {
+        $new_template = locate_template(array('archive-fitout_sector.php'));
+        if (!empty($new_template)) {
+            return $new_template;
+        }
+    }
+    return $template;
+}
+add_filter('template_include', 'central_build_fitout_category_template');
+
+/**
+ * Add body class for fitout category archives
+ */
+function central_build_fitout_category_body_class($classes) {
+    if (is_tax('fitout_category')) {
+        $classes[] = 'fitout-category-archive';
+        $term = get_queried_object();
+        if ($term) {
+            $classes[] = 'fitout-category-' . $term->slug;
+        }
+    }
+    return $classes;
+}
+add_filter('body_class', 'central_build_fitout_category_body_class');
+
+/**
+ * Footer Options Page
+ */
+function central_build_add_footer_options_page() {
+    add_theme_page(
+        'Footer Settings',
+        'Footer Settings', 
+        'manage_options',
+        'footer-settings',
+        'central_build_footer_settings_page'
+    );
+}
+add_action('admin_menu', 'central_build_add_footer_options_page');
+
+/**
+ * Contact Options Page
+ */
+function central_build_add_contact_options_page() {
+    add_theme_page(
+        'Contact Settings',
+        'Contact Settings', 
+        'manage_options',
+        'contact-settings',
+        'central_build_contact_settings_page'
+    );
+}
+add_action('admin_menu', 'central_build_add_contact_options_page');
+
+/**
+ * Footer Settings Page Callback
+ */
+function central_build_footer_settings_page() {
+    if (isset($_POST['submit']) && wp_verify_nonce($_POST['footer_settings_nonce'], 'footer_settings')) {
+        // Save all footer settings
+        update_option('central_build_footer_logo', sanitize_text_field($_POST['footer_logo']));
+        update_option('central_build_footer_description', sanitize_textarea_field($_POST['footer_description']));
+        update_option('central_build_footer_email', sanitize_email($_POST['footer_email']));
+        update_option('central_build_footer_phone', sanitize_text_field($_POST['footer_phone']));
+        
+        // Quick Links
+        update_option('central_build_footer_home_text', sanitize_text_field($_POST['footer_home_text']));
+        update_option('central_build_footer_home_url', esc_url_raw($_POST['footer_home_url']));
+        update_option('central_build_footer_about_text', sanitize_text_field($_POST['footer_about_text']));
+        update_option('central_build_footer_about_url', esc_url_raw($_POST['footer_about_url']));
+        update_option('central_build_footer_policy_text', sanitize_text_field($_POST['footer_policy_text']));
+        update_option('central_build_footer_policy_url', esc_url_raw($_POST['footer_policy_url']));
+        update_option('central_build_footer_services_text', sanitize_text_field($_POST['footer_services_text']));
+        update_option('central_build_footer_services_url', esc_url_raw($_POST['footer_services_url']));
+        update_option('central_build_footer_portfolio_text', sanitize_text_field($_POST['footer_portfolio_text']));
+        update_option('central_build_footer_portfolio_url', esc_url_raw($_POST['footer_portfolio_url']));
+        
+        // Support Links
+        update_option('central_build_footer_csr_text', sanitize_text_field($_POST['footer_csr_text']));
+        update_option('central_build_footer_csr_url', esc_url_raw($_POST['footer_csr_url']));
+        update_option('central_build_footer_values_text', sanitize_text_field($_POST['footer_values_text']));
+        update_option('central_build_footer_values_url', esc_url_raw($_POST['footer_values_url']));
+        update_option('central_build_footer_blog_text', sanitize_text_field($_POST['footer_blog_text']));
+        update_option('central_build_footer_blog_url', esc_url_raw($_POST['footer_blog_url']));
+        
+        echo '<div class="notice notice-success"><p>Footer settings saved successfully!</p></div>';
+    }
+    
+    // Get current values
+    $footer_logo = get_option('central_build_footer_logo', get_template_directory_uri() . '/images/674e51fad943a77607127b0b_ENP%20transparent%20white%20cropped.webp');
+    $footer_description = get_option('central_build_footer_description', 'Central Build, established in 2018, crafts lasting fitout solutions with value, efficiency, and transparency. Discover the ENP difference.');
+    $footer_email = get_option('central_build_footer_email', 'info@centralbuild.au');
+    $footer_phone = get_option('central_build_footer_phone', '0123 456 789');
+    
+    // Quick Links
+    $footer_home_text = get_option('central_build_footer_home_text', 'Home');
+    $footer_home_url = get_option('central_build_footer_home_url', home_url());
+    $footer_about_text = get_option('central_build_footer_about_text', 'About Us');
+    $footer_about_url = get_option('central_build_footer_about_url', home_url('/our-values'));
+    $footer_policy_text = get_option('central_build_footer_policy_text', 'Policy');
+    $footer_policy_url = get_option('central_build_footer_policy_url', 'https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/676248fadfdb334304c54e6e_ENP%20Fitouts%20Privacy%20Policy.pdf');
+    $footer_services_text = get_option('central_build_footer_services_text', 'Services');
+    $footer_services_url = get_option('central_build_footer_services_url', home_url('/commercial-shop-fitting'));
+    $footer_portfolio_text = get_option('central_build_footer_portfolio_text', 'Portfolio');
+    $footer_portfolio_url = get_option('central_build_footer_portfolio_url', '#');
+    
+    // Support Links
+    $footer_csr_text = get_option('central_build_footer_csr_text', 'CSR Commitment');
+    $footer_csr_url = get_option('central_build_footer_csr_url', home_url('/enp-fitouts-csr-commitments'));
+    $footer_values_text = get_option('central_build_footer_values_text', 'Our Values');
+    $footer_values_url = get_option('central_build_footer_values_url', home_url('/our-values'));
+    $footer_blog_text = get_option('central_build_footer_blog_text', 'Our Blog');
+    $footer_blog_url = get_option('central_build_footer_blog_url', '#');
+    
+    ?>
+    <div class="wrap">
+        <h1>Footer Settings</h1>
+        <form method="post" action="">
+            <?php wp_nonce_field('footer_settings', 'footer_settings_nonce'); ?>
+            
+            <table class="form-table">
+                <tr>
+                    <th colspan="2"><h2>Company Information</h2></th>
+                </tr>
+                <tr>
+                    <th scope="row">Footer Logo URL</th>
+                    <td>
+                        <input type="url" name="footer_logo" value="<?php echo esc_url($footer_logo); ?>" class="regular-text" />
+                        <p class="description">Enter the URL for the footer logo image</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Company Description</th>
+                    <td>
+                        <textarea name="footer_description" rows="3" cols="50" class="large-text"><?php echo esc_textarea($footer_description); ?></textarea>
+                        <p class="description">Brief description about the company</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Email Address</th>
+                    <td>
+                        <input type="email" name="footer_email" value="<?php echo esc_attr($footer_email); ?>" class="regular-text" />
+                        <p class="description">Contact email address</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Phone Number</th>
+                    <td>
+                        <input type="text" name="footer_phone" value="<?php echo esc_attr($footer_phone); ?>" class="regular-text" />
+                        <p class="description">Contact phone number</p>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <th colspan="2"><h2>Quick Links</h2></th>
+                </tr>
+                <tr>
+                    <th scope="row">Home Link</th>
+                    <td>
+                        <input type="text" name="footer_home_text" value="<?php echo esc_attr($footer_home_text); ?>" placeholder="Link Text" class="regular-text" />
+                        <input type="url" name="footer_home_url" value="<?php echo esc_url($footer_home_url); ?>" placeholder="Link URL" class="regular-text" />
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">About Link</th>
+                    <td>
+                        <input type="text" name="footer_about_text" value="<?php echo esc_attr($footer_about_text); ?>" placeholder="Link Text" class="regular-text" />
+                        <input type="url" name="footer_about_url" value="<?php echo esc_url($footer_about_url); ?>" placeholder="Link URL" class="regular-text" />
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Policy Link</th>
+                    <td>
+                        <input type="text" name="footer_policy_text" value="<?php echo esc_attr($footer_policy_text); ?>" placeholder="Link Text" class="regular-text" />
+                        <input type="url" name="footer_policy_url" value="<?php echo esc_url($footer_policy_url); ?>" placeholder="Link URL" class="regular-text" />
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Services Link</th>
+                    <td>
+                        <input type="text" name="footer_services_text" value="<?php echo esc_attr($footer_services_text); ?>" placeholder="Link Text" class="regular-text" />
+                        <input type="url" name="footer_services_url" value="<?php echo esc_url($footer_services_url); ?>" placeholder="Link URL" class="regular-text" />
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Portfolio Link</th>
+                    <td>
+                        <input type="text" name="footer_portfolio_text" value="<?php echo esc_attr($footer_portfolio_text); ?>" placeholder="Link Text" class="regular-text" />
+                        <input type="url" name="footer_portfolio_url" value="<?php echo esc_url($footer_portfolio_url); ?>" placeholder="Link URL" class="regular-text" />
+                    </td>
+                </tr>
+                
+                <tr>
+                    <th colspan="2"><h2>Support Links</h2></th>
+                </tr>
+                <tr>
+                    <th scope="row">CSR Commitment Link</th>
+                    <td>
+                        <input type="text" name="footer_csr_text" value="<?php echo esc_attr($footer_csr_text); ?>" placeholder="Link Text" class="regular-text" />
+                        <input type="url" name="footer_csr_url" value="<?php echo esc_url($footer_csr_url); ?>" placeholder="Link URL" class="regular-text" />
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Our Values Link</th>
+                    <td>
+                        <input type="text" name="footer_values_text" value="<?php echo esc_attr($footer_values_text); ?>" placeholder="Link Text" class="regular-text" />
+                        <input type="url" name="footer_values_url" value="<?php echo esc_url($footer_values_url); ?>" placeholder="Link URL" class="regular-text" />
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Blog Link</th>
+                    <td>
+                        <input type="text" name="footer_blog_text" value="<?php echo esc_attr($footer_blog_text); ?>" placeholder="Link Text" class="regular-text" />
+                        <input type="url" name="footer_blog_url" value="<?php echo esc_url($footer_blog_url); ?>" placeholder="Link URL" class="regular-text" />
+                    </td>
+                </tr>
+            </table>
+            
+            <?php submit_button('Save Footer Settings'); ?>
+        </form>
+    </div>
+    
+    <style>
+    .form-table th h2 {
+        margin: 0;
+        padding: 10px 0;
+        border-bottom: 1px solid #ddd;
+        color: #23282d;
+    }
+    .form-table input[type="text"], 
+    .form-table input[type="url"], 
+    .form-table input[type="email"] {
+        margin-right: 10px;
+        margin-bottom: 5px;
+    }
+    </style>
+    <?php
+}
+
+/**
+ * Contact Settings Page Callback
+ */
+function central_build_contact_settings_page() {
+    if (isset($_POST['submit']) && wp_verify_nonce($_POST['contact_settings_nonce'], 'contact_settings')) {
+        // Save hero section settings
+        update_option('central_build_contact_hero_title', sanitize_text_field($_POST['contact_hero_title']));
+        update_option('central_build_contact_hero_description', sanitize_textarea_field($_POST['contact_hero_description']));
+        
+        // Save contact information
+        update_option('central_build_contact_email', sanitize_email($_POST['contact_email']));
+        update_option('central_build_contact_phone', sanitize_text_field($_POST['contact_phone']));
+        update_option('central_build_contact_phone_display', sanitize_text_field($_POST['contact_phone_display']));
+        
+        // Save social media links
+        update_option('central_build_contact_facebook', esc_url_raw($_POST['contact_facebook']));
+        update_option('central_build_contact_instagram', esc_url_raw($_POST['contact_instagram']));
+        update_option('central_build_contact_linkedin', esc_url_raw($_POST['contact_linkedin']));
+        
+        // Save form settings
+        update_option('central_build_contact_form_title', sanitize_text_field($_POST['contact_form_title']));
+        update_option('central_build_contact_form_description', sanitize_textarea_field($_POST['contact_form_description']));
+        update_option('central_build_contact_form_redirect', esc_url_raw($_POST['contact_form_redirect']));
+        
+        // Save office information
+        update_option('central_build_contact_office_image', esc_url_raw($_POST['contact_office_image']));
+        update_option('central_build_contact_office_title', sanitize_text_field($_POST['contact_office_title']));
+        update_option('central_build_contact_office_description', sanitize_textarea_field($_POST['contact_office_description']));
+        update_option('central_build_contact_office_location', sanitize_text_field($_POST['contact_office_location']));
+        update_option('central_build_contact_office_country', sanitize_text_field($_POST['contact_office_country']));
+        
+        echo '<div class="notice notice-success"><p>Contact settings saved successfully!</p></div>';
+    }
+    
+    // Get current values with defaults
+    $contact_hero_title = get_option('central_build_contact_hero_title', 'let\'s work <span>together</span>');
+    $contact_hero_description = get_option('central_build_contact_hero_description', 'Reach out to Central Build to start your journey. Whether you\'re looking for a bespoke design, a seamless build, or expert advice, we\'re here to help make your vision a reality. Let\'s create something exceptional together.');
+    
+    $contact_email = get_option('central_build_contact_email', 'info@centralbuild.au');
+    $contact_phone = get_option('central_build_contact_phone', 'tel:0123456789');
+    $contact_phone_display = get_option('central_build_contact_phone_display', '0123 456 789');
+    
+    $contact_facebook = get_option('central_build_contact_facebook', 'https://www.facebook.com/p/ENP-Fitouts-100079118888496/');
+    $contact_instagram = get_option('central_build_contact_instagram', 'https://www.instagram.com/enpfitouts');
+    $contact_linkedin = get_option('central_build_contact_linkedin', 'https://in.linkedin.com/');
+    
+    $contact_form_title = get_option('central_build_contact_form_title', 'We\'re here to help');
+    $contact_form_description = get_option('central_build_contact_form_description', 'Tell us about your project & goals!');
+    $contact_form_redirect = get_option('central_build_contact_form_redirect', '/thank-you');
+    
+    $contact_office_image = get_option('central_build_contact_office_image', 'https://static1.squarespace.com/static/6176ce05013c5128c1ff5aa8/6194da83ea54f441cdb5a7de/64d3736437d050544f081ff3/1707218367383/Construction-recruitment+-+dayin+the+life.jpg?format=1500w');
+    $contact_office_title = get_option('central_build_contact_office_title', 'Visit Our Offices');
+    $contact_office_description = get_option('central_build_contact_office_description', 'Central Build is your trusted partner for exceptional commercial fitouts. Visit us to discuss your project and explore our tailored solutions.');
+    $contact_office_location = get_option('central_build_contact_office_location', 'Office in Brisbane');
+    $contact_office_country = get_option('central_build_contact_office_country', 'Australia');
+    
+    ?>
+    <div class="wrap">
+        <h1>Contact Page Settings</h1>
+        <form method="post" action="">
+            <?php wp_nonce_field('contact_settings', 'contact_settings_nonce'); ?>
+            
+            <table class="form-table">
+                <tr>
+                    <th colspan="2"><h2>Hero Section</h2></th>
+                </tr>
+                <tr>
+                    <th scope="row">Hero Title</th>
+                    <td>
+                        <input type="text" name="contact_hero_title" value="<?php echo esc_attr($contact_hero_title); ?>" class="large-text" />
+                        <p class="description">Main heading in hero section (HTML allowed for span tags)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Hero Description</th>
+                    <td>
+                        <textarea name="contact_hero_description" rows="4" cols="50" class="large-text"><?php echo esc_textarea($contact_hero_description); ?></textarea>
+                        <p class="description">Description text below the hero title</p>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <th colspan="2"><h2>Contact Information</h2></th>
+                </tr>
+                <tr>
+                    <th scope="row">Email Address</th>
+                    <td>
+                        <input type="email" name="contact_email" value="<?php echo esc_attr($contact_email); ?>" class="regular-text" />
+                        <p class="description">Contact email address</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Phone Number (tel: link)</th>
+                    <td>
+                        <input type="text" name="contact_phone" value="<?php echo esc_attr($contact_phone); ?>" class="regular-text" placeholder="tel:0123456789" />
+                        <p class="description">Phone number for tel: link (format: tel:0123456789)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Phone Number (display)</th>
+                    <td>
+                        <input type="text" name="contact_phone_display" value="<?php echo esc_attr($contact_phone_display); ?>" class="regular-text" />
+                        <p class="description">Phone number as displayed to users</p>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <th colspan="2"><h2>Social Media Links</h2></th>
+                </tr>
+                <tr>
+                    <th scope="row">Facebook URL</th>
+                    <td>
+                        <input type="url" name="contact_facebook" value="<?php echo esc_url($contact_facebook); ?>" class="large-text" />
+                        <p class="description">Facebook page URL</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Instagram URL</th>
+                    <td>
+                        <input type="url" name="contact_instagram" value="<?php echo esc_url($contact_instagram); ?>" class="large-text" />
+                        <p class="description">Instagram profile URL</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">LinkedIn URL</th>
+                    <td>
+                        <input type="url" name="contact_linkedin" value="<?php echo esc_url($contact_linkedin); ?>" class="large-text" />
+                        <p class="description">LinkedIn profile URL</p>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <th colspan="2"><h2>Contact Form</h2></th>
+                </tr>
+                <tr>
+                    <th scope="row">Form Title</th>
+                    <td>
+                        <input type="text" name="contact_form_title" value="<?php echo esc_attr($contact_form_title); ?>" class="regular-text" />
+                        <p class="description">Title above the contact form</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Form Description</th>
+                    <td>
+                        <textarea name="contact_form_description" rows="2" cols="50" class="large-text"><?php echo esc_textarea($contact_form_description); ?></textarea>
+                        <p class="description">Description below the form title</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Form Redirect URL</th>
+                    <td>
+                        <input type="text" name="contact_form_redirect" value="<?php echo esc_attr($contact_form_redirect); ?>" class="regular-text" />
+                        <p class="description">Page to redirect after form submission (e.g., /thank-you)</p>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <th colspan="2"><h2>Office Information</h2></th>
+                </tr>
+                <tr>
+                    <th scope="row">Office Image URL</th>
+                    <td>
+                        <input type="url" name="contact_office_image" value="<?php echo esc_url($contact_office_image); ?>" class="large-text" />
+                        <p class="description">Image for the office section</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Office Section Title</th>
+                    <td>
+                        <input type="text" name="contact_office_title" value="<?php echo esc_attr($contact_office_title); ?>" class="regular-text" />
+                        <p class="description">Title for the office section</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Office Description</th>
+                    <td>
+                        <textarea name="contact_office_description" rows="3" cols="50" class="large-text"><?php echo esc_textarea($contact_office_description); ?></textarea>
+                        <p class="description">Description for the office section</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Office Location</th>
+                    <td>
+                        <input type="text" name="contact_office_location" value="<?php echo esc_attr($contact_office_location); ?>" class="regular-text" />
+                        <p class="description">Office location (e.g., "Office in Brisbane")</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Country</th>
+                    <td>
+                        <input type="text" name="contact_office_country" value="<?php echo esc_attr($contact_office_country); ?>" class="regular-text" />
+                        <p class="description">Country name</p>
+                    </td>
+                </tr>
+            </table>
+            
+            <?php submit_button('Save Contact Settings'); ?>
+        </form>
+    </div>
+    
+    <style>
+    .form-table th h2 {
+        margin: 0;
+        padding: 10px 0;
+        border-bottom: 1px solid #ddd;
+        color: #23282d;
+    }
+    .form-table input[type="text"], 
+    .form-table input[type="url"], 
+    .form-table input[type="email"],
+    .form-table textarea {
+        margin-bottom: 5px;
+    }
+    </style>
+    <?php
+}
+
+/**
+ * Customizer additions (Basic settings only)
+ */
+function central_build_customize_register($wp_customize)
+{
     // Site Identity Section
     $wp_customize->add_setting('central_build_phone', array(
-        'default'           => '+61 431 465 090',
+        'default'           => '+61 123 456 789',
         'sanitize_callback' => 'sanitize_text_field',
     ));
 
@@ -255,1001 +884,6 @@ function central_build_customize_register($wp_customize) {
         'label'    => esc_html__('Email Address', 'central-build'),
         'section'  => 'title_tagline',
         'type'     => 'email',
-    ));
-
-    // Front Page Sections Panel
-    $wp_customize->add_panel('central_build_front_page', array(
-        'title'       => esc_html__('Front Page Sections', 'central-build'),
-        'description' => esc_html__('Customize the sections displayed on your front page.', 'central-build'),
-        'priority'    => 130,
-    ));
-
-    // Section Visibility Settings
-    $wp_customize->add_section('central_build_section_visibility', array(
-        'title'    => esc_html__('Section Visibility', 'central-build'),
-        'panel'    => 'central_build_front_page',
-        'priority' => 10,
-    ));
-
-    // Hero Section
-    $wp_customize->add_setting('central_build_show_hero_section', array(
-        'default'           => true,
-        'sanitize_callback' => 'wp_validate_boolean',
-    ));
-    $wp_customize->add_control('central_build_show_hero_section', array(
-        'label'   => esc_html__('Show Hero Section', 'central-build'),
-        'section' => 'central_build_section_visibility',
-        'type'    => 'checkbox',
-    ));
-
-    // About Section
-    $wp_customize->add_setting('central_build_show_about_section', array(
-        'default'           => true,
-        'sanitize_callback' => 'wp_validate_boolean',
-    ));
-    $wp_customize->add_control('central_build_show_about_section', array(
-        'label'   => esc_html__('Show About Section', 'central-build'),
-        'section' => 'central_build_section_visibility',
-        'type'    => 'checkbox',
-    ));
-
-    // Trust Section
-    $wp_customize->add_setting('central_build_show_trust_section', array(
-        'default'           => true,
-        'sanitize_callback' => 'wp_validate_boolean',
-    ));
-    $wp_customize->add_control('central_build_show_trust_section', array(
-        'label'   => esc_html__('Show Trust Process Section', 'central-build'),
-        'section' => 'central_build_section_visibility',
-        'type'    => 'checkbox',
-    ));
-
-    // Partners Section
-    $wp_customize->add_setting('central_build_show_partners_section', array(
-        'default'           => true,
-        'sanitize_callback' => 'wp_validate_boolean',
-    ));
-    $wp_customize->add_control('central_build_show_partners_section', array(
-        'label'   => esc_html__('Show Partners Section', 'central-build'),
-        'section' => 'central_build_section_visibility',
-        'type'    => 'checkbox',
-    ));
-
-    // Testimonials Section
-    $wp_customize->add_setting('central_build_show_testimonials_section', array(
-        'default'           => true,
-        'sanitize_callback' => 'wp_validate_boolean',
-    ));
-    $wp_customize->add_control('central_build_show_testimonials_section', array(
-        'label'   => esc_html__('Show Testimonials Section', 'central-build'),
-        'section' => 'central_build_section_visibility',
-        'type'    => 'checkbox',
-    ));
-
-    // Featured Projects Section
-    $wp_customize->add_setting('central_build_show_projects_section', array(
-        'default'           => true,
-        'sanitize_callback' => 'wp_validate_boolean',
-    ));
-    $wp_customize->add_control('central_build_show_projects_section', array(
-        'label'   => esc_html__('Show Featured Projects Section', 'central-build'),
-        'section' => 'central_build_section_visibility',
-        'type'    => 'checkbox',
-    ));
-
-    // Commercial Section
-    $wp_customize->add_setting('central_build_show_commercial_section', array(
-        'default'           => true,
-        'sanitize_callback' => 'wp_validate_boolean',
-    ));
-    $wp_customize->add_control('central_build_show_commercial_section', array(
-        'label'   => esc_html__('Show Commercial Fitout Sectors Section', 'central-build'),
-        'section' => 'central_build_section_visibility',
-        'type'    => 'checkbox',
-    ));
-
-    // CTA Section
-    $wp_customize->add_setting('central_build_show_cta_section', array(
-        'default'           => true,
-        'sanitize_callback' => 'wp_validate_boolean',
-    ));
-    $wp_customize->add_control('central_build_show_cta_section', array(
-        'label'   => esc_html__('Show Call-to-Action Section', 'central-build'),
-        'section' => 'central_build_section_visibility',
-        'type'    => 'checkbox',
-    ));
-
-    // FAQ Section
-    $wp_customize->add_setting('central_build_show_faq_section', array(
-        'default'           => true,
-        'sanitize_callback' => 'wp_validate_boolean',
-    ));
-    $wp_customize->add_control('central_build_show_faq_section', array(
-        'label'   => esc_html__('Show FAQ Section', 'central-build'),
-        'section' => 'central_build_section_visibility',
-        'type'    => 'checkbox',
-    ));
-
-    // FAQ Transform Section
-    $wp_customize->add_setting('central_build_show_faq_transform_section', array(
-        'default'           => true,
-        'sanitize_callback' => 'wp_validate_boolean',
-    ));
-    $wp_customize->add_control('central_build_show_faq_transform_section', array(
-        'label'   => esc_html__('Show FAQ Transform Section', 'central-build'),
-        'section' => 'central_build_section_visibility',
-        'type'    => 'checkbox',
-    ));
-
-    // Hero Section Content
-    $wp_customize->add_section('central_build_hero_content', array(
-        'title'    => esc_html__('Hero Section Content', 'central-build'),
-        'panel'    => 'central_build_front_page',
-        'priority' => 20,
-    ));
-
-    // Hero Title
-    $wp_customize->add_setting('central_build_hero_title', array(
-        'default'           => __('Your Commercial Fitout, Made Simple', 'central-build'),
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('central_build_hero_title', array(
-        'label'   => esc_html__('Hero Title', 'central-build'),
-        'section' => 'central_build_hero_content',
-        'type'    => 'text',
-    ));
-
-    // Hero Description
-    $wp_customize->add_setting('central_build_hero_description', array(
-        'default'           => __('A commercial fitout can feel like a lot especially if it\'s your first one. We\'re here to make it simple. From the start, you\'ll have a clear plan, fixed costs, and one team guiding you through the process. No variations. No confusion. Just a space that\'s built properly, so you can focus on your business.', 'central-build'),
-        'sanitize_callback' => 'sanitize_textarea_field',
-    ));
-    $wp_customize->add_control('central_build_hero_description', array(
-        'label'   => esc_html__('Hero Description', 'central-build'),
-        'section' => 'central_build_hero_content',
-        'type'    => 'textarea',
-    ));
-
-    // Hero Button Text
-    $wp_customize->add_setting('central_build_hero_button_text', array(
-        'default'           => __('Start Your Fitout Journey', 'central-build'),
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('central_build_hero_button_text', array(
-        'label'   => esc_html__('Hero Button Text', 'central-build'),
-        'section' => 'central_build_hero_content',
-        'type'    => 'text',
-    ));
-
-    // Hero Button Subtext
-    $wp_customize->add_setting('central_build_hero_button_subtext', array(
-        'default'           => __('Learn more', 'central-build'),
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('central_build_hero_button_subtext', array(
-        'label'   => esc_html__('Hero Button Subtext', 'central-build'),
-        'section' => 'central_build_hero_content',
-        'type'    => 'text',
-    ));
-
-    // Hero Button URL
-    $wp_customize->add_setting('central_build_hero_button_url', array(
-        'default'           => home_url('/commercial-shop-fitting'),
-        'sanitize_callback' => 'esc_url_raw',
-    ));
-    $wp_customize->add_control('central_build_hero_button_url', array(
-        'label'   => esc_html__('Hero Button URL', 'central-build'),
-        'section' => 'central_build_hero_content',
-        'type'    => 'url',
-    ));
-
-    // Trust Section Content
-    $wp_customize->add_section('central_build_trust_content', array(
-        'title'    => esc_html__('Trust Process Section', 'central-build'),
-        'panel'    => 'central_build_front_page',
-        'priority' => 30,
-    ));
-
-    // Trust Section Title
-    $wp_customize->add_setting('central_build_trust_title', array(
-        'default'           => __('Trust in<br>ENP Fitouts Process', 'central-build'),
-        'sanitize_callback' => 'wp_kses_post',
-    ));
-    $wp_customize->add_control('central_build_trust_title', array(
-        'label'   => esc_html__('Trust Section Title', 'central-build'),
-        'section' => 'central_build_trust_content',
-        'type'    => 'text',
-    ));
-
-    // Feature 1 Settings
-    $wp_customize->add_setting('central_build_trust_feature1_icon', array(
-        'default'           => get_template_directory_uri() . '/images/66f1ffecdef9310969f579e0_Engg-Icon.svg',
-        'sanitize_callback' => 'esc_url_raw',
-    ));
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'central_build_trust_feature1_icon', array(
-        'label'   => esc_html__('Feature 1 Icon', 'central-build'),
-        'section' => 'central_build_trust_content',
-    )));
-
-    $wp_customize->add_setting('central_build_trust_feature1_title', array(
-        'default'           => __('A Structured Fitout Process', 'central-build'),
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('central_build_trust_feature1_title', array(
-        'label'   => esc_html__('Feature 1 Title', 'central-build'),
-        'section' => 'central_build_trust_content',
-        'type'    => 'text',
-    ));
-
-    $wp_customize->add_setting('central_build_trust_feature1_description', array(
-        'default'           => __('Most delays happen because of poor planning. We solve that with a clear, step-by-step process built around your business needs. From the start, you\'ll know what\'s happening, when it\'s happening, and what to expect next. With built-in approvals and check-ins along the way, there\'s no confusion or chaos — just structure you can rely on.', 'central-build'),
-        'sanitize_callback' => 'sanitize_textarea_field',
-    ));
-    $wp_customize->add_control('central_build_trust_feature1_description', array(
-        'label'   => esc_html__('Feature 1 Description', 'central-build'),
-        'section' => 'central_build_trust_content',
-        'type'    => 'textarea',
-    ));
-
-    // Feature 2 Settings
-    $wp_customize->add_setting('central_build_trust_feature2_icon', array(
-        'default'           => get_template_directory_uri() . '/images/66f1ffecdef9310969f57a0a_Project-Icon.svg',
-        'sanitize_callback' => 'esc_url_raw',
-    ));
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'central_build_trust_feature2_icon', array(
-        'label'   => esc_html__('Feature 2 Icon', 'central-build'),
-        'section' => 'central_build_trust_content',
-    )));
-
-    $wp_customize->add_setting('central_build_trust_feature2_title', array(
-        'default'           => __('Hands-On Project Support', 'central-build'),
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('central_build_trust_feature2_title', array(
-        'label'   => esc_html__('Feature 2 Title', 'central-build'),
-        'section' => 'central_build_trust_content',
-        'type'    => 'text',
-    ));
-
-    $wp_customize->add_setting('central_build_trust_feature2_description', array(
-        'default'           => __('You won\'t be chasing trades or wondering what\'s going on onsite. You\'ll have a dedicated project manager who coordinates everything from permits and council approvals to joinery installation. We deal with the issues before they affect your timeline, and keep you informed without overwhelming you.', 'central-build'),
-        'sanitize_callback' => 'sanitize_textarea_field',
-    ));
-    $wp_customize->add_control('central_build_trust_feature2_description', array(
-        'label'   => esc_html__('Feature 2 Description', 'central-build'),
-        'section' => 'central_build_trust_content',
-        'type'    => 'textarea',
-    ));
-
-    // Feature 3 Settings
-    $wp_customize->add_setting('central_build_trust_feature3_icon', array(
-        'default'           => get_template_directory_uri() . '/images/66f1ffecdef9310969f579df_Financial-Icon.svg',
-        'sanitize_callback' => 'esc_url_raw',
-    ));
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'central_build_trust_feature3_icon', array(
-        'label'   => esc_html__('Feature 3 Icon', 'central-build'),
-        'section' => 'central_build_trust_content',
-    )));
-
-    $wp_customize->add_setting('central_build_trust_feature3_title', array(
-        'default'           => __('Transparent Cost Management', 'central-build'),
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('central_build_trust_feature3_title', array(
-        'label'   => esc_html__('Feature 3 Title', 'central-build'),
-        'section' => 'central_build_trust_content',
-        'type'    => 'text',
-    ));
-
-    $wp_customize->add_setting('central_build_trust_feature3_description', array(
-        'default'           => __('We don\'t do vague quotes or "TBC" allowances. Every quote is detailed, costed properly, and confirmed with our trades. That means you know where every dollar is going before the build starts. If anything changes, we talk it through with you — no surprise charges or last-minute add-ons.', 'central-build'),
-        'sanitize_callback' => 'sanitize_textarea_field',
-    ));
-    $wp_customize->add_control('central_build_trust_feature3_description', array(
-        'label'   => esc_html__('Feature 3 Description', 'central-build'),
-        'section' => 'central_build_trust_content',
-        'type'    => 'textarea',
-    ));
-
-    // Partners Section Content
-    $wp_customize->add_section('central_build_partners_content', array(
-        'title'    => esc_html__('Partners/Clients Section', 'central-build'),
-        'panel'    => 'central_build_front_page',
-        'priority' => 40,
-    ));
-
-    // Add partner logo settings (12 partners total)
-    for ($i = 1; $i <= 12; $i++) {
-        // Partner Logo
-        $wp_customize->add_setting("central_build_partner_{$i}_logo", array(
-            'default'           => '',
-            'sanitize_callback' => 'esc_url_raw',
-        ));
-        $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, "central_build_partner_{$i}_logo", array(
-            'label'   => sprintf(esc_html__('Partner %d Logo', 'central-build'), $i),
-            'section' => 'central_build_partners_content',
-        )));
-
-        // Partner Name
-        $wp_customize->add_setting("central_build_partner_{$i}_name", array(
-            'default'           => sprintf(__('Partner %d', 'central-build'), $i),
-            'sanitize_callback' => 'sanitize_text_field',
-        ));
-        $wp_customize->add_control("central_build_partner_{$i}_name", array(
-            'label'   => sprintf(esc_html__('Partner %d Name', 'central-build'), $i),
-            'section' => 'central_build_partners_content',
-            'type'    => 'text',
-        ));
-
-        // Partner URL
-        $wp_customize->add_setting("central_build_partner_{$i}_url", array(
-            'default'           => '#',
-            'sanitize_callback' => 'esc_url_raw',
-        ));
-        $wp_customize->add_control("central_build_partner_{$i}_url", array(
-            'label'   => sprintf(esc_html__('Partner %d URL', 'central-build'), $i),
-            'section' => 'central_build_partners_content',
-            'type'    => 'url',
-        ));
-    }
-
-    // Testimonials Section Content
-    $wp_customize->add_section('central_build_testimonials_content', array(
-        'title'    => esc_html__('Testimonials Section', 'central-build'),
-        'panel'    => 'central_build_front_page',
-        'priority' => 50,
-    ));
-
-    // Testimonials Section Settings
-    $wp_customize->add_setting('central_build_testimonials_tag', array(
-        'default'           => __('Testimonial', 'central-build'),
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('central_build_testimonials_tag', array(
-        'label'   => esc_html__('Section Tag', 'central-build'),
-        'section' => 'central_build_testimonials_content',
-        'type'    => 'text',
-    ));
-
-    $wp_customize->add_setting('central_build_testimonials_title', array(
-        'default'           => __('Words from Those Who\'ve Trusted Us', 'central-build'),
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('central_build_testimonials_title', array(
-        'label'   => esc_html__('Section Title', 'central-build'),
-        'section' => 'central_build_testimonials_content',
-        'type'    => 'text',
-    ));
-
-    $wp_customize->add_setting('central_build_testimonials_description', array(
-        'default'           => __('Discover why clients trust us for their Fitouts. Our commitment to quality and on-time delivery is reflected in their positive feedback.', 'central-build'),
-        'sanitize_callback' => 'sanitize_textarea_field',
-    ));
-    $wp_customize->add_control('central_build_testimonials_description', array(
-        'label'   => esc_html__('Section Description', 'central-build'),
-        'section' => 'central_build_testimonials_content',
-        'type'    => 'textarea',
-    ));
-
-    // Button Settings
-    $wp_customize->add_setting('central_build_testimonials_button_text', array(
-        'default'           => __('Testimonials', 'central-build'),
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('central_build_testimonials_button_text', array(
-        'label'   => esc_html__('Button Text', 'central-build'),
-        'section' => 'central_build_testimonials_content',
-        'type'    => 'text',
-    ));
-
-    $wp_customize->add_setting('central_build_testimonials_button_subtext', array(
-        'default'           => __('Learn more', 'central-build'),
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('central_build_testimonials_button_subtext', array(
-        'label'   => esc_html__('Button Subtext', 'central-build'),
-        'section' => 'central_build_testimonials_content',
-        'type'    => 'text',
-    ));
-
-    $wp_customize->add_setting('central_build_testimonials_button_url', array(
-        'default'           => home_url('/testimonials'),
-        'sanitize_callback' => 'esc_url_raw',
-    ));
-    $wp_customize->add_control('central_build_testimonials_button_url', array(
-        'label'   => esc_html__('Button URL', 'central-build'),
-        'section' => 'central_build_testimonials_content',
-        'type'    => 'url',
-    ));
-
-    // Testimonials Image
-    $wp_customize->add_setting('central_build_testimonials_image', array(
-        'default'           => '',
-        'sanitize_callback' => 'esc_url_raw',
-    ));
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'central_build_testimonials_image', array(
-        'label'   => esc_html__('Section Image', 'central-build'),
-        'section' => 'central_build_testimonials_content',
-    )));
-
-    // Individual Testimonials (3 testimonials)
-    for ($i = 1; $i <= 3; $i++) {
-        // Testimonial Content
-        $wp_customize->add_setting("central_build_testimonial_{$i}_content", array(
-            'default'           => '',
-            'sanitize_callback' => 'sanitize_textarea_field',
-        ));
-        $wp_customize->add_control("central_build_testimonial_{$i}_content", array(
-            'label'   => sprintf(esc_html__('Testimonial %d Content', 'central-build'), $i),
-            'section' => 'central_build_testimonials_content',
-            'type'    => 'textarea',
-        ));
-
-        // Testimonial Name
-        $wp_customize->add_setting("central_build_testimonial_{$i}_name", array(
-            'default'           => '',
-            'sanitize_callback' => 'sanitize_text_field',
-        ));
-        $wp_customize->add_control("central_build_testimonial_{$i}_name", array(
-            'label'   => sprintf(esc_html__('Testimonial %d Name', 'central-build'), $i),
-            'section' => 'central_build_testimonials_content',
-            'type'    => 'text',
-        ));
-
-        // Testimonial Position
-        $wp_customize->add_setting("central_build_testimonial_{$i}_position", array(
-            'default'           => '',
-            'sanitize_callback' => 'sanitize_text_field',
-        ));
-        $wp_customize->add_control("central_build_testimonial_{$i}_position", array(
-            'label'   => sprintf(esc_html__('Testimonial %d Position', 'central-build'), $i),
-            'section' => 'central_build_testimonials_content',
-            'type'    => 'text',
-        ));
-
-        // Testimonial Image
-        $wp_customize->add_setting("central_build_testimonial_{$i}_image", array(
-            'default'           => '',
-            'sanitize_callback' => 'esc_url_raw',
-        ));
-        $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, "central_build_testimonial_{$i}_image", array(
-            'label'   => sprintf(esc_html__('Testimonial %d Image', 'central-build'), $i),
-            'section' => 'central_build_testimonials_content',
-        )));
-    }
-
-    // Featured Projects Section Content
-    $wp_customize->add_section('central_build_projects_content', array(
-        'title'    => esc_html__('Featured Projects Section', 'central-build'),
-        'panel'    => 'central_build_front_page',
-        'priority' => 60,
-    ));
-
-    // Projects Section Header
-    $wp_customize->add_setting('central_build_projects_title', array(
-        'default'           => __('Start Your Fitout Journey Today', 'central-build'),
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('central_build_projects_title', array(
-        'label'   => esc_html__('Section Title', 'central-build'),
-        'section' => 'central_build_projects_content',
-        'type'    => 'text',
-    ));
-
-    $wp_customize->add_setting('central_build_projects_subtitle', array(
-        'default'           => __('Don\'t Fit in with your Average Fitout.', 'central-build'),
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('central_build_projects_subtitle', array(
-        'label'   => esc_html__('Section Subtitle', 'central-build'),
-        'section' => 'central_build_projects_content',
-        'type'    => 'text',
-    ));
-
-    // Process Steps (3 steps)
-    for ($i = 1; $i <= 3; $i++) {
-        // Step Icon
-        $wp_customize->add_setting("central_build_process_step_{$i}_icon", array(
-            'default'           => '',
-            'sanitize_callback' => 'esc_url_raw',
-        ));
-        $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, "central_build_process_step_{$i}_icon", array(
-            'label'   => sprintf(esc_html__('Step %d Icon', 'central-build'), $i),
-            'section' => 'central_build_projects_content',
-        )));
-
-        // Step Title
-        $wp_customize->add_setting("central_build_process_step_{$i}_title", array(
-            'default'           => '',
-            'sanitize_callback' => 'sanitize_text_field',
-        ));
-        $wp_customize->add_control("central_build_process_step_{$i}_title", array(
-            'label'   => sprintf(esc_html__('Step %d Title', 'central-build'), $i),
-            'section' => 'central_build_projects_content',
-            'type'    => 'text',
-        ));
-
-        // Step Description
-        $wp_customize->add_setting("central_build_process_step_{$i}_description", array(
-            'default'           => '',
-            'sanitize_callback' => 'sanitize_textarea_field',
-        ));
-        $wp_customize->add_control("central_build_process_step_{$i}_description", array(
-            'label'   => sprintf(esc_html__('Step %d Description', 'central-build'), $i),
-            'section' => 'central_build_projects_content',
-            'type'    => 'textarea',
-        ));
-    }
-
-    // Project Images (3 images)
-    for ($i = 1; $i <= 3; $i++) {
-        // Project Image
-        $wp_customize->add_setting("central_build_project_image_{$i}", array(
-            'default'           => '',
-            'sanitize_callback' => 'esc_url_raw',
-        ));
-        $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, "central_build_project_image_{$i}", array(
-            'label'   => sprintf(esc_html__('Project Image %d', 'central-build'), $i),
-            'section' => 'central_build_projects_content',
-        )));
-
-        // Project Image Alt Text
-        $wp_customize->add_setting("central_build_project_image_{$i}_alt", array(
-            'default'           => __('ENP Fitouts project team on site at commercial fitout', 'central-build'),
-            'sanitize_callback' => 'sanitize_text_field',
-        ));
-        $wp_customize->add_control("central_build_project_image_{$i}_alt", array(
-            'label'   => sprintf(esc_html__('Project Image %d Alt Text', 'central-build'), $i),
-            'section' => 'central_build_projects_content',
-            'type'    => 'text',
-        ));
-    }
-
-    // Projects Button Settings
-    $wp_customize->add_setting('central_build_projects_button_text', array(
-        'default'           => __('Start Today!', 'central-build'),
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('central_build_projects_button_text', array(
-        'label'   => esc_html__('Button Text', 'central-build'),
-        'section' => 'central_build_projects_content',
-        'type'    => 'text',
-    ));
-
-    $wp_customize->add_setting('central_build_projects_button_subtext', array(
-        'default'           => __('Learn more', 'central-build'),
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('central_build_projects_button_subtext', array(
-        'label'   => esc_html__('Button Subtext', 'central-build'),
-        'section' => 'central_build_projects_content',
-        'type'    => 'text',
-    ));
-
-    $wp_customize->add_setting('central_build_projects_button_url', array(
-        'default'           => home_url('/contact'),
-        'sanitize_callback' => 'esc_url_raw',
-    ));
-    $wp_customize->add_control('central_build_projects_button_url', array(
-        'label'   => esc_html__('Button URL', 'central-build'),
-        'section' => 'central_build_projects_content',
-        'type'    => 'url',
-    ));
-
-    // Statistics (4 stats)
-    for ($i = 1; $i <= 4; $i++) {
-        // Stat Number
-        $wp_customize->add_setting("central_build_stat_{$i}_number", array(
-            'default'           => '',
-            'sanitize_callback' => 'sanitize_text_field',
-        ));
-        $wp_customize->add_control("central_build_stat_{$i}_number", array(
-            'label'   => sprintf(esc_html__('Statistic %d Number', 'central-build'), $i),
-            'section' => 'central_build_projects_content',
-            'type'    => 'text',
-        ));
-
-        // Stat Label
-        $wp_customize->add_setting("central_build_stat_{$i}_label", array(
-            'default'           => '',
-            'sanitize_callback' => 'sanitize_text_field',
-        ));
-        $wp_customize->add_control("central_build_stat_{$i}_label", array(
-            'label'   => sprintf(esc_html__('Statistic %d Label', 'central-build'), $i),
-            'section' => 'central_build_projects_content',
-            'type'    => 'text',
-        ));
-    }
-
-    // CTA Section Settings
-    $wp_customize->add_setting('central_build_cta_title', array(
-        'default'           => __('Fitouts Shouldn\'t Be This Hard', 'central-build'),
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('central_build_cta_title', array(
-        'label'   => esc_html__('CTA Title', 'central-build'),
-        'section' => 'central_build_projects_content',
-        'type'    => 'text',
-    ));
-
-    $wp_customize->add_setting('central_build_cta_description', array(
-        'default'           => __('Overwhelmed trying to manage every part of your fitout? From designs to trades, certifications, and approvals, it adds up fast.<br>We take care of it all. You\'ll have one experienced team, one point of contact, and a clear, structured plan to follow.<br>Have a space that\'s done right, ready to use, and built to support your business from day one.', 'central-build'),
-        'sanitize_callback' => 'sanitize_textarea_field',
-    ));
-    $wp_customize->add_control('central_build_cta_description', array(
-        'label'   => esc_html__('CTA Description', 'central-build'),
-        'section' => 'central_build_projects_content',
-        'type'    => 'textarea',
-    ));
-
-    $wp_customize->add_setting('central_build_cta_button_text', array(
-        'default'           => __('Start Today!', 'central-build'),
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('central_build_cta_button_text', array(
-        'label'   => esc_html__('CTA Button Text', 'central-build'),
-        'section' => 'central_build_projects_content',
-        'type'    => 'text',
-    ));
-
-    $wp_customize->add_setting('central_build_cta_button_subtext', array(
-        'default'           => __('Learn more', 'central-build'),
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('central_build_cta_button_subtext', array(
-        'label'   => esc_html__('CTA Button Subtext', 'central-build'),
-        'section' => 'central_build_projects_content',
-        'type'    => 'text',
-    ));
-
-    $wp_customize->add_setting('central_build_cta_button_url', array(
-        'default'           => home_url('/contact'),
-        'sanitize_callback' => 'esc_url_raw',
-    ));
-    $wp_customize->add_control('central_build_cta_button_url', array(
-        'label'   => esc_html__('CTA Button URL', 'central-build'),
-        'section' => 'central_build_projects_content',
-        'type'    => 'url',
-    ));
-
-    $wp_customize->add_setting('central_build_cta_background_image', array(
-        'default'           => '',
-        'sanitize_callback' => 'esc_url_raw',
-    ));
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'central_build_cta_background_image', array(
-        'label'   => esc_html__('CTA Background Image', 'central-build'),
-        'section' => 'central_build_projects_content',
-    )));
-
-    // Commercial Projects Section Content
-    $wp_customize->add_section('central_build_commercial_content', array(
-        'title'    => esc_html__('Commercial Projects Section', 'central-build'),
-        'panel'    => 'central_build_front_page',
-        'priority' => 70,
-    ));
-
-    // Commercial Section Header
-    $wp_customize->add_setting('central_build_commercial_tag', array(
-        'default'           => __('Service', 'central-build'),
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('central_build_commercial_tag', array(
-        'label'   => esc_html__('Section Tag', 'central-build'),
-        'section' => 'central_build_commercial_content',
-        'type'    => 'text',
-    ));
-
-    $wp_customize->add_setting('central_build_commercial_title', array(
-        'default'           => __('Check out <br>our latest work', 'central-build'),
-        'sanitize_callback' => 'sanitize_textarea_field',
-    ));
-    $wp_customize->add_control('central_build_commercial_title', array(
-        'label'   => esc_html__('Section Title', 'central-build'),
-        'section' => 'central_build_commercial_content',
-        'type'    => 'textarea',
-        'description' => esc_html__('Use <br> for line breaks', 'central-build'),
-    ));
-
-    // Commercial Projects (8 projects total)
-    for ($i = 1; $i <= 8; $i++) {
-        // Project Image
-        $wp_customize->add_setting("central_build_commercial_project_{$i}_image", array(
-            'default'           => '',
-            'sanitize_callback' => 'esc_url_raw',
-        ));
-        $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, "central_build_commercial_project_{$i}_image", array(
-            'label'   => sprintf(esc_html__('Project %d Image', 'central-build'), $i),
-            'section' => 'central_build_commercial_content',
-        )));
-
-        // Project Title
-        $wp_customize->add_setting("central_build_commercial_project_{$i}_title", array(
-            'default'           => '',
-            'sanitize_callback' => 'sanitize_text_field',
-        ));
-        $wp_customize->add_control("central_build_commercial_project_{$i}_title", array(
-            'label'   => sprintf(esc_html__('Project %d Title', 'central-build'), $i),
-            'section' => 'central_build_commercial_content',
-            'type'    => 'text',
-        ));
-
-        // Project URL
-        $wp_customize->add_setting("central_build_commercial_project_{$i}_url", array(
-            'default'           => '#',
-            'sanitize_callback' => 'esc_url_raw',
-        ));
-        $wp_customize->add_control("central_build_commercial_project_{$i}_url", array(
-            'label'   => sprintf(esc_html__('Project %d URL', 'central-build'), $i),
-            'section' => 'central_build_commercial_content',
-            'type'    => 'url',
-        ));
-
-        // Project Alt Text
-        $wp_customize->add_setting("central_build_commercial_project_{$i}_alt", array(
-            'default'           => '',
-            'sanitize_callback' => 'sanitize_text_field',
-        ));
-        $wp_customize->add_control("central_build_commercial_project_{$i}_alt", array(
-            'label'   => sprintf(esc_html__('Project %d Alt Text', 'central-build'), $i),
-            'section' => 'central_build_commercial_content',
-            'type'    => 'text',
-        ));
-    }
-
-    // Checkout/Sectors Section Content
-    $wp_customize->add_section('central_build_checkout_content', array(
-        'title'    => esc_html__('Fitout Sectors Section', 'central-build'),
-        'panel'    => 'central_build_front_page',
-        'priority' => 80,
-    ));
-
-    // Checkout Section Header
-    $wp_customize->add_setting('central_build_checkout_icon', array(
-        'default'           => '',
-        'sanitize_callback' => 'esc_url_raw',
-    ));
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'central_build_checkout_icon', array(
-        'label'   => esc_html__('Section Icon', 'central-build'),
-        'section' => 'central_build_checkout_content',
-    )));
-
-    $wp_customize->add_setting('central_build_checkout_title', array(
-        'default'           => __('Commercial Fitout Sectors', 'central-build'),
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('central_build_checkout_title', array(
-        'label'   => esc_html__('Section Title', 'central-build'),
-        'section' => 'central_build_checkout_content',
-        'type'    => 'text',
-    ));
-
-    // Fitout Sectors (5 sectors)
-    for ($i = 1; $i <= 5; $i++) {
-        // Sector Icon
-        $wp_customize->add_setting("central_build_sector_{$i}_icon", array(
-            'default'           => '',
-            'sanitize_callback' => 'esc_url_raw',
-        ));
-        $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, "central_build_sector_{$i}_icon", array(
-            'label'   => sprintf(esc_html__('Sector %d Icon', 'central-build'), $i),
-            'section' => 'central_build_checkout_content',
-        )));
-
-        // Sector Tag
-        $wp_customize->add_setting("central_build_sector_{$i}_tag", array(
-            'default'           => '',
-            'sanitize_callback' => 'sanitize_text_field',
-        ));
-        $wp_customize->add_control("central_build_sector_{$i}_tag", array(
-            'label'   => sprintf(esc_html__('Sector %d Tag', 'central-build'), $i),
-            'section' => 'central_build_checkout_content',
-            'type'    => 'text',
-        ));
-
-        // Sector Title
-        $wp_customize->add_setting("central_build_sector_{$i}_title", array(
-            'default'           => '',
-            'sanitize_callback' => 'sanitize_text_field',
-        ));
-        $wp_customize->add_control("central_build_sector_{$i}_title", array(
-            'label'   => sprintf(esc_html__('Sector %d Title', 'central-build'), $i),
-            'section' => 'central_build_checkout_content',
-            'type'    => 'text',
-        ));
-
-        // Sector Description
-        $wp_customize->add_setting("central_build_sector_{$i}_description", array(
-            'default'           => '',
-            'sanitize_callback' => 'sanitize_textarea_field',
-        ));
-        $wp_customize->add_control("central_build_sector_{$i}_description", array(
-            'label'   => sprintf(esc_html__('Sector %d Description', 'central-build'), $i),
-            'section' => 'central_build_checkout_content',
-            'type'    => 'textarea',
-        ));
-
-        // Sector Image
-        $wp_customize->add_setting("central_build_sector_{$i}_image", array(
-            'default'           => '',
-            'sanitize_callback' => 'esc_url_raw',
-        ));
-        $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, "central_build_sector_{$i}_image", array(
-            'label'   => sprintf(esc_html__('Sector %d Image', 'central-build'), $i),
-            'section' => 'central_build_checkout_content',
-        )));
-
-        // Sector Image Alt Text
-        $wp_customize->add_setting("central_build_sector_{$i}_image_alt", array(
-            'default'           => '',
-            'sanitize_callback' => 'sanitize_text_field',
-        ));
-        $wp_customize->add_control("central_build_sector_{$i}_image_alt", array(
-            'label'   => sprintf(esc_html__('Sector %d Image Alt Text', 'central-build'), $i),
-            'section' => 'central_build_checkout_content',
-            'type'    => 'text',
-        ));
-
-        // Sector URL
-        $wp_customize->add_setting("central_build_sector_{$i}_url", array(
-            'default'           => '#',
-            'sanitize_callback' => 'esc_url_raw',
-        ));
-        $wp_customize->add_control("central_build_sector_{$i}_url", array(
-            'label'   => sprintf(esc_html__('Sector %d URL', 'central-build'), $i),
-            'section' => 'central_build_checkout_content',
-            'type'    => 'url',
-        ));
-    }
-
-    // Checkout Button Settings
-    $wp_customize->add_setting('central_build_checkout_button_text', array(
-        'default'           => __('Check out our Portfolio', 'central-build'),
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('central_build_checkout_button_text', array(
-        'label'   => esc_html__('Button Text', 'central-build'),
-        'section' => 'central_build_checkout_content',
-        'type'    => 'text',
-    ));
-
-    $wp_customize->add_setting('central_build_checkout_button_subtext', array(
-        'default'           => __('Learn more', 'central-build'),
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('central_build_checkout_button_subtext', array(
-        'label'   => esc_html__('Button Subtext', 'central-build'),
-        'section' => 'central_build_checkout_content',
-        'type'    => 'text',
-    ));
-
-    $wp_customize->add_setting('central_build_checkout_button_url', array(
-        'default'           => home_url('/contact'),
-        'sanitize_callback' => 'esc_url_raw',
-    ));
-    $wp_customize->add_control('central_build_checkout_button_url', array(
-        'label'   => esc_html__('Button URL', 'central-build'),
-        'section' => 'central_build_checkout_content',
-        'type'    => 'url',
-    ));
-
-    // FAQ Sections Content
-    $wp_customize->add_section('central_build_faq_content', array(
-        'title'    => esc_html__('FAQ Sections', 'central-build'),
-        'panel'    => 'central_build_front_page',
-        'priority' => 90,
-    ));
-
-    // FAQ Section Title
-    $wp_customize->add_setting('central_build_faq_title', array(
-        'default'           => __('Frequently Asked Question', 'central-build'),
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('central_build_faq_title', array(
-        'label'   => esc_html__('FAQ Section Title', 'central-build'),
-        'section' => 'central_build_faq_content',
-        'type'    => 'text',
-    ));
-
-    // FAQ Items (5 FAQs)
-    for ($i = 1; $i <= 5; $i++) {
-        // FAQ Question
-        $wp_customize->add_setting("central_build_faq_{$i}_question", array(
-            'default'           => '',
-            'sanitize_callback' => 'sanitize_text_field',
-        ));
-        $wp_customize->add_control("central_build_faq_{$i}_question", array(
-            'label'   => sprintf(esc_html__('FAQ %d Question', 'central-build'), $i),
-            'section' => 'central_build_faq_content',
-            'type'    => 'text',
-        ));
-
-        // FAQ Answer
-        $wp_customize->add_setting("central_build_faq_{$i}_answer", array(
-            'default'           => '',
-            'sanitize_callback' => 'sanitize_textarea_field',
-        ));
-        $wp_customize->add_control("central_build_faq_{$i}_answer", array(
-            'label'   => sprintf(esc_html__('FAQ %d Answer', 'central-build'), $i),
-            'section' => 'central_build_faq_content',
-            'type'    => 'textarea',
-        ));
-    }
-
-    // Transform Section Title
-    $wp_customize->add_setting('central_build_transform_title', array(
-        'default'           => __('Ready to Transform Your space?', 'central-build'),
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('central_build_transform_title', array(
-        'label'   => esc_html__('Transform Section Title', 'central-build'),
-        'section' => 'central_build_faq_content',
-        'type'    => 'text',
-    ));
-
-    // Transform Features (3 features)
-    for ($i = 1; $i <= 3; $i++) {
-        // Feature Icon
-        $wp_customize->add_setting("central_build_transform_feature_{$i}_icon", array(
-            'default'           => '',
-            'sanitize_callback' => 'esc_url_raw',
-        ));
-        $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, "central_build_transform_feature_{$i}_icon", array(
-            'label'   => sprintf(esc_html__('Transform Feature %d Icon', 'central-build'), $i),
-            'section' => 'central_build_faq_content',
-        )));
-
-        // Feature Title
-        $wp_customize->add_setting("central_build_transform_feature_{$i}_title", array(
-            'default'           => '',
-            'sanitize_callback' => 'sanitize_text_field',
-        ));
-        $wp_customize->add_control("central_build_transform_feature_{$i}_title", array(
-            'label'   => sprintf(esc_html__('Transform Feature %d Title', 'central-build'), $i),
-            'section' => 'central_build_faq_content',
-            'type'    => 'text',
-        ));
-
-        // Feature Description
-        $wp_customize->add_setting("central_build_transform_feature_{$i}_description", array(
-            'default'           => '',
-            'sanitize_callback' => 'sanitize_textarea_field',
-        ));
-        $wp_customize->add_control("central_build_transform_feature_{$i}_description", array(
-            'label'   => sprintf(esc_html__('Transform Feature %d Description', 'central-build'), $i),
-            'section' => 'central_build_faq_content',
-            'type'    => 'textarea',
-        ));
-    }
-
-    // Transform Button Settings
-    $wp_customize->add_setting('central_build_transform_button_text', array(
-        'default'           => __('Check out our Portfolio', 'central-build'),
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('central_build_transform_button_text', array(
-        'label'   => esc_html__('Transform Button Text', 'central-build'),
-        'section' => 'central_build_faq_content',
-        'type'    => 'text',
-    ));
-
-    $wp_customize->add_setting('central_build_transform_button_subtext', array(
-        'default'           => __('Learn more', 'central-build'),
-        'sanitize_callback' => 'sanitize_text_field',
-    ));
-    $wp_customize->add_control('central_build_transform_button_subtext', array(
-        'label'   => esc_html__('Transform Button Subtext', 'central-build'),
-        'section' => 'central_build_faq_content',
-        'type'    => 'text',
-    ));
-
-    $wp_customize->add_setting('central_build_transform_button_url', array(
-        'default'           => home_url('/contact'),
-        'sanitize_callback' => 'esc_url_raw',
-    ));
-    $wp_customize->add_control('central_build_transform_button_url', array(
-        'label'   => esc_html__('Transform Button URL', 'central-build'),
-        'section' => 'central_build_faq_content',
-        'type'    => 'url',
     ));
 
     // Colors Section
@@ -1299,13 +933,43 @@ function central_build_customize_register($wp_customize) {
             'type'    => 'url',
         ));
     }
+
+    // Fitout Projects Section
+    $wp_customize->add_section('central_build_fitout', array(
+        'title'    => esc_html__('Fitout Projects Section', 'central-build'),
+        'priority' => 140,
+    ));
+
+    $wp_customize->add_setting('central_build_fitout_tag', array(
+        'default'           => 'Fitout Projects',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+
+    $wp_customize->add_control('central_build_fitout_tag', array(
+        'label'   => esc_html__('Section Tag', 'central-build'),
+        'section' => 'central_build_fitout',
+        'type'    => 'text',
+    ));
+
+    $wp_customize->add_setting('central_build_fitout_title', array(
+        'default'           => 'Our Latest <br>Fitout Projects',
+        'sanitize_callback' => 'wp_kses_post',
+    ));
+
+    $wp_customize->add_control('central_build_fitout_title', array(
+        'label'       => esc_html__('Section Title', 'central-build'),
+        'section'     => 'central_build_fitout',
+        'type'        => 'textarea',
+        'description' => esc_html__('Use <br> for line breaks', 'central-build'),
+    ));
 }
 add_action('customize_register', 'central_build_customize_register');
 
 /**
  * Custom post types
  */
-function central_build_custom_post_types() {
+function central_build_custom_post_types()
+{
     // Portfolio Post Type
     register_post_type('portfolio', array(
         'labels' => array(
@@ -1357,7 +1021,8 @@ add_action('init', 'central_build_custom_post_types');
 /**
  * Custom taxonomies
  */
-function central_build_custom_taxonomies() {
+function central_build_custom_taxonomies()
+{
     // Portfolio Categories
     register_taxonomy('portfolio_category', 'portfolio', array(
         'labels' => array(
@@ -1386,7 +1051,8 @@ add_action('init', 'central_build_custom_taxonomies');
 /**
  * Add custom meta boxes
  */
-function central_build_add_meta_boxes() {
+function central_build_add_meta_boxes()
+{
     add_meta_box(
         'portfolio_details',
         esc_html__('Portfolio Details', 'central-build'),
@@ -1410,14 +1076,15 @@ add_action('add_meta_boxes', 'central_build_add_meta_boxes');
 /**
  * Portfolio meta box callback
  */
-function central_build_portfolio_meta_box($post) {
+function central_build_portfolio_meta_box($post)
+{
     wp_nonce_field('central_build_portfolio_meta', 'central_build_portfolio_nonce');
-    
+
     $client = get_post_meta($post->ID, '_portfolio_client', true);
     $project_date = get_post_meta($post->ID, '_portfolio_date', true);
     $project_url = get_post_meta($post->ID, '_portfolio_url', true);
     $gallery = get_post_meta($post->ID, '_portfolio_gallery', true);
-    
+
     ?>
     <table class="form-table">
         <tr>
@@ -1443,14 +1110,15 @@ function central_build_portfolio_meta_box($post) {
 /**
  * Testimonial meta box callback
  */
-function central_build_testimonial_meta_box($post) {
+function central_build_testimonial_meta_box($post)
+{
     wp_nonce_field('central_build_testimonial_meta', 'central_build_testimonial_nonce');
-    
+
     $author_name = get_post_meta($post->ID, '_testimonial_author', true);
     $author_position = get_post_meta($post->ID, '_testimonial_position', true);
     $author_company = get_post_meta($post->ID, '_testimonial_company', true);
     $rating = get_post_meta($post->ID, '_testimonial_rating', true);
-    
+
     ?>
     <table class="form-table">
         <tr>
@@ -1483,7 +1151,8 @@ function central_build_testimonial_meta_box($post) {
 /**
  * Save meta box data
  */
-function central_build_save_meta_boxes($post_id) {
+function central_build_save_meta_boxes($post_id)
+{
     // Portfolio meta
     if (isset($_POST['central_build_portfolio_nonce']) && wp_verify_nonce($_POST['central_build_portfolio_nonce'], 'central_build_portfolio_meta')) {
         if (isset($_POST['portfolio_client'])) {
@@ -1521,7 +1190,8 @@ add_action('save_post', 'central_build_save_meta_boxes');
 /**
  * Custom shortcodes
  */
-function central_build_button_shortcode($atts, $content = null) {
+function central_build_button_shortcode($atts, $content = null)
+{
     $atts = shortcode_atts(array(
         'url'    => '#',
         'style'  => 'primary',
@@ -1530,7 +1200,7 @@ function central_build_button_shortcode($atts, $content = null) {
     ), $atts, 'button');
 
     $classes = array('btn', 'btn-' . $atts['style'], 'btn-' . $atts['size']);
-    
+
     return sprintf(
         '<a href="%s" class="%s" target="%s">%s</a>',
         esc_url($atts['url']),
@@ -1544,7 +1214,8 @@ add_shortcode('button', 'central_build_button_shortcode');
 /**
  * Gallery shortcode
  */
-function central_build_gallery_shortcode($atts) {
+function central_build_gallery_shortcode($atts)
+{
     $atts = shortcode_atts(array(
         'ids'     => '',
         'columns' => 3,
@@ -1557,16 +1228,16 @@ function central_build_gallery_shortcode($atts) {
 
     $ids = explode(',', $atts['ids']);
     $output = '<div class="central-build-gallery columns-' . absint($atts['columns']) . '">';
-    
+
     foreach ($ids as $id) {
         $image = wp_get_attachment_image(trim($id), $atts['size'], false, array('class' => 'gallery-image'));
         if ($image) {
             $output .= '<div class="gallery-item">' . $image . '</div>';
         }
     }
-    
+
     $output .= '</div>';
-    
+
     return $output;
 }
 add_shortcode('gallery', 'central_build_gallery_shortcode');
@@ -1574,16 +1245,17 @@ add_shortcode('gallery', 'central_build_gallery_shortcode');
 /**
  * Security enhancements
  */
-function central_build_security() {
+function central_build_security()
+{
     // Remove WordPress version from head
     remove_action('wp_head', 'wp_generator');
-    
+
     // Remove RSD link
     remove_action('wp_head', 'rsd_link');
-    
+
     // Remove wlwmanifest link
     remove_action('wp_head', 'wlwmanifest_link');
-    
+
     // Remove shortlink
     remove_action('wp_head', 'wp_shortlink_wp_head');
 }
@@ -1592,15 +1264,17 @@ add_action('init', 'central_build_security');
 /**
  * Performance optimizations
  */
-function central_build_performance() {
+function central_build_performance()
+{
     // Remove emoji scripts
     remove_action('wp_head', 'print_emoji_detection_script', 7);
     remove_action('wp_print_styles', 'print_emoji_styles');
     remove_action('admin_print_scripts', 'print_emoji_detection_script');
     remove_action('admin_print_styles', 'print_emoji_styles');
-    
+
     // Remove jQuery migrate
-    function central_build_remove_jquery_migrate($scripts) {
+    function central_build_remove_jquery_migrate($scripts)
+    {
         if (!is_admin() && isset($scripts->registered['jquery'])) {
             $script = $scripts->registered['jquery'];
             if ($script->deps) {
@@ -1615,9 +1289,10 @@ add_action('init', 'central_build_performance');
 /**
  * Admin customizations
  */
-function central_build_admin_init() {
+function central_build_admin_init()
+{
     // Add custom admin styles
-    add_action('admin_enqueue_scripts', function() {
+    add_action('admin_enqueue_scripts', function () {
         wp_enqueue_style('central-build-admin', get_template_directory_uri() . '/css/admin.css', array(), '1.0.0');
     });
 }
