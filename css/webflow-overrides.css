@@ -3146,8 +3146,8 @@ blockquote {
 ._3d-button-front {
     z-index: 1;
     transform-origin: 50% 100%;
-    background-color: #ee0d09;
-    border: 1px solid #ee0d09;
+    background-color: var(--primary);
+    border: 1px solid var(--primary);
     border-radius: 5px;
     flex-direction: row;
     justify-content: center;
@@ -3215,7 +3215,7 @@ blockquote {
 ._3d-button-back {
     transform-origin: 50% 0;
     background-color: #fff;
-    border: 1px solid #ee0d09;
+    border: 1px solid var(--primary);
     border-radius: 5px;
     justify-content: center;
     align-items: center;
@@ -3975,7 +3975,7 @@ blockquote {
 }
 
 ._3d-button-text.color-red {
-    color: #ee0d09
+    color: var(--primary)
 }
 
 ._3d-button-text.color-dark {
@@ -4611,7 +4611,7 @@ blockquote {
 }
 
 .progressbar-indicator.red-bg {
-    background-color: #ee0d09
+    background-color: var(--primary)
 }
 
 .progressbar-indicator.red-bg.seventy-nine {
@@ -4873,7 +4873,7 @@ blockquote {
 
 .home-two-red-bg {
     text-align: center;
-    background-color: #ee0d09;
+    background-color: var(--primary);
     border-radius: 20px;
     flex-flow: column wrap;
     justify-content: center;
@@ -6161,7 +6161,7 @@ blockquote {
 
 .about-two-small-arrow-block {
     grid-column-gap: 30px;
-    background-color: #ee0d09;
+    background-color: var(--primary);
     border-radius: 10px;
     justify-content: center;
     align-items: center;
@@ -6225,7 +6225,7 @@ blockquote {
 
 .about-two-cta-block {
     grid-column-gap: 30px;
-    background-color: #ee0d09;
+    background-color: var(--primary);
     border-radius: 20px;
     justify-content: center;
     align-items: flex-start;
@@ -7707,7 +7707,7 @@ blockquote {
 
 .pricing-one-tab-link.w--current {
     background-color: #fff;
-    border-bottom: 1px solid #ee0d09
+    border-bottom: 1px solid var(--primary)
 }
 
 .pricing-two-testimonial-block {
@@ -7882,7 +7882,7 @@ blockquote {
     text-align: center;
     text-transform: uppercase;
     -webkit-text-fill-color: transparent;
-    background-image: linear-gradient(#ee0d090a,#ee0d0900);
+    background-image: linear-gradient(var(--primary)0a,var(--primary)00);
     -webkit-background-clip: text;
     background-clip: text;
     font-family: Poppins;
@@ -8206,7 +8206,7 @@ blockquote {
 }
 
 .landing-template-left {
-    background-color: #ee0d0924;
+    background-color: var(--primary)24;
     border-radius: 20px;
     flex: 1;
     align-self: stretch;
@@ -9225,7 +9225,7 @@ blockquote {
 
 .contruction-text.blog-two-category-text {
     color: #fff;
-    background-color: #ee0d09;
+    background-color: var(--primary);
     position: absolute;
     inset: 20px 20px auto auto
 }
@@ -9654,7 +9654,7 @@ blockquote {
 }
 
 .contruction-tag {
-    color: #ee0d09;
+    color: var(--primary);
     letter-spacing: .05rem;
     text-transform: uppercase;
     margin-bottom: 10px;
@@ -10012,7 +10012,7 @@ blockquote {
 }
 
 .home-three-hamburger-outer {
-    background-color: #ee0d09;
+    background-color: var(--primary);
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -10349,7 +10349,7 @@ blockquote {
 
 .about-one-hero-button-background {
     z-index: 1;
-    background-color: #ee0d0980;
+    background-color: var(--primary)80;
     border-radius: 100%;
     position: absolute;
     inset: 0%
@@ -11120,7 +11120,7 @@ blockquote {
 
 .service-one-feature-card-link-wrap:hover {
     background-color: var(--primary);
-    border-color: #ee0d09
+    border-color: var(--primary)
 }
 
 .about-two-free-ask-wrap {
@@ -12480,7 +12480,7 @@ blockquote {
     text-align: center;
     letter-spacing: 1px;
     text-transform: capitalize;
-    background-color: #ee0d09;
+    background-color: var(--primary);
     border-radius: 5px;
     align-self: center;
     max-width: 40%;
@@ -12711,7 +12711,7 @@ blockquote {
 }
 
 .heading-five-2.home-three-power-text-block {
-    color: #ee0d09;
+    color: var(--primary);
     max-width: 30ch;
     margin-bottom: 10px;
     padding-top: 10px
@@ -13156,7 +13156,7 @@ blockquote {
 .about-two-cta-block-2 {
     grid-column-gap: 30px;
     aspect-ratio: auto;
-    background-color: #ee0d09;
+    background-color: var(--primary);
     border-radius: 20px;
     justify-content: center;
     align-items: flex-start;
@@ -13273,7 +13273,7 @@ blockquote {
 }
 
 .why-choose-us-vission-background-2 {
-    background-color: #ee0d09;
+    background-color: var(--primary);
     width: 71px;
     height: 362px;
     margin-right: 34px;
@@ -13435,7 +13435,7 @@ blockquote {
 .about-two-cta-block-3 {
     grid-column-gap: 30px;
     aspect-ratio: auto;
-    background-color: #ee0d09;
+    background-color: var(--primary);
     border-radius: 20px;
     justify-content: center;
     align-items: flex-start;
@@ -13503,7 +13503,7 @@ blockquote {
 
 .about-two-small-arrow-block-2 {
     grid-column-gap: 30px;
-    background-color: #ee0d09;
+    background-color: var(--primary);
     border-radius: 10px;
     justify-content: center;
     align-items: center;
@@ -15753,7 +15753,7 @@ blockquote {
     }
 
     .heading-five-2.home-three-power-text-block {
-        color: #ee0d09;
+        color: var(--primary);
         padding-top: 20px
     }
 
