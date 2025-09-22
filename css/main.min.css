@@ -13,6 +13,7 @@
     margin-bottom: 0px;
     list-style: none;
     padding: 0;
+    gap: 15px;
 }
 .nav-links li {
     position: relative;
