@@ -171,28 +171,28 @@ function central_build_scripts()
     // Enqueue Bootstrap JavaScript
     wp_enqueue_script('bootstrap-js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js', array('jquery'), '5.3.2', true);
     // Enqueue Webflow CSS (main template styles)
-    wp_enqueue_style('central-build-webflow', get_template_directory_uri() . '/css/main.min.css', array(), '1.0.0');
+    wp_enqueue_style('central-build-webflow', get_template_directory_uri() . '/css/main.min.css', array(), false);
 
     // Enqueue main stylesheet (our custom styles)
-    wp_enqueue_style('central-build-style', get_stylesheet_uri(), array('central-build-webflow'), '1.0.0');
+    wp_enqueue_style('central-build-style', get_stylesheet_uri(), array('central-build-webflow'), false);
 
     // Enqueue components CSS
-    wp_enqueue_style('central-build-components', get_template_directory_uri() . '/css/components.css', array('central-build-style'), '1.0.0');
+    wp_enqueue_style('central-build-components', get_template_directory_uri() . '/css/components.css', array('central-build-style'), false);
 
     // Enqueue animation CSS
-    wp_enqueue_style('animation', get_template_directory_uri() . '/css/animate.min.css', array('central-build-style'), '1.0.0');
+    wp_enqueue_style('animation', get_template_directory_uri() . '/css/animate.min.css', array('central-build-style'), false);
 
     // Enqueue Bootstrap CSS (before webflow-overrides so it can be overridden)
     wp_enqueue_style('bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css', array('central-build-components', 'animation'), '5.3.2');
 
     // Enqueue Bootstrap custom utilities (safe Bootstrap utilities)
-    wp_enqueue_style('bootstrap-custom', get_template_directory_uri() . '/css/bootstrap-custom.min.css', array('bootstrap'), '1.0.0');
+    wp_enqueue_style('bootstrap-custom', get_template_directory_uri() . '/css/bootstrap-custom.min.css', array('bootstrap'), false);
 
     // Enqueue Swiper bundle CSS
-    wp_enqueue_style('swiper-bundle', get_template_directory_uri() . '/css/swiper-bundle.min.css', array('bootstrap-custom'), '1.0.0');
+    wp_enqueue_style('swiper-bundle', get_template_directory_uri() . '/css/swiper-bundle.min.css', array('bootstrap-custom'), false);
 
     // Enqueue Webflow overrides CSS (this will override Bootstrap when needed)
-    wp_enqueue_style('central-build-webflow-overrides', get_template_directory_uri() . '/css/webflow-overrides.css', array('bootstrap-custom', 'swiper-bundle', 'animation'), '1.0.0');
+    wp_enqueue_style('central-build-webflow-overrides', get_template_directory_uri() . '/css/webflow-overrides.css', array('bootstrap-custom', 'swiper-bundle', 'animation'), false);
 
     // Enqueue Google Fonts (Roboto) and Oswald from template
     wp_enqueue_style('central-build-fonts', 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap', array(), null);
@@ -297,13 +297,13 @@ function central_build_page_assets()
 {
     // Home page assets
     if (is_front_page()) {
-        wp_enqueue_style('central-build-home-min', get_template_directory_uri() . '/css/home.min.css', array('central-build-webflow'), '1.0.0');
+        wp_enqueue_style('central-build-home-min', get_template_directory_uri() . '/css/home.min.css', array('central-build-webflow'), false);
         wp_enqueue_script('central-build-home-js', get_template_directory_uri() . '/js/home.js', array('jquery'), false, true);
     }
 
     // Contact page assets
     if (is_page_template('page-contact.php')) {
-        wp_enqueue_style('central-build-contact', get_template_directory_uri() . '/css/contact.css', array('central-build-style'), '1.0.0');
+        wp_enqueue_style('central-build-contact', get_template_directory_uri() . '/css/contact.css', array('central-build-style'), false);
         wp_enqueue_script('central-build-contact-js', get_template_directory_uri() . '/js/contact.js', array('jquery'), false, true);
     }
 
@@ -311,25 +311,25 @@ function central_build_page_assets()
     if (is_page_template('page-commercial-shop-fitting.php') ||
         is_page_template('page-concreet.php') ||
         is_page_template('page-custom-joinery.php')) {
-        wp_enqueue_style('central-build-services', get_template_directory_uri() . '/css/services.css', array('central-build-style'), '1.0.0');
+        wp_enqueue_style('central-build-services', get_template_directory_uri() . '/css/services.css', array('central-build-style'), false);
         wp_enqueue_script('central-build-services-js', get_template_directory_uri() . '/js/services.js', array('jquery'), false, true);
     }
 
     // About pages assets
     if (is_page_template('page-our-values.php') || is_page_template('page-testimonials.php')) {
-        wp_enqueue_style('central-build-about', get_template_directory_uri() . '/css/about.css', array('central-build-style'), '1.0.0');
+        wp_enqueue_style('central-build-about', get_template_directory_uri() . '/css/about.css', array('central-build-style'), false);
     }
 
     // Portfolio/Fitout sectors assets
     if (is_page_template('page-fitout-sectors.php')) {
-        wp_enqueue_style('central-build-portfolio', get_template_directory_uri() . '/css/portfolio.css', array('central-build-style'), '1.0.0');
+        wp_enqueue_style('central-build-portfolio', get_template_directory_uri() . '/css/portfolio.css', array('central-build-style'), false);
         wp_enqueue_script('central-build-portfolio-js', get_template_directory_uri() . '/js/portfolio.js', array('jquery'), false, true);
     }
 
     // Blog/Archive pages assets
     if (is_home() || is_archive() || is_search() || is_category() || is_tag() || is_author() || is_date()) {
-        wp_enqueue_style('central-build-home-min', get_template_directory_uri() . '/css/home.min.css', array('central-build-webflow'), '1.0.0');
-        wp_enqueue_style('central-build-blog', get_template_directory_uri() . '/css/blog-styles.css', array('central-build-home-min'), '1.0.0');
+        wp_enqueue_style('central-build-home-min', get_template_directory_uri() . '/css/home.min.css', array('central-build-webflow'), false);
+        wp_enqueue_style('central-build-blog', get_template_directory_uri() . '/css/blog-styles.css', array('central-build-home-min'), false);
     }
 }
 add_action('wp_enqueue_scripts', 'central_build_page_assets');
@@ -1308,7 +1308,7 @@ function central_build_admin_init()
 {
     // Add custom admin styles
     add_action('admin_enqueue_scripts', function () {
-        wp_enqueue_style('central-build-admin', get_template_directory_uri() . '/css/admin.css', array(), '1.0.0');
+        wp_enqueue_style('central-build-admin', get_template_directory_uri() . '/css/admin.css', array(), false);
     });
 }
 add_action('admin_init', 'central_build_admin_init');
