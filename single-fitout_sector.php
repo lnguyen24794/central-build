@@ -17,6 +17,7 @@ $location = get_post_meta(get_the_ID(), '_fitout_location', true);
 $sqm = get_post_meta(get_the_ID(), '_fitout_sqm', true);
 $created_date = get_post_meta(get_the_ID(), '_fitout_created_date', true);
 $about_image = get_post_meta(get_the_ID(), '_fitout_about_image', true);
+$about_project = get_post_meta(get_the_ID(), '_fitout_about_project', true);
 $key_elements = get_post_meta(get_the_ID(), '_fitout_key_elements', true);
 $cta_text = get_post_meta(get_the_ID(), '_fitout_cta_text', true);
 $final_result = get_post_meta(get_the_ID(), '_fitout_final_result', true);
@@ -88,8 +89,8 @@ $formatted_date = $created_date ? date('F j, Y', strtotime($created_date)) : 'Se
                 <div class="about-project-text-block">
                     <h3 class="margin-top-zero margin-bottom-twenty">About the project</h3>
                     <div class="rich-text-block w-richtext">
-                        <?php if (get_the_content()) : ?>
-                            <?php echo wp_kses_post(get_the_content()); ?>
+                        <?php if ($about_project) : ?>
+                            <?php echo wp_kses_post(nl2br($about_project)); ?>
                         <?php else : ?>
                             <p>This professional fitout project was designed and delivered by Central Build to create a functional and aesthetically pleasing space that meets the client's specific requirements.</p>
                         <?php endif; ?>

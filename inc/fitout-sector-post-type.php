@@ -176,6 +176,7 @@ function central_build_fitout_sector_details_callback($post)
     $hero_image = get_post_meta($post->ID, '_fitout_hero_image', true);
     $about_image = get_post_meta($post->ID, '_fitout_about_image', true);
     $key_elements = get_post_meta($post->ID, '_fitout_key_elements', true);
+    $about_project = get_post_meta($post->ID, '_fitout_about_project', true);
     $cta_text = get_post_meta($post->ID, '_fitout_cta_text', true);
     $final_result = get_post_meta($post->ID, '_fitout_final_result', true);
 
@@ -209,6 +210,13 @@ function central_build_fitout_sector_details_callback($post)
             <td>
                 <input type="url" id="fitout_about_image" name="fitout_about_image" value="<?php echo esc_url($about_image); ?>" class="regular-text" />
                 <p class="description"><?php _e('URL for the about project section image', 'central-build'); ?></p>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="fitout_about_project"><?php _e('About the Project', 'central-build'); ?></label></th>
+            <td>
+                <textarea id="fitout_about_project" name="fitout_about_project" rows="8" cols="50" class="large-text"><?php echo esc_textarea($about_project); ?></textarea>
+                <p class="description"><?php _e('Description about the project for the About section', 'central-build'); ?></p>
             </td>
         </tr>
         <tr>
@@ -334,6 +342,7 @@ function central_build_save_fitout_sector_meta($post_id)
         'fitout_created_date' => '_fitout_created_date',
         'fitout_hero_image' => '_fitout_hero_image',
         'fitout_about_image' => '_fitout_about_image',
+        'fitout_about_project' => '_fitout_about_project',
         'fitout_key_elements' => '_fitout_key_elements',
         'fitout_cta_text' => '_fitout_cta_text',
         'fitout_final_result' => '_fitout_final_result',
@@ -346,7 +355,7 @@ function central_build_save_fitout_sector_meta($post_id)
         if (isset($_POST[$field])) {
             if (in_array($field, array('fitout_hero_image', 'fitout_about_image'))) {
                 update_post_meta($post_id, $meta_key, esc_url_raw($_POST[$field]));
-            } elseif (in_array($field, array('fitout_key_elements', 'fitout_cta_text', 'fitout_final_result', 'fitout_quote_text'))) {
+            } elseif (in_array($field, array('fitout_about_project', 'fitout_key_elements', 'fitout_cta_text', 'fitout_final_result', 'fitout_quote_text'))) {
                 update_post_meta($post_id, $meta_key, sanitize_textarea_field($_POST[$field]));
             } else {
                 update_post_meta($post_id, $meta_key, sanitize_text_field($_POST[$field]));
