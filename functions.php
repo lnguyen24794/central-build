@@ -11,6 +11,10 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+if (!defined('CENTRAL_BUILD_VERSION')) {
+    define('CENTRAL_BUILD_VERSION', '1.0.0');
+}
+
 /**
  * Load view template with arguments
  *
@@ -80,22 +84,25 @@ add_action('after_setup_theme', 'central_build_setup');
 /**
  * Custom Walker Class for Navigation Menu with Dropdown Support
  */
-class Central_Build_Walker_Nav_Menu extends Walker_Nav_Menu {
-    
+class Central_Build_Walker_Nav_Menu extends Walker_Nav_Menu
+{
     // Start Level
-    function start_lvl(&$output, $depth = 0, $args = null) {
+    public function start_lvl(&$output, $depth = 0, $args = null)
+    {
         $indent = str_repeat("\t", $depth);
         $output .= "\n$indent<div class=\"dropdown-content\">\n";
     }
 
     // End Level
-    function end_lvl(&$output, $depth = 0, $args = null) {
+    public function end_lvl(&$output, $depth = 0, $args = null)
+    {
         $indent = str_repeat("\t", $depth);
         $output .= "$indent</div>\n";
     }
 
     // Start Element
-    function start_el(&$output, $item, $depth = 0, $args = null, $id = 0) {
+    public function start_el(&$output, $item, $depth = 0, $args = null, $id = 0)
+    {
         $indent = ($depth) ? str_repeat("\t", $depth) : '';
 
         $classes = empty($item->classes) ? array() : (array) $item->classes;
@@ -103,7 +110,7 @@ class Central_Build_Walker_Nav_Menu extends Walker_Nav_Menu {
 
         // Check if item has children
         $has_children = in_array('menu-item-has-children', $classes);
-        
+
         if ($depth == 0) {
             if ($has_children) {
                 $output .= $indent . '<li class="dropdown">';
@@ -113,24 +120,24 @@ class Central_Build_Walker_Nav_Menu extends Walker_Nav_Menu {
         }
 
         $attributes = ! empty($item->attr_title) ? ' title="'  . esc_attr($item->attr_title) .'"' : '';
-        $attributes .= ! empty($item->target)     ? ' target="' . esc_attr($item->target     ) .'"' : '';
-        $attributes .= ! empty($item->xfn)        ? ' rel="'    . esc_attr($item->xfn        ) .'"' : '';
-        $attributes .= ! empty($item->url)        ? ' href="'   . esc_attr($item->url        ) .'"' : '';
+        $attributes .= ! empty($item->target) ? ' target="' . esc_attr($item->target) .'"' : '';
+        $attributes .= ! empty($item->xfn) ? ' rel="'    . esc_attr($item->xfn) .'"' : '';
+        $attributes .= ! empty($item->url) ? ' href="'   . esc_attr($item->url) .'"' : '';
 
         $item_output = isset($args->before) ? $args->before : '';
-        
+
         if ($depth == 0 && $has_children) {
             $item_output .= '<a class="dropbtn"' . $attributes . '>';
         } else {
             $item_output .= '<a' . $attributes . '>';
         }
-        
+
         $item_output .= (isset($args->link_before) ? $args->link_before : '') . apply_filters('the_title', $item->title, $item->ID) . (isset($args->link_after) ? $args->link_after : '');
-        
+
         if ($depth == 0 && $has_children) {
             $item_output .= ' <i class="arrow-down"></i>';
         }
-        
+
         $item_output .= '</a>';
         $item_output .= isset($args->after) ? $args->after : '';
 
@@ -138,7 +145,8 @@ class Central_Build_Walker_Nav_Menu extends Walker_Nav_Menu {
     }
 
     // End Element
-    function end_el(&$output, $item, $depth = 0, $args = null) {
+    public function end_el(&$output, $item, $depth = 0, $args = null)
+    {
         if ($depth == 0) {
             $output .= "</li>\n";
         }
@@ -151,14 +159,14 @@ class Central_Build_Walker_Nav_Menu extends Walker_Nav_Menu {
 function central_build_scripts()
 {
     // Enqueue main JavaScript (our custom scripts)
-    wp_enqueue_script('central-build-main', 'https://code.jquery.com/jquery-3.7.1.slim.min.js"', array('jquery'), '1.0.0', true);
+    wp_enqueue_script('central-build-main', 'https://code.jquery.com/jquery-3.7.1.slim.min.js"', array('jquery'), false, true);
 
-    wp_enqueue_script('central-build-bootstraps', get_template_directory_uri() . '/js/bootstraps.min.js', array('jquery'), '1.0.0', true);
+    wp_enqueue_script('central-build-bootstraps', get_template_directory_uri() . '/js/bootstraps.min.js', array('jquery'), false, true);
 
-    wp_enqueue_script('central-build-custom', get_template_directory_uri() . '/js/main.js', array('jquery'), '1.0.0', true);
+    wp_enqueue_script('central-build-custom', get_template_directory_uri() . '/js/main.js', array('jquery'), false, true);
 
     // Enqueue Swiper bundle JavaScript
-    wp_enqueue_script('swiper-bundle', get_template_directory_uri() . '/js/swiper-bundle.min.js', array('jquery'), '1.0.0', true);
+    wp_enqueue_script('swiper-bundle', get_template_directory_uri() . '/js/swiper-bundle.min.js', array('jquery'), false, true);
 
     // Enqueue Bootstrap JavaScript
     wp_enqueue_script('bootstrap-js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js', array('jquery'), '5.3.2', true);
@@ -190,7 +198,7 @@ function central_build_scripts()
     wp_enqueue_style('central-build-fonts', 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap', array(), null);
 
     // Enqueue WebFont loader
-    wp_enqueue_script('central-build-webfont', get_template_directory_uri() . '/js/webfont.js', array(), '1.0.0', false);
+    wp_enqueue_script('central-build-webfont', get_template_directory_uri() . '/js/webfont.js', array(), false, false);
 
 
 
@@ -290,13 +298,13 @@ function central_build_page_assets()
     // Home page assets
     if (is_front_page()) {
         wp_enqueue_style('central-build-home-min', get_template_directory_uri() . '/css/home.min.css', array('central-build-webflow'), '1.0.0');
-        wp_enqueue_script('central-build-home-js', get_template_directory_uri() . '/js/home.js', array('jquery'), '1.0.0', true);
+        wp_enqueue_script('central-build-home-js', get_template_directory_uri() . '/js/home.js', array('jquery'), false, true);
     }
 
     // Contact page assets
     if (is_page_template('page-contact.php')) {
         wp_enqueue_style('central-build-contact', get_template_directory_uri() . '/css/contact.css', array('central-build-style'), '1.0.0');
-        wp_enqueue_script('central-build-contact-js', get_template_directory_uri() . '/js/contact.js', array('jquery'), '1.0.0', true);
+        wp_enqueue_script('central-build-contact-js', get_template_directory_uri() . '/js/contact.js', array('jquery'), false, true);
     }
 
     // Service pages assets
@@ -304,7 +312,7 @@ function central_build_page_assets()
         is_page_template('page-concreet.php') ||
         is_page_template('page-custom-joinery.php')) {
         wp_enqueue_style('central-build-services', get_template_directory_uri() . '/css/services.css', array('central-build-style'), '1.0.0');
-        wp_enqueue_script('central-build-services-js', get_template_directory_uri() . '/js/services.js', array('jquery'), '1.0.0', true);
+        wp_enqueue_script('central-build-services-js', get_template_directory_uri() . '/js/services.js', array('jquery'), false, true);
     }
 
     // About pages assets
@@ -315,7 +323,7 @@ function central_build_page_assets()
     // Portfolio/Fitout sectors assets
     if (is_page_template('page-fitout-sectors.php')) {
         wp_enqueue_style('central-build-portfolio', get_template_directory_uri() . '/css/portfolio.css', array('central-build-style'), '1.0.0');
-        wp_enqueue_script('central-build-portfolio-js', get_template_directory_uri() . '/js/portfolio.js', array('jquery'), '1.0.0', true);
+        wp_enqueue_script('central-build-portfolio-js', get_template_directory_uri() . '/js/portfolio.js', array('jquery'), false, true);
     }
 
     // Blog/Archive pages assets
@@ -359,12 +367,12 @@ function central_build_get_fitout_projects($limit = 8)
     if ($fitout_query->have_posts()) {
         while ($fitout_query->have_posts()) {
             $fitout_query->the_post();
-            
+
             $hero_image = get_post_meta(get_the_ID(), '_fitout_hero_image', true);
             $client = get_post_meta(get_the_ID(), '_fitout_client', true);
             $categories = get_the_terms(get_the_ID(), 'fitout_category');
             $category_name = $categories && !is_wp_error($categories) ? $categories[0]->name : '';
-            
+
             // Fallback image if no hero image is set
             if (!$hero_image && has_post_thumbnail()) {
                 $hero_image = get_the_post_thumbnail_url(get_the_ID(), 'large');
@@ -392,7 +400,8 @@ function central_build_get_fitout_projects($limit = 8)
 /**
  * Flush rewrite rules when theme is activated
  */
-function central_build_flush_rewrite_rules() {
+function central_build_flush_rewrite_rules()
+{
     central_build_register_fitout_sector_post_type();
     central_build_register_fitout_category_taxonomy();
     flush_rewrite_rules();
@@ -402,7 +411,8 @@ add_action('after_switch_theme', 'central_build_flush_rewrite_rules');
 /**
  * Custom template for fitout category taxonomy
  */
-function central_build_fitout_category_template($template) {
+function central_build_fitout_category_template($template)
+{
     if (is_tax('fitout_category')) {
         $new_template = locate_template(array('archive-fitout_sector.php'));
         if (!empty($new_template)) {
@@ -416,7 +426,8 @@ add_filter('template_include', 'central_build_fitout_category_template');
 /**
  * Add body class for fitout category archives
  */
-function central_build_fitout_category_body_class($classes) {
+function central_build_fitout_category_body_class($classes)
+{
     if (is_tax('fitout_category')) {
         $classes[] = 'fitout-category-archive';
         $term = get_queried_object();
@@ -431,10 +442,11 @@ add_filter('body_class', 'central_build_fitout_category_body_class');
 /**
  * Footer Options Page
  */
-function central_build_add_footer_options_page() {
+function central_build_add_footer_options_page()
+{
     add_theme_page(
         'Footer Settings',
-        'Footer Settings', 
+        'Footer Settings',
         'manage_options',
         'footer-settings',
         'central_build_footer_settings_page'
@@ -445,10 +457,11 @@ add_action('admin_menu', 'central_build_add_footer_options_page');
 /**
  * Contact Options Page
  */
-function central_build_add_contact_options_page() {
+function central_build_add_contact_options_page()
+{
     add_theme_page(
         'Contact Settings',
-        'Contact Settings', 
+        'Contact Settings',
         'manage_options',
         'contact-settings',
         'central_build_contact_settings_page'
@@ -459,14 +472,15 @@ add_action('admin_menu', 'central_build_add_contact_options_page');
 /**
  * Footer Settings Page Callback
  */
-function central_build_footer_settings_page() {
+function central_build_footer_settings_page()
+{
     if (isset($_POST['submit']) && wp_verify_nonce($_POST['footer_settings_nonce'], 'footer_settings')) {
         // Save all footer settings
         update_option('central_build_footer_logo', sanitize_text_field($_POST['footer_logo']));
         update_option('central_build_footer_description', sanitize_textarea_field($_POST['footer_description']));
         update_option('central_build_footer_email', sanitize_email($_POST['footer_email']));
         update_option('central_build_footer_phone', sanitize_text_field($_POST['footer_phone']));
-        
+
         // Quick Links
         update_option('central_build_footer_home_text', sanitize_text_field($_POST['footer_home_text']));
         update_option('central_build_footer_home_url', esc_url_raw($_POST['footer_home_url']));
@@ -478,7 +492,7 @@ function central_build_footer_settings_page() {
         update_option('central_build_footer_services_url', esc_url_raw($_POST['footer_services_url']));
         update_option('central_build_footer_portfolio_text', sanitize_text_field($_POST['footer_portfolio_text']));
         update_option('central_build_footer_portfolio_url', esc_url_raw($_POST['footer_portfolio_url']));
-        
+
         // Support Links
         update_option('central_build_footer_csr_text', sanitize_text_field($_POST['footer_csr_text']));
         update_option('central_build_footer_csr_url', esc_url_raw($_POST['footer_csr_url']));
@@ -486,16 +500,16 @@ function central_build_footer_settings_page() {
         update_option('central_build_footer_values_url', esc_url_raw($_POST['footer_values_url']));
         update_option('central_build_footer_blog_text', sanitize_text_field($_POST['footer_blog_text']));
         update_option('central_build_footer_blog_url', esc_url_raw($_POST['footer_blog_url']));
-        
+
         echo '<div class="notice notice-success"><p>Footer settings saved successfully!</p></div>';
     }
-    
+
     // Get current values
     $footer_logo = get_option('central_build_footer_logo', get_template_directory_uri() . '/images/674e51fad943a77607127b0b_ENP%20transparent%20white%20cropped.webp');
     $footer_description = get_option('central_build_footer_description', 'Central Build, established in 2018, crafts lasting fitout solutions with value, efficiency, and transparency. Discover the ENP difference.');
     $footer_email = get_option('central_build_footer_email', 'info@centralbuild.au');
     $footer_phone = get_option('central_build_footer_phone', '0123 456 789');
-    
+
     // Quick Links
     $footer_home_text = get_option('central_build_footer_home_text', 'Home');
     $footer_home_url = get_option('central_build_footer_home_url', home_url());
@@ -507,7 +521,7 @@ function central_build_footer_settings_page() {
     $footer_services_url = get_option('central_build_footer_services_url', home_url('/commercial-shop-fitting'));
     $footer_portfolio_text = get_option('central_build_footer_portfolio_text', 'Portfolio');
     $footer_portfolio_url = get_option('central_build_footer_portfolio_url', '#');
-    
+
     // Support Links
     $footer_csr_text = get_option('central_build_footer_csr_text', 'CSR Commitment');
     $footer_csr_url = get_option('central_build_footer_csr_url', home_url('/enp-fitouts-csr-commitments'));
@@ -515,7 +529,7 @@ function central_build_footer_settings_page() {
     $footer_values_url = get_option('central_build_footer_values_url', home_url('/our-values'));
     $footer_blog_text = get_option('central_build_footer_blog_text', 'Our Blog');
     $footer_blog_url = get_option('central_build_footer_blog_url', '#');
-    
+
     ?>
     <div class="wrap">
         <h1>Footer Settings</h1>
@@ -644,59 +658,60 @@ function central_build_footer_settings_page() {
 /**
  * Contact Settings Page Callback
  */
-function central_build_contact_settings_page() {
+function central_build_contact_settings_page()
+{
     if (isset($_POST['submit']) && wp_verify_nonce($_POST['contact_settings_nonce'], 'contact_settings')) {
         // Save hero section settings
         update_option('central_build_contact_hero_title', sanitize_text_field($_POST['contact_hero_title']));
         update_option('central_build_contact_hero_description', sanitize_textarea_field($_POST['contact_hero_description']));
-        
+
         // Save contact information
         update_option('central_build_contact_email', sanitize_email($_POST['contact_email']));
         update_option('central_build_contact_phone', sanitize_text_field($_POST['contact_phone']));
         update_option('central_build_contact_phone_display', sanitize_text_field($_POST['contact_phone_display']));
-        
+
         // Save social media links
         update_option('central_build_contact_facebook', esc_url_raw($_POST['contact_facebook']));
         update_option('central_build_contact_instagram', esc_url_raw($_POST['contact_instagram']));
         update_option('central_build_contact_linkedin', esc_url_raw($_POST['contact_linkedin']));
-        
+
         // Save form settings
         update_option('central_build_contact_form_title', sanitize_text_field($_POST['contact_form_title']));
         update_option('central_build_contact_form_description', sanitize_textarea_field($_POST['contact_form_description']));
         update_option('central_build_contact_form_redirect', esc_url_raw($_POST['contact_form_redirect']));
-        
+
         // Save office information
         update_option('central_build_contact_office_image', esc_url_raw($_POST['contact_office_image']));
         update_option('central_build_contact_office_title', sanitize_text_field($_POST['contact_office_title']));
         update_option('central_build_contact_office_description', sanitize_textarea_field($_POST['contact_office_description']));
         update_option('central_build_contact_office_location', sanitize_text_field($_POST['contact_office_location']));
         update_option('central_build_contact_office_country', sanitize_text_field($_POST['contact_office_country']));
-        
+
         echo '<div class="notice notice-success"><p>Contact settings saved successfully!</p></div>';
     }
-    
+
     // Get current values with defaults
     $contact_hero_title = get_option('central_build_contact_hero_title', 'let\'s work <span>together</span>');
     $contact_hero_description = get_option('central_build_contact_hero_description', 'Reach out to Central Build to start your journey. Whether you\'re looking for a bespoke design, a seamless build, or expert advice, we\'re here to help make your vision a reality. Let\'s create something exceptional together.');
-    
+
     $contact_email = get_option('central_build_contact_email', 'info@centralbuild.au');
     $contact_phone = get_option('central_build_contact_phone', 'tel:0123456789');
     $contact_phone_display = get_option('central_build_contact_phone_display', '0123 456 789');
-    
+
     $contact_facebook = get_option('central_build_contact_facebook', 'https://www.facebook.com/p/ENP-Fitouts-100079118888496/');
     $contact_instagram = get_option('central_build_contact_instagram', 'https://www.instagram.com/enpfitouts');
     $contact_linkedin = get_option('central_build_contact_linkedin', 'https://in.linkedin.com/');
-    
+
     $contact_form_title = get_option('central_build_contact_form_title', 'We\'re here to help');
     $contact_form_description = get_option('central_build_contact_form_description', 'Tell us about your project & goals!');
     $contact_form_redirect = get_option('central_build_contact_form_redirect', '/thank-you');
-    
+
     $contact_office_image = get_option('central_build_contact_office_image', 'https://static1.squarespace.com/static/6176ce05013c5128c1ff5aa8/6194da83ea54f441cdb5a7de/64d3736437d050544f081ff3/1707218367383/Construction-recruitment+-+dayin+the+life.jpg?format=1500w');
     $contact_office_title = get_option('central_build_contact_office_title', 'Visit Our Offices');
     $contact_office_description = get_option('central_build_contact_office_description', 'Central Build is your trusted partner for exceptional commercial fitouts. Visit us to discuss your project and explore our tailored solutions.');
     $contact_office_location = get_option('central_build_contact_office_location', 'Office in Brisbane');
     $contact_office_country = get_option('central_build_contact_office_country', 'Australia');
-    
+
     ?>
     <div class="wrap">
         <h1>Contact Page Settings</h1>
