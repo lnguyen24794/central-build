@@ -150,7 +150,7 @@ $contact_office_country = get_option('central_build_contact_office_country', 'Au
                                 />
                             </div>
                             <div class="w-layout-vflex contact-three-slider-contain-wrap">
-                                <img src="https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57d42_Contact%20Three%20Slider%20Icon.svg" loading="lazy" width="45" height="45" alt="Contact Three Slider Icon" />
+                                <img src="https://centralbuild.au/wp-content/themes/central-build/images/Contact-Three-Slider-Icon.svg" loading="lazy" width="45" height="45" alt="Contact Three Slider Icon" />
                                 <div class="overflow-none">
                                     <h2 class="margin-top-thirty" style="transform: translate3d(0px, 0%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d; opacity: 1;">
                                         <?php echo esc_html($contact_office_title); ?>
