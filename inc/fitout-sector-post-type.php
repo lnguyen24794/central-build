@@ -346,6 +346,8 @@ function central_build_save_fitout_sector_meta($post_id)
         if (isset($_POST[$field])) {
             if (in_array($field, array('fitout_hero_image', 'fitout_about_image'))) {
                 update_post_meta($post_id, $meta_key, esc_url_raw($_POST[$field]));
+            } elseif (in_array($field, array('fitout_key_elements', 'fitout_cta_text', 'fitout_final_result', 'fitout_quote_text'))) {
+                update_post_meta($post_id, $meta_key, sanitize_textarea_field($_POST[$field]));
             } else {
                 update_post_meta($post_id, $meta_key, sanitize_text_field($_POST[$field]));
             }
@@ -510,11 +512,11 @@ function central_build_save_fitout_category_fields($term_id)
     if (isset($_POST['category_hero_image'])) {
         update_term_meta($term_id, 'category_hero_image', esc_url_raw($_POST['category_hero_image']));
     }
-    
+
     if (isset($_POST['category_icon'])) {
         update_term_meta($term_id, 'category_icon', esc_url_raw($_POST['category_icon']));
     }
-    
+
     if (isset($_POST['category_description_custom'])) {
         update_term_meta($term_id, 'category_description_custom', sanitize_textarea_field($_POST['category_description_custom']));
     }
