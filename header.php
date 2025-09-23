@@ -2,7 +2,7 @@
 // Get header settings with fallbacks
 $header_phone = get_option('central_build_header_phone', 'tel:+611234567');
 $header_phone_display = get_option('central_build_header_phone_display', '+61 123 456 789');
-$header_email = get_option('central_build_header_email', 'info@enpfitouts.com');
+$header_email = get_option('central_build_header_email', 'info@centralbuild.au');
 
 $header_facebook = get_option('central_build_header_facebook', '#');
 $header_linkedin = get_option('central_build_header_linkedin', '#');

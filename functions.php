@@ -920,7 +920,7 @@ function central_build_header_settings_page()
     // Get current values with defaults
     $header_phone = get_option('central_build_header_phone', 'tel:+61431465090');
     $header_phone_display = get_option('central_build_header_phone_display', '+61 431 465 090');
-    $header_email = get_option('central_build_header_email', 'info@enpfitouts.com');
+    $header_email = get_option('central_build_header_email', 'info@centralbuild.au');
 
     $header_facebook = get_option('central_build_header_facebook', 'https://www.facebook.com/p/ENP-Fitouts-100079118888496/');
     $header_linkedin = get_option('central_build_header_linkedin', 'https://www.linkedin.com/company/enp-fitouts/?originalSubdomain=au');
