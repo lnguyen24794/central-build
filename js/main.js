@@ -10,6 +10,9 @@
 
     // DOM Ready
     jQuery(document).ready(function() {
+        console.log('Central Build Theme JS: DOM Ready');
+        console.log('jQuery version:', jQuery.fn.jquery);
+        
         initMobileMenu();
         initSmoothScroll();
         initScrollToTop();
@@ -17,6 +20,8 @@
         initAnimations();
         initContactForm();
         initFAQAccordion();
+        
+        console.log('Central Build Theme JS: All functions initialized');
     });
 
     // Window Scroll
@@ -173,7 +178,7 @@
             const formData = $form.serialize();
             
             // AJAX request
-            $.ajax({
+            jQuery.ajax({
                 url: $form.attr('action'),
                 type: 'POST',
                 data: formData,
@@ -374,7 +379,7 @@
      * Testimonials Slider
      */
     function initTestimonialsSlider() {
-        if (jQuery('.testimonial-slider').length) {
+        if (jQuery('.testimonial-slider').length && typeof jQuery.fn.slick !== 'undefined') {
             jQuery('.testimonial-slider').slick({
                 dots: true,
                 arrows: false,
@@ -387,6 +392,8 @@
                 fade: true,
                 cssEase: 'linear'
             });
+        } else if (jQuery('.testimonial-slider').length) {
+            console.warn('Slick slider plugin not loaded - testimonial slider disabled');
         }
     }
 
@@ -394,7 +401,7 @@
      * Portfolio Filter
      */
     function initPortfolioFilter() {
-        if (jQuery('.portfolio-filter').length) {
+        if (jQuery('.portfolio-filter').length && typeof jQuery.fn.isotope !== 'undefined') {
             jQuery('.portfolio-filter').on('click', 'button', function() {
                 const filterValue = jQuery(this).attr('data-filter');
                 
@@ -404,6 +411,8 @@
                     filter: filterValue
                 });
             });
+        } else if (jQuery('.portfolio-filter').length) {
+            console.warn('Isotope plugin not loaded - portfolio filter disabled');
         }
     }
 
@@ -413,32 +422,38 @@
     function initGoogleMaps() {
         const mapElement = document.getElementById('contact-map');
         
-        if (mapElement) {
+        if (mapElement && typeof google !== 'undefined' && google.maps) {
             const lat = parseFloat(mapElement.dataset.lat);
             const lng = parseFloat(mapElement.dataset.lng);
             
-            const map = new google.maps.Map(mapElement, {
-                zoom: 15,
-                center: { lat: lat, lng: lng },
-                styles: [
-                    {
-                        "featureType": "all",
-                        "elementType": "geometry.fill",
-                        "stylers": [{ "weight": "2.00" }]
-                    },
-                    {
-                        "featureType": "all",
-                        "elementType": "geometry.stroke",
-                        "stylers": [{ "color": "#9c9c9c" }]
-                    }
-                ]
-            });
-            
-            const marker = new google.maps.Marker({
-                position: { lat: lat, lng: lng },
-                map: map,
-                title: 'Central Build Office'
-            });
+            if (!isNaN(lat) && !isNaN(lng)) {
+                const map = new google.maps.Map(mapElement, {
+                    zoom: 15,
+                    center: { lat: lat, lng: lng },
+                    styles: [
+                        {
+                            "featureType": "all",
+                            "elementType": "geometry.fill",
+                            "stylers": [{ "weight": "2.00" }]
+                        },
+                        {
+                            "featureType": "all",
+                            "elementType": "geometry.stroke",
+                            "stylers": [{ "color": "#9c9c9c" }]
+                        }
+                    ]
+                });
+                
+                const marker = new google.maps.Marker({
+                    position: { lat: lat, lng: lng },
+                    map: map,
+                    title: 'Central Build Office'
+                });
+            } else {
+                console.warn('Invalid map coordinates provided');
+            }
+        } else if (mapElement) {
+            console.warn('Google Maps API not loaded - map disabled');
         }
     }
 
@@ -446,11 +461,7 @@
     jQuery(document).ready(function() {
         initTestimonialsSlider();
         initPortfolioFilter();
-        
-        // Initialize Google Maps if API is loaded
-        if (typeof google !== 'undefined' && google.maps) {
-            initGoogleMaps();
-        }
+        initGoogleMaps();
     });
 
 })(jQuery);
