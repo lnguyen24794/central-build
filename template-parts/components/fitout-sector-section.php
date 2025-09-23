@@ -80,8 +80,8 @@
                         </div>
                         
                         <!-- Background and Lines -->
-                        <div style="<?php echo $opacity_style; ?>" class="project-card-background <?php echo $active_class; ?>"></div>
-                        <div style="<?php echo $line_opacity; ?>" class="line-<?php echo $line_class; ?>"></div>
+                        <div class="project-card-background <?php echo $active_class; ?>"></div>
+                        <div class="line-<?php echo $line_class; ?>"></div>
                     </div>
                 <?php 
                         endif;
