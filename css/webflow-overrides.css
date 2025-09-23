@@ -2067,13 +2067,13 @@ textarea.w-input,textarea.w-select {
 }
 
 :root {
-    --paragraph-dark-color: ;
+    --paragraph-dark-color: #5d5f6f;
     --heading-dark-color: #02015a;
     --black: black;
     --white: #ffffff;
     --soft-white: #FEFCF4;
     --light-grey: #bcc1d5;
-    --paragraph-light-color: #626679;
+    --paragraph-light-color: #989eb7;
     --heading-light-color: white;
     --primary: #FB7F28;
     --secondary: #bb6209f5;
