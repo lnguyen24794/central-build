@@ -81,7 +81,6 @@
                         
                         <!-- Background and Lines -->
                         <div class="project-card-background <?php echo $active_class; ?>"></div>
-                        <div class="line-<?php echo $line_class; ?>"></div>
                     </div>
                 <?php 
                         endif;
