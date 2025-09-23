@@ -9,7 +9,7 @@
     'use strict';
 
     // DOM Ready
-    $(document).ready(function() {
+    jQuery(document).ready(function() {
         initMobileMenu();
         initSmoothScroll();
         initScrollToTop();
@@ -20,7 +20,7 @@
     });
 
     // Window Scroll
-    $(window).on('scroll', function() {
+    jQuery(window).on('scroll', function() {
         handleScroll();
     });
 
@@ -28,12 +28,12 @@
      * Initialize Mobile Menu
      */
     function initMobileMenu() {
-        $('.menu-toggle, .hamburgar-wrap').on('click', function(e) {
+        jQuery('.menu-toggle, .hamburgar-wrap').on('click', function(e) {
             e.preventDefault();
             
-            const $this = $(this);
-            const $nav = $('.main-navigation');
-            const $menu = $('.nav-menu');
+            const $this = jQuery(this);
+            const $nav = jQuery('.main-navigation');
+            const $menu = jQuery('.nav-menu');
             
             $this.toggleClass('active');
             $nav.toggleClass('mobile-menu-open');
@@ -43,15 +43,15 @@
             $this.find('.hamburgar-line-one, .hamburgar-line-two, .hamburgar-line-three').toggleClass('active');
             
             // Prevent body scroll when menu is open
-            $('body').toggleClass('menu-open');
+            jQuery('body').toggleClass('menu-open');
         });
 
         // Handle dropdown menus
-        $('.menu-item-has-children > a').on('click', function(e) {
-            if ($(window).width() <= 768) {
+        jQuery('.menu-item-has-children > a').on('click', function(e) {
+            if (jQuery(window).width() <= 768) {
                 e.preventDefault();
-                $(this).next('.sub-menu').slideToggle(200);
-                $(this).parent().toggleClass('dropdown-open');
+                jQuery(this).next('.sub-menu').slideToggle(200);
+                jQuery(this).parent().toggleClass('dropdown-open');
             }
         });
     }
@@ -60,13 +60,13 @@
      * Initialize Smooth Scroll
      */
     function initSmoothScroll() {
-        $('a[href*="#"]:not([href="#"])').on('click', function(e) {
-            const target = $(this.getAttribute('href'));
+        jQuery('a[href*="#"]:not([href="#"])').on('click', function(e) {
+            const target = jQuery(this.getAttribute('href'));
             
             if (target.length) {
                 e.preventDefault();
                 
-                $('html, body').animate({
+                jQuery('html, body').animate({
                     scrollTop: target.offset().top - 80
                 }, 800, 'easeInOutQuart');
             }
@@ -78,13 +78,13 @@
      */
     function initScrollToTop() {
         // Create scroll to top button if it doesn't exist
-        if (!$('.scroll-to-top').length) {
-            $('body').append('<button class="scroll-to-top" aria-label="Scroll to top"><span>↑</span></button>');
+        if (!jQuery('.scroll-to-top').length) {
+            jQuery('body').append('<button class="scroll-to-top" aria-label="Scroll to top"><span>↑</span></button>');
         }
 
-        $('.scroll-to-top').on('click', function(e) {
+        jQuery('.scroll-to-top').on('click', function(e) {
             e.preventDefault();
-            $('html, body').animate({
+            jQuery('html, body').animate({
                 scrollTop: 0
             }, 800, 'easeInOutQuart');
         });
@@ -136,11 +136,11 @@
         }
 
         // Counter animations
-        $('.counter').each(function() {
-            const $this = $(this);
+        jQuery('.counter').each(function() {
+            const $this = jQuery(this);
             const countTo = $this.attr('data-count');
             
-            $({ countNum: $this.text() }).animate({
+            jQuery({ countNum: $this.text() }).animate({
                 countNum: countTo
             }, {
                 duration: 2000,
@@ -159,12 +159,12 @@
      * Initialize Contact Form
      */
     function initContactForm() {
-        $('#contact-form').on('submit', function(e) {
+        jQuery('#contact-form').on('submit', function(e) {
             e.preventDefault();
             
-            const $form = $(this);
+            const $form = jQuery(this);
             const $submitBtn = $form.find('input[type="submit"]');
-            const $messages = $('#form-messages');
+            const $messages = jQuery('#form-messages');
             
             // Disable submit button
             $submitBtn.prop('disabled', true).val('Sending...');
@@ -205,17 +205,17 @@
      */
     function initFAQAccordion() {
         // Check if FAQ elements exist
-        if (!$('.faq-accodian-wrapper').length) {
+        if (!jQuery('.faq-accodian-wrapper').length) {
             console.log('FAQ: No FAQ elements found');
             return;
         }
 
-        console.log('FAQ: Initializing accordion for', $('.faq-accodian-wrapper').length, 'items');
+        console.log('FAQ: Initializing accordion for', jQuery('.faq-accodian-wrapper').length, 'items');
 
-        $('.faq-accodian-wrapper .w-dropdown-toggle').on('click', function(e) {
+        jQuery('.faq-accodian-wrapper .w-dropdown-toggle').on('click', function(e) {
             e.preventDefault();
             
-            const $toggle = $(this);
+            const $toggle = jQuery(this);
             const $wrapper = $toggle.closest('.faq-accodian-wrapper');
             const $dropdown = $wrapper.find('.w-dropdown-list');
             const $content = $wrapper.find('.accordion-one-dropdown-contain');
@@ -235,8 +235,8 @@
                 closeFAQItem($wrapper, $dropdown, $content, $icon, $toggle);
             } else {
                 // Close all other FAQs first
-                $('.faq-accodian-wrapper').each(function() {
-                    const $otherWrapper = $(this);
+                jQuery('.faq-accodian-wrapper').each(function() {
+                    const $otherWrapper = jQuery(this);
                     if (!$otherWrapper.is($wrapper)) {
                         const $otherDropdown = $otherWrapper.find('.w-dropdown-list');
                         const $otherContent = $otherWrapper.find('.accordion-one-dropdown-contain');
@@ -255,10 +255,10 @@
         });
 
         // Handle keyboard navigation
-        $('.faq-accodian-wrapper .w-dropdown-toggle').on('keydown', function(e) {
+        jQuery('.faq-accodian-wrapper .w-dropdown-toggle').on('keydown', function(e) {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
-                $(this).trigger('click');
+                jQuery(this).trigger('click');
             }
         });
     }
@@ -346,25 +346,25 @@
      * Handle Window Scroll
      */
     function handleScroll() {
-        const scrollTop = $(window).scrollTop();
+        const scrollTop = jQuery(window).scrollTop();
         
         // Header scroll effect
         if (scrollTop > 100) {
-            $('.site-header').addClass('scrolled');
+            jQuery('.site-header').addClass('scrolled');
         } else {
-            $('.site-header').removeClass('scrolled');
+            jQuery('.site-header').removeClass('scrolled');
         }
         
         // Scroll to top button
         if (scrollTop > 300) {
-            $('.scroll-to-top').addClass('visible');
+            jQuery('.scroll-to-top').addClass('visible');
         } else {
-            $('.scroll-to-top').removeClass('visible');
+            jQuery('.scroll-to-top').removeClass('visible');
         }
         
         // Parallax effect for hero sections
-        $('.parallax-bg').each(function() {
-            const $this = $(this);
+        jQuery('.parallax-bg').each(function() {
+            const $this = jQuery(this);
             const yPos = -(scrollTop / $this.data('speed'));
             $this.css('transform', 'translateY(' + yPos + 'px)');
         });
@@ -374,8 +374,8 @@
      * Testimonials Slider
      */
     function initTestimonialsSlider() {
-        if ($('.testimonial-slider').length) {
-            $('.testimonial-slider').slick({
+        if (jQuery('.testimonial-slider').length) {
+            jQuery('.testimonial-slider').slick({
                 dots: true,
                 arrows: false,
                 infinite: true,
@@ -394,13 +394,13 @@
      * Portfolio Filter
      */
     function initPortfolioFilter() {
-        if ($('.portfolio-filter').length) {
-            $('.portfolio-filter').on('click', 'button', function() {
-                const filterValue = $(this).attr('data-filter');
+        if (jQuery('.portfolio-filter').length) {
+            jQuery('.portfolio-filter').on('click', 'button', function() {
+                const filterValue = jQuery(this).attr('data-filter');
                 
-                $(this).addClass('active').siblings().removeClass('active');
+                jQuery(this).addClass('active').siblings().removeClass('active');
                 
-                $('.portfolio-grid').isotope({
+                jQuery('.portfolio-grid').isotope({
                     filter: filterValue
                 });
             });
@@ -443,7 +443,7 @@
     }
 
     // Initialize additional features
-    $(document).ready(function() {
+    jQuery(document).ready(function() {
         initTestimonialsSlider();
         initPortfolioFilter();
         
