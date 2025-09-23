@@ -29,7 +29,7 @@
                             $line_opacity = ($i == 0) ? 'opacity: 0;' : 'opacity: 1;';
                             $line_class = ($i <= 0) ? 'one' : (($i <= 2) ? 'two' : 'three');
                 ?>
-                    <div class="project-accodian-item <?php echo $active_class; ?>">
+                    <div class="project-accodian-item active">
                         <div class="w-layout-hflex project-card-wrap">
                             
                             <!-- Sector Content -->
