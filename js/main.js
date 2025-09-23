@@ -68,7 +68,7 @@
                 
                 jQuery('html, body').animate({
                     scrollTop: target.offset().top - 80
-                }, 800, 'easeInOutQuart');
+                }, 800, 'swing');
             }
         });
     }
@@ -86,7 +86,7 @@
             e.preventDefault();
             jQuery('html, body').animate({
                 scrollTop: 0
-            }, 800, 'easeInOutQuart');
+            }, 800, 'swing');
         });
     }
 
