@@ -472,6 +472,21 @@ function central_build_add_contact_options_page()
 add_action('admin_menu', 'central_build_add_contact_options_page');
 
 /**
+ * Header Options Page
+ */
+function central_build_add_header_options_page()
+{
+    add_theme_page(
+        'Header Settings',
+        'Header Settings',
+        'manage_options',
+        'header-settings',
+        'central_build_header_settings_page'
+    );
+}
+add_action('admin_menu', 'central_build_add_header_options_page');
+
+/**
  * Footer Settings Page Callback
  */
 function central_build_footer_settings_page()
@@ -869,6 +884,163 @@ function central_build_contact_settings_page()
     .form-table input[type="url"], 
     .form-table input[type="email"],
     .form-table textarea {
+        margin-bottom: 5px;
+    }
+    </style>
+    <?php
+}
+
+/**
+ * Header Settings Page Callback
+ */
+function central_build_header_settings_page()
+{
+    if (isset($_POST['submit']) && wp_verify_nonce($_POST['header_settings_nonce'], 'header_settings')) {
+        // Save top bar settings
+        update_option('central_build_header_phone', sanitize_text_field($_POST['header_phone']));
+        update_option('central_build_header_phone_display', sanitize_text_field($_POST['header_phone_display']));
+        update_option('central_build_header_email', sanitize_email($_POST['header_email']));
+
+        // Save social media links
+        update_option('central_build_header_facebook', esc_url_raw($_POST['header_facebook']));
+        update_option('central_build_header_linkedin', esc_url_raw($_POST['header_linkedin']));
+        update_option('central_build_header_instagram', esc_url_raw($_POST['header_instagram']));
+
+        // Save navigation settings
+        update_option('central_build_header_cta_text', sanitize_text_field($_POST['header_cta_text']));
+        update_option('central_build_header_cta_url', esc_url_raw($_POST['header_cta_url']));
+
+        // Save logo settings
+        update_option('central_build_header_logo_width', absint($_POST['header_logo_width']));
+        update_option('central_build_header_logo_height', absint($_POST['header_logo_height']));
+
+        echo '<div class="notice notice-success"><p>Header settings saved successfully!</p></div>';
+    }
+
+    // Get current values with defaults
+    $header_phone = get_option('central_build_header_phone', 'tel:+61431465090');
+    $header_phone_display = get_option('central_build_header_phone_display', '+61 431 465 090');
+    $header_email = get_option('central_build_header_email', 'info@enpfitouts.com');
+
+    $header_facebook = get_option('central_build_header_facebook', 'https://www.facebook.com/p/ENP-Fitouts-100079118888496/');
+    $header_linkedin = get_option('central_build_header_linkedin', 'https://www.linkedin.com/company/enp-fitouts/?originalSubdomain=au');
+    $header_instagram = get_option('central_build_header_instagram', 'https://www.instagram.com/enpfitouts');
+
+    $header_cta_text = get_option('central_build_header_cta_text', 'Get A quote');
+    $header_cta_url = get_option('central_build_header_cta_url', home_url('/contact'));
+
+    $header_logo_width = get_option('central_build_header_logo_width', 121);
+    $header_logo_height = get_option('central_build_header_logo_height', 38);
+
+    ?>
+    <div class="wrap">
+        <h1>Header Settings</h1>
+        <form method="post" action="">
+            <?php wp_nonce_field('header_settings', 'header_settings_nonce'); ?>
+            
+            <table class="form-table">
+                <tr>
+                    <th colspan="2"><h2>Top Bar Contact Information</h2></th>
+                </tr>
+                <tr>
+                    <th scope="row">Phone Number (tel: link)</th>
+                    <td>
+                        <input type="text" name="header_phone" value="<?php echo esc_attr($header_phone); ?>" class="regular-text" placeholder="tel:+61431465090" />
+                        <p class="description">Phone number for tel: link (format: tel:+61431465090)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Phone Number (display)</th>
+                    <td>
+                        <input type="text" name="header_phone_display" value="<?php echo esc_attr($header_phone_display); ?>" class="regular-text" />
+                        <p class="description">Phone number as displayed to users</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Email Address</th>
+                    <td>
+                        <input type="email" name="header_email" value="<?php echo esc_attr($header_email); ?>" class="regular-text" />
+                        <p class="description">Contact email address</p>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <th colspan="2"><h2>Social Media Links</h2></th>
+                </tr>
+                <tr>
+                    <th scope="row">Facebook URL</th>
+                    <td>
+                        <input type="url" name="header_facebook" value="<?php echo esc_url($header_facebook); ?>" class="large-text" />
+                        <p class="description">Facebook page URL</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">LinkedIn URL</th>
+                    <td>
+                        <input type="url" name="header_linkedin" value="<?php echo esc_url($header_linkedin); ?>" class="large-text" />
+                        <p class="description">LinkedIn profile URL</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Instagram URL</th>
+                    <td>
+                        <input type="url" name="header_instagram" value="<?php echo esc_url($header_instagram); ?>" class="large-text" />
+                        <p class="description">Instagram profile URL</p>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <th colspan="2"><h2>Navigation Settings</h2></th>
+                </tr>
+                <tr>
+                    <th scope="row">CTA Button Text</th>
+                    <td>
+                        <input type="text" name="header_cta_text" value="<?php echo esc_attr($header_cta_text); ?>" class="regular-text" />
+                        <p class="description">Text for the call-to-action button</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">CTA Button URL</th>
+                    <td>
+                        <input type="url" name="header_cta_url" value="<?php echo esc_url($header_cta_url); ?>" class="large-text" />
+                        <p class="description">URL for the call-to-action button</p>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <th colspan="2"><h2>Logo Settings</h2></th>
+                </tr>
+                <tr>
+                    <th scope="row">Logo Width</th>
+                    <td>
+                        <input type="number" name="header_logo_width" value="<?php echo esc_attr($header_logo_width); ?>" class="small-text" min="50" max="500" />
+                        <p class="description">Logo width in pixels</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Logo Height</th>
+                    <td>
+                        <input type="number" name="header_logo_height" value="<?php echo esc_attr($header_logo_height); ?>" class="small-text" min="20" max="200" />
+                        <p class="description">Logo height in pixels</p>
+                    </td>
+                </tr>
+            </table>
+            
+            <?php submit_button('Save Header Settings'); ?>
+        </form>
+    </div>
+    
+    <style>
+    .form-table th h2 {
+        margin: 0;
+        padding: 10px 0;
+        border-bottom: 1px solid #ddd;
+        color: #23282d;
+    }
+    .form-table input[type="text"], 
+    .form-table input[type="url"], 
+    .form-table input[type="email"],
+    .form-table input[type="number"] {
         margin-bottom: 5px;
     }
     </style>

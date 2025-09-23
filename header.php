@@ -1,3 +1,19 @@
+<?php
+// Get header settings with fallbacks
+$header_phone = get_option('central_build_header_phone', 'tel:+611234567');
+$header_phone_display = get_option('central_build_header_phone_display', '+61 123 456 789');
+$header_email = get_option('central_build_header_email', 'info@enpfitouts.com');
+
+$header_facebook = get_option('central_build_header_facebook', '#');
+$header_linkedin = get_option('central_build_header_linkedin', '#');
+$header_instagram = get_option('central_build_header_instagram', '#');
+
+$header_cta_text = get_option('central_build_header_cta_text', 'Get A quote');
+$header_cta_url = get_option('central_build_header_cta_url', home_url('/contact'));
+
+$header_logo_width = get_option('central_build_header_logo_width', 121);
+$header_logo_height = get_option('central_build_header_logo_height', 38);
+?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?> class="w-mod-js">
 <head>
@@ -33,25 +49,33 @@
             <div class="w-layout-hflex home-one-flex-block">
                 <div class="w-layout-hflex header-phone-block">
                     <div class="phone-icon-block">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/66f1ffecdef9310969f57d56_Group.svg" loading="lazy" width="19" height="19" alt="">
-                        <a href="tel:+61431465090" class="phone-text">+61 431 465 090</a>
+                        <img src="<?php echo get_template_directory_uri(); ?>/images/Group.svg" loading="lazy" width="19" height="19" alt="">
+                        <a href="<?php echo esc_attr($header_phone); ?>" class="phone-text"><?php echo esc_html($header_phone_display); ?></a>
                     </div>
                     <div class="phone-icon-block">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/66f1ffecdef9310969f57d90_messege%20icon.svg" loading="lazy" width="21" height="14" alt="">
-                        <a href="mailto:info@enpfitouts.com" class="phone-text mail-text">info@enpfitouts.com</a>
+                        <img src="<?php echo get_template_directory_uri(); ?>/images/messege%20icon.svg" loading="lazy" width="21" height="14" alt="">
+                        <a href="mailto:<?php echo esc_attr($header_email); ?>" class="phone-text mail-text"><?php echo esc_html($header_email); ?></a>
                     </div>
                 </div>
                 <div class="header-social-block">
                     <div class="phone-text">Follow Us :</div>
-                    <a href="https://www.facebook.com/p/ENP-Fitouts-100079118888496/" target="_blank" class="header-social-link w-inline-block">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/66f1ffecdef9310969f579dc_Footer-Fb.svg" alt="Fb Icon" width="7" height="13">
+                    <?php if ($header_facebook) : ?>
+                    <a href="<?php echo esc_url($header_facebook); ?>" target="_blank" class="header-social-link w-inline-block">
+                        <img src="<?php echo get_template_directory_uri(); ?>/images/Footer-Fb.svg" alt="Fb Icon" width="7" height="13">
                     </a>
-                    <a href="https://www.linkedin.com/company/enp-fitouts/?originalSubdomain=au" target="_blank" class="header-social-link w-inline-block">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/66f1ffecdef9310969f57a73_Linkedin-Icon-Big.svg" width="14" height="13" alt="Linkedin Icon Big">
+                    <?php endif; ?>
+                    
+                    <?php if ($header_linkedin) : ?>
+                    <a href="<?php echo esc_url($header_linkedin); ?>" target="_blank" class="header-social-link w-inline-block">
+                        <img src="<?php echo get_template_directory_uri(); ?>/images/Linkedin-Icon-Big.svg" width="14" height="13" alt="Linkedin Icon Big">
                     </a>
-                    <a href="https://www.instagram.com/enpfitouts" target="_blank" class="header-social-link w-inline-block">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/66f1ffecdef9310969f579dd_Footer-Instra.svg" width="14" height="13" alt="Instra Icon">
+                    <?php endif; ?>
+                    
+                    <?php if ($header_instagram) : ?>
+                    <a href="<?php echo esc_url($header_instagram); ?>" target="_blank" class="header-social-link w-inline-block">
+                        <img src="<?php echo get_template_directory_uri(); ?>/images/Footer-Instra.svg" width="14" height="13" alt="Instra Icon">
                     </a>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -66,9 +90,9 @@
                         $custom_logo_id = get_theme_mod('custom_logo');
                         $logo = wp_get_attachment_image_src($custom_logo_id, 'full');
                         ?>
-                    <img width="121" height="38" src="<?php echo esc_url($logo[0]); ?>" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" class="image-height-auto">
+                    <img width="<?php echo esc_attr($header_logo_width); ?>" height="<?php echo esc_attr($header_logo_height); ?>" src="<?php echo esc_url($logo[0]); ?>" alt="<?php echo esc_attr(get_bloginfo('name')); ?>" class="image-height-auto">
                     <?php else : ?>
-                    <img width="121" height="38" alt="<?php bloginfo('name'); ?>" src="<?php echo get_template_directory_uri(); ?>/images/674e51fad943a77607127b0b_ENP%20transparent%20white%20cropped.webp" sizes="121px" srcset="<?php echo get_template_directory_uri(); ?>/images/674e51fad943a77607127b0b_ENP%20transparent%20white%20cropped.webp 500w, <?php echo get_template_directory_uri(); ?>/images/674e51fad943a77607127b0b_ENP%20transparent%20white%20cropped.webp 800w, <?php echo get_template_directory_uri(); ?>/images/674e51fad943a77607127b0b_ENP%20transparent%20white%20cropped.webp 1080w, <?php echo get_template_directory_uri(); ?>/images/674e51fad943a77607127b0b_ENP%20transparent%20white%20cropped.webp 1529w" class="image-height-auto">
+                    <img width="<?php echo esc_attr($header_logo_width); ?>" height="<?php echo esc_attr($header_logo_height); ?>" alt="<?php bloginfo('name'); ?>" src="<?php echo get_template_directory_uri(); ?>/images/674e51fad943a77607127b0b_ENP%20transparent%20white%20cropped.webp" sizes="<?php echo esc_attr($header_logo_width); ?>px" srcset="<?php echo get_template_directory_uri(); ?>/images/674e51fad943a77607127b0b_ENP%20transparent%20white%20cropped.webp 500w, <?php echo get_template_directory_uri(); ?>/images/674e51fad943a77607127b0b_ENP%20transparent%20white%20cropped.webp 800w, <?php echo get_template_directory_uri(); ?>/images/674e51fad943a77607127b0b_ENP%20transparent%20white%20cropped.webp 1080w, <?php echo get_template_directory_uri(); ?>/images/674e51fad943a77607127b0b_ENP%20transparent%20white%20cropped.webp 1529w" class="image-height-auto">
                     <?php endif; ?>
                 </a>
                 
@@ -99,10 +123,10 @@
                     </div>
                 </nav>
                 
-                <a href="<?php echo home_url('/contact'); ?>" class="hero-button mb-0 above-all-else nav-bar-button w-inline-block">
+                <a href="<?php echo esc_url($header_cta_url); ?>" class="hero-button mb-0 above-all-else nav-bar-button w-inline-block">
                     <div class="button-mask">
                         <div class="link-text-wrp">
-                            <div class="text-block-2">Get A quote</div>
+                            <div class="text-block-2"><?php echo esc_html($header_cta_text); ?></div>
                         </div>
                     </div>
                 </a>
