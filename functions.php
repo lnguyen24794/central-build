@@ -158,18 +158,18 @@ class Central_Build_Walker_Nav_Menu extends Walker_Nav_Menu
  */
 function central_build_scripts()
 {
-    // Enqueue main JavaScript (our custom scripts)
-    wp_enqueue_script('central-build-main', 'https://code.jquery.com/jquery-3.7.1.slim.min.js"', array('jquery'), false, true);
+    // Enqueue main JavaScript (our custom scripts) - Use full jQuery instead of slim
+    wp_enqueue_script('central-build-main', 'https://code.jquery.com/jquery-3.7.1.min.js', array(), '3.7.1', true);
 
-    wp_enqueue_script('central-build-bootstraps', get_template_directory_uri() . '/js/bootstraps.min.js', array('jquery'), false, true);
+    wp_enqueue_script('central-build-bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array('central-build-main'), false, true);
 
-    wp_enqueue_script('central-build-custom', get_template_directory_uri() . '/js/main.js', array('jquery'), false, true);
+    wp_enqueue_script('central-build-custom', get_template_directory_uri() . '/js/main.js', array('central-build-main'), false, true);
 
     // Enqueue Swiper bundle JavaScript
-    wp_enqueue_script('swiper-bundle', get_template_directory_uri() . '/js/swiper-bundle.min.js', array('jquery'), false, true);
+    wp_enqueue_script('swiper-bundle', get_template_directory_uri() . '/js/swiper-bundle.min.js', array('central-build-main'), false, true);
 
     // Enqueue Bootstrap JavaScript
-    wp_enqueue_script('bootstrap-js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js', array('jquery'), '5.3.2', true);
+    wp_enqueue_script('bootstrap-js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js', array('central-build-main'), '5.3.2', true);
     // Enqueue Webflow CSS (main template styles)
     wp_enqueue_style('central-build-webflow', get_template_directory_uri() . '/css/main.min.css', array(), false);
 
@@ -207,7 +207,7 @@ function central_build_scripts()
         wp_enqueue_script('comment-reply');
     }
 
-    wp_localize_script('central-build-main', 'central_build_theme', array(
+    wp_localize_script('central-build-custom', 'central_build_theme', array(
         'template_url' => get_template_directory_uri(),
         'home_url'     => home_url('/'),
     ));
