@@ -1,6 +1,6 @@
 <!-- Trust Process Section -->
 <section id="Home-One-Section-Two" class="home-one-section-two">
-    <div class="w-layout-blockcontainer trust-in-process-container w-container">
+    <div class="w-layout-blockcontainer trust-in-process-container custom-container">
         <div class="w-layout-vflex home-one-section-two-main-wrap">
             
             <!-- Section Heading -->

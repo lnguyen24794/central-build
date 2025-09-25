@@ -615,3 +615,11 @@
 		transform: translateY(-100%);
 	}
 }
+
+.custom-container {
+  max-width: 90% !important;
+}
+
+.autofit.financial-icon {
+  max-height: 66px !important;
+}
