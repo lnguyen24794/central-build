@@ -43,9 +43,9 @@
                             $feature_chunks = array_chunk($about_features, 2);
                             foreach ($feature_chunks as $chunk) :
                                 ?>
-                        <div class="problem-aware-block">
+                        <div class="problem-aware-block card h-100 shadow-sm border-0 ">
                             <?php foreach ($chunk as $feature) : ?>
-                                <div class="home-one-project-block">
+                                <div class="card-body home-one-project-block">
                                     <div class="heading-six">
                                         <?php echo esc_html($feature['title'] ?? ''); ?>
                                     </div>
