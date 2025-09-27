@@ -3934,6 +3934,12 @@ blockquote {
     overflow: hidden
 }
 
+@media screen and (max-width: 1440px) {
+    .home-one-box-one { 
+        min-width: auto !important;
+    }
+}
+
 .home-one-footer-menu-right {
     flex: 1
 }

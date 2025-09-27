@@ -23,7 +23,7 @@
 
                     if (!empty($trust_features)) :
                         foreach ($trust_features as $index => $feature) :
-                            $box_class = ($index === 0) ? 'home-one-box-one shadow' : 'home-one-box-one';
+                            $box_class = 'home-one-box-one shadow';
                             ?>
                 
                 <!-- Trust Feature <?php echo $index + 1; ?> -->
