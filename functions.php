@@ -495,7 +495,7 @@ function central_build_footer_settings_page()
     if (isset($_POST['submit']) && wp_verify_nonce($_POST['footer_settings_nonce'], 'footer_settings')) {
         // Save all footer settings
         update_option('central_build_footer_logo', wp_kses_post($_POST['footer_logo']));
-        update_option('central_build_footer_description', sanitize_textarea_field($_POST['footer_description']));
+        update_option('central_build_footer_description', wp_kses_post($_POST['footer_description']));
         update_option('central_build_footer_email', sanitize_email($_POST['footer_email']));
         update_option('central_build_footer_phone', wp_kses_post($_POST['footer_phone']));
 
@@ -681,7 +681,7 @@ function central_build_contact_settings_page()
     if (isset($_POST['submit']) && wp_verify_nonce($_POST['contact_settings_nonce'], 'contact_settings')) {
         // Save hero section settings
         update_option('central_build_contact_hero_title', wp_kses_post(wp_unslash($_POST['contact_hero_title'])));
-        update_option('central_build_contact_hero_description', sanitize_textarea_field($_POST['contact_hero_description']));
+        update_option('central_build_contact_hero_description', wp_kses_post($_POST['contact_hero_description']));
 
         // Save contact information
         update_option('central_build_contact_email', sanitize_email($_POST['contact_email']));
@@ -695,13 +695,13 @@ function central_build_contact_settings_page()
 
         // Save form settings
         update_option('central_build_contact_form_title', wp_kses_post($_POST['contact_form_title']));
-        update_option('central_build_contact_form_description', sanitize_textarea_field($_POST['contact_form_description']));
+        update_option('central_build_contact_form_description', wp_kses_post($_POST['contact_form_description']));
         update_option('central_build_contact_form_redirect', esc_url_raw($_POST['contact_form_redirect']));
 
         // Save office information
         update_option('central_build_contact_office_image', esc_url_raw($_POST['contact_office_image']));
         update_option('central_build_contact_office_title', wp_kses_post($_POST['contact_office_title']));
-        update_option('central_build_contact_office_description', sanitize_textarea_field($_POST['contact_office_description']));
+        update_option('central_build_contact_office_description', wp_kses_post($_POST['contact_office_description']));
         update_option('central_build_contact_office_location', wp_kses_post($_POST['contact_office_location']));
         update_option('central_build_contact_office_country', wp_kses_post($_POST['contact_office_country']));
 
