@@ -51,6 +51,7 @@ $formatted_date = $created_date ? date('F j, Y', strtotime($created_date)) : 'Se
                 <p class="project-details-hero-txt"><?php echo esc_html(get_the_excerpt() ?: 'A professional fitout project designed to meet specific business requirements.'); ?></p>
             </div>
         </div>
+        <div class="cta-overlay"></div>
     </section>
     <section class="project-details-section-two">
         <div class="w-layout-blockcontainer container-one w-container">
