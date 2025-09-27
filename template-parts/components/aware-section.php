@@ -44,16 +44,18 @@
                         if (!empty($about_features)) :
                             foreach ($about_features as $feature) :
                                 ?>
-                            <div class="col-md-6 problem-aware-block card h-100 shadow-sm border-0 ">
-                                <div class="card-body home-one-project-block">
-                                    <div class="heading-six">
-                                        <?php echo esc_html($feature['title'] ?? ''); ?>
+                            <div class="col-md-6">
+                                <div class="problem-aware-block card h-100 shadow-sm border-0 ">
+                                    <div class="card-body home-one-project-block">
+                                        <div class="heading-six">
+                                            <?php echo esc_html($feature['title'] ?? ''); ?>
+                                        </div>
+                                        <p class="home-one-way-us-paragraph">
+                                            <?php echo esc_html($feature['description'] ?? ''); ?>
+                                        </p>
                                     </div>
-                                    <p class="home-one-way-us-paragraph">
-                                        <?php echo esc_html($feature['description'] ?? ''); ?>
-                                    </p>
                                 </div>
-                             </div>
+                            </div>
                         <?php
                             endforeach;
                         endif;
