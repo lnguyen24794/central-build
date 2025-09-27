@@ -494,29 +494,29 @@ function central_build_footer_settings_page()
 {
     if (isset($_POST['submit']) && wp_verify_nonce($_POST['footer_settings_nonce'], 'footer_settings')) {
         // Save all footer settings
-        update_option('central_build_footer_logo', wp_kses_post($_POST['footer_logo']));
-        update_option('central_build_footer_description', wp_kses_post($_POST['footer_description']));
+        update_option('central_build_footer_logo', esc_url_raw(wp_unslash($_POST['footer_logo'])));
+        update_option('central_build_footer_description', wp_kses_post(wp_unslash($_POST['footer_description'])));
         update_option('central_build_footer_email', sanitize_email($_POST['footer_email']));
-        update_option('central_build_footer_phone', wp_kses_post($_POST['footer_phone']));
+        update_option('central_build_footer_phone', sanitize_text_field(wp_unslash($_POST['footer_phone'])));
 
         // Quick Links
-        update_option('central_build_footer_home_text', wp_kses_post($_POST['footer_home_text']));
+        update_option('central_build_footer_home_text', sanitize_text_field(wp_unslash($_POST['footer_home_text'])));
         update_option('central_build_footer_home_url', esc_url_raw($_POST['footer_home_url']));
-        update_option('central_build_footer_about_text', wp_kses_post($_POST['footer_about_text']));
+        update_option('central_build_footer_about_text', sanitize_text_field(wp_unslash($_POST['footer_about_text'])));
         update_option('central_build_footer_about_url', esc_url_raw($_POST['footer_about_url']));
-        update_option('central_build_footer_policy_text', wp_kses_post($_POST['footer_policy_text']));
+        update_option('central_build_footer_policy_text', sanitize_text_field(wp_unslash($_POST['footer_policy_text'])));
         update_option('central_build_footer_policy_url', esc_url_raw($_POST['footer_policy_url']));
-        update_option('central_build_footer_services_text', wp_kses_post($_POST['footer_services_text']));
+        update_option('central_build_footer_services_text', sanitize_text_field(wp_unslash($_POST['footer_services_text'])));
         update_option('central_build_footer_services_url', esc_url_raw($_POST['footer_services_url']));
-        update_option('central_build_footer_portfolio_text', wp_kses_post($_POST['footer_portfolio_text']));
+        update_option('central_build_footer_portfolio_text', sanitize_text_field(wp_unslash($_POST['footer_portfolio_text'])));
         update_option('central_build_footer_portfolio_url', esc_url_raw($_POST['footer_portfolio_url']));
 
         // Support Links
-        update_option('central_build_footer_csr_text', wp_kses_post($_POST['footer_csr_text']));
+        update_option('central_build_footer_csr_text', sanitize_text_field(wp_unslash($_POST['footer_csr_text'])));
         update_option('central_build_footer_csr_url', esc_url_raw($_POST['footer_csr_url']));
-        update_option('central_build_footer_values_text', wp_kses_post($_POST['footer_values_text']));
+        update_option('central_build_footer_values_text', sanitize_text_field(wp_unslash($_POST['footer_values_text'])));
         update_option('central_build_footer_values_url', esc_url_raw($_POST['footer_values_url']));
-        update_option('central_build_footer_blog_text', wp_kses_post($_POST['footer_blog_text']));
+        update_option('central_build_footer_blog_text', sanitize_text_field(wp_unslash($_POST['footer_blog_text'])));
         update_option('central_build_footer_blog_url', esc_url_raw($_POST['footer_blog_url']));
 
         echo '<div class="notice notice-success"><p>Footer settings saved successfully!</p></div>';
@@ -568,21 +568,21 @@ function central_build_footer_settings_page()
                 <tr>
                     <th scope="row">Company Description</th>
                     <td>
-                        <textarea name="footer_description" rows="3" cols="50" class="large-text"><?php echo esc_textarea($footer_description); ?></textarea>
+                        <textarea name="footer_description" rows="3" cols="50" class="large-text"><?php echo esc_textarea(wp_unslash($footer_description)); ?></textarea>
                         <p class="description">Brief description about the company</p>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">Email Address</th>
                     <td>
-                        <input type="email" name="footer_email" value="<?php echo esc_attr($footer_email); ?>" class="regular-text" />
+                        <input type="email" name="footer_email" value="<?php echo esc_attr(wp_unslash($footer_email)); ?>" class="regular-text" />
                         <p class="description">Contact email address</p>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">Phone Number</th>
                     <td>
-                        <input type="text" name="footer_phone" value="<?php echo esc_attr($footer_phone); ?>" class="regular-text" />
+                        <input type="text" name="footer_phone" value="<?php echo esc_attr(wp_unslash($footer_phone)); ?>" class="regular-text" />
                         <p class="description">Contact phone number</p>
                     </td>
                 </tr>
@@ -593,35 +593,35 @@ function central_build_footer_settings_page()
                 <tr>
                     <th scope="row">Home Link</th>
                     <td>
-                        <input type="text" name="footer_home_text" value="<?php echo esc_attr($footer_home_text); ?>" placeholder="Link Text" class="regular-text" />
+                        <input type="text" name="footer_home_text" value="<?php echo esc_attr(wp_unslash($footer_home_text)); ?>" placeholder="Link Text" class="regular-text" />
                         <input type="url" name="footer_home_url" value="<?php echo esc_url($footer_home_url); ?>" placeholder="Link URL" class="regular-text" />
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">About Link</th>
                     <td>
-                        <input type="text" name="footer_about_text" value="<?php echo esc_attr($footer_about_text); ?>" placeholder="Link Text" class="regular-text" />
+                        <input type="text" name="footer_about_text" value="<?php echo esc_attr(wp_unslash($footer_about_text)); ?>" placeholder="Link Text" class="regular-text" />
                         <input type="url" name="footer_about_url" value="<?php echo esc_url($footer_about_url); ?>" placeholder="Link URL" class="regular-text" />
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">Policy Link</th>
                     <td>
-                        <input type="text" name="footer_policy_text" value="<?php echo esc_attr($footer_policy_text); ?>" placeholder="Link Text" class="regular-text" />
+                        <input type="text" name="footer_policy_text" value="<?php echo esc_attr(wp_unslash($footer_policy_text)); ?>" placeholder="Link Text" class="regular-text" />
                         <input type="url" name="footer_policy_url" value="<?php echo esc_url($footer_policy_url); ?>" placeholder="Link URL" class="regular-text" />
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">Services Link</th>
                     <td>
-                        <input type="text" name="footer_services_text" value="<?php echo esc_attr($footer_services_text); ?>" placeholder="Link Text" class="regular-text" />
+                        <input type="text" name="footer_services_text" value="<?php echo esc_attr(wp_unslash($footer_services_text)); ?>" placeholder="Link Text" class="regular-text" />
                         <input type="url" name="footer_services_url" value="<?php echo esc_url($footer_services_url); ?>" placeholder="Link URL" class="regular-text" />
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">Portfolio Link</th>
                     <td>
-                        <input type="text" name="footer_portfolio_text" value="<?php echo esc_attr($footer_portfolio_text); ?>" placeholder="Link Text" class="regular-text" />
+                        <input type="text" name="footer_portfolio_text" value="<?php echo esc_attr(wp_unslash($footer_portfolio_text)); ?>" placeholder="Link Text" class="regular-text" />
                         <input type="url" name="footer_portfolio_url" value="<?php echo esc_url($footer_portfolio_url); ?>" placeholder="Link URL" class="regular-text" />
                     </td>
                 </tr>
@@ -632,21 +632,21 @@ function central_build_footer_settings_page()
                 <tr>
                     <th scope="row">CSR Commitment Link</th>
                     <td>
-                        <input type="text" name="footer_csr_text" value="<?php echo esc_attr($footer_csr_text); ?>" placeholder="Link Text" class="regular-text" />
+                        <input type="text" name="footer_csr_text" value="<?php echo esc_attr(wp_unslash($footer_csr_text)); ?>" placeholder="Link Text" class="regular-text" />
                         <input type="url" name="footer_csr_url" value="<?php echo esc_url($footer_csr_url); ?>" placeholder="Link URL" class="regular-text" />
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">Our Values Link</th>
                     <td>
-                        <input type="text" name="footer_values_text" value="<?php echo esc_attr($footer_values_text); ?>" placeholder="Link Text" class="regular-text" />
+                        <input type="text" name="footer_values_text" value="<?php echo esc_attr(wp_unslash($footer_values_text)); ?>" placeholder="Link Text" class="regular-text" />
                         <input type="url" name="footer_values_url" value="<?php echo esc_url($footer_values_url); ?>" placeholder="Link URL" class="regular-text" />
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">Blog Link</th>
                     <td>
-                        <input type="text" name="footer_blog_text" value="<?php echo esc_attr($footer_blog_text); ?>" placeholder="Link Text" class="regular-text" />
+                        <input type="text" name="footer_blog_text" value="<?php echo esc_attr(wp_unslash($footer_blog_text)); ?>" placeholder="Link Text" class="regular-text" />
                         <input type="url" name="footer_blog_url" value="<?php echo esc_url($footer_blog_url); ?>" placeholder="Link URL" class="regular-text" />
                     </td>
                 </tr>
@@ -681,12 +681,12 @@ function central_build_contact_settings_page()
     if (isset($_POST['submit']) && wp_verify_nonce($_POST['contact_settings_nonce'], 'contact_settings')) {
         // Save hero section settings
         update_option('central_build_contact_hero_title', wp_kses_post(wp_unslash($_POST['contact_hero_title'])));
-        update_option('central_build_contact_hero_description', wp_kses_post($_POST['contact_hero_description']));
+        update_option('central_build_contact_hero_description', wp_kses_post(wp_unslash($_POST['contact_hero_description'])));
 
         // Save contact information
         update_option('central_build_contact_email', sanitize_email($_POST['contact_email']));
-        update_option('central_build_contact_phone', wp_kses_post($_POST['contact_phone']));
-        update_option('central_build_contact_phone_display', wp_kses_post($_POST['contact_phone_display']));
+        update_option('central_build_contact_phone', sanitize_text_field(wp_unslash($_POST['contact_phone'])));
+        update_option('central_build_contact_phone_display', sanitize_text_field(wp_unslash($_POST['contact_phone_display'])));
 
         // Save social media links
         update_option('central_build_contact_facebook', esc_url_raw($_POST['contact_facebook']));
@@ -694,16 +694,16 @@ function central_build_contact_settings_page()
         update_option('central_build_contact_linkedin', esc_url_raw($_POST['contact_linkedin']));
 
         // Save form settings
-        update_option('central_build_contact_form_title', wp_kses_post($_POST['contact_form_title']));
-        update_option('central_build_contact_form_description', wp_kses_post($_POST['contact_form_description']));
+        update_option('central_build_contact_form_title', wp_kses_post(wp_unslash($_POST['contact_form_title'])));
+        update_option('central_build_contact_form_description', wp_kses_post(wp_unslash($_POST['contact_form_description'])));
         update_option('central_build_contact_form_redirect', esc_url_raw($_POST['contact_form_redirect']));
 
         // Save office information
         update_option('central_build_contact_office_image', esc_url_raw($_POST['contact_office_image']));
-        update_option('central_build_contact_office_title', wp_kses_post($_POST['contact_office_title']));
-        update_option('central_build_contact_office_description', wp_kses_post($_POST['contact_office_description']));
-        update_option('central_build_contact_office_location', wp_kses_post($_POST['contact_office_location']));
-        update_option('central_build_contact_office_country', wp_kses_post($_POST['contact_office_country']));
+        update_option('central_build_contact_office_title', wp_kses_post(wp_unslash($_POST['contact_office_title'])));
+        update_option('central_build_contact_office_description', wp_kses_post(wp_unslash($_POST['contact_office_description'])));
+        update_option('central_build_contact_office_location', sanitize_text_field(wp_unslash($_POST['contact_office_location'])));
+        update_option('central_build_contact_office_country', sanitize_text_field(wp_unslash($_POST['contact_office_country'])));
 
         echo '<div class="notice notice-success"><p>Contact settings saved successfully!</p></div>';
     }
@@ -750,7 +750,7 @@ function central_build_contact_settings_page()
                 <tr>
                     <th scope="row">Hero Description</th>
                     <td>
-                        <textarea name="contact_hero_description" rows="4" cols="50" class="large-text"><?php echo esc_textarea($contact_hero_description); ?></textarea>
+                        <textarea name="contact_hero_description" rows="4" cols="50" class="large-text"><?php echo esc_textarea(wp_unslash($contact_hero_description)); ?></textarea>
                         <p class="description">Description text below the hero title</p>
                     </td>
                 </tr>
@@ -761,21 +761,21 @@ function central_build_contact_settings_page()
                 <tr>
                     <th scope="row">Email Address</th>
                     <td>
-                        <input type="email" name="contact_email" value="<?php echo esc_attr($contact_email); ?>" class="regular-text" />
+                        <input type="email" name="contact_email" value="<?php echo esc_attr(wp_unslash($contact_email)); ?>" class="regular-text" />
                         <p class="description">Contact email address</p>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">Phone Number (tel: link)</th>
                     <td>
-                        <input type="text" name="contact_phone" value="<?php echo esc_attr($contact_phone); ?>" class="regular-text" placeholder="tel:0123456789" />
+                        <input type="text" name="contact_phone" value="<?php echo esc_attr(wp_unslash($contact_phone)); ?>" class="regular-text" placeholder="tel:0123456789" />
                         <p class="description">Phone number for tel: link (format: tel:0123456789)</p>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">Phone Number (display)</th>
                     <td>
-                        <input type="text" name="contact_phone_display" value="<?php echo esc_attr($contact_phone_display); ?>" class="regular-text" />
+                        <input type="text" name="contact_phone_display" value="<?php echo esc_attr(wp_unslash($contact_phone_display)); ?>" class="regular-text" />
                         <p class="description">Phone number as displayed to users</p>
                     </td>
                 </tr>
@@ -811,21 +811,21 @@ function central_build_contact_settings_page()
                 <tr>
                     <th scope="row">Form Title</th>
                     <td>
-                        <input type="text" name="contact_form_title" value="<?php echo esc_attr($contact_form_title); ?>" class="regular-text" />
+                        <input type="text" name="contact_form_title" value="<?php echo esc_attr(wp_unslash($contact_form_title)); ?>" class="regular-text" />
                         <p class="description">Title above the contact form</p>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">Form Description</th>
                     <td>
-                        <textarea name="contact_form_description" rows="2" cols="50" class="large-text"><?php echo esc_textarea($contact_form_description); ?></textarea>
+                        <textarea name="contact_form_description" rows="2" cols="50" class="large-text"><?php echo esc_textarea(wp_unslash($contact_form_description)); ?></textarea>
                         <p class="description">Description below the form title</p>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">Form Redirect URL</th>
                     <td>
-                        <input type="text" name="contact_form_redirect" value="<?php echo esc_attr($contact_form_redirect); ?>" class="regular-text" />
+                        <input type="text" name="contact_form_redirect" value="<?php echo esc_attr(wp_unslash($contact_form_redirect)); ?>" class="regular-text" />
                         <p class="description">Page to redirect after form submission (e.g., /thank-you)</p>
                     </td>
                 </tr>
@@ -843,28 +843,28 @@ function central_build_contact_settings_page()
                 <tr>
                     <th scope="row">Office Section Title</th>
                     <td>
-                        <input type="text" name="contact_office_title" value="<?php echo esc_attr($contact_office_title); ?>" class="regular-text" />
+                        <input type="text" name="contact_office_title" value="<?php echo esc_attr(wp_unslash($contact_office_title)); ?>" class="regular-text" />
                         <p class="description">Title for the office section</p>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">Office Description</th>
                     <td>
-                        <textarea name="contact_office_description" rows="3" cols="50" class="large-text"><?php echo esc_textarea($contact_office_description); ?></textarea>
+                        <textarea name="contact_office_description" rows="3" cols="50" class="large-text"><?php echo esc_textarea(wp_unslash($contact_office_description)); ?></textarea>
                         <p class="description">Description for the office section</p>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">Office Location</th>
                     <td>
-                        <input type="text" name="contact_office_location" value="<?php echo esc_attr($contact_office_location); ?>" class="regular-text" />
+                        <input type="text" name="contact_office_location" value="<?php echo esc_attr(wp_unslash($contact_office_location)); ?>" class="regular-text" />
                         <p class="description">Office location (e.g., "Office in Brisbane")</p>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">Country</th>
                     <td>
-                        <input type="text" name="contact_office_country" value="<?php echo esc_attr($contact_office_country); ?>" class="regular-text" />
+                        <input type="text" name="contact_office_country" value="<?php echo esc_attr(wp_unslash($contact_office_country)); ?>" class="regular-text" />
                         <p class="description">Country name</p>
                     </td>
                 </tr>
@@ -898,8 +898,8 @@ function central_build_header_settings_page()
 {
     if (isset($_POST['submit']) && wp_verify_nonce($_POST['header_settings_nonce'], 'header_settings')) {
         // Save top bar settings
-        update_option('central_build_header_phone', wp_kses_post($_POST['header_phone']));
-        update_option('central_build_header_phone_display', wp_kses_post($_POST['header_phone_display']));
+        update_option('central_build_header_phone', sanitize_text_field(wp_unslash($_POST['header_phone'])));
+        update_option('central_build_header_phone_display', sanitize_text_field(wp_unslash($_POST['header_phone_display'])));
         update_option('central_build_header_email', sanitize_email($_POST['header_email']));
 
         // Save social media links
@@ -908,7 +908,7 @@ function central_build_header_settings_page()
         update_option('central_build_header_instagram', esc_url_raw($_POST['header_instagram']));
 
         // Save navigation settings
-        update_option('central_build_header_cta_text', wp_kses_post($_POST['header_cta_text']));
+        update_option('central_build_header_cta_text', sanitize_text_field(wp_unslash($_POST['header_cta_text'])));
         update_option('central_build_header_cta_url', esc_url_raw($_POST['header_cta_url']));
 
         // Save logo settings
@@ -946,21 +946,21 @@ function central_build_header_settings_page()
                 <tr>
                     <th scope="row">Phone Number (tel: link)</th>
                     <td>
-                        <input type="text" name="header_phone" value="<?php echo esc_attr($header_phone); ?>" class="regular-text" placeholder="tel:+61431465090" />
+                        <input type="text" name="header_phone" value="<?php echo esc_attr(wp_unslash($header_phone)); ?>" class="regular-text" placeholder="tel:+61431465090" />
                         <p class="description">Phone number for tel: link (format: tel:+61431465090)</p>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">Phone Number (display)</th>
                     <td>
-                        <input type="text" name="header_phone_display" value="<?php echo esc_attr($header_phone_display); ?>" class="regular-text" />
+                        <input type="text" name="header_phone_display" value="<?php echo esc_attr(wp_unslash($header_phone_display)); ?>" class="regular-text" />
                         <p class="description">Phone number as displayed to users</p>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">Email Address</th>
                     <td>
-                        <input type="email" name="header_email" value="<?php echo esc_attr($header_email); ?>" class="regular-text" />
+                        <input type="email" name="header_email" value="<?php echo esc_attr(wp_unslash($header_email)); ?>" class="regular-text" />
                         <p class="description">Contact email address</p>
                     </td>
                 </tr>
@@ -996,7 +996,7 @@ function central_build_header_settings_page()
                 <tr>
                     <th scope="row">CTA Button Text</th>
                     <td>
-                        <input type="text" name="header_cta_text" value="<?php echo esc_attr($header_cta_text); ?>" class="regular-text" />
+                        <input type="text" name="header_cta_text" value="<?php echo esc_attr(wp_unslash($header_cta_text)); ?>" class="regular-text" />
                         <p class="description">Text for the call-to-action button</p>
                     </td>
                 </tr>
@@ -1014,14 +1014,14 @@ function central_build_header_settings_page()
                 <tr>
                     <th scope="row">Logo Width</th>
                     <td>
-                        <input type="number" name="header_logo_width" value="<?php echo esc_attr($header_logo_width); ?>" class="small-text" min="50" max="500" />
+                        <input type="number" name="header_logo_width" value="<?php echo esc_attr(wp_unslash($header_logo_width)); ?>" class="small-text" min="50" max="500" />
                         <p class="description">Logo width in pixels</p>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">Logo Height</th>
                     <td>
-                        <input type="number" name="header_logo_height" value="<?php echo esc_attr($header_logo_height); ?>" class="small-text" min="20" max="200" />
+                        <input type="number" name="header_logo_height" value="<?php echo esc_attr(wp_unslash($header_logo_height)); ?>" class="small-text" min="20" max="200" />
                         <p class="description">Logo height in pixels</p>
                     </td>
                 </tr>
@@ -1056,7 +1056,7 @@ function central_build_customize_register($wp_customize)
     // Site Identity Section
     $wp_customize->add_setting('central_build_phone', array(
         'default'           => '+61 123 456 789',
-        'sanitize_callback' => 'wp_kses_post',
+        'sanitize_callback' => 'sanitize_text_field',
     ));
 
     $wp_customize->add_control('central_build_phone', array(
@@ -1132,7 +1132,7 @@ function central_build_customize_register($wp_customize)
 
     $wp_customize->add_setting('central_build_fitout_tag', array(
         'default'           => 'Fitout Projects',
-        'sanitize_callback' => 'wp_kses_post',
+        'sanitize_callback' => 'sanitize_text_field',
     ));
 
     $wp_customize->add_control('central_build_fitout_tag', array(
@@ -1279,11 +1279,11 @@ function central_build_portfolio_meta_box($post)
     <table class="form-table">
         <tr>
             <th><label for="portfolio_client"><?php esc_html_e('Client Name', 'central-build'); ?></label></th>
-            <td><input type="text" id="portfolio_client" name="portfolio_client" value="<?php echo esc_attr($client); ?>" class="regular-text" /></td>
+            <td><input type="text" id="portfolio_client" name="portfolio_client" value="<?php echo esc_attr(wp_unslash($client)); ?>" class="regular-text" /></td>
         </tr>
         <tr>
             <th><label for="portfolio_date"><?php esc_html_e('Project Date', 'central-build'); ?></label></th>
-            <td><input type="date" id="portfolio_date" name="portfolio_date" value="<?php echo esc_attr($project_date); ?>" class="regular-text" /></td>
+            <td><input type="date" id="portfolio_date" name="portfolio_date" value="<?php echo esc_attr(wp_unslash($project_date)); ?>" class="regular-text" /></td>
         </tr>
         <tr>
             <th><label for="portfolio_url"><?php esc_html_e('Project URL', 'central-build'); ?></label></th>
@@ -1291,7 +1291,7 @@ function central_build_portfolio_meta_box($post)
         </tr>
         <tr>
             <th><label for="portfolio_gallery"><?php esc_html_e('Gallery Images (comma-separated IDs)', 'central-build'); ?></label></th>
-            <td><input type="text" id="portfolio_gallery" name="portfolio_gallery" value="<?php echo esc_attr($gallery); ?>" class="regular-text" /></td>
+            <td><input type="text" id="portfolio_gallery" name="portfolio_gallery" value="<?php echo esc_attr(wp_unslash($gallery)); ?>" class="regular-text" /></td>
         </tr>
     </table>
     <?php
@@ -1313,15 +1313,15 @@ function central_build_testimonial_meta_box($post)
     <table class="form-table">
         <tr>
             <th><label for="testimonial_author"><?php esc_html_e('Author Name', 'central-build'); ?></label></th>
-            <td><input type="text" id="testimonial_author" name="testimonial_author" value="<?php echo esc_attr($author_name); ?>" class="regular-text" /></td>
+            <td><input type="text" id="testimonial_author" name="testimonial_author" value="<?php echo esc_attr(wp_unslash($author_name)); ?>" class="regular-text" /></td>
         </tr>
         <tr>
             <th><label for="testimonial_position"><?php esc_html_e('Position', 'central-build'); ?></label></th>
-            <td><input type="text" id="testimonial_position" name="testimonial_position" value="<?php echo esc_attr($author_position); ?>" class="regular-text" /></td>
+            <td><input type="text" id="testimonial_position" name="testimonial_position" value="<?php echo esc_attr(wp_unslash($author_position)); ?>" class="regular-text" /></td>
         </tr>
         <tr>
             <th><label for="testimonial_company"><?php esc_html_e('Company', 'central-build'); ?></label></th>
-            <td><input type="text" id="testimonial_company" name="testimonial_company" value="<?php echo esc_attr($author_company); ?>" class="regular-text" /></td>
+            <td><input type="text" id="testimonial_company" name="testimonial_company" value="<?php echo esc_attr(wp_unslash($author_company)); ?>" class="regular-text" /></td>
         </tr>
         <tr>
             <th><label for="testimonial_rating"><?php esc_html_e('Rating (1-5)', 'central-build'); ?></label></th>
@@ -1346,29 +1346,29 @@ function central_build_save_meta_boxes($post_id)
     // Portfolio meta
     if (isset($_POST['central_build_portfolio_nonce']) && wp_verify_nonce($_POST['central_build_portfolio_nonce'], 'central_build_portfolio_meta')) {
         if (isset($_POST['portfolio_client'])) {
-            update_post_meta($post_id, '_portfolio_client', wp_kses_post($_POST['portfolio_client']));
+            update_post_meta($post_id, '_portfolio_client', sanitize_text_field(wp_unslash($_POST['portfolio_client'])));
         }
         if (isset($_POST['portfolio_date'])) {
-            update_post_meta($post_id, '_portfolio_date', wp_kses_post($_POST['portfolio_date']));
+            update_post_meta($post_id, '_portfolio_date', sanitize_text_field(wp_unslash($_POST['portfolio_date'])));
         }
         if (isset($_POST['portfolio_url'])) {
             update_post_meta($post_id, '_portfolio_url', esc_url_raw($_POST['portfolio_url']));
         }
         if (isset($_POST['portfolio_gallery'])) {
-            update_post_meta($post_id, '_portfolio_gallery', wp_kses_post($_POST['portfolio_gallery']));
+            update_post_meta($post_id, '_portfolio_gallery', sanitize_text_field(wp_unslash($_POST['portfolio_gallery'])));
         }
     }
 
     // Testimonial meta
     if (isset($_POST['central_build_testimonial_nonce']) && wp_verify_nonce($_POST['central_build_testimonial_nonce'], 'central_build_testimonial_meta')) {
         if (isset($_POST['testimonial_author'])) {
-            update_post_meta($post_id, '_testimonial_author', wp_kses_post($_POST['testimonial_author']));
+            update_post_meta($post_id, '_testimonial_author', sanitize_text_field(wp_unslash($_POST['testimonial_author'])));
         }
         if (isset($_POST['testimonial_position'])) {
-            update_post_meta($post_id, '_testimonial_position', wp_kses_post($_POST['testimonial_position']));
+            update_post_meta($post_id, '_testimonial_position', sanitize_text_field(wp_unslash($_POST['testimonial_position'])));
         }
         if (isset($_POST['testimonial_company'])) {
-            update_post_meta($post_id, '_testimonial_company', wp_kses_post($_POST['testimonial_company']));
+            update_post_meta($post_id, '_testimonial_company', sanitize_text_field(wp_unslash($_POST['testimonial_company'])));
         }
         if (isset($_POST['testimonial_rating'])) {
             update_post_meta($post_id, '_testimonial_rating', absint($_POST['testimonial_rating']));
