@@ -37,14 +37,14 @@
                     <div class="devider-one"></div>
                     
                     <!-- Features Grid -->
+                    <div class="row g-4">
+                    <!-- Features -->
                     <?php
                     $about_features = central_build_get_about_features();
                         if (!empty($about_features)) :
-                            $feature_chunks = array_chunk($about_features, 2);
-                            foreach ($feature_chunks as $chunk) :
+                            foreach ($about_features as $feature) :
                                 ?>
-                        <div class="problem-aware-block card h-100 shadow-sm border-0 ">
-                            <?php foreach ($chunk as $feature) : ?>
+                            <div class="col-md-6 problem-aware-block card h-100 shadow-sm border-0 ">
                                 <div class="card-body home-one-project-block">
                                     <div class="heading-six">
                                         <?php echo esc_html($feature['title'] ?? ''); ?>
@@ -53,12 +53,12 @@
                                         <?php echo esc_html($feature['description'] ?? ''); ?>
                                     </p>
                                 </div>
-                            <?php endforeach; ?>
-                        </div>
-                    <?php
+                             </div>
+                        <?php
                             endforeach;
                         endif;
                         ?>
+                    </div>
                 </div>
             </div>
         </div>
