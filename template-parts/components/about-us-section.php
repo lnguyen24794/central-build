@@ -4,12 +4,12 @@
         <h2 class="nz-div-6">
             <span class="title-holder"> About Us </span>
         </h2>
-
+    </div>
+    <div class="margin-top-twenty text-center">
         <p class="text-muted w-75 mx-auto">
             Central Build is a specialized commercial contractor, formed by dedicated team of professionals, bringing together passion and expertise to deliver outstanding results in commercial interior fit-outs.
         </p>
     </div>
-
     <div class="row g-4">
       <!-- Card 1 -->
       <div class="col-md-6">
