@@ -1,10 +1,10 @@
 <!-- Testimonials Section -->
 <section class="home-three-testimonial-section-2">
     <div class="my-container container">
-        <div class="w-layout-hflex home-three-testimonial-flex-2 space-between">
+        <div class="row">
             
             <!-- Left Content -->
-            <div class="home-three-testimonial-left mt-5 left">
+            <div class="home-three-testimonial-left col-md-8 mt-5">
                 
                 <!-- Section Header -->
                 <div class="row gap-3 m-3">
@@ -100,19 +100,13 @@
             </div>
             
             <!-- Right Image -->
-            <div class="home-three-testimonial-right right">
+            <div class="col-md-4">
                 <?php
                 $testimonials_image = get_option('central_build_testimonials_image');
                 if ($testimonials_image) : ?>
-                    <img width="630" height="550" 
+                    <img
                          alt="<?php esc_attr_e('Testimonials Image', 'central-build'); ?>" 
                          src="<?php echo esc_url($testimonials_image); ?>" 
-                         loading="lazy" 
-                         class="autofit-3 responsive-full-width">
-                <?php else : ?>
-                    <img width="630" height="550" 
-                         alt="<?php esc_attr_e('Que Dining Hospitality Fitout', 'central-build'); ?>" 
-                         src="<?php echo esc_url(get_template_directory_uri() . '/images/testimonials-default.jpg'); ?>" 
                          loading="lazy" 
                          class="autofit-3 responsive-full-width">
                 <?php endif; ?>
