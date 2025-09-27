@@ -185,6 +185,7 @@ function central_build_scripts()
 
     // Enqueue Bootstrap CSS (before webflow-overrides so it can be overridden)
     wp_enqueue_style('bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css', array('central-build-components', 'animation'), '5.3.2');
+    wp_enqueue_style('bootstrap-icons', 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css', array('bootstrap'), '1.11.3');
     wp_enqueue_style('jquery-ui', 'https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css', array('bootstrap'), '1.14.1');
 
     // Enqueue Bootstrap custom utilities (safe Bootstrap utilities)
