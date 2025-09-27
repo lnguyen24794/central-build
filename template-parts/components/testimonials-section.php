@@ -4,7 +4,7 @@
         <div class="row">
             
             <!-- Left Content -->
-            <div class="home-three-testimonial-left col-md-8 mt-5">
+            <div class="col-md-6 mt-5">
                 
                 <!-- Section Header -->
                 <div class="row gap-3 m-3">
@@ -100,7 +100,7 @@
             </div>
             
             <!-- Right Image -->
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <?php
                 $testimonials_image = get_option('central_build_testimonials_image');
                 if ($testimonials_image) : ?>

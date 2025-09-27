@@ -12757,8 +12757,8 @@ blockquote {
 
 .autofit-3.responsive-full-width {
     object-fit: cover;
-    width: 160%;
-    max-width: 160%
+    width: 100%;
+    max-width: 100%
 }
 
 .autofit-3.responsive-full-width.why-choose-us-vission-image {
