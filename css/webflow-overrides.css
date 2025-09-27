@@ -3918,8 +3918,7 @@ blockquote {
 }
 
 .home-one-box-one {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57cd8_Card%20Background%20\(1\).webp);
-    background-position: 50%;
+    background: white;
     background-repeat: no-repeat;
     background-size: cover;
     border-top-left-radius: 20px;
@@ -16129,7 +16128,6 @@ blockquote {
     }
 
     .home-one-box-one {
-        border-top-right-radius: 20px;
         padding: 30px 20px 25px
     }
 

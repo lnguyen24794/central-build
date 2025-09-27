@@ -20,6 +20,10 @@ get_header(); ?>
     ?>
 
     <?php
+        loadView(get_template_directory() . '/template-parts/components/about-us-section.php');
+    ?>
+
+    <?php
         // Trust Process Section
         if (get_option('central_build_show_trust_section', true)) :
             loadView(get_template_directory() . '/template-parts/components/trust-section.php');

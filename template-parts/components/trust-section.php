@@ -42,7 +42,7 @@
                     <?php endif; ?>
                     
                     <?php if (!empty($feature['description'])) : ?>
-                        <p class="margin-top-twenty">
+                        <p>
                             <?php echo esc_html($feature['description']); ?>
                         </p>
                     <?php endif; ?>
