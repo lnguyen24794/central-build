@@ -494,29 +494,29 @@ function central_build_footer_settings_page()
 {
     if (isset($_POST['submit']) && wp_verify_nonce($_POST['footer_settings_nonce'], 'footer_settings')) {
         // Save all footer settings
-        update_option('central_build_footer_logo', sanitize_text_field($_POST['footer_logo']));
+        update_option('central_build_footer_logo', wp_kses_post($_POST['footer_logo']));
         update_option('central_build_footer_description', sanitize_textarea_field($_POST['footer_description']));
         update_option('central_build_footer_email', sanitize_email($_POST['footer_email']));
-        update_option('central_build_footer_phone', sanitize_text_field($_POST['footer_phone']));
+        update_option('central_build_footer_phone', wp_kses_post($_POST['footer_phone']));
 
         // Quick Links
-        update_option('central_build_footer_home_text', sanitize_text_field($_POST['footer_home_text']));
+        update_option('central_build_footer_home_text', wp_kses_post($_POST['footer_home_text']));
         update_option('central_build_footer_home_url', esc_url_raw($_POST['footer_home_url']));
-        update_option('central_build_footer_about_text', sanitize_text_field($_POST['footer_about_text']));
+        update_option('central_build_footer_about_text', wp_kses_post($_POST['footer_about_text']));
         update_option('central_build_footer_about_url', esc_url_raw($_POST['footer_about_url']));
-        update_option('central_build_footer_policy_text', sanitize_text_field($_POST['footer_policy_text']));
+        update_option('central_build_footer_policy_text', wp_kses_post($_POST['footer_policy_text']));
         update_option('central_build_footer_policy_url', esc_url_raw($_POST['footer_policy_url']));
-        update_option('central_build_footer_services_text', sanitize_text_field($_POST['footer_services_text']));
+        update_option('central_build_footer_services_text', wp_kses_post($_POST['footer_services_text']));
         update_option('central_build_footer_services_url', esc_url_raw($_POST['footer_services_url']));
-        update_option('central_build_footer_portfolio_text', sanitize_text_field($_POST['footer_portfolio_text']));
+        update_option('central_build_footer_portfolio_text', wp_kses_post($_POST['footer_portfolio_text']));
         update_option('central_build_footer_portfolio_url', esc_url_raw($_POST['footer_portfolio_url']));
 
         // Support Links
-        update_option('central_build_footer_csr_text', sanitize_text_field($_POST['footer_csr_text']));
+        update_option('central_build_footer_csr_text', wp_kses_post($_POST['footer_csr_text']));
         update_option('central_build_footer_csr_url', esc_url_raw($_POST['footer_csr_url']));
-        update_option('central_build_footer_values_text', sanitize_text_field($_POST['footer_values_text']));
+        update_option('central_build_footer_values_text', wp_kses_post($_POST['footer_values_text']));
         update_option('central_build_footer_values_url', esc_url_raw($_POST['footer_values_url']));
-        update_option('central_build_footer_blog_text', sanitize_text_field($_POST['footer_blog_text']));
+        update_option('central_build_footer_blog_text', wp_kses_post($_POST['footer_blog_text']));
         update_option('central_build_footer_blog_url', esc_url_raw($_POST['footer_blog_url']));
 
         echo '<div class="notice notice-success"><p>Footer settings saved successfully!</p></div>';
@@ -680,13 +680,13 @@ function central_build_contact_settings_page()
 {
     if (isset($_POST['submit']) && wp_verify_nonce($_POST['contact_settings_nonce'], 'contact_settings')) {
         // Save hero section settings
-        update_option('central_build_contact_hero_title', sanitize_text_field($_POST['contact_hero_title']));
+        update_option('central_build_contact_hero_title', wp_kses_post(wp_unslash($_POST['contact_hero_title'])));
         update_option('central_build_contact_hero_description', sanitize_textarea_field($_POST['contact_hero_description']));
 
         // Save contact information
         update_option('central_build_contact_email', sanitize_email($_POST['contact_email']));
-        update_option('central_build_contact_phone', sanitize_text_field($_POST['contact_phone']));
-        update_option('central_build_contact_phone_display', sanitize_text_field($_POST['contact_phone_display']));
+        update_option('central_build_contact_phone', wp_kses_post($_POST['contact_phone']));
+        update_option('central_build_contact_phone_display', wp_kses_post($_POST['contact_phone_display']));
 
         // Save social media links
         update_option('central_build_contact_facebook', esc_url_raw($_POST['contact_facebook']));
@@ -694,16 +694,16 @@ function central_build_contact_settings_page()
         update_option('central_build_contact_linkedin', esc_url_raw($_POST['contact_linkedin']));
 
         // Save form settings
-        update_option('central_build_contact_form_title', sanitize_text_field($_POST['contact_form_title']));
+        update_option('central_build_contact_form_title', wp_kses_post($_POST['contact_form_title']));
         update_option('central_build_contact_form_description', sanitize_textarea_field($_POST['contact_form_description']));
         update_option('central_build_contact_form_redirect', esc_url_raw($_POST['contact_form_redirect']));
 
         // Save office information
         update_option('central_build_contact_office_image', esc_url_raw($_POST['contact_office_image']));
-        update_option('central_build_contact_office_title', sanitize_text_field($_POST['contact_office_title']));
+        update_option('central_build_contact_office_title', wp_kses_post($_POST['contact_office_title']));
         update_option('central_build_contact_office_description', sanitize_textarea_field($_POST['contact_office_description']));
-        update_option('central_build_contact_office_location', sanitize_text_field($_POST['contact_office_location']));
-        update_option('central_build_contact_office_country', sanitize_text_field($_POST['contact_office_country']));
+        update_option('central_build_contact_office_location', wp_kses_post($_POST['contact_office_location']));
+        update_option('central_build_contact_office_country', wp_kses_post($_POST['contact_office_country']));
 
         echo '<div class="notice notice-success"><p>Contact settings saved successfully!</p></div>';
     }
@@ -743,7 +743,7 @@ function central_build_contact_settings_page()
                 <tr>
                     <th scope="row">Hero Title</th>
                     <td>
-                        <input type="text" name="contact_hero_title" value="<?php echo esc_attr($contact_hero_title); ?>" class="large-text" />
+                        <input type="text" name="contact_hero_title" value="<?php echo esc_attr(wp_unslash($contact_hero_title)); ?>" class="large-text" />
                         <p class="description">Main heading in hero section (HTML allowed for span tags)</p>
                     </td>
                 </tr>
@@ -898,8 +898,8 @@ function central_build_header_settings_page()
 {
     if (isset($_POST['submit']) && wp_verify_nonce($_POST['header_settings_nonce'], 'header_settings')) {
         // Save top bar settings
-        update_option('central_build_header_phone', sanitize_text_field($_POST['header_phone']));
-        update_option('central_build_header_phone_display', sanitize_text_field($_POST['header_phone_display']));
+        update_option('central_build_header_phone', wp_kses_post($_POST['header_phone']));
+        update_option('central_build_header_phone_display', wp_kses_post($_POST['header_phone_display']));
         update_option('central_build_header_email', sanitize_email($_POST['header_email']));
 
         // Save social media links
@@ -908,7 +908,7 @@ function central_build_header_settings_page()
         update_option('central_build_header_instagram', esc_url_raw($_POST['header_instagram']));
 
         // Save navigation settings
-        update_option('central_build_header_cta_text', sanitize_text_field($_POST['header_cta_text']));
+        update_option('central_build_header_cta_text', wp_kses_post($_POST['header_cta_text']));
         update_option('central_build_header_cta_url', esc_url_raw($_POST['header_cta_url']));
 
         // Save logo settings
@@ -1056,7 +1056,7 @@ function central_build_customize_register($wp_customize)
     // Site Identity Section
     $wp_customize->add_setting('central_build_phone', array(
         'default'           => '+61 123 456 789',
-        'sanitize_callback' => 'sanitize_text_field',
+        'sanitize_callback' => 'wp_kses_post',
     ));
 
     $wp_customize->add_control('central_build_phone', array(
@@ -1132,7 +1132,7 @@ function central_build_customize_register($wp_customize)
 
     $wp_customize->add_setting('central_build_fitout_tag', array(
         'default'           => 'Fitout Projects',
-        'sanitize_callback' => 'sanitize_text_field',
+        'sanitize_callback' => 'wp_kses_post',
     ));
 
     $wp_customize->add_control('central_build_fitout_tag', array(
@@ -1346,29 +1346,29 @@ function central_build_save_meta_boxes($post_id)
     // Portfolio meta
     if (isset($_POST['central_build_portfolio_nonce']) && wp_verify_nonce($_POST['central_build_portfolio_nonce'], 'central_build_portfolio_meta')) {
         if (isset($_POST['portfolio_client'])) {
-            update_post_meta($post_id, '_portfolio_client', sanitize_text_field($_POST['portfolio_client']));
+            update_post_meta($post_id, '_portfolio_client', wp_kses_post($_POST['portfolio_client']));
         }
         if (isset($_POST['portfolio_date'])) {
-            update_post_meta($post_id, '_portfolio_date', sanitize_text_field($_POST['portfolio_date']));
+            update_post_meta($post_id, '_portfolio_date', wp_kses_post($_POST['portfolio_date']));
         }
         if (isset($_POST['portfolio_url'])) {
             update_post_meta($post_id, '_portfolio_url', esc_url_raw($_POST['portfolio_url']));
         }
         if (isset($_POST['portfolio_gallery'])) {
-            update_post_meta($post_id, '_portfolio_gallery', sanitize_text_field($_POST['portfolio_gallery']));
+            update_post_meta($post_id, '_portfolio_gallery', wp_kses_post($_POST['portfolio_gallery']));
         }
     }
 
     // Testimonial meta
     if (isset($_POST['central_build_testimonial_nonce']) && wp_verify_nonce($_POST['central_build_testimonial_nonce'], 'central_build_testimonial_meta')) {
         if (isset($_POST['testimonial_author'])) {
-            update_post_meta($post_id, '_testimonial_author', sanitize_text_field($_POST['testimonial_author']));
+            update_post_meta($post_id, '_testimonial_author', wp_kses_post($_POST['testimonial_author']));
         }
         if (isset($_POST['testimonial_position'])) {
-            update_post_meta($post_id, '_testimonial_position', sanitize_text_field($_POST['testimonial_position']));
+            update_post_meta($post_id, '_testimonial_position', wp_kses_post($_POST['testimonial_position']));
         }
         if (isset($_POST['testimonial_company'])) {
-            update_post_meta($post_id, '_testimonial_company', sanitize_text_field($_POST['testimonial_company']));
+            update_post_meta($post_id, '_testimonial_company', wp_kses_post($_POST['testimonial_company']));
         }
         if (isset($_POST['testimonial_rating'])) {
             update_post_meta($post_id, '_testimonial_rating', absint($_POST['testimonial_rating']));

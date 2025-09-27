@@ -698,11 +698,11 @@ function central_build_options_page()
         <?php
         // Handle form submission
         if (isset($_POST['submit'])) {
-            $active_tab = isset($_POST['active_tab']) ? sanitize_text_field($_POST['active_tab']) : 'hero';
+            $active_tab = isset($_POST['active_tab']) ? wp_kses_post($_POST['active_tab']) : 'hero';
             echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__('Settings saved successfully!', 'central-build') . '</p></div>';
         }
 
-    $active_tab = isset($_GET['tab']) ? sanitize_text_field($_GET['tab']) : 'hero';
+    $active_tab = isset($_GET['tab']) ? wp_kses_post($_GET['tab']) : 'hero';
     ?>
         
         <h2 class="nav-tab-wrapper">

@@ -358,7 +358,7 @@ function central_build_save_fitout_sector_meta($post_id)
             } elseif (in_array($field, array('fitout_about_project', 'fitout_key_elements', 'fitout_cta_text', 'fitout_final_result', 'fitout_quote_text'))) {
                 update_post_meta($post_id, $meta_key, sanitize_textarea_field($_POST[$field]));
             } else {
-                update_post_meta($post_id, $meta_key, sanitize_text_field($_POST[$field]));
+                update_post_meta($post_id, $meta_key, wp_kses_post($_POST[$field]));
             }
         }
     }
