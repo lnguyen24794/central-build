@@ -2068,7 +2068,7 @@ textarea.w-input,textarea.w-select {
 
 :root {
     --paragraph-dark-color: #5d5f6f;
-    --heading-dark-color: #02015a;
+    --heading-dark-color: #f4871af5;
     --black: black;
     --white: #ffffff;
     --soft-white: #FEFCF4;
@@ -3926,7 +3926,6 @@ blockquote {
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
     flex: 1;
-    min-width: 300px;
     margin-left: auto;
     margin-right: auto;
     padding: 60px 40px 44px;
@@ -15783,8 +15782,6 @@ blockquote {
     .autofit-3.responsive-full-width {
         object-fit: fill;
         padding-top: 0;
-        padding-left: 0;
-        padding-right: 390px
     }
 
     .autofit-3.responsive-full-width.why-choose-us-vission-image {

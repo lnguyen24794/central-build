@@ -623,3 +623,27 @@
 .autofit.financial-icon {
   max-height: 66px !important;
 }
+
+.hero-section {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1503387762-592deb58ef4e') center/cover no-repeat;
+    color: #fff;
+    padding: 100px 0;
+    min-height: 500px;
+}
+.card:hover {
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+}
+.icon-box {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #f0f4ff;
+  margin: 0 auto 20px;
+  }
+.service-box:hover {
+    background: #f8f9fa;
+}

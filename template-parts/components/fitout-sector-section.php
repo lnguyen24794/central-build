@@ -1,5 +1,5 @@
 <!-- Fitout Sectors Section -->
-<section class="home-three-section-two-2">
+<section class="home-three-section-two-2 bg-light">
     <div class="container">
         <!-- Section Header -->
         <div class="my-container container">
