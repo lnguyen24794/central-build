@@ -625,7 +625,7 @@
 }
 
 .hero-section {
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1503387762-592deb58ef4e') center/cover no-repeat;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/wp-content/themes/central-build/images/about-us.jpeg') center/cover no-repeat;
     color: #fff;
     padding: 100px 0;
     min-height: 500px;

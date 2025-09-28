@@ -2060,7 +2060,7 @@ textarea.w-input,textarea.w-select {
 
 @font-face {
     font-family: Oswald Variablefont Wght;
-    src: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57db6_Oswald-VariableFont_wght.ttf)format("truetype");
+    src: url(/wp-content/themes/central-build/fonts/Oswald-VariableFont_wght.ttf)format("truetype");
     font-weight: 200 700;
     font-style: normal;
     font-display: swap
@@ -3614,16 +3614,6 @@ blockquote {
     inset: 24% 0% auto auto
 }
 
-.footer-submit-btn.custome-button {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57db9_Group%2017.svg);
-    background-position: 50%;
-    background-repeat: no-repeat;
-    background-size: 30px 30px;
-    width: 35px;
-    height: 35px;
-    top: 22%
-}
-
 .portfolio-two-circle-base {
     z-index: 1;
     background-color: #050000;
@@ -4041,15 +4031,6 @@ blockquote {
     color: var(--light-grey)
 }
 
-.footer-form-email-field.left-icon {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57dba_Group%2018.svg);
-    background-position: 0;
-    background-repeat: no-repeat;
-    background-size: auto;
-    border-bottom-color: #bcc1d5;
-    padding-left: 40px
-}
-
 .heading-effect {
     max-width: 600px
 }
@@ -4102,14 +4083,6 @@ blockquote {
     flex: none;
     align-items: center;
     display: flex
-}
-
-.home-one-faq-section {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57dbb_main%20bg.jpg);
-    background-position: 50%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding: 100px 15px 120px
 }
 
 .home-one-faq-section.team-details-section {
@@ -4509,7 +4482,6 @@ blockquote {
 }
 
 .home-two-lightbox-bg {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57a3e_Home-Two-Vdo-Bg.webp);
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -4524,7 +4496,6 @@ blockquote {
 }
 
 .home-two-lightbox-bg.margin-top-twenty {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/677b3d708084966769908bb8_ENP09682%20\(Large\).jpg);
     background-repeat: no-repeat;
     background-size: cover
 }
@@ -4538,7 +4509,6 @@ blockquote {
 }
 
 .dark-bg.home-two-slider-three {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/674e4000a7cc35ad9ae56831_14%20\(Large\).webp);
     background-position: 100%;
     background-repeat: no-repeat;
     background-size: cover
@@ -4546,14 +4516,12 @@ blockquote {
 
 .dark-bg.home-two-slider-one {
     text-shadow: none;
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/675911287943f717b2d84ef9_ENP05450%20\(Large\).jpg);
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover
 }
 
 .dark-bg.home-two-slider-two {
-    background-image: url("https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/674e3fad63d734034c3a7b4c_DSC01518%20(Large)%20(1).jpg");
     background-position: 100%;
     background-repeat: no-repeat;
     background-size: cover
@@ -4822,7 +4790,6 @@ blockquote {
 }
 
 .home-two-footer-call-block.margin-top-second {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57a72_Red-Message-Icon.svg);
     margin-top: 20px;
     margin-bottom: 0
 }
@@ -5009,7 +4976,6 @@ blockquote {
 }
 
 .home-two-section-four {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57a2f_Home-Two-Progress-Bg.webp);
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -5068,7 +5034,6 @@ blockquote {
 }
 
 .box-one-block {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57a49_Performance-Arrow.svg);
     background-position: 0 6px;
     background-repeat: no-repeat;
     background-size: auto;
@@ -5344,7 +5309,6 @@ blockquote {
 }
 
 .about-one-team-section {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57af2_About-One-Team-Bg.webp);
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: contain;
@@ -5352,7 +5316,6 @@ blockquote {
 }
 
 .about-one-hero-section {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/674f92121b40d45627c435d4_ENP07197%20\(Large\).jpg);
     background-position: 0 0;
     background-size: auto;
     padding: 233px 15px 272px;
@@ -5425,7 +5388,6 @@ blockquote {
 }
 
 .about-one-bottom-banner-right {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/674f92c4a5ffc95f001fafc8_ENP09768%20\(Large\).jpg);
     background-position: 0 0;
     background-size: cover;
     flex: 1;
@@ -6055,7 +6017,6 @@ blockquote {
 
 .about-two-team-section.about-three-team-section {
     background-color: #000;
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57dbe_members.svg);
     background-position: 50% 40%;
     background-repeat: no-repeat;
     background-size: 1548px;
@@ -6124,7 +6085,6 @@ blockquote {
     color: #68708c;
     letter-spacing: -.02rem;
     text-transform: capitalize;
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57aa1_Small-Red-Bg.svg);
     background-position: 0%;
     background-repeat: no-repeat;
     background-size: auto;
@@ -6137,7 +6097,6 @@ blockquote {
 
 .creative-design-text.service-one-marquee-text {
     color: #02015a;
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57abb_Circle-Star.svg);
     padding-left: 40px;
     font-weight: 400
 }
@@ -6287,7 +6246,6 @@ blockquote {
 }
 
 .about-three-hero-section {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57aaa_About-Three-Hero-Bg.webp);
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -6359,7 +6317,6 @@ blockquote {
     letter-spacing: -.01rem;
     text-transform: capitalize;
     text-shadow: none;
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57ab7_Small-Check-Sign.svg);
     background-position: 0%;
     background-repeat: no-repeat;
     background-size: auto;
@@ -6575,7 +6532,6 @@ blockquote {
     color: #02015a;
     letter-spacing: -.01375rem;
     text-transform: capitalize;
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57ae7_Site-Preparation-Icon.svg);
     background-position: 0%;
     background-repeat: no-repeat;
     background-size: auto;
@@ -6658,7 +6614,6 @@ blockquote {
 
 .service-one-vdo-bg {
     text-shadow: none;
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/6758d1317674871eb70a784b_DSC04839-HDR%20\(Large\).jpg);
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -6718,7 +6673,6 @@ blockquote {
 
 .gurantee-text {
     text-transform: capitalize;
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57ad4_Pricing-One-Check.svg);
     background-position: 0 11px;
     background-repeat: no-repeat;
     background-size: auto;
@@ -6740,7 +6694,6 @@ blockquote {
 
 .service-one-management-right {
     text-shadow: none;
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/6758d1f3115cd6f65b93365c_DSC00836%20\(Large\).jpg);
     background-position: 50% 100%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -6800,7 +6753,6 @@ blockquote {
 
 .pricing-one-deep-text {
     text-transform: capitalize;
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57ad5_Pricing-Red-Arrow.svg);
     background-position: 0%;
     background-repeat: no-repeat;
     background-size: auto;
@@ -6810,7 +6762,6 @@ blockquote {
 
 .pricing-one-deep-text.pricing-one-light-text {
     color: #cbcfdd;
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57ad2_Pricing-Grey-Arrow.svg)
 }
 
 .pricing-one-deep-text.pricing-one-light-text.margin-bottom-zero,.pricing-one-deep-text.margin-bottom-zero {
@@ -6852,7 +6803,6 @@ blockquote {
 }
 
 .service-one-hero-section {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/6758d4f3a924a64ac6797a99_A7S02964.jpg);
     background-position: 0%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -6902,7 +6852,6 @@ blockquote {
 }
 
 .service-three-value-img-box {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57b0f_Service-Three-Project-Img.webp);
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -6982,7 +6931,6 @@ blockquote {
 }
 
 .service-three-innovative-right {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57b05_Service-Three-Crafting-Img.webp);
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -7006,7 +6954,6 @@ blockquote {
 }
 
 .service-three-section-three {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57b51_Service-Three-Service-Bg.webp);
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -7235,7 +7182,6 @@ blockquote {
 }
 
 .service-two-construction-second {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57d2f_Service%20Two%20Image%20\(1\).webp);
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -7345,7 +7291,6 @@ blockquote {
 }
 
 .service-three-project-right {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57b35_Service-Two-Expertise.webp);
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -7403,7 +7348,6 @@ blockquote {
 }
 
 .why-choose-hero-bg {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57b5b_Why-Choose-Hero-Img.webp);
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -7417,22 +7361,12 @@ blockquote {
 .why-choose-hero-left {
     cursor: pointer;
     background-color: #fff;
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57b76_Why-Choose-Project.svg);
     background-position: 87%;
     background-repeat: no-repeat;
     background-size: auto;
     border-radius: 20px;
     flex: 1;
     padding: 50px 30px 40px
-}
-
-.why-choose-hero-left.hero-left-two {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57b56_Why-Choose-Building.svg);
-    background-position: 93%
-}
-
-.why-choose-hero-left.hero-left-three {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57b73_Why-Choose-Modern.svg)
 }
 
 .why-choose-vision-list-right {
@@ -7571,7 +7505,6 @@ blockquote {
     color: #02015a;
     letter-spacing: -.01rem;
     text-transform: capitalize;
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57b5a_Why-Choose-Grey-Arrow.svg);
     background-position: 0%;
     background-repeat: no-repeat;
     background-size: 23px 23px;
@@ -7581,10 +7514,6 @@ blockquote {
     font-size: 1.125rem;
     line-height: 1.75rem;
     transition: transform .45s
-}
-
-.interior-design-text-with-icon:hover {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57ad5_Pricing-Red-Arrow.svg)
 }
 
 .interior-design-text-with-icon.margin-bottom-zero {
@@ -7649,8 +7578,6 @@ blockquote {
 }
 
 .pricing-one-cta-bg {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57b7a_Pricing-One-Cta-Bg.webp);
-    background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 20px;
@@ -7660,7 +7587,6 @@ blockquote {
 }
 
 .pricing-one-cta-bg.center {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/675911287943f717b2d84ef9_ENP05450%20\(Large\).jpg);
     background-repeat: no-repeat;
     background-size: cover;
     margin-top: 80px
@@ -7671,7 +7597,6 @@ blockquote {
 }
 
 .pricing-one-faq-section {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57d24_Price%20One%20faq%20Image.webp);
     background-position: 0%;
     background-repeat: no-repeat;
     background-size: 40%;
@@ -7745,7 +7670,6 @@ blockquote {
 
 .pricing-two-accodian-section {
     background-color: #fff;
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57b7d_Pricing-Two-FAQ-Bg.webp);
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: contain;
@@ -7754,7 +7678,6 @@ blockquote {
 }
 
 .pricing-two-accodian-section.contact-one-faq-section {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57d46_Contct%20One%20Background%20\(2\).svg),url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57d47_Contct%20One%20Background%20\(1\).svg);
     background-position: 10% 30%,90% 90%;
     background-repeat: no-repeat,no-repeat;
     background-size: 282px 282px,73px 73px;
@@ -8082,7 +8005,6 @@ blockquote {
 
 .contact-two-section-three {
     background-color: #f5f5f5;
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57bc0_Contact-Two-Bg.webp);
     background-position: 103% 17%;
     background-repeat: no-repeat;
     background-size: 323px;
@@ -8155,8 +8077,6 @@ blockquote {
 }
 
 .contact-two-hero-section {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57bc5_Contact-Two-Hero-Img.webp);
-    background-position: 50%;
     background-size: cover;
     padding: 198px 15px 395px
 }
@@ -8312,7 +8232,6 @@ blockquote {
 
 .landing-homepage-section {
     background-color: #000;
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57bde_Inner-Bg-Effect.webp),url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57bde_Inner-Bg-Effect.webp);
     background-position: 0 0,50% 25%;
     background-repeat: no-repeat,no-repeat;
     background-size: auto,auto;
@@ -8323,7 +8242,6 @@ blockquote {
 
 .landing-hero-section {
     background-color: #181818;
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57be3_Landing-Hero-Bg.webp);
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -8517,7 +8435,6 @@ blockquote {
 .landing-section-two {
     z-index: 1;
     background-color: #f5f5f5;
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57bdd_Innovation-Bg.webp);
     background-position: 25% 0;
     background-repeat: no-repeat;
     background-size: auto;
@@ -8529,7 +8446,6 @@ blockquote {
 
 .landing-cms-section {
     background-color: #fff;
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57cd4_Shop%20Background.webp);
     background-position: 50%;
     background-repeat: repeat-x;
     background-size: 1920px;
@@ -8629,7 +8545,6 @@ blockquote {
 }
 
 .landing-figma-block {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57d87_Landing%20Figma%20Background.webp);
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -8666,7 +8581,6 @@ blockquote {
 
 .landing-button-section {
     background-color: #000;
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57d8a_Footer%20Background.webp);
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -8675,7 +8589,6 @@ blockquote {
 
 .landing-template-right {
     background-color: #000;
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57dc0_Landing%20Blog%20Preview.webp);
     background-position: 100% 100%;
     background-repeat: no-repeat;
     background-size: 409px;
@@ -8805,7 +8718,6 @@ blockquote {
 }
 
 .request-demo-image-block {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57c20_Request-Form-Bg.webp);
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -8827,7 +8739,6 @@ blockquote {
 
 .project-block-outer {
     color: #fff;
-    background-image: url(https://d3e54v103j8qbb.cloudfront.net/img/background-image.svg);
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -8868,7 +8779,6 @@ blockquote {
 }
 
 .project-hero-section {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/674e4000a7cc35ad9ae56831_14%20\(Large\).webp);
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -8910,7 +8820,6 @@ blockquote {
 }
 
 .project-details-left {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57c31_Practice-Image.webp);
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -8937,7 +8846,6 @@ blockquote {
 
 .project-details-hero-section {
     opacity: 1;
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57c2f_Project-Details-Hero-Bg.webp);
     background-repeat: no-repeat;
     background-size: cover;
     padding: 222px 15px 170px
@@ -8960,7 +8868,6 @@ blockquote {
 
 .about-project-image-block {
     text-shadow: none;
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57c30_About-Project.webp);
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -8989,7 +8896,6 @@ blockquote {
 }
 
 .utility-page-wrap.protected-page-wrap {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57c36_Password-Protected-Bg.webp);
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -8998,7 +8904,6 @@ blockquote {
 }
 
 .utility-page-wrap.error-page-wrap {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57c38_Error-Page-Bg.webp);
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -9085,16 +8990,11 @@ blockquote {
 .blog-one-date-text {
     color: var(--paragraph-dark-color);
     text-shadow: none;
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57c47_Date-Icon.svg);
     background-position: 0%;
     background-repeat: no-repeat;
     background-size: auto;
     margin-bottom: 0;
     padding-left: 30px
-}
-
-.blog-one-date-text.blog-one-category-text {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57c45_Category-Icon.svg)
 }
 
 .blog-one-right-block {
@@ -9188,7 +9088,6 @@ blockquote {
 
 .blog-three-hero-section {
     background-color: var(--heading-light-color);
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57c42_Blog-One-Bg.webp);
     background-position: 50% 0;
     background-repeat: no-repeat;
     background-size: 340px;
@@ -9205,7 +9104,6 @@ blockquote {
 
 .blog-two-hero-section {
     background-color: var(--heading-light-color);
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57c42_Blog-One-Bg.webp);
     background-position: 50% 0;
     background-repeat: no-repeat;
     background-size: 340px;
@@ -9294,7 +9192,6 @@ blockquote {
 }
 
 .blog-details-hero-section {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57c42_Blog-One-Bg.webp);
     background-position: 50% 0;
     background-repeat: no-repeat;
     padding: 200px 15px 50px
@@ -9843,29 +9740,11 @@ blockquote {
 }
 
 .why-choose-image-block {
-    background-image: url(https://d3e54v103j8qbb.cloudfront.net/img/background-image.svg);
     background-position: 50%;
     background-size: cover;
     border-radius: 20px;
     width: 50%;
     height: 150px
-}
-
-.why-choose-image-block.image-block-two {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57b54_Building-Construction.webp)
-}
-
-.why-choose-image-block.image-block-two.img-block-active {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/674f9d01ede0d51a3dab9bf1_10%20\(Large\).webp);
-    width: 100%
-}
-
-.why-choose-image-block.img-block-three {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/674f9d01ede0d51a3dab9bf8_A7407307%20\(Large\).webp)
-}
-
-.why-choose-image-block.image-block-one {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/674f9d01ede0d51a3dab9be9_ENP05572%20\(Large\).webp)
 }
 
 .home-one-menu-secondary-link {
@@ -10987,7 +10866,6 @@ blockquote {
 }
 
 .about-two-quality-wrap {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57cd4_Shop%20Background.webp);
     background-position: 0 0;
     background-repeat: repeat-x;
     background-size: 1920px 100%;
@@ -11156,7 +11034,7 @@ blockquote {
 }
 
 .service-two-hero-overlay {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/6758b52edb5c369d0ad329f7_Gloss%20Final-68%20\(Large\).jpg),linear-gradient(#000000ab,#00000075);
+    background-image: linear-gradient(#000000ab,#00000075);
     background-position: 0 0,0 0;
     background-size: auto,auto;
     position: absolute;
@@ -11265,7 +11143,7 @@ blockquote {
 }
 
 .service-three-experties-video-box {
-    background-image: linear-gradient(#0000007a,#0000007d),url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57d2c_Service%20Two%20Image.webp);
+    background-image: linear-gradient(#0000007a,#0000007d),url(/wp-content/themes/central-build/images/service-two-image.webp);
     background-position: 0 0,50%;
     background-size: auto,auto;
     border-radius: 15px;
@@ -12023,7 +11901,7 @@ blockquote {
 }
 
 .home-two-hero-slider {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/67590f44dab2bcd62c332ac6_ENP05036%20\(Large\).jpg);
+    background-image: url(/wp-content/themes/central-build/images/enp05036.jpg);
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -12031,11 +11909,11 @@ blockquote {
 }
 
 .home-two-hero-slider.home-two-hero-slider-two {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57a2c_Home-Two-Banner-Two.webp)
+    background-image: url(/wp-content/themes/central-build/images/home-two-banner-two.webp)
 }
 
 .home-two-hero-slider.home-two-hero-slider-three {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57a3f_Home-Two-Banner-Three.webp)
+    background-image: url(/wp-content/themes/central-build/images/home-two-banner-three.webp)
 }
 
 .home-one-banner-slider {
@@ -12321,21 +12199,18 @@ blockquote {
 }
 
 .slidet-background.image-three {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57cd5_Home%20One%20Hero%20Image%20\(2\).webp);
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover
 }
 
 .slidet-background.image-one {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57cd7_Home%20One%20Hero%20Image.webp);
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover
 }
 
 .slidet-background.image-three {
-    background-image: url("https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/674e3fad63d734034c3a7b4c_DSC01518%20(Large)%20(1).jpg");
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -12346,7 +12221,6 @@ blockquote {
     -webkit-text-fill-color: inherit;
     mix-blend-mode: normal;
     background-color: #0000;
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/6858c10b0e563eaba69a8ed2_DSC00651-HDR.jpg);
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -12358,7 +12232,6 @@ blockquote {
 }
 
 .slidet-background.image-two {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/674e3fad63d734034c3a7b38_ENP06771%20\(Large\).webp);
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover
@@ -13293,7 +13166,6 @@ blockquote {
     color: #02015a;
     letter-spacing: -.01rem;
     text-transform: capitalize;
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57b5a_Why-Choose-Grey-Arrow.svg);
     background-position: 0%;
     background-repeat: no-repeat;
     background-size: 23px 23px;
@@ -13303,10 +13175,6 @@ blockquote {
     font-size: 1.125rem;
     line-height: 1.75rem;
     transition: transform .45s
-}
-
-.interior-design-text-with-icon-2:hover {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57ad5_Pricing-Red-Arrow.svg)
 }
 
 .interior-design-text-with-icon-2.without-icon {
@@ -13331,7 +13199,6 @@ blockquote {
 }
 
 .why-choose-hero-bg-2 {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/674f9d7ba62b1d7a300c5549_ENP09751%20\(Large\).jpg);
     background-position: 50%;
     background-size: cover;
     border-radius: 20px;
@@ -13606,7 +13473,6 @@ blockquote {
 }
 
 .about-two-hero-section-2 {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57cfa_About%20Two%20Hero%20Image.webp);
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
@@ -13625,7 +13491,6 @@ blockquote {
 }
 
 .about-two-quality-wrap-2 {
-    background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57cd4_Shop%20Background.webp);
     background-position: 0 0;
     background-repeat: repeat-x;
     background-size: 1920px 100%;
@@ -14457,7 +14322,6 @@ blockquote {
     }
 
     .contact-one-hero-section {
-        background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57bbc_Contact-One-Hero-Img.webp);
         background-position: -300px 0;
         background-repeat: no-repeat;
         background-size: contain
@@ -14547,18 +14411,6 @@ blockquote {
         max-width: 40ch
     }
 
-    .slidet-background.image-three {
-        background-image: url("https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/674e3fad63d734034c3a7b4c_DSC01518%20(Large)%20(1).jpg")
-    }
-
-    .slidet-background.image-one {
-        background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/674e3fad63d734034c3a7b42_DSC04865-HDR%20\(Large\).webp)
-    }
-
-    .slidet-background.image-two {
-        background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/674e3fad63d734034c3a7b38_ENP06771%20\(Large\).webp)
-    }
-
     .container-one-2 {
         color: #f5f5f5
     }
@@ -14630,10 +14482,6 @@ blockquote {
     .about-two-cta-block-3 {
         margin-left: auto;
         margin-right: auto
-    }
-
-    .about-two-hero-section-2 {
-        background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/67562f3277152b06865c3b7b_A7S03074%20\(Large\).webp)
     }
 
     .about-two-margin-top-2 {
@@ -14924,7 +14772,6 @@ blockquote {
     }
 
     .home-one-faq-section.team-details-section {
-        background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57d4b_color%20dot.svg);
         background-position: 50%;
         background-repeat: no-repeat;
         background-size: auto
@@ -15642,19 +15489,6 @@ blockquote {
     }
 
     .slidet-background.image-three {
-        background-image: url("https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/674e3fad63d734034c3a7b4c_DSC01518%20(Large)%20(1).jpg");
-        background-position: 0 0;
-        background-size: cover
-    }
-
-    .slidet-background.image-one {
-        background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/674e3fad63d734034c3a7b42_DSC04865-HDR%20\(Large\).webp);
-        background-position: 50%;
-        background-size: cover
-    }
-
-    .slidet-background.image-two {
-        background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/674e3fad63d734034c3a7b38_ENP06771%20\(Large\).webp);
         background-position: 0 0;
         background-size: cover
     }
@@ -17615,7 +17449,6 @@ blockquote {
     }
 
     .landing-homepage-section {
-        background-image: url(https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f57bde_Inner-Bg-Effect.webp);
         background-position: 50% 25%;
         background-repeat: no-repeat;
         background-size: auto;
