@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Central Build | Commercial Stripouts: Zero Risk, Zero Delays</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        /* Custom CSS: Safety & Precision Style */
+        :root {
+            --primary-color: #FB7F28; /* Deep Navy/Charcoal */
+            --accent-color: #FFC300;  /* Safety Yellow for CTA & Accent */
+            --light-bg: #F4F7F9;
+            --dark-text: #212529;
+            --light-text: #FFFFFF;
+        }
+        
+        /* Header Section */
+        .hero-section {
+            height: 90vh;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            display: flex;
+            align-items: center;
+            background-image: url('path/to/controlled-demolition-background.jpg'); /* Image of controlled stripout */
+            background-size: cover;
+            position: relative;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+        }
+        
+        .cta-button-accent {
+            background-color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            color: var(--dark-text);
+            font-weight: 700;
+            padding: 12px 35px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 195, 0, 0.4);
+        }
+        
+        .cta-button-accent:hover {
+            background-color: #e0ac00;
+            border-color: #e0ac00;
+        }
+
+        /* Core Promise Box */
+        .promise-box {
+            border-top: 5px solid var(--accent-color);
+            padding: 25px;
+            background-color: var(--light-text);
+            height: 100%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        .promise-box:hover {
+             transform: translateY(-5px);
+        }
+        
+        /* Safety Methodology */
+        .safety-step {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: var(--light-text);
+            height: 100%;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .safety-icon {
+            color: var(--accent-color);
+            font-size: 2.5rem;
+        }
+
+        /* Technical Differentiation Card */
+        .technical-card {
+            border-left: 5px solid var(--primary-color);
+            border-radius: 0;
+        }
+        
+        /* Final CTA Jumbotron */
+        .final-cta-jumbotron {
+            background-color: var(--accent-color);
+            color: var(--dark-text);
+            padding: 60px 0;
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#main-nav" data-bs-offset="50">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="main-nav">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">CENTRAL BUILD</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#promise">Core Promise</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#safety">Safety First</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#technical">Technical Edge</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#scale">Scale</a></li>
+                    <li class="nav-item"><a class="nav-link cta-button-accent text-dark ms-lg-3" href="#contact">GET A FAST QUOTE</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section" id="home">
+        <div class="container position-relative" data-aos="fade-up" data-aos-duration="1200">
+            <h1 class="display-1 fw-bolder mb-3">ZERO DEBRIS. ZERO DELAYS. <span style="color: var(--accent-color);">ZERO RISK.</span></h1>
+            <p class="lead mb-4 fw-bold" style="color: var(--accent-color);">COMMERCIAL STRIPOUTS: PREPARING YOUR PERFECT FOUNDATION.</p>
+            <p class="mb-5 fs-5 opacity-75">Central Build specializes in controlled, compliant, and efficient commercial stripouts, ensuring your space is ready for Phase II fit-out without compromises on safety or timeline.</p>
+            <a href="#contact" class="btn cta-button-accent btn-lg pulse-animation">GET A FAST & COMPLIANT QUOTE</a>
+        </div>
+    </header>
+
+   
+
+    <footer class="bg-dark py-4 text-center" style="color: rgba(255, 255, 255, 0.6);">
+        <div class="container">
+            <p class="mb-2">&copy; 2025 Central Build. All Rights Reserved. | The Deconstruction Specialist.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+        });
+    </script>
+</body>
+</html>

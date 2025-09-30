@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Central Build: Let's Build Value, Together.</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        /* Custom CSS: Efficiency & Accessibility Style */
+        :root {
+            --primary-color: #FB7F28; /* Deep Navy/Charcoal */
+            --accent-color: #B8860B;  /* Metallic Bronze/Gold for Project Inquiry */
+            --emergency-color: #E53935; /* Emergency Red */
+            --light-bg: #F4F7F9;
+            --dark-text: #212529;
+            --light-text: #FFFFFF;
+        }
+        
+        /* Header Section */
+        .header-contact {
+            padding-top: 150px;
+            padding-bottom: 80px;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+        }
+
+        /* Contact Option Blocks */
+        .option-block {
+            padding: 30px;
+            background-color: var(--light-text);
+            border-top: 5px solid var(--primary-color);
+            height: 100%;
+            transition: transform 0.3s ease;
+        }
+        .option-block:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .option-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .icon-project { color: var(--accent-color); }
+        .icon-general { color: var(--primary-color); }
+        .icon-emergency { color: var(--emergency-color); }
+
+        /* Emergency Block Special Styling */
+        .emergency-block {
+            border-top: 5px solid var(--emergency-color);
+            background-color: var(--primary-color);
+            color: var(--light-text);
+        }
+        .emergency-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--emergency-color);
+        }
+
+        /* Form CTA Button */
+        .cta-button-gold {
+            background-color: var(--accent-color);
+            color: var(--dark-text);
+            border: 2px solid var(--accent-color);
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+        .cta-button-gold:hover {
+            background-color: #9d7009;
+            color: var(--light-text);
+            border-color: #9d7009;
+        }
+        
+        /* Checklist */
+        .checklist-item {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--primary-color);
+        }
+        .checklist-icon {
+            color: var(--accent-color);
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#main-nav" data-bs-offset="50">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="main-nav">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">CENTRAL BUILD</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#options">Quick Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#form">Project Inquiry</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#location">Our Location</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="header-contact">
+        <div class="container" data-aos="fade-up">
+            <h1 class="display-3 fw-bolder mb-2">LET'S BUILD VALUE, <span style="color: var(--accent-color);">TOGETHER.</span></h1>
+            <p class="lead mb-0 fs-5 opacity-90">We’re ready to discuss your commercial fit-out, stripout, or maintenance needs. Choose the contact method that best suits your urgency.</p>
+        </div>
+    </header>
+
+    <section id="options" class="py-5 py-md-5 bg-light">
+        <div class="container">
+            <h2 class="text-center display-6 fw-normal mb-5" data-aos="fade-down">Choose Your Contact Channel</h2>
+            <div class="row g-4">
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="option-block" data-aos="fade-up" data-aos-delay="100" style="border-top-color: var(--accent-color);">
+                        <i class="fas fa-drafting-compass option-icon icon-project"></i>
+                        <h4 class="fw-bold" style="color: var(--primary-color);">PROJECT & QUOTE INQUIRIES</h4>
+                        <p class="small text-muted">For new commercial fit-outs, stripouts, or complex coordination requests.</p>
+                        <p class="fw-bold">Response Goal: **Within 24 Hours.**</p>
+                        <a href="#form" class="btn btn-outline-dark btn-sm fw-bold">START PROJECT FORM</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="option-block emergency-block text-center" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-headset option-icon icon-emergency"></i>
+                        <h4 class="fw-bold" style="color: var(--light-text);">URGENT REPAIRS (24/7)</h4>
+                        <p class="small text-light">For critical faults: electrical failure, burst pipes, or immediate site issues.</p>
+                        <p class="emergency-number pulse-animation">+1 (123) 456-7890</p>
+                        <p class="small text-light">Dedicated Emergency Line. **Minimizing Downtime.**</p>
+                        <a href="tel:+11234567890" class="btn btn-danger btn-sm fw-bold">CALL NOW</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-12">
+                    <div class="option-block" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-envelope-open-text option-icon icon-general"></i>
+                        <h4 class="fw-bold" style="color: var(--primary-color);">GENERAL & ACCOUNTS</h4>
+                        <p class="small text-muted">For general questions, vendor relations, or accounting inquiries.</p>
+                        <p class="fw-normal mb-0">Office Email: <a href="mailto:info@centralbuild.com" class="text-decoration-none" style="color: var(--primary-color);">info@centralbuild.com</a></p>
+                        <p class="fw-bold">Office Phone: +1 (123) 456-7899</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="form" class="py-5 py-md-5">
+        <div class="container">
+            <h2 class="text-center display-6 fw-normal mb-5" data-aos="fade-down">Project Inquiry Form</h2>
+            <div class="row g-5">
+                <div class="col-lg-8 order-lg-1" data-aos="fade-right">
+                    <form class="p-4 border rounded shadow-sm">
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <label for="inputName" class="form-label fw-bold">Your Full Name*</label>
+                                <input type="text" class="form-control" id="inputName" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputCompany" class="form-label fw-bold">Company Name*</label>
+                                <input type="text" class="form-control" id="inputCompany" required>
+                            </div>
+                        </div>
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <label for="inputEmail" class="form-label fw-bold">Work Email*</label>
+                                <input type="email" class="form-control" id="inputEmail" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputPhone" class="form-label fw-bold">Phone Number</label>
+                                <input type="tel" class="form-control" id="inputPhone">
+                            </div>
+                        </div>
+                        
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label for="inputType" class="form-label fw-bold">Project Type*</label>
+                                <select class="form-select" id="inputType" required>
+                                    <option selected disabled value="">Select Service...</option>
+                                    <option>Commercial Fit-out</option>
+                                    <option>Commercial Stripout</option>
+                                    <option>Services Coordination</option>
+                                    <option>Scheduled Maintenance Contract</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="inputSize" class="form-label fw-bold">Estimated Project Size (m²)*</label>
+                                <input type="text" class="form-control" id="inputSize" placeholder="e.g., 500 m²" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="inputMessage" class="form-label fw-bold">Your Message/Brief Project Description*</label>
+                            <textarea class="form-control" id="inputMessage" rows="5" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn cta-button-gold btn-lg w-100">SUBMIT INQUIRY & START YOUR PROJECT</button>
+                    </form>
+                </div>
+                
+                <div class="col-lg-4 order-lg-2" data-aos="fade-left">
+                    <div class="p-4 mb-4" style="background-color: var(--light-bg); border-left: 5px solid var(--accent-color);">
+                        <h4 class="fw-normal mb-3" style="color: var(--primary-color);">Ready to Connect?</h4>
+                        <p class="small mb-2">A quick checklist to help us speed up your quote:</p>
+                        <ul class="list-unstyled">
+                            <li class="checklist-item"><i class="fas fa-check-circle checklist-icon"></i> Defined required service (Fitout/Stripout).</li>
+                            <li class="checklist-item"><i class="fas fa-check-circle checklist-icon"></i> Estimated project size or budget range.</li>
+                            <li class="checklist-item"><i class="fas fa-check-circle checklist-icon"></i> Contact information is correct for follow-up.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="p-4 border rounded shadow-sm">
+                        <h4 class="fw-normal mb-3" style="color: var(--primary-color);">Office Hours</h4>
+                        <p class="mb-1 fw-bold">MON - FRI</p>
+                        <p class="mb-3">8:00 AM - 5:00 PM</p>
+                        <p class="mb-1 fw-bold" style="color: var(--emergency-color);">EMERGENCY SUPPORT</p>
+                        <p class="mb-0">24 Hours / 7 Days a Week</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="location" class="py-5 py-md-5 bg-light">
+        <div class="container">
+            <h2 class="text-center display-6 fw-normal mb-5" data-aos="fade-down">Find Our Main Office</h2>
+            <div class="row">
+                <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
+                    <h4 class="fw-normal mb-3" style="color: var(--primary-color);">Headquarters Address</h4>
+                    <p class="lead">Central Build Construction</p>
+                    <p class="fs-5">123 Commercial Drive, Suite 100<br>Metropolis, Anytown 12345</p>
+                    <a href="path/to/map-link" target="_blank" class="btn btn-outline-dark fw-normal mt-3">GET DIRECTIONS <i class="fas fa-map-marker-alt ms-2"></i></a>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div style="height: 350px; background-color: #eee; border: 1px solid #ddd; display: flex; align-items: center; justify-content: center; border-radius: 8px;">
+                        <i class="fas fa-map-marked-alt fa-3x" style="color: #ccc;"></i>
+                        <p class="text-muted ms-3 mb-0">Google Map Placeholder</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark py-4 text-center" style="color: rgba(255, 255, 255, 0.6);">
+        <div class="container">
+            <p class="mb-2">&copy; 2025 Central Build. All Rights Reserved. | Reliability Engineered.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+        });
+    </script>
+</body>
+</html>

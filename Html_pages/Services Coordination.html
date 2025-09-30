@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Central Build | Project Chaos Ends Here. Guaranteed Control.</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        /* Custom CSS: Precision & Control Style */
+        :root {
+            --primary-color: #FB7F28; /* Deep Navy/Charcoal */
+            --accent-color: #00BCD4;  /* Electric Cyan/Teal for CTA & Accent */
+            --light-bg: #F4F7F9;
+            --dark-text: #212529;
+            --light-text: #FFFFFF;
+            --warning-color: #FFC107; /* Amber for Problem Points */
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            height: 90vh;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            display: flex;
+            align-items: center;
+            /* Geometric Pattern Background (Abstract representation of coordination) */
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232a415b' fill-opacity='0.1'%3E%3Cpath d='M30 60h30V30zM30 0h30v30H30zM0 0h30v30H0zM0 30h30v30H0z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .cta-button-accent {
+            background-color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            color: var(--dark-text);
+            font-weight: 700;
+            padding: 12px 35px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 188, 212, 0.4);
+        }
+        
+        .cta-button-accent:hover {
+            background-color: #00a4bd;
+            border-color: #00a4bd;
+            color: var(--dark-text);
+        }
+
+        /* Problem Box Styling */
+        .problem-box {
+            border-left: 5px solid var(--warning-color);
+            padding: 20px;
+            background-color: var(--light-bg);
+            height: 100%;
+            transition: transform 0.3s ease;
+        }
+        .problem-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Triple Check Steps */
+        .check-step {
+            padding: 20px;
+            background-color: var(--light-bg);
+            border-radius: 8px;
+            border-bottom: 4px solid var(--accent-color);
+        }
+
+        /* Metrics Styling */
+        .metric-box {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: var(--light-text);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        .metric-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--accent-color);
+        }
+        
+        /* BIM Section */
+        .bim-image-placeholder {
+            height: 400px;
+            background-color: #eee;
+            /* Placeholder for complex BIM diagram */
+            background-image: url("path/to/bim-clash-detection-diagram.jpg"); 
+            background-size: cover;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#main-nav" data-bs-offset="50">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="main-nav">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">CENTRAL BUILD</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#problems">The Problem</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#methodology">Methodology</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#bim">BIM Power</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#metrics">Value</a></li>
+                    <li class="nav-item"><a class="nav-link cta-button-accent text-dark ms-lg-3" href="#contact">CLAIM YOUR CONTROL</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section" id="home">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mx-auto text-center" data-aos="fade-up" data-aos-duration="1200">
+                    <p class="text-uppercase fw-normal mb-2" style="color: var(--accent-color);">Expert Services Coordination</p>
+                    <h1 class="display-1 fw-bolder mb-3">PROJECT CHAOS <span style="color: var(--accent-color);">ENDS HERE.</span></h1>
+                    <p class="lead mb-4 opacity-75">Central Build acts as the single point of control, synchronizing all trades—from MEP to specialized fit-outs—to eliminate conflicts, wastage, and delays.</p>
+                    <a href="#contact" class="btn cta-button-accent btn-lg pulse-animation">REQUEST A PROJECT RISK ASSESSMENT</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="problems" class="py-5 py-md-5">
+        <div class="container">
+            <h2 class="text-center display-6 fw-normal mb-5" data-aos="fade-down">The High Cost of Uncoordinated Builds</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="problem-box" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fas fa-exclamation-triangle fa-3x mb-3" style="color: var(--warning-color);"></i>
+                        <h4 class="fw-bold" style="color: var(--primary-color);">RISK OF CONFLICT</h4>
+                        <p class="mb-0">Unmanaged subcontractors lead to costly physical clashes between crucial trades (MEP, plumbing, structures) on site.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="problem-box" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-clock fa-3x mb-3" style="color: var(--warning-color);"></i>
+                        <h4 class="fw-bold" style="color: var(--primary-color);">TIME WASTAGE</h4>
+                        <p class="mb-0">Poor sequencing and communication result in needless re-work, project bottlenecks, and critical delays that push back launch dates.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="problem-box" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-hand-holding-dollar fa-3x mb-3" style="color: var(--warning-color);"></i>
+                        <h4 class="fw-bold" style="color: var(--primary-color);">UNFORESEEN COSTS</h4>
+                        <p class="mb-0">Lack of upfront coordination forces expensive variation orders post-construction, significantly exceeding the allocated budget.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="methodology" class="py-5 py-md-5 bg-light">
+        <div class="container">
+            <h2 class="text-center display-6 fw-normal mb-5" data-aos="fade-down">Our Methodology: The Triple Check Control</h2>
+            <div class="row g-4 text-center">
+                <div class="col-md-4" data-aos="fade-right" data-aos-delay="100">
+                    <div class="check-step">
+                        <h1 class="display-3 fw-bolder mb-2" style="color: var(--accent-color);">1</h1>
+                        <i class="fas fa-laptop-code fa-3x mb-3" style="color: var(--primary-color);"></i>
+                        <h4 class="fw-bold">BIM-Verified Planning</h4>
+                        <p>Comprehensive clash detection solves conflicts **virtually** before any on-site work begins.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-right" data-aos-delay="200">
+                    <div class="check-step">
+                        <h1 class="display-3 fw-bolder mb-2" style="color: var(--accent-color);">2</h1>
+                        <i class="fas fa-tools fa-3x mb-3" style="color: var(--primary-color);"></i>
+                        <h4 class="fw-bold">In-House Anchor Execution</h4>
+                        <p>Our internal trades (Electrical/Plumbing) set the reliable quality standard and sequencing pace for all external contractors.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-right" data-aos-delay="300">
+                    <div class="check-step">
+                        <h1 class="display-3 fw-bolder mb-2" style="color: var(--accent-color);">3</h1>
+                        <i class="fas fa-headset fa-3x mb-3" style="color: var(--primary-color);"></i>
+                        <h4 class="fw-bold">Flexible On-Site Monitoring</h4>
+                        <p>Daily coordination meetings and adaptable management ensure immediate, decisive conflict resolution on the ground.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="bim" class="py-5 py-md-5 bg-dark" style="color: var(--light-text);">
+        <div class="container">
+            <h2 class="text-center display-6 fw-normal mb-5" data-aos="fade-down">PRECISION IN PIXELS: The Power of BIM</h2>
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
+                    <div class="bim-image-placeholder shadow-lg">
+                        </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <p class="lead fw-bold" style="color: var(--accent-color);">Virtual Conflict Resolution, Real-World Savings.</p>
+                    <p>Building Information Modeling (BIM) is not just a diagram—it's our primary **risk mitigation tool**. We use advanced clash detection to identify and resolve every single potential conflict between MEP services, structures, and architectural elements.</p>
+                    
+                    <div class="accordion accordion-flush mt-4" id="bimAccordion">
+                        <div class="accordion-item" style="background-color: #333; color: var(--light-text); border: none;">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button fw-normal collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" style="background-color: var(--primary-color); color: var(--light-text);">
+                                    How Clash Detection Works
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#bimAccordion">
+                                <div class="accordion-body">
+                                    Before ground breaks, we overlay 3D models of all trades. Where the models intersect (a 'clash'), we engineer a solution with our BIM team, avoiding destructive re-work on site.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="metrics" class="py-5 py-md-5">
+        <div class="container">
+            <h2 class="text-center display-6 fw-normal mb-5" data-aos="fade-down">Measurable Value: Project KPIs</h2>
+            <div class="row g-4 text-center">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="metric-box">
+                        <div class="metric-number" data-count="25">$25\%</div>
+                        <p class="lead fw-normal mb-0">Cost Reduction</p>
+                        <p class="small text-muted">Average saving on variation orders due to coordination.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="metric-box">
+                        <div class="metric-number" data-count="95">95\%</div>
+                        <p class="lead fw-normal mb-0">RFI Volume Reduction</p>
+                        <p class="small text-muted">Less site confusion means fewer requests for information.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="metric-box">
+                        <div class="metric-number">WEEKS</div>
+                        <p class="lead fw-normal mb-0">Critical Path Time Saved</p>
+                        <p class="small text-muted">Through optimized sequencing and conflict-free execution.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-5 py-md-5" style="background-color: var(--primary-color); color: var(--light-text);">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7" data-aos="fade-right">
+                    <h2 class="display-5 fw-bolder mb-3" style="color: var(--accent-color);">UNIFY YOUR TRADES. SECURE YOUR SUCCESS.</h2>
+                    <p class="lead mb-4 fw-light">Stop wasting time and budget on site conflicts. Let Central Build manage the complexity and guarantee a smooth delivery.</p>
+                    <p class="fw-bold">Contact The Conductor team today:</p>
+                    <p class="lead fw-bold" style="color: var(--accent-color);"><i class="fas fa-phone-alt me-2"></i> +1 (123) 456-7890</p>
+                </div>
+                <div class="col-lg-5 mt-4 mt-lg-0" data-aos="fade-left">
+                    <div class="card p-4 shadow-lg">
+                        <h4 class="card-title text-center fw-bold" style="color: var(--primary-color);">Claim Your Project Control</h4>
+                        <form>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Your Name" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" placeholder="Work Email" required>
+                            </div>
+                            <div class="mb-3">
+                                <textarea class="form-control" rows="3" placeholder="Briefly describe your coordination challenge..."></textarea>
+                            </div>
+                            <button type="submit" class="btn cta-button-accent w-100 btn-lg">REQUEST CONSULTATION</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark py-4 text-center" style="color: rgba(255, 255, 255, 0.6);">
+        <div class="container">
+            <p class="mb-2">&copy; 2025 Central Build. All Rights Reserved. | The Project Conductor.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+        });
+
+        // Simple Counter-Up Functionality for Stats Section (Metrics)
+        const counters = document.querySelectorAll('.metric-number');
+        const speed = 200; 
+
+        counters.forEach(counter => {
+            if (!counter.getAttribute('data-count')) return; // Skip non-numerical counters
+            
+            const updateCount = () => {
+                const target = +counter.getAttribute('data-count');
+                const count = +counter.innerText.replace(/[^0-9]/g, ''); // Clean text for counting
+
+                const inc = target / speed;
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + inc) + (counter.innerText.includes('%') ? '%' : ''); // Re-add percentage sign
+                    setTimeout(updateCount, 1);
+                } else {
+                    counter.innerText = target + (counter.innerText.includes('%') ? '%' : '');
+                }
+            };
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        updateCount();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 }); 
+
+            observer.observe(counter);
+        });
+    </script>
+</body>
+</html>

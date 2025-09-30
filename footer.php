@@ -1,32 +1,40 @@
 <?php
-// Get footer settings with fallbacks
-$footer_logo = get_option('central_build_footer_logo', get_template_directory_uri() . '/images/674e51fad943a77607127b0b_ENP%20transparent%20white%20cropped.webp');
-$footer_description = get_option('central_build_footer_description', 'Central Build, established in 2018, crafts lasting fitout solutions with value, efficiency, and transparency. Discover the ENP difference.');
-$footer_email = get_option('central_build_footer_email', 'info@centralbuild.au');
-$footer_phone = get_option('central_build_footer_phone', '0123 456 789');
+if (!defined('ABSPATH')) {
+    exit;
+}
 
-// Quick Links
-$footer_home_text = get_option('central_build_footer_home_text', 'Home');
-$footer_home_url = get_option('central_build_footer_home_url', home_url());
-$footer_about_text = get_option('central_build_footer_about_text', 'About Us');
-$footer_about_url = get_option('central_build_footer_about_url', home_url('/our-values'));
-$footer_policy_text = get_option('central_build_footer_policy_text', 'Policy');
-$footer_policy_url = get_option('central_build_footer_policy_url', 'https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/676248fadfdb334304c54e6e_ENP%20Fitouts%20Privacy%20Policy.pdf');
-$footer_services_text = get_option('central_build_footer_services_text', 'Services');
-$footer_services_url = get_option('central_build_footer_services_url', home_url('/commercial-shop-fitting'));
-$footer_portfolio_text = get_option('central_build_footer_portfolio_text', 'Portfolio');
-$footer_portfolio_url = get_option('central_build_footer_portfolio_url', '#');
+$footer_settings = get_option('central_build_footer_settings', array());
+$defaults        = central_build_footer_settings_defaults();
+$footer_settings = wp_parse_args(is_array($footer_settings) ? $footer_settings : array(), $defaults);
+$footer_settings['company'] = wp_parse_args($footer_settings['company'] ?? array(), $defaults['company']);
+$footer_settings['company']['phone'] = wp_parse_args($footer_settings['company']['phone'] ?? array(), $defaults['company']['phone']);
 
-// Support Links
-$footer_csr_text = get_option('central_build_footer_csr_text', 'CSR Commitment');
-$footer_csr_url = get_option('central_build_footer_csr_url', home_url('/enp-fitouts-csr-commitments'));
-$footer_values_text = get_option('central_build_footer_values_text', 'Our Values');
-$footer_values_url = get_option('central_build_footer_values_url', home_url('/our-values'));
-$footer_blog_text = get_option('central_build_footer_blog_text', 'Our Blog');
-$footer_blog_url = get_option('central_build_footer_blog_url', '#');
+$sanitize_links = function ($links, $fallback) {
+    $collection = array();
+    if (is_array($links)) {
+        foreach ($links as $link) {
+            $collection[] = wp_parse_args($link, array('label' => '', 'url' => ''));
+        }
+    }
+    if (empty($collection)) {
+        $collection = $fallback;
+    }
+    return $collection;
+};
 
-// Clean phone number for tel: link
-$footer_phone_clean = preg_replace('/[^0-9]/', '', $footer_phone);
+$footer_settings['quick_links']   = $sanitize_links($footer_settings['quick_links'] ?? array(), $defaults['quick_links']);
+$footer_settings['support_links'] = $sanitize_links($footer_settings['support_links'] ?? array(), $defaults['support_links']);
+
+$company      = $footer_settings['company'];
+$quick_links  = $footer_settings['quick_links'];
+$support_links = $footer_settings['support_links'];
+
+$footer_logo        = $company['logo_url'];
+$footer_description = $company['description'];
+$footer_email       = $company['email'];
+$footer_phone       = $company['phone']['display'];
+$footer_phone_link  = $company['phone']['link'];
+$footer_phone_clean = preg_replace('/[^0-9+]/', '', $footer_phone_link);
 ?>
 
 <footer class="home-two-footer-section">
@@ -45,35 +53,17 @@ $footer_phone_clean = preg_replace('/[^0-9]/', '', $footer_phone);
                 <div class="home-two-footer-two">
                     <div class="quick-links-text">Quick Links</div>
                     <div class="w-layout-vflex footer-menu-block">
-                        <?php if ($footer_home_text && $footer_home_url) : ?>
-                        <a href="<?php echo esc_url($footer_home_url); ?>" class="footer-link w-inline-block">
-                            <div class="footer-link-text"><?php echo esc_html($footer_home_text); ?></div>
-                        </a>
-                        <?php endif; ?>
-                        
-                        <?php if ($footer_about_text && $footer_about_url) : ?>
-                        <a href="<?php echo esc_url($footer_about_url); ?>" class="footer-link w-inline-block">
-                            <div class="footer-link-text"><?php echo esc_html($footer_about_text); ?></div>
-                        </a>
-                        <?php endif; ?>
-                        
-                        <?php if ($footer_policy_text && $footer_policy_url) : ?>
-                        <a href="<?php echo esc_url($footer_policy_url); ?>" class="footer-link w-inline-block">
-                            <div class="footer-link-text"><?php echo esc_html($footer_policy_text); ?></div>
-                        </a>
-                        <?php endif; ?>
-                        
-                        <?php if ($footer_services_text && $footer_services_url) : ?>
-                        <a href="<?php echo esc_url($footer_services_url); ?>" class="footer-link w-inline-block">
-                            <div class="footer-link-text"><?php echo esc_html($footer_services_text); ?></div>
-                        </a>
-                        <?php endif; ?>
-                        
-                        <?php if ($footer_portfolio_text && $footer_portfolio_url && $footer_portfolio_url !== '#') : ?>
-                        <a href="<?php echo esc_url($footer_portfolio_url); ?>" class="footer-link w-inline-block">
-                            <div class="footer-link-text"><?php echo esc_html($footer_portfolio_text); ?></div>
-                        </a>
-                        <?php endif; ?>
+                        <?php foreach ($quick_links as $link) :
+                            $label = trim($link['label']);
+                            $url   = trim($link['url']);
+                            if ($label === '') {
+                                continue;
+                            }
+                            ?>
+                            <a href="<?php echo $url ? esc_url($url) : '#'; ?>" class="footer-link w-inline-block" <?php echo $url ? '' : 'aria-disabled="true"'; ?>>
+                                <div class="footer-link-text"><?php echo esc_html($label); ?></div>
+                            </a>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>
@@ -81,29 +71,23 @@ $footer_phone_clean = preg_replace('/[^0-9]/', '', $footer_phone);
                 <div class="home-two-footer-three">
                     <div class="quick-links-text">Support</div>
                     <div class="w-layout-vflex footer-menu-block">
-                        <?php if ($footer_csr_text && $footer_csr_url) : ?>
-                        <a href="<?php echo esc_url($footer_csr_url); ?>" class="footer-link w-inline-block">
-                            <div class="footer-link-text"><?php echo esc_html($footer_csr_text); ?></div>
-                        </a>
-                        <?php endif; ?>
-                        
-                        <?php if ($footer_values_text && $footer_values_url) : ?>
-                        <a href="<?php echo esc_url($footer_values_url); ?>" class="footer-link w-inline-block">
-                            <div class="footer-link-text"><?php echo esc_html($footer_values_text); ?></div>
-                        </a>
-                        <?php endif; ?>
-                        
-                        <?php if ($footer_blog_text && $footer_blog_url && $footer_blog_url !== '#') : ?>
-                        <a href="<?php echo esc_url($footer_blog_url); ?>" class="footer-link w-inline-block">
-                            <div class="footer-link-text"><?php echo esc_html($footer_blog_text); ?></div>
-                        </a>
-                        <?php endif; ?>
+                        <?php foreach ($support_links as $link) :
+                            $label = trim($link['label']);
+                            $url   = trim($link['url']);
+                            if ($label === '') {
+                                continue;
+                            }
+                            ?>
+                            <a href="<?php echo $url ? esc_url($url) : '#'; ?>" class="footer-link w-inline-block" <?php echo $url ? '' : 'aria-disabled="true"'; ?>>
+                                <div class="footer-link-text"><?php echo esc_html($label); ?></div>
+                            </a>
+                        <?php endforeach; ?>
                     </div>
                 </div>
                 <div class="home-two-footer-three gap-none">
                     <div class="quick-links-text">Get In Touch</div>
                     <div class="home-two-footer-call-block">
-                        <a href="tel:<?php echo esc_attr($footer_phone_clean); ?>" class="footer-link w-inline-block">
+                        <a href="<?php echo esc_attr($footer_phone_link); ?>" class="footer-link w-inline-block">
                             <div class="footer-link-text text-light-grey"><?php echo esc_html($footer_phone); ?></div>
                         </a>
                     </div>
@@ -112,7 +96,14 @@ $footer_phone_clean = preg_replace('/[^0-9]/', '', $footer_phone);
         </div>
     </div>
 </footer>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 1000, // Duration of animation in ms
+        once: true,    // Whether animation should only happen once - on load
+    });
+</script>
 <?php wp_footer(); ?>
 
 </body>

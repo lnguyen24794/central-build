@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Central Build | R&M: Your Business Continuity. Our Priority.</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        /* Custom CSS: Rapid Response & Reliability Style */
+        :root {
+            --primary-color: #FB7F28; /* Deep Navy/Charcoal */
+            --accent-color: #E53935;  /* High-Visibility Red for Emergency CTA & Accent */
+            --light-bg: #F4F7F9;
+            --dark-text: #212529;
+            --light-text: #FFFFFF;
+        }
+        
+        /* Header Section */
+        .hero-section {
+            height: 90vh;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            display: flex;
+            align-items: center;
+            background-image: url('path/to/rapid-response-team-working.jpg'); /* Image of R&M team working quickly */
+            background-size: cover;
+            position: relative;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(26, 46, 68, 0.8); /* Dark Navy overlay */
+        }
+        
+        .cta-button-emergency {
+            background-color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            color: var(--light-text);
+            font-weight: 700;
+            padding: 15px 40px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(229, 57, 53, 0.6);
+            animation: pulse-red 2s infinite; /* Emergency animation */
+        }
+        
+        .cta-button-emergency:hover {
+            background-color: #c4312e;
+            border-color: #c4312e;
+            color: var(--light-text);
+        }
+
+        @keyframes pulse-red {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); box-shadow: 0 0 0 0 rgba(229, 57, 53, 0.4); }
+            100% { transform: scale(1); box-shadow: 0 0 0 10px rgba(229, 57, 53, 0); }
+        }
+
+        /* Guarantee Box */
+        .guarantee-box {
+            border: 1px solid #ddd;
+            padding: 30px 20px;
+            background-color: var(--light-text);
+            height: 100%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: border-color 0.3s ease;
+        }
+        .guarantee-box:hover {
+            border-color: var(--accent-color);
+        }
+        .guarantee-icon {
+            color: var(--primary-color);
+            font-size: 3rem;
+        }
+
+        /* Expertise Tiles */
+        .expertise-tile {
+            background-color: var(--light-bg);
+            padding: 20px;
+            border-left: 4px solid var(--accent-color);
+            transition: all 0.3s ease;
+        }
+        .expertise-tile:hover {
+            background-color: #e8ebed;
+        }
+
+        /* Final CTA Jumbotron */
+        .final-cta-jumbotron {
+            background-color: var(--accent-color);
+            color: var(--light-text);
+            padding: 60px 0;
+        }
+        .final-cta-jumbotron .card {
+            background-color: var(--light-text);
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#main-nav" data-bs-offset="50">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="main-nav">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">CENTRAL BUILD</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#guarantee">Our Guarantee</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#expertise">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#model">Response Model</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#partnership">Partnership</a></li>
+                    <li class="nav-item"><a class="nav-link cta-button-emergency ms-lg-3" href="#contact">EMERGENCY CALL</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section" id="home">
+        <div class="container position-relative" data-aos="fade-up" data-aos-duration="1200">
+            <h1 class="display-1 fw-bolder mb-3">YOUR BUSINESS CONTINUITY. <span style="color: var(--accent-color);">OUR PRIORITY.</span></h1>
+            <p class="lead mb-4 fw-bold" style="color: var(--accent-color);">COMMERCIAL REPAIRS & MAINTENANCE: RAPID RESPONSE, LASTING SOLUTIONS.</p>
+            <p class="mb-5 fs-5 opacity-75">When critical faults occur or preventative maintenance is due, Central Build provides the reliable, professional service you need to keep your operations running smoothly.</p>
+            <a href="tel:+11234567890" class="btn cta-button-emergency btn-lg me-3">CALL EMERGENCY SERVICE (24/7)</a>
+            <a href="#contact" class="btn btn-outline-light btn-lg">REQUEST SCHEDULED MAINTENANCE</a>
+        </div>
+    </header>
+
+    <section id="guarantee" class="py-5 py-md-5">
+        <div class="container">
+            <h2 class="text-center display-6 fw-normal mb-5" data-aos="fade-down">The Central Build Service Guarantee</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="guarantee-box text-center" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fas fa-headset guarantee-icon mb-3"></i>
+                        <h4 class="fw-bold" style="color: var(--primary-color);">RAPID RESPONSE (24/7)</h4>
+                        <p class="lead small fw-bold" style="color: var(--accent-color);">Guaranteed contact within 60 minutes.</p>
+                        <p>We minimize operational downtime with our dedicated, round-the-clock emergency support line.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="guarantee-box text-center" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-tools guarantee-icon mb-3"></i>
+                        <h4 class="fw-bold" style="color: var(--primary-color);">LASTING SOLUTIONS</h4>
+                        <p class="lead small fw-bold" style="color: var(--accent-color);">Licensed, In-House Expertise.</p>
+                        <p>Repairs performed by our skilled, licensed trades for permanent fixes, not just temporary patches.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="guarantee-box text-center" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-calendar-check guarantee-icon mb-3"></i>
+                        <h4 class="fw-bold" style="color: var(--primary-color);">WARRANTY & FOLLOW-UP</h4>
+                        <p class="lead small fw-bold" style="color: var(--accent-color);">Strong Service Guarantee.</p>
+                        <p>All repairs are backed by a strong service warranty, transparent reporting, and preventative advice.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="expertise" class="py-5 py-md-5 bg-light">
+        <div class="container">
+            <h2 class="text-center display-6 fw-normal mb-5" data-aos="fade-down">Specialized Commercial Repairs & Maintenance</h2>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="expertise-tile" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fas fa-bolt fa-2x mb-2" style="color: var(--accent-color);"></i>
+                        <h5 class="fw-bold">ELECTRICAL FAULTS</h5>
+                        <p class="small mb-0">Wiring, switchboards, lighting failure, and power outage resolution.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="expertise-tile" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-faucet fa-2x mb-2" style="color: var(--accent-color);"></i>
+                        <h5 class="fw-bold">PLUMBING EMERGENCIES</h5>
+                        <p class="small mb-0">Leaks, burst pipes, drainage issues, and commercial hot water systems.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="expertise-tile" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-paint-roller fa-2x mb-2" style="color: var(--accent-color);"></i>
+                        <h5 class="fw-bold">GENERAL BUILDING REPAIRS</h5>
+                        <p class="small mb-0">Walls, flooring, ceiling damage, lock replacement, and general wear-and-tear.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="expertise-tile" data-aos="fade-up" data-aos-delay="400">
+                        <i class="fas fa-calendar-alt fa-2x mb-2" style="color: var(--accent-color);"></i>
+                        <h5 class="fw-bold">PREVENTATIVE MAINTENANCE</h5>
+                        <p class="small mb-0">Scheduled compliance checks and asset lifespan maintenance (HVAC, fire systems).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="model" class="py-5 py-md-5">
+        <div class="container">
+            <h2 class="text-center display-6 fw-normal mb-5" data-aos="fade-down">Our 4-Step Rapid Response Model</h2>
+            <div class="row text-center g-5">
+                <div class="col-lg-3" data-aos="fade-right" data-aos-delay="100">
+                    <i class="fas fa-phone-volume fa-4x mb-3" style="color: var(--accent-color);"></i>
+                    <h4 class="fw-bold" style="color: var(--primary-color);">1. CALL & REPORT</h4>
+                    <p class="small">Client reports fault via dedicated 24/7 line. **Immediate prioritization.**</p>
+                </div>
+                <div class="col-lg-3" data-aos="fade-right" data-aos-delay="200">
+                    <i class="fas fa-route fa-4x mb-3" style="color: var(--accent-color);"></i>
+                    <h4 class="fw-bold" style="color: var(--primary-color);">2. DISPATCH & ETA</h4>
+                    <p class="small">Nearest specialized team dispatched. Estimated time of arrival (ETA) provided within 60 minutes.</p>
+                </div>
+                <div class="col-lg-3" data-aos="fade-right" data-aos-delay="300">
+                    <i class="fas fa-toolbox fa-4x mb-3" style="color: var(--accent-color);"></i>
+                    <h4 class="fw-bold" style="color: var(--primary-color);">3. DIAGNOSE & REPAIR</h4>
+                    <p class="small">On-site diagnosis and immediate implementation of a permanent, compliant fix.</p>
+                </div>
+                <div class="col-lg-3" data-aos="fade-right" data-aos-delay="400">
+                    <i class="fas fa-file-invoice fa-4x mb-3" style="color: var(--accent-color);"></i>
+                    <h4 class="fw-bold" style="color: var(--primary-color);">4. CLOSE & REPORT</h4>
+                    <p class="small">Digital reporting on resolution, cost breakdown, and preventative next steps.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="partnership" class="py-5 py-md-5 bg-dark" style="color: var(--light-text);">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
+                    <h2 class="display-6 fw-normal mb-4" style="color: var(--accent-color);">BEYOND THE FIX: PROACTIVE MAINTENANCE.</h2>
+                    <p class="lead">Transition from reactive repairs to a strategic, **Proactive Maintenance Partnership** to ensure long-term stability and cost predictability.</p>
+                    <a href="#contact" class="btn cta-button-emergency mt-3">SWITCH TO A MAINTENANCE CONTRACT</a>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <ul class="list-unstyled mt-4">
+                        <li class="d-flex mb-3"><i class="fas fa-dollar-sign fa-2x me-3" style="color: var(--accent-color);"></i> <div><h5 class="fw-bold">Cost Predictability</h5><p class="small opacity-75 mb-0">Fixed annual fee structure for budget certainty and planned expenditure.</p></div></li>
+                        <li class="d-flex mb-3"><i class="fas fa-certificate fa-2x me-3" style="color: var(--accent-color);"></i> <div><h5 class="fw-bold">Compliance Assurance</h5><p class="small opacity-75 mb-0">Scheduled checks to meet all strict regulatory and insurance requirements automatically.</p></div></li>
+                        <li class="d-flex"><i class="fas fa-chart-line fa-2x me-3" style="color: var(--accent-color);"></i> <div><h5 class="fw-bold">Asset Lifespan Extension</h5><p class="small opacity-75 mb-0">Proactively extending the life of critical plant and equipment (HVAC, Fire Systems).</p></div></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="final-cta-jumbotron">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7" data-aos="fade-right">
+                    <h2 class="display-5 fw-bolder mb-3" style="color: var(--light-text);">FAILURES HAPPEN. DOWNTIME IS <span style="color: var(--primary-color);">OPTIONAL.</span></h2>
+                    <p class="lead mb-4 fw-bold" style="color: var(--dark-text);">Partner with Central Build today for guaranteed responsiveness and peace of mind.</p>
+                </div>
+                <div class="col-lg-5 mt-4 mt-lg-0" data-aos="fade-left">
+                    <div class="card p-4 shadow-lg">
+                        <h4 class="card-title text-center fw-bold" style="color: var(--primary-color);">Get a Maintenance Quote</h4>
+                        <form>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Your Name" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" placeholder="Work Email" required>
+                            </div>
+                            <div class="mb-3">
+                                <select class="form-select" required>
+                                    <option selected disabled>Select Service Type...</option>
+                                    <option>Emergency Service</option>
+                                    <option>Scheduled Maintenance Contract</option>
+                                    <option>General Repair Quote</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn cta-button-emergency w-100 btn-lg" style="box-shadow: none;">SUBMIT REQUEST</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark py-4 text-center" style="color: rgba(255, 255, 255, 0.6);">
+        <div class="container">
+            <p class="mb-2">&copy; 2025 Central Build. All Rights Reserved. | The Readiness Partner.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+        });
+    </script>
+</body>
+</html>

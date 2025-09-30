@@ -201,14 +201,14 @@ function central_build_fitout_sector_details_callback($post)
         <tr>
             <th><label for="fitout_hero_image"><?php _e('Hero Image URL', 'central-build'); ?></label></th>
             <td>
-                <input type="url" id="fitout_hero_image" name="fitout_hero_image" value="<?php echo esc_url($hero_image); ?>" class="regular-text" />
+                <input type="text" id="fitout_hero_image" name="fitout_hero_image" value="<?php echo esc_url($hero_image); ?>" class="regular-text" />
                 <p class="description"><?php _e('URL for the hero section background image', 'central-build'); ?></p>
             </td>
         </tr>
         <tr>
             <th><label for="fitout_about_image"><?php _e('About Project Image URL', 'central-build'); ?></label></th>
             <td>
-                <input type="url" id="fitout_about_image" name="fitout_about_image" value="<?php echo esc_url($about_image); ?>" class="regular-text" />
+                <input type="text" id="fitout_about_image" name="fitout_about_image" value="<?php echo esc_url($about_image); ?>" class="regular-text" />
                 <p class="description"><?php _e('URL for the about project section image', 'central-build'); ?></p>
             </td>
         </tr>
@@ -259,7 +259,7 @@ function central_build_fitout_sector_gallery_callback($post)
         <div id="fitout-gallery-images">
             <?php foreach ($gallery_images as $index => $image_url) : ?>
                 <div class="gallery-image-item" style="margin-bottom: 10px;">
-                    <input type="url" name="fitout_gallery_images[]" value="<?php echo esc_url($image_url); ?>" class="regular-text" placeholder="<?php _e('Image URL', 'central-build'); ?>" />
+                    <input type="text" name="fitout_gallery_images[]" value="<?php echo esc_url($image_url); ?>" class="regular-text" placeholder="<?php _e('Image URL', 'central-build'); ?>" />
                     <button type="button" class="button remove-gallery-image"><?php _e('Remove', 'central-build'); ?></button>
                 </div>
             <?php endforeach; ?>
@@ -271,7 +271,7 @@ function central_build_fitout_sector_gallery_callback($post)
     jQuery(document).ready(function($) {
         $('#add-gallery-image').click(function() {
             var newField = '<div class="gallery-image-item" style="margin-bottom: 10px;">' +
-                '<input type="url" name="fitout_gallery_images[]" value="" class="regular-text" placeholder="<?php _e('Image URL', 'central-build'); ?>" />' +
+                '<input type="text" name="fitout_gallery_images[]" value="" class="regular-text" placeholder="<?php _e('Image URL', 'central-build'); ?>" />' +
                 '<button type="button" class="button remove-gallery-image"><?php _e('Remove', 'central-build'); ?></button>' +
                 '</div>';
             $('#fitout-gallery-images').append(newField);
@@ -458,13 +458,13 @@ function central_build_add_fitout_category_fields()
     ?>
     <div class="form-field">
         <label for="category_hero_image"><?php _e('Hero Image URL', 'central-build'); ?></label>
-        <input type="url" name="category_hero_image" id="category_hero_image" value="" />
+        <input type="text" name="category_hero_image" id="category_hero_image" value="" />
         <p class="description"><?php _e('Enter the URL for the hero section background image', 'central-build'); ?></p>
     </div>
     
     <div class="form-field">
         <label for="category_icon"><?php _e('Category Icon URL', 'central-build'); ?></label>
-        <input type="url" name="category_icon" id="category_icon" value="" />
+        <input type="text" name="category_icon" id="category_icon" value="" />
         <p class="description"><?php _e('Enter the URL for the category icon', 'central-build'); ?></p>
     </div>
     
@@ -489,7 +489,7 @@ function central_build_edit_fitout_category_fields($term)
     <tr class="form-field">
         <th scope="row"><label for="category_hero_image"><?php _e('Hero Image URL', 'central-build'); ?></label></th>
         <td>
-            <input type="url" name="category_hero_image" id="category_hero_image" value="<?php echo esc_url($hero_image); ?>" class="regular-text" />
+            <input type="text" name="category_hero_image" id="category_hero_image" value="<?php echo esc_url($hero_image); ?>" class="regular-text" />
             <p class="description"><?php _e('Enter the URL for the hero section background image', 'central-build'); ?></p>
         </td>
     </tr>
@@ -497,7 +497,7 @@ function central_build_edit_fitout_category_fields($term)
     <tr class="form-field">
         <th scope="row"><label for="category_icon"><?php _e('Category Icon URL', 'central-build'); ?></label></th>
         <td>
-            <input type="url" name="category_icon" id="category_icon" value="<?php echo esc_url($icon); ?>" class="regular-text" />
+            <input type="text" name="category_icon" id="category_icon" value="<?php echo esc_url($icon); ?>" class="regular-text" />
             <p class="description"><?php _e('Enter the URL for the category icon', 'central-build'); ?></p>
         </td>
     </tr>

@@ -44,14 +44,14 @@ $formatted_date = $created_date ? date('F j, Y', strtotime($created_date)) : 'Se
 ?>
 
 <main id="primary" class="site-main">
-    <section style="background-image: url('<?php echo esc_url($hero_image); ?>');" class="project-details-hero-section">
-        <div class="w-layout-blockcontainer container-one w-container">
-            <div class="w-layout-vflex helping-flex landing-innerpage-block project-details-heading-block">
-                <h1 class="color-white margin-bottom-twenty margin-top-zero"><?php echo esc_html(get_the_title()); ?></h1>
-                <p class="project-details-hero-txt"><?php echo esc_html(get_the_excerpt() ?: 'A professional fitout project designed to meet specific business requirements.'); ?></p>
-            </div>
+    <!-- Hero Section -->
+    <section class="hero-section text-center d-flex align-items-center" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('<?php echo esc_url($hero_image); ?>'); center/cover no-repeat;" >
+        <div class="container">
+            <h1 class="fw-normal text-white display-4" data-aos="fade-up" data-aos-duration="1500"><?php echo esc_html(get_the_title()); ?></h1>
+            <p class="lead w-75 mx-auto" data-aos="fade-up" data-aos-duration="1500">
+                <?php echo esc_html(get_the_excerpt() ?: 'A professional fitout project designed to meet specific business requirements.'); ?>
+            </p>
         </div>
-        <div class="cta-overlay"></div>
     </section>
     <section class="project-details-section-two">
         <div class="w-layout-blockcontainer container-one w-container">

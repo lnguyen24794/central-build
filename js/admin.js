@@ -95,7 +95,7 @@ jQuery(document).ready(function($) {
         });
         
         // Check URL fields
-        form.find('input[type="url"]').each(function() {
+        form.find('input[type="text"]').each(function() {
             var field = $(this);
             var url = field.val().trim();
             

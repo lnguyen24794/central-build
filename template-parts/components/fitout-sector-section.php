@@ -3,9 +3,9 @@
     <div class="container">
         <!-- Section Header -->
         <div class="my-container container">
-            <div class="home-two-mid-icon-block-2">
-                <div class="large-visible-desktop-hidden home-three-construction-heading">
-                    <h2 class="heading">
+            <div class="w-layout-hflex heading-box">
+                <h2 class="nz-div-6 mt-5">
+                    <span class="title-holder">
                         <?php
                         $checkout_title = get_option('central_build_checkout_title', __('Commercial Fitout Sectors', 'central-build'));
                         echo esc_html($checkout_title);
@@ -56,7 +56,7 @@
                                 
                                 <?php if (!empty($sector['description'])) : ?>
                                     <div class="construction-text-block">
-                                        <p class="margin-bottom-zero">
+                                        <p class="margin-bottom-zero mt-2" style="font-style: italic;">
                                             <?php echo wp_kses($sector['description'], array('br' => array())); ?>
                                         </p>
                                     </div>

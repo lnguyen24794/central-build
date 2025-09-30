@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Central Build Story: Reliability Engineered</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        /* Custom CSS: Quality & Principle Style */
+        :root {
+            --primary-color: #FB7F28; /* Deep Navy/Charcoal */
+            --accent-color: #B8860B;  /* Metallic Bronze/Gold */
+            --light-bg: #F4F7F9;
+            --dark-text: #212529;
+            --light-text: #FFFFFF;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            height: 80vh;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            display: flex;
+            align-items: center;
+            background-image: url('path/to/iconic-completed-project.jpg'); /* Image of completed high-quality building */
+            background-size: cover;
+            position: relative;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(26, 46, 68, 0.7); /* Dark overlay */
+        }
+        
+        /* Core Values */
+        .value-block {
+            padding: 30px;
+            background-color: var(--light-text);
+            border-bottom: 4px solid var(--accent-color);
+            height: 100%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: background-color 0.3s ease;
+        }
+        .value-block:hover {
+            background-color: var(--light-bg);
+        }
+        .value-icon {
+            color: var(--accent-color);
+            font-size: 3rem;
+        }
+
+        /* Leadership Cards */
+        .leader-card {
+            border: none;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .leader-card:hover {
+            transform: translateY(-5px);
+        }
+        .leader-img {
+            height: 300px; 
+            object-fit: cover;
+        }
+        .leader-title {
+            color: var(--accent-color);
+        }
+
+        /* Final CTA */
+        .final-cta-about {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 60px 0;
+        }
+        .cta-button-gold {
+            background-color: var(--accent-color);
+            color: var(--dark-text);
+            border: 2px solid var(--accent-color);
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+        .cta-button-gold:hover {
+            background-color: #9d7009;
+            color: var(--light-text);
+            border-color: #9d7009;
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#main-nav" data-bs-offset="50">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="main-nav">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">CENTRAL BUILD</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#vision">Vision</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#values">Values</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#leadership">Leadership</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#culture">Culture</a></li>
+                    <li class="nav-item"><a class="nav-link cta-button-gold text-dark ms-lg-3" href="#contact">CONNECT WITH US</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section" id="home">
+        <div class="container position-relative" data-aos="fade-up" data-aos-duration="1200">
+            <h1 class="display-3 fw-bolder mb-3">WE BUILD MORE THAN STRUCTURES. <br> WE BUILD <span style="color: var(--accent-color);">PARTNERSHIPS.</span></h1>
+            <p class="lead mb-4 fw-bold" style="color: var(--accent-color);">The Central Build Story: Reliability Engineered.</p>
+            <p class="mb-0 fs-5 opacity-75">Learn how our commitment to quality, transparent management, and integrated in-house teams redefined what a commercial construction partner should be.</p>
+        </div>
+    </header>
+
+    <section id="vision" class="py-5 py-md-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7 mb-4 mb-lg-0" data-aos="fade-right">
+                    <h2 class="display-6 fw-normal mb-4" style="color: var(--primary-color);">Our Vision: The Most Trusted Integrated Partner</h2>
+                    <p class="lead">Central Build was founded on the belief that commercial construction didn't have to be defined by delays and hidden costs. The industry needed a partner defined by **transparency and control**.</p>
+                    <p>Our vision is simple: to be the most trusted and **vertically integrated** construction partner, delivering projects that exceed expectations for safety, quality, and compliance. We achieve this by keeping core services **in-house**.</p>
+                </div>
+                <div class="col-lg-5" data-aos="fade-left">
+                    <h4 class="fw-normal mb-3" style="color: var(--accent-color);">Our Journey to Integration</h4>
+                    <ul class="list-unstyled timeline">
+                        <li class="mb-3 d-flex align-items-center">
+                            <i class="fas fa-hammer fa-2x me-3" style="color: var(--accent-color);"></i>
+                            <div><span class="fw-bold">20XX - Founding:</span> Focus on superior fit-out quality.</div>
+                        </li>
+                        <li class="mb-3 d-flex align-items-center">
+                            <i class="fas fa-users-cog fa-2x me-3" style="color: var(--accent-color);"></i>
+                            <div><span class="fw-bold">20XY - Vertical Integration:</span> Establishing licensed In-House trades.</div>
+                        </li>
+                        <li class="mb-3 d-flex align-items-center">
+                            <i class="fas fa-building fa-2x me-3" style="color: var(--accent-color);"></i>
+                            <div><span class="fw-bold">Today:</span> Integrated Model & Complete Project Control.</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="values" class="py-5 py-md-5">
+        <div class="container">
+            <h2 class="text-center display-6 fw-normal mb-5" data-aos="fade-down">Our Core Values: Built on Unyielding Principles</h2>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="value-block text-center" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fas fa-handshake value-icon mb-3"></i>
+                        <h4 class="fw-bold" style="color: var(--primary-color);">INTEGRITY</h4>
+                        <p class="small fst-italic">"Transparency is non-negotiable."</p>
+                        <p class="small mb-0">We stand behind every promise with upfront pricing and honest communication.</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="value-block text-center" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-ruler-combined value-icon mb-3"></i>
+                        <h4 class="fw-bold" style="color: var(--primary-color);">PRECISION</h4>
+                        <p class="small fst-italic">"Build once, build right."</p>
+                        <p class="small mb-0">Mastery of the craft, from BIM coordination to the final fix, ensuring lasting quality.</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="value-block text-center" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-lock value-icon mb-3"></i>
+                        <h4 class="fw-bold" style="color: var(--primary-color);">OWNERSHIP</h4>
+                        <p class="small fst-italic">"We control the process."</p>
+                        <p class="small mb-0">Our integrated teams take full accountability for the timeline, budget, and outcome.</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="value-block text-center" data-aos="fade-up" data-aos-delay="400">
+                        <i class="fas fa-shield-alt value-icon mb-3"></i>
+                        <h4 class="fw-bold" style="color: var(--primary-color);">SAFETY</h4>
+                        <p class="small fst-italic">"Zero-harm commitment."</p>
+                        <p class="small mb-0">The non-negotiable foundation of every site, protecting our team, clients, and assets.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="leadership" class="py-5 py-md-5 bg-light">
+        <div class="container">
+            <h2 class="text-center display-6 fw-normal mb-5" data-aos="fade-down">Meet The Leadership Team</h2>
+            <div class="row g-4 justify-content-center">
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card leader-card">
+                        <img src="path/to/ceo-founder-photo.jpg" class="card-img-top leader-img" alt="CEO/Founder Name" loading="lazy">
+                        <div class="card-body text-center">
+                            <h5 class="card-title fw-bold">DAVID CHEN</h5>
+                            <p class="leader-title fw-normal small">CEO & Founder</p>
+                            <p class="card-text small">"Founded Central Build to eliminate industry inefficiencies through vertical integration and complete process control."</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card leader-card">
+                        <img src="path/to/operations-manager-photo.jpg" class="card-img-top leader-img" alt="Operations Manager Name" loading="lazy">
+                        <div class="card-body text-center">
+                            <h5 class="card-title fw-bold">SARAH LEE</h5>
+                            <p class="leader-title fw-normal small">Head of Operations</p>
+                            <p class="card-text small">"Ensuring our projects transition seamlessly from concept to completion with maximum efficiency and minimal site conflict."</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card leader-card">
+                        <img src="path/to/bim-director-photo.jpg" class="card-img-top leader-img" alt="BIM Director Name" loading="lazy">
+                        <div class="card-body text-center">
+                            <h5 class="card-title fw-bold">MARK JOHNSON</h5>
+                            <p class="leader-title fw-normal small">Lead Architect & BIM Director</p>
+                            <p class="card-text small">"Driving technological precision, utilizing BIM for advanced coordination and clash detection on every commercial project."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="culture" class="py-5 py-md-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
+                    <h2 class="display-6 fw-normal mb-4" style="color: var(--primary-color);">Our Culture: Skilled, Committed, In-House</h2>
+                    <p class="lead">It's our people—our licensed plumbers, certified electricians, and dedicated site managers—that truly make the Central Build difference.</p>
+                    <p>We foster a culture of **expertise, mutual respect, and continuous improvement**. When you partner with us, you partner with a unified team, not a collection of sub-contractors.</p>
+                    <a href="#leadership" class="btn cta-button-gold mt-3">SEE OUR CERTIFICATIONS</a>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <img src="path/to/inhouse-team-photo-culture.jpg" class="img-fluid rounded shadow-lg" alt="Team culture photo" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact" class="final-cta-about">
+        <div class="container text-center" data-aos="zoom-in">
+            <h2 class="display-5 fw-bolder mb-3" style="color: var(--accent-color);">READY TO PARTNER WITH THE BEST?</h2>
+            <p class="lead mb-4">The Central Build Promise: Your project will be delivered by a unified team that controls the process from concept to handover, securing your investment and your peace of mind.</p>
+            <a href="path/to/contact-page" class="btn cta-button-gold btn-lg shadow-lg">CONNECT WITH OUR TEAM TODAY</a>
+        </div>
+    </section>
+
+    <footer class="bg-dark py-4 text-center" style="color: rgba(255, 255, 255, 0.6);">
+        <div class="container">
+            <p class="mb-2">&copy; 2025 Central Build. All Rights Reserved. | Reliability Engineered.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+        });
+    </script>
+</body>
+</html>

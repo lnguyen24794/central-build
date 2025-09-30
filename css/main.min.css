@@ -348,7 +348,6 @@
   
   .fitout-project-card .home-three-project-img-2 {
     width: 100%;
-    height: 400px;
     object-fit: cover;
     transition: transform 0.3s ease;
   }
@@ -628,7 +627,7 @@
     background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/wp-content/themes/central-build/images/about-us.jpeg') center/cover no-repeat;
     color: #fff;
     padding: 100px 0;
-    min-height: 500px;
+    min-height: 60vh;
 }
 .card:hover {
   transform: translateY(-5px);
@@ -646,4 +645,27 @@
   }
 .service-box:hover {
     background: #f8f9fa;
+}
+
+.cta-button-emergency {
+  background-color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  color: white !important;
+  font-weight: 700;
+  padding: 10px 25px;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px rgba(229, 57, 53, 0.6);
+  animation: pulse-red 2s infinite; /* Emergency animation */
+}
+
+.cta-button-emergency:hover {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white !important;
+}
+
+@keyframes pulse-red {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); box-shadow: 0 0 0 0 rgba(229, 57, 53, 0.4); }
+  100% { transform: scale(1); box-shadow: 0 0 0 10px rgba(229, 57, 53, 0); }
 }

@@ -162,26 +162,22 @@ function central_build_scripts()
     wp_enqueue_script('central-build-main', 'https://code.jquery.com/jquery-3.7.1.min.js', array(), '3.7.1', true);
     wp_enqueue_script('jquery-ui', 'https://code.jquery.com/ui/1.14.1/jquery-ui.min.js', array('central-build-main'), '1.14.1', true);
 
-    wp_enqueue_script('central-build-bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array('central-build-main'), false, true);
-
-    wp_enqueue_script('central-build-custom', get_template_directory_uri() . '/js/main.js', array('central-build-main', 'jquery-ui'), false, true);
+    wp_enqueue_script('central-build-custom', get_template_directory_uri() . '/js/main.js', array('central-build-main', 'jquery-ui'), true, true);
 
     // Enqueue Swiper bundle JavaScript
-    wp_enqueue_script('swiper-bundle', get_template_directory_uri() . '/js/swiper-bundle.min.js', array('central-build-main'), false, true);
+    wp_enqueue_script('swiper-bundle', get_template_directory_uri() . '/js/swiper-bundle.min.js', array('central-build-main'), true, true);
 
-    // Enqueue Bootstrap JavaScript
-    wp_enqueue_script('bootstrap-js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js', array('central-build-main'), '5.3.2', true);
     // Enqueue Webflow CSS (main template styles)
-    wp_enqueue_style('central-build-webflow', get_template_directory_uri() . '/css/main.min.css', array(), false);
+    wp_enqueue_style('central-build-webflow', get_template_directory_uri() . '/css/main.min.css', array(), true);
 
     // Enqueue main stylesheet (our custom styles)
-    wp_enqueue_style('central-build-style', get_stylesheet_uri(), array('central-build-webflow'), false);
+    wp_enqueue_style('central-build-style', get_stylesheet_uri(), array('central-build-webflow'), true);
 
     // Enqueue components CSS
-    wp_enqueue_style('central-build-components', get_template_directory_uri() . '/css/components.css', array('central-build-style'), false);
+    wp_enqueue_style('central-build-components', get_template_directory_uri() . '/css/components.css', array('central-build-style'), true);
 
     // Enqueue animation CSS
-    wp_enqueue_style('animation', get_template_directory_uri() . '/css/animate.min.css', array('central-build-style'), false);
+    wp_enqueue_style('animation', get_template_directory_uri() . '/css/animate.min.css', array('central-build-style'), true);
 
     // Enqueue Bootstrap CSS (before webflow-overrides so it can be overridden)
     wp_enqueue_style('bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css', array('central-build-components', 'animation'), '5.3.2');
@@ -189,19 +185,19 @@ function central_build_scripts()
     wp_enqueue_style('jquery-ui', 'https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css', array('bootstrap'), '1.14.1');
 
     // Enqueue Bootstrap custom utilities (safe Bootstrap utilities)
-    wp_enqueue_style('bootstrap-custom', get_template_directory_uri() . '/css/bootstrap-custom.min.css', array('bootstrap'), false);
+    wp_enqueue_style('bootstrap-custom', get_template_directory_uri() . '/css/bootstrap-custom.min.css', array('bootstrap'), true);
 
     // Enqueue Swiper bundle CSS
-    wp_enqueue_style('swiper-bundle', get_template_directory_uri() . '/css/swiper-bundle.min.css', array('bootstrap-custom'), false);
+    wp_enqueue_style('swiper-bundle', get_template_directory_uri() . '/css/swiper-bundle.min.css', array('bootstrap-custom'), true);
 
     // Enqueue Webflow overrides CSS (this will override Bootstrap when needed)
-    wp_enqueue_style('central-build-webflow-overrides', get_template_directory_uri() . '/css/webflow-overrides.css', array('bootstrap-custom', 'swiper-bundle', 'animation'), false);
+    wp_enqueue_style('central-build-webflow-overrides', get_template_directory_uri() . '/css/webflow-overrides.css', array('bootstrap-custom', 'swiper-bundle', 'animation'), true);
 
     // Enqueue Google Fonts (Roboto) and Oswald from template
     wp_enqueue_style('central-build-fonts', 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap', array(), null);
 
     // Enqueue WebFont loader
-    wp_enqueue_script('central-build-webfont', get_template_directory_uri() . '/js/webfont.js', array(), false, false);
+    wp_enqueue_script('central-build-webfont', get_template_directory_uri() . '/js/webfont.js', array(), true, true);
 
 
 
@@ -300,39 +296,39 @@ function central_build_page_assets()
 {
     // Home page assets
     if (is_front_page()) {
-        wp_enqueue_style('central-build-home-min', get_template_directory_uri() . '/css/home.min.css', array('central-build-webflow'), false);
-        wp_enqueue_script('central-build-home-js', get_template_directory_uri() . '/js/home.js', array('jquery'), false, true);
+        wp_enqueue_style('central-build-home-min', get_template_directory_uri() . '/css/home.min.css', array('central-build-webflow'), true);
+        wp_enqueue_script('central-build-home-js', get_template_directory_uri() . '/js/home.js', array('jquery'), true, true);
     }
 
     // Contact page assets
     if (is_page_template('page-contact.php')) {
-        wp_enqueue_style('central-build-contact', get_template_directory_uri() . '/css/contact.css', array('central-build-style'), false);
-        wp_enqueue_script('central-build-contact-js', get_template_directory_uri() . '/js/contact.js', array('jquery'), false, true);
+        wp_enqueue_style('central-build-contact', get_template_directory_uri() . '/css/contact.css', array('central-build-style'), true);
+        wp_enqueue_script('central-build-contact-js', get_template_directory_uri() . '/js/contact.js', array('jquery'), true, true);
     }
 
     // Service pages assets
     if (is_page_template('page-commercial-shop-fitting.php') ||
         is_page_template('page-concreet.php') ||
         is_page_template('page-custom-joinery.php')) {
-        wp_enqueue_style('central-build-services', get_template_directory_uri() . '/css/services.css', array('central-build-style'), false);
-        wp_enqueue_script('central-build-services-js', get_template_directory_uri() . '/js/services.js', array('jquery'), false, true);
+        wp_enqueue_style('central-build-services', get_template_directory_uri() . '/css/services.css', array('central-build-style'), true);
+        wp_enqueue_script('central-build-services-js', get_template_directory_uri() . '/js/services.js', array('jquery'), true, true);
     }
 
     // About pages assets
     if (is_page_template('page-our-values.php') || is_page_template('page-testimonials.php')) {
-        wp_enqueue_style('central-build-about', get_template_directory_uri() . '/css/about.css', array('central-build-style'), false);
+        wp_enqueue_style('central-build-about', get_template_directory_uri() . '/css/about.css', array('central-build-style'), true);
     }
 
     // Portfolio/Fitout sectors assets
     if (is_page_template('page-fitout-sectors.php')) {
-        wp_enqueue_style('central-build-portfolio', get_template_directory_uri() . '/css/portfolio.css', array('central-build-style'), false);
-        wp_enqueue_script('central-build-portfolio-js', get_template_directory_uri() . '/js/portfolio.js', array('jquery'), false, true);
+        wp_enqueue_style('central-build-portfolio', get_template_directory_uri() . '/css/portfolio.css', array('central-build-style'), true);
+        wp_enqueue_script('central-build-portfolio-js', get_template_directory_uri() . '/js/portfolio.js', array('jquery'), true, true);
     }
 
     // Blog/Archive pages assets
     if (is_home() || is_archive() || is_search() || is_category() || is_tag() || is_author() || is_date()) {
-        wp_enqueue_style('central-build-home-min', get_template_directory_uri() . '/css/home.min.css', array('central-build-webflow'), false);
-        wp_enqueue_style('central-build-blog', get_template_directory_uri() . '/css/blog-styles.css', array('central-build-home-min'), false);
+        wp_enqueue_style('central-build-home-min', get_template_directory_uri() . '/css/home.min.css', array('central-build-webflow'), true);
+        wp_enqueue_style('central-build-blog', get_template_directory_uri() . '/css/blog-styles.css', array('central-build-home-min'), true);
     }
 }
 add_action('wp_enqueue_scripts', 'central_build_page_assets');
@@ -426,9 +422,6 @@ function central_build_fitout_category_template($template)
 }
 add_filter('template_include', 'central_build_fitout_category_template');
 
-/**
- * Add body class for fitout category archives
- */
 function central_build_fitout_category_body_class($classes)
 {
     if (is_tax('fitout_category')) {
@@ -441,612 +434,6 @@ function central_build_fitout_category_body_class($classes)
     return $classes;
 }
 add_filter('body_class', 'central_build_fitout_category_body_class');
-
-/**
- * Footer Options Page
- */
-function central_build_add_footer_options_page()
-{
-    add_theme_page(
-        'Footer Settings',
-        'Footer Settings',
-        'manage_options',
-        'footer-settings',
-        'central_build_footer_settings_page'
-    );
-}
-add_action('admin_menu', 'central_build_add_footer_options_page');
-
-/**
- * Contact Options Page
- */
-function central_build_add_contact_options_page()
-{
-    add_theme_page(
-        'Contact Settings',
-        'Contact Settings',
-        'manage_options',
-        'contact-settings',
-        'central_build_contact_settings_page'
-    );
-}
-add_action('admin_menu', 'central_build_add_contact_options_page');
-
-/**
- * Header Options Page
- */
-function central_build_add_header_options_page()
-{
-    add_theme_page(
-        'Header Settings',
-        'Header Settings',
-        'manage_options',
-        'header-settings',
-        'central_build_header_settings_page'
-    );
-}
-add_action('admin_menu', 'central_build_add_header_options_page');
-
-/**
- * Footer Settings Page Callback
- */
-function central_build_footer_settings_page()
-{
-    if (isset($_POST['submit']) && wp_verify_nonce($_POST['footer_settings_nonce'], 'footer_settings')) {
-        // Save all footer settings
-        update_option('central_build_footer_logo', esc_url_raw(wp_unslash($_POST['footer_logo'])));
-        update_option('central_build_footer_description', wp_kses_post(wp_unslash($_POST['footer_description'])));
-        update_option('central_build_footer_email', sanitize_email($_POST['footer_email']));
-        update_option('central_build_footer_phone', sanitize_text_field(wp_unslash($_POST['footer_phone'])));
-
-        // Quick Links
-        update_option('central_build_footer_home_text', sanitize_text_field(wp_unslash($_POST['footer_home_text'])));
-        update_option('central_build_footer_home_url', esc_url_raw($_POST['footer_home_url']));
-        update_option('central_build_footer_about_text', sanitize_text_field(wp_unslash($_POST['footer_about_text'])));
-        update_option('central_build_footer_about_url', esc_url_raw($_POST['footer_about_url']));
-        update_option('central_build_footer_policy_text', sanitize_text_field(wp_unslash($_POST['footer_policy_text'])));
-        update_option('central_build_footer_policy_url', esc_url_raw($_POST['footer_policy_url']));
-        update_option('central_build_footer_services_text', sanitize_text_field(wp_unslash($_POST['footer_services_text'])));
-        update_option('central_build_footer_services_url', esc_url_raw($_POST['footer_services_url']));
-        update_option('central_build_footer_portfolio_text', sanitize_text_field(wp_unslash($_POST['footer_portfolio_text'])));
-        update_option('central_build_footer_portfolio_url', esc_url_raw($_POST['footer_portfolio_url']));
-
-        // Support Links
-        update_option('central_build_footer_csr_text', sanitize_text_field(wp_unslash($_POST['footer_csr_text'])));
-        update_option('central_build_footer_csr_url', esc_url_raw($_POST['footer_csr_url']));
-        update_option('central_build_footer_values_text', sanitize_text_field(wp_unslash($_POST['footer_values_text'])));
-        update_option('central_build_footer_values_url', esc_url_raw($_POST['footer_values_url']));
-        update_option('central_build_footer_blog_text', sanitize_text_field(wp_unslash($_POST['footer_blog_text'])));
-        update_option('central_build_footer_blog_url', esc_url_raw($_POST['footer_blog_url']));
-
-        echo '<div class="notice notice-success"><p>Footer settings saved successfully!</p></div>';
-    }
-
-    // Get current values
-    $footer_logo = get_option('central_build_footer_logo', get_template_directory_uri() . '/images/674e51fad943a77607127b0b_ENP%20transparent%20white%20cropped.webp');
-    $footer_description = get_option('central_build_footer_description', 'Central Build, established in 2018, crafts lasting fitout solutions with value, efficiency, and transparency. Discover the ENP difference.');
-    $footer_email = get_option('central_build_footer_email', 'info@centralbuild.au');
-    $footer_phone = get_option('central_build_footer_phone', '0123 456 789');
-
-    // Quick Links
-    $footer_home_text = get_option('central_build_footer_home_text', 'Home');
-    $footer_home_url = get_option('central_build_footer_home_url', home_url());
-    $footer_about_text = get_option('central_build_footer_about_text', 'About Us');
-    $footer_about_url = get_option('central_build_footer_about_url', home_url('/our-values'));
-    $footer_policy_text = get_option('central_build_footer_policy_text', 'Policy');
-    $footer_policy_url = get_option('central_build_footer_policy_url', 'https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/676248fadfdb334304c54e6e_ENP%20Fitouts%20Privacy%20Policy.pdf');
-    $footer_services_text = get_option('central_build_footer_services_text', 'Services');
-    $footer_services_url = get_option('central_build_footer_services_url', home_url('/commercial-shop-fitting'));
-    $footer_portfolio_text = get_option('central_build_footer_portfolio_text', 'Portfolio');
-    $footer_portfolio_url = get_option('central_build_footer_portfolio_url', '#');
-
-    // Support Links
-    $footer_csr_text = get_option('central_build_footer_csr_text', 'CSR Commitment');
-    $footer_csr_url = get_option('central_build_footer_csr_url', home_url('/enp-fitouts-csr-commitments'));
-    $footer_values_text = get_option('central_build_footer_values_text', 'Our Values');
-    $footer_values_url = get_option('central_build_footer_values_url', home_url('/our-values'));
-    $footer_blog_text = get_option('central_build_footer_blog_text', 'Our Blog');
-    $footer_blog_url = get_option('central_build_footer_blog_url', '#');
-
-    ?>
-    <div class="wrap">
-        <h1>Footer Settings</h1>
-        <form method="post" action="">
-            <?php wp_nonce_field('footer_settings', 'footer_settings_nonce'); ?>
-            
-            <table class="form-table">
-                <tr>
-                    <th colspan="2"><h2>Company Information</h2></th>
-                </tr>
-                <tr>
-                    <th scope="row">Footer Logo URL</th>
-                    <td>
-                        <input type="url" name="footer_logo" value="<?php echo esc_url($footer_logo); ?>" class="regular-text" />
-                        <p class="description">Enter the URL for the footer logo image</p>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Company Description</th>
-                    <td>
-                        <textarea name="footer_description" rows="3" cols="50" class="large-text"><?php echo esc_textarea(wp_unslash($footer_description)); ?></textarea>
-                        <p class="description">Brief description about the company</p>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Email Address</th>
-                    <td>
-                        <input type="email" name="footer_email" value="<?php echo esc_attr(wp_unslash($footer_email)); ?>" class="regular-text" />
-                        <p class="description">Contact email address</p>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Phone Number</th>
-                    <td>
-                        <input type="text" name="footer_phone" value="<?php echo esc_attr(wp_unslash($footer_phone)); ?>" class="regular-text" />
-                        <p class="description">Contact phone number</p>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <th colspan="2"><h2>Quick Links</h2></th>
-                </tr>
-                <tr>
-                    <th scope="row">Home Link</th>
-                    <td>
-                        <input type="text" name="footer_home_text" value="<?php echo esc_attr(wp_unslash($footer_home_text)); ?>" placeholder="Link Text" class="regular-text" />
-                        <input type="url" name="footer_home_url" value="<?php echo esc_url($footer_home_url); ?>" placeholder="Link URL" class="regular-text" />
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">About Link</th>
-                    <td>
-                        <input type="text" name="footer_about_text" value="<?php echo esc_attr(wp_unslash($footer_about_text)); ?>" placeholder="Link Text" class="regular-text" />
-                        <input type="url" name="footer_about_url" value="<?php echo esc_url($footer_about_url); ?>" placeholder="Link URL" class="regular-text" />
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Policy Link</th>
-                    <td>
-                        <input type="text" name="footer_policy_text" value="<?php echo esc_attr(wp_unslash($footer_policy_text)); ?>" placeholder="Link Text" class="regular-text" />
-                        <input type="url" name="footer_policy_url" value="<?php echo esc_url($footer_policy_url); ?>" placeholder="Link URL" class="regular-text" />
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Services Link</th>
-                    <td>
-                        <input type="text" name="footer_services_text" value="<?php echo esc_attr(wp_unslash($footer_services_text)); ?>" placeholder="Link Text" class="regular-text" />
-                        <input type="url" name="footer_services_url" value="<?php echo esc_url($footer_services_url); ?>" placeholder="Link URL" class="regular-text" />
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Portfolio Link</th>
-                    <td>
-                        <input type="text" name="footer_portfolio_text" value="<?php echo esc_attr(wp_unslash($footer_portfolio_text)); ?>" placeholder="Link Text" class="regular-text" />
-                        <input type="url" name="footer_portfolio_url" value="<?php echo esc_url($footer_portfolio_url); ?>" placeholder="Link URL" class="regular-text" />
-                    </td>
-                </tr>
-                
-                <tr>
-                    <th colspan="2"><h2>Support Links</h2></th>
-                </tr>
-                <tr>
-                    <th scope="row">CSR Commitment Link</th>
-                    <td>
-                        <input type="text" name="footer_csr_text" value="<?php echo esc_attr(wp_unslash($footer_csr_text)); ?>" placeholder="Link Text" class="regular-text" />
-                        <input type="url" name="footer_csr_url" value="<?php echo esc_url($footer_csr_url); ?>" placeholder="Link URL" class="regular-text" />
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Our Values Link</th>
-                    <td>
-                        <input type="text" name="footer_values_text" value="<?php echo esc_attr(wp_unslash($footer_values_text)); ?>" placeholder="Link Text" class="regular-text" />
-                        <input type="url" name="footer_values_url" value="<?php echo esc_url($footer_values_url); ?>" placeholder="Link URL" class="regular-text" />
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Blog Link</th>
-                    <td>
-                        <input type="text" name="footer_blog_text" value="<?php echo esc_attr(wp_unslash($footer_blog_text)); ?>" placeholder="Link Text" class="regular-text" />
-                        <input type="url" name="footer_blog_url" value="<?php echo esc_url($footer_blog_url); ?>" placeholder="Link URL" class="regular-text" />
-                    </td>
-                </tr>
-            </table>
-            
-            <?php submit_button('Save Footer Settings'); ?>
-        </form>
-    </div>
-    
-    <style>
-    .form-table th h2 {
-        margin: 0;
-        padding: 10px 0;
-        border-bottom: 1px solid #ddd;
-        color: #23282d;
-    }
-    .form-table input[type="text"], 
-    .form-table input[type="url"], 
-    .form-table input[type="email"] {
-        margin-right: 10px;
-        margin-bottom: 5px;
-    }
-    </style>
-    <?php
-}
-
-/**
- * Contact Settings Page Callback
- */
-function central_build_contact_settings_page()
-{
-    if (isset($_POST['submit']) && wp_verify_nonce($_POST['contact_settings_nonce'], 'contact_settings')) {
-        // Save hero section settings
-        update_option('central_build_contact_hero_title', wp_kses_post(wp_unslash($_POST['contact_hero_title'])));
-        update_option('central_build_contact_hero_description', wp_kses_post(wp_unslash($_POST['contact_hero_description'])));
-
-        // Save contact information
-        update_option('central_build_contact_email', sanitize_email($_POST['contact_email']));
-        update_option('central_build_contact_phone', sanitize_text_field(wp_unslash($_POST['contact_phone'])));
-        update_option('central_build_contact_phone_display', sanitize_text_field(wp_unslash($_POST['contact_phone_display'])));
-
-        // Save social media links
-        update_option('central_build_contact_facebook', esc_url_raw($_POST['contact_facebook']));
-        update_option('central_build_contact_instagram', esc_url_raw($_POST['contact_instagram']));
-        update_option('central_build_contact_linkedin', esc_url_raw($_POST['contact_linkedin']));
-
-        // Save form settings
-        update_option('central_build_contact_form_title', wp_kses_post(wp_unslash($_POST['contact_form_title'])));
-        update_option('central_build_contact_form_description', wp_kses_post(wp_unslash($_POST['contact_form_description'])));
-        update_option('central_build_contact_form_redirect', esc_url_raw($_POST['contact_form_redirect']));
-
-        // Save office information
-        update_option('central_build_contact_office_image', esc_url_raw($_POST['contact_office_image']));
-        update_option('central_build_contact_office_title', wp_kses_post(wp_unslash($_POST['contact_office_title'])));
-        update_option('central_build_contact_office_description', wp_kses_post(wp_unslash($_POST['contact_office_description'])));
-        update_option('central_build_contact_office_location', sanitize_text_field(wp_unslash($_POST['contact_office_location'])));
-        update_option('central_build_contact_office_country', sanitize_text_field(wp_unslash($_POST['contact_office_country'])));
-
-        echo '<div class="notice notice-success"><p>Contact settings saved successfully!</p></div>';
-    }
-
-    // Get current values with defaults
-    $contact_hero_title = get_option('central_build_contact_hero_title', 'let\'s work <span>together</span>');
-    $contact_hero_description = get_option('central_build_contact_hero_description', 'Reach out to Central Build to start your journey. Whether you\'re looking for a bespoke design, a seamless build, or expert advice, we\'re here to help make your vision a reality. Let\'s create something exceptional together.');
-
-    $contact_email = get_option('central_build_contact_email', 'info@centralbuild.au');
-    $contact_phone = get_option('central_build_contact_phone', 'tel:0123456789');
-    $contact_phone_display = get_option('central_build_contact_phone_display', '0123 456 789');
-
-    $contact_facebook = get_option('central_build_contact_facebook', 'https://www.facebook.com/p/ENP-Fitouts-100079118888496/');
-    $contact_instagram = get_option('central_build_contact_instagram', 'https://www.instagram.com/enpfitouts');
-    $contact_linkedin = get_option('central_build_contact_linkedin', 'https://in.linkedin.com/');
-
-    $contact_form_title = get_option('central_build_contact_form_title', 'We\'re here to help');
-    $contact_form_description = get_option('central_build_contact_form_description', 'Tell us about your project & goals!');
-    $contact_form_redirect = get_option('central_build_contact_form_redirect', '/thank-you');
-
-    $contact_office_image = get_option('central_build_contact_office_image', 'https://static1.squarespace.com/static/6176ce05013c5128c1ff5aa8/6194da83ea54f441cdb5a7de/64d3736437d050544f081ff3/1707218367383/Construction-recruitment+-+dayin+the+life.jpg?format=1500w');
-    $contact_office_title = get_option('central_build_contact_office_title', 'Visit Our Offices');
-    $contact_office_description = get_option('central_build_contact_office_description', 'Central Build is your trusted partner for exceptional commercial fitouts. Visit us to discuss your project and explore our tailored solutions.');
-    $contact_office_location = get_option('central_build_contact_office_location', 'Office in Brisbane');
-    $contact_office_country = get_option('central_build_contact_office_country', 'Australia');
-
-    ?>
-    <div class="wrap">
-        <h1>Contact Page Settings</h1>
-        <form method="post" action="">
-            <?php wp_nonce_field('contact_settings', 'contact_settings_nonce'); ?>
-            
-            <table class="form-table">
-                <tr>
-                    <th colspan="2"><h2>Hero Section</h2></th>
-                </tr>
-                <tr>
-                    <th scope="row">Hero Title</th>
-                    <td>
-                        <input type="text" name="contact_hero_title" value="<?php echo esc_attr(wp_unslash($contact_hero_title)); ?>" class="large-text" />
-                        <p class="description">Main heading in hero section (HTML allowed for span tags)</p>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Hero Description</th>
-                    <td>
-                        <textarea name="contact_hero_description" rows="4" cols="50" class="large-text"><?php echo esc_textarea(wp_unslash($contact_hero_description)); ?></textarea>
-                        <p class="description">Description text below the hero title</p>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <th colspan="2"><h2>Contact Information</h2></th>
-                </tr>
-                <tr>
-                    <th scope="row">Email Address</th>
-                    <td>
-                        <input type="email" name="contact_email" value="<?php echo esc_attr(wp_unslash($contact_email)); ?>" class="regular-text" />
-                        <p class="description">Contact email address</p>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Phone Number (tel: link)</th>
-                    <td>
-                        <input type="text" name="contact_phone" value="<?php echo esc_attr(wp_unslash($contact_phone)); ?>" class="regular-text" placeholder="tel:0123456789" />
-                        <p class="description">Phone number for tel: link (format: tel:0123456789)</p>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Phone Number (display)</th>
-                    <td>
-                        <input type="text" name="contact_phone_display" value="<?php echo esc_attr(wp_unslash($contact_phone_display)); ?>" class="regular-text" />
-                        <p class="description">Phone number as displayed to users</p>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <th colspan="2"><h2>Social Media Links</h2></th>
-                </tr>
-                <tr>
-                    <th scope="row">Facebook URL</th>
-                    <td>
-                        <input type="url" name="contact_facebook" value="<?php echo esc_url($contact_facebook); ?>" class="large-text" />
-                        <p class="description">Facebook page URL</p>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Instagram URL</th>
-                    <td>
-                        <input type="url" name="contact_instagram" value="<?php echo esc_url($contact_instagram); ?>" class="large-text" />
-                        <p class="description">Instagram profile URL</p>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">LinkedIn URL</th>
-                    <td>
-                        <input type="url" name="contact_linkedin" value="<?php echo esc_url($contact_linkedin); ?>" class="large-text" />
-                        <p class="description">LinkedIn profile URL</p>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <th colspan="2"><h2>Contact Form</h2></th>
-                </tr>
-                <tr>
-                    <th scope="row">Form Title</th>
-                    <td>
-                        <input type="text" name="contact_form_title" value="<?php echo esc_attr(wp_unslash($contact_form_title)); ?>" class="regular-text" />
-                        <p class="description">Title above the contact form</p>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Form Description</th>
-                    <td>
-                        <textarea name="contact_form_description" rows="2" cols="50" class="large-text"><?php echo esc_textarea(wp_unslash($contact_form_description)); ?></textarea>
-                        <p class="description">Description below the form title</p>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Form Redirect URL</th>
-                    <td>
-                        <input type="text" name="contact_form_redirect" value="<?php echo esc_attr(wp_unslash($contact_form_redirect)); ?>" class="regular-text" />
-                        <p class="description">Page to redirect after form submission (e.g., /thank-you)</p>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <th colspan="2"><h2>Office Information</h2></th>
-                </tr>
-                <tr>
-                    <th scope="row">Office Image URL</th>
-                    <td>
-                        <input type="url" name="contact_office_image" value="<?php echo esc_url($contact_office_image); ?>" class="large-text" />
-                        <p class="description">Image for the office section</p>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Office Section Title</th>
-                    <td>
-                        <input type="text" name="contact_office_title" value="<?php echo esc_attr(wp_unslash($contact_office_title)); ?>" class="regular-text" />
-                        <p class="description">Title for the office section</p>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Office Description</th>
-                    <td>
-                        <textarea name="contact_office_description" rows="3" cols="50" class="large-text"><?php echo esc_textarea(wp_unslash($contact_office_description)); ?></textarea>
-                        <p class="description">Description for the office section</p>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Office Location</th>
-                    <td>
-                        <input type="text" name="contact_office_location" value="<?php echo esc_attr(wp_unslash($contact_office_location)); ?>" class="regular-text" />
-                        <p class="description">Office location (e.g., "Office in Brisbane")</p>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Country</th>
-                    <td>
-                        <input type="text" name="contact_office_country" value="<?php echo esc_attr(wp_unslash($contact_office_country)); ?>" class="regular-text" />
-                        <p class="description">Country name</p>
-                    </td>
-                </tr>
-            </table>
-            
-            <?php submit_button('Save Contact Settings'); ?>
-        </form>
-    </div>
-    
-    <style>
-    .form-table th h2 {
-        margin: 0;
-        padding: 10px 0;
-        border-bottom: 1px solid #ddd;
-        color: #23282d;
-    }
-    .form-table input[type="text"], 
-    .form-table input[type="url"], 
-    .form-table input[type="email"],
-    .form-table textarea {
-        margin-bottom: 5px;
-    }
-    </style>
-    <?php
-}
-
-/**
- * Header Settings Page Callback
- */
-function central_build_header_settings_page()
-{
-    if (isset($_POST['submit']) && wp_verify_nonce($_POST['header_settings_nonce'], 'header_settings')) {
-        // Save top bar settings
-        update_option('central_build_header_phone', sanitize_text_field(wp_unslash($_POST['header_phone'])));
-        update_option('central_build_header_phone_display', sanitize_text_field(wp_unslash($_POST['header_phone_display'])));
-        update_option('central_build_header_email', sanitize_email($_POST['header_email']));
-
-        // Save social media links
-        update_option('central_build_header_facebook', esc_url_raw($_POST['header_facebook']));
-        update_option('central_build_header_linkedin', esc_url_raw($_POST['header_linkedin']));
-        update_option('central_build_header_instagram', esc_url_raw($_POST['header_instagram']));
-
-        // Save navigation settings
-        update_option('central_build_header_cta_text', sanitize_text_field(wp_unslash($_POST['header_cta_text'])));
-        update_option('central_build_header_cta_url', esc_url_raw($_POST['header_cta_url']));
-
-        // Save logo settings
-        update_option('central_build_header_logo_width', absint($_POST['header_logo_width']));
-        update_option('central_build_header_logo_height', absint($_POST['header_logo_height']));
-
-        echo '<div class="notice notice-success"><p>Header settings saved successfully!</p></div>';
-    }
-
-    // Get current values with defaults
-    $header_phone = get_option('central_build_header_phone', 'tel:+61431465090');
-    $header_phone_display = get_option('central_build_header_phone_display', '+61 431 465 090');
-    $header_email = get_option('central_build_header_email', 'info@centralbuild.au');
-
-    $header_facebook = get_option('central_build_header_facebook', 'https://www.facebook.com/p/ENP-Fitouts-100079118888496/');
-    $header_linkedin = get_option('central_build_header_linkedin', 'https://www.linkedin.com/company/enp-fitouts/?originalSubdomain=au');
-    $header_instagram = get_option('central_build_header_instagram', 'https://www.instagram.com/enpfitouts');
-
-    $header_cta_text = get_option('central_build_header_cta_text', 'Get A quote');
-    $header_cta_url = get_option('central_build_header_cta_url', home_url('/contact'));
-
-    $header_logo_width = get_option('central_build_header_logo_width', 121);
-    $header_logo_height = get_option('central_build_header_logo_height', 38);
-
-    ?>
-    <div class="wrap">
-        <h1>Header Settings</h1>
-        <form method="post" action="">
-            <?php wp_nonce_field('header_settings', 'header_settings_nonce'); ?>
-            
-            <table class="form-table">
-                <tr>
-                    <th colspan="2"><h2>Top Bar Contact Information</h2></th>
-                </tr>
-                <tr>
-                    <th scope="row">Phone Number (tel: link)</th>
-                    <td>
-                        <input type="text" name="header_phone" value="<?php echo esc_attr(wp_unslash($header_phone)); ?>" class="regular-text" placeholder="tel:+61431465090" />
-                        <p class="description">Phone number for tel: link (format: tel:+61431465090)</p>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Phone Number (display)</th>
-                    <td>
-                        <input type="text" name="header_phone_display" value="<?php echo esc_attr(wp_unslash($header_phone_display)); ?>" class="regular-text" />
-                        <p class="description">Phone number as displayed to users</p>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Email Address</th>
-                    <td>
-                        <input type="email" name="header_email" value="<?php echo esc_attr(wp_unslash($header_email)); ?>" class="regular-text" />
-                        <p class="description">Contact email address</p>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <th colspan="2"><h2>Social Media Links</h2></th>
-                </tr>
-                <tr>
-                    <th scope="row">Facebook URL</th>
-                    <td>
-                        <input type="url" name="header_facebook" value="<?php echo esc_url($header_facebook); ?>" class="large-text" />
-                        <p class="description">Facebook page URL</p>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">LinkedIn URL</th>
-                    <td>
-                        <input type="url" name="header_linkedin" value="<?php echo esc_url($header_linkedin); ?>" class="large-text" />
-                        <p class="description">LinkedIn profile URL</p>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Instagram URL</th>
-                    <td>
-                        <input type="url" name="header_instagram" value="<?php echo esc_url($header_instagram); ?>" class="large-text" />
-                        <p class="description">Instagram profile URL</p>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <th colspan="2"><h2>Navigation Settings</h2></th>
-                </tr>
-                <tr>
-                    <th scope="row">CTA Button Text</th>
-                    <td>
-                        <input type="text" name="header_cta_text" value="<?php echo esc_attr(wp_unslash($header_cta_text)); ?>" class="regular-text" />
-                        <p class="description">Text for the call-to-action button</p>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">CTA Button URL</th>
-                    <td>
-                        <input type="url" name="header_cta_url" value="<?php echo esc_url($header_cta_url); ?>" class="large-text" />
-                        <p class="description">URL for the call-to-action button</p>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <th colspan="2"><h2>Logo Settings</h2></th>
-                </tr>
-                <tr>
-                    <th scope="row">Logo Width</th>
-                    <td>
-                        <input type="number" name="header_logo_width" value="<?php echo esc_attr(wp_unslash($header_logo_width)); ?>" class="small-text" min="50" max="500" />
-                        <p class="description">Logo width in pixels</p>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Logo Height</th>
-                    <td>
-                        <input type="number" name="header_logo_height" value="<?php echo esc_attr(wp_unslash($header_logo_height)); ?>" class="small-text" min="20" max="200" />
-                        <p class="description">Logo height in pixels</p>
-                    </td>
-                </tr>
-            </table>
-            
-            <?php submit_button('Save Header Settings'); ?>
-        </form>
-    </div>
-    
-    <style>
-    .form-table th h2 {
-        margin: 0;
-        padding: 10px 0;
-        border-bottom: 1px solid #ddd;
-        color: #23282d;
-    }
-    .form-table input[type="text"], 
-    .form-table input[type="url"], 
-    .form-table input[type="email"],
-    .form-table input[type="number"] {
-        margin-bottom: 5px;
-    }
-    </style>
-    <?php
-}
 
 /**
  * Customizer additions (Basic settings only)
@@ -1287,7 +674,7 @@ function central_build_portfolio_meta_box($post)
         </tr>
         <tr>
             <th><label for="portfolio_url"><?php esc_html_e('Project URL', 'central-build'); ?></label></th>
-            <td><input type="url" id="portfolio_url" name="portfolio_url" value="<?php echo esc_url($project_url); ?>" class="regular-text" /></td>
+            <td><input type="text" id="portfolio_url" name="portfolio_url" value="<?php echo esc_url($project_url); ?>" class="regular-text" /></td>
         </tr>
         <tr>
             <th><label for="portfolio_gallery"><?php esc_html_e('Gallery Images (comma-separated IDs)', 'central-build'); ?></label></th>
@@ -1483,7 +870,19 @@ function central_build_admin_init()
 {
     // Add custom admin styles
     add_action('admin_enqueue_scripts', function () {
-        wp_enqueue_style('central-build-admin', get_template_directory_uri() . '/css/admin.css', array(), false);
+        wp_enqueue_style('central-build-admin', get_template_directory_uri() . '/css/admin.css', array(), true);
     });
 }
 add_action('admin_init', 'central_build_admin_init');
+
+require_once get_template_directory() . '/inc/header-settings.php';
+require_once get_template_directory() . '/inc/footer-settings.php';
+require_once get_template_directory() . '/inc/about-settings.php';
+require_once get_template_directory() . '/inc/contact-settings.php';
+require_once get_template_directory() . '/inc/commercial-interior-design-settings.php';
+require_once get_template_directory() . '/inc/commercial-fitout-specialists-settings.php';
+require_once get_template_directory() . '/inc/services-coordination-settings.php';
+require_once get_template_directory() . '/inc/commercial-stripout-settings.php';
+require_once get_template_directory() . '/inc/repairs-maintenance-settings.php';
+require_once get_template_directory() . '/inc/form-notifications-settings.php';
+require_once get_template_directory() . '/inc/form-handler.php';

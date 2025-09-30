@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Central Build | Commercial Construction. Reliability Engineered.</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        /* Custom CSS: Integrated Advantage Style (Inherited) */
+        :root {
+            --primary-color: #FB7F28; /* Deep Navy/Charcoal */
+            --accent-color: #B8860B;  /* Metallic Bronze/Gold */
+            --light-bg: #F4F7F9;
+            --dark-text: #212529;
+            --light-text: #FFFFFF;
+            
+            /* Service Specific Colors */
+            --cyan-coordination: #00BCD4;
+            --yellow-stripout: #FFC300;
+            --red-maintenance: #E53935;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            /* ... (CSS giữ nguyên) ... */
+            height: 95vh;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            display: flex;
+            align-items: center;
+            background-image: url('path/to/high-impact-construction-video-cover.jpg');
+            background-size: cover;
+            position: relative;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(26, 46, 68, 0.75);
+        }
+        
+        .cta-button-gold {
+            background-color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            color: var(--dark-text);
+            font-weight: 700;
+            padding: 15px 40px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(184, 134, 11, 0.4);
+        }
+        .cta-button-gold:hover {
+            background-color: #9d7009;
+            border-color: #9d7009;
+            color: var(--light-text);
+        }
+
+        /* Value Proposition Boxes */
+        .value-box {
+            padding: 30px;
+            background-color: var(--light-text);
+            border-top: 5px solid var(--primary-color);
+            height: 100%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: border-color 0.3s ease;
+        }
+        .value-box:hover {
+            border-top-color: var(--accent-color);
+        }
+        .value-icon {
+            color: var(--accent-color);
+            font-size: 3rem;
+        }
+        
+        /* Services Overview Tiles */
+        .service-tile {
+            position: relative;
+            height: 350px;
+            overflow: hidden;
+            text-align: center;
+            color: var(--light-text);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+        .service-tile:hover {
+            transform: translateY(-5px);
+        }
+        .tile-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s ease;
+        }
+        .service-tile:hover .tile-overlay {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .tile-content {
+            position: relative;
+            z-index: 10;
+        }
+        .tile-icon {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+        }
+        .tile-fitout { background-color: var(--primary-color); }
+        .tile-coordination { background-color: #1A3E4E; border: 5px solid var(--cyan-coordination); }
+        .tile-stripout { background-color: #44371A; border: 5px solid var(--yellow-stripout); }
+        .tile-maintenance { background-color: #441A1A; border: 5px solid var(--red-maintenance); }
+        
+        /* Project Card */
+        .project-card {
+            border: none;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15)!important;
+        }
+        .project-img {
+            height: 220px;
+            object-fit: cover;
+        }
+
+        /* Testimonial Section */
+        .testimonial-block {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 40px;
+            border-radius: 8px;
+            height: 100%;
+            position: relative;
+        }
+        .quote-icon {
+            color: var(--accent-color);
+            font-size: 2.5rem;
+            opacity: 0.5;
+            position: absolute;
+            top: 15px;
+            left: 20px;
+        }
+
+        /* FAQ Section */
+        .accordion-button:not(.collapsed) {
+            color: var(--light-text);
+            background-color: var(--primary-color);
+            box-shadow: none;
+        }
+        .accordion-button {
+            font-weight: bold;
+        }
+        .accordion-body {
+            background-color: var(--light-bg);
+        }
+
+        /* Integrated Advantage Section & Trust Signals (CSS giữ nguyên) */
+        .integrated-section { background-color: var(--light-bg); }
+        .integrated-panel.cb-model { background-color: var(--primary-color); color: var(--light-text); }
+        .integrated-panel.traditional-model { background-color: var(--light-text); color: var(--dark-text); border: 1px solid #ddd; }
+        .metric-number { font-size: 2.5rem; font-weight: 900; color: var(--accent-color); }
+        .metric-box { border: 1px solid var(--accent-color); }
+
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#main-nav" data-bs-offset="50">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="main-nav">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">CENTRAL BUILD</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#values">Promise</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#faq">Q&A</a></li>
+                    <li class="nav-item"><a class="nav-link cta-button-gold text-dark ms-lg-3" href="#contact">START CONSULTATION</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section" id="home">
+        <div class="container position-relative" data-aos="fade-up" data-aos-duration="1200">
+            <h1 class="display-1 fw-bolder mb-3">COMMERCIAL CONSTRUCTION. <br> <span style="color: var(--accent-color);">RELIABILITY ENGINEERED.</span></h1>
+            <p class="lead mb-4 fw-bold" style="color: var(--accent-color);">We are Central Build: The Vertically Integrated Partner.</p>
+            <p class="mb-5 fs-5 opacity-85 col-lg-8">Eliminate risk, cut coordination delays, and guarantee compliance with a single, accountable **in-house team** managing your entire project lifecycle.</p>
+            <a href="#contact" class="btn cta-button-gold btn-lg shadow-lg">START YOUR PROJECT CONSULTATION</a>
+        </div>
+    </header>
+
+    <section id="values" class="py-5 py-md-5">
+        <div class="container">
+            <h2 class="text-center display-6 fw-normal mb-5" data-aos="fade-down">The Central Build Promise: Control. Compliance. Confidence.</h2>
+            <div class="row g-4">
+                <div class="col-md-4"><div class="value-box text-center" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-sitemap value-icon mb-3"></i><h4 class="fw-bold" style="color: var(--primary-color);">PROJECT CONTROL</h4><p class="small text-muted">Full control over **quality, timeline, and cost** by keeping core trades in-house.</p></div></div>
+                <div class="col-md-4"><div class="value-box text-center" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-shield-alt value-icon mb-3"></i><h4 class="fw-bold" style="color: var(--primary-color);">COMPLIANCE GUARANTEED</h4><p class="small text-muted">Guaranteed adherence to all regulations and **safety standards**, certified by our internal specialists.</p></div></div>
+                <div class="col-md-4"><div class="value-box text-center" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-handshake value-icon mb-3"></i><h4 class="fw-bold" style="color: var(--primary-color);">ABSOLUTE CONFIDENCE</h4><p class="small text-muted">A single point of **accountability** means zero miscommunication and assured delivery.</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-5 py-md-5 bg-dark">
+        <div class="container">
+            <h2 class="text-center display-6 fw-normal mb-5 text-white" data-aos="fade-down">Our Integrated Service Ecosystem</h2>
+            <div class="row g-3">
+                <div class="col-md-6 col-lg-3"><a href="path/to/fitout-service" class="text-decoration-none"><div class="service-tile tile-fitout shadow-lg" data-aos="zoom-in" data-aos-delay="100" style="background-image: url('path/to/fitout-image.jpg'); background-size: cover;"><div class="tile-overlay"></div><div class="tile-content"><i class="fas fa-lightbulb tile-icon" style="color: var(--accent-color);"></i><h4 class="fw-bold">COMMERCIAL FITOUT</h4><p class="small mb-0">Vision to Reality: High-end, precise delivery.</p><span class="fw-normal mt-2 d-block" style="color: var(--accent-color);">Explore Fitout &rarr;</span></div></div></a></div>
+                <div class="col-md-6 col-lg-3"><a href="path/to/coordination-service" class="text-decoration-none"><div class="service-tile tile-coordination shadow-lg" data-aos="zoom-in" data-aos-delay="200" style="background-image: url('path/to/coordination-image.jpg'); background-size: cover;"><div class="tile-overlay"></div><div class="tile-content"><i class="fas fa-route tile-icon" style="color: var(--cyan-coordination);"></i><h4 class="fw-bold">SERVICES COORDINATION</h4><p class="small mb-0">Chaos Ends Here: BIM-verified clash detection.</p><span class="fw-normal mt-2 d-block" style="color: var(--cyan-coordination);">Discover Coordination &rarr;</span></div></div></a></div>
+                <div class="col-md-6 col-lg-3"><a href="path/to/stripout-service" class="text-decoration-none"><div class="service-tile tile-stripout shadow-lg" data-aos="zoom-in" data-aos-delay="300" style="background-image: url('path/to/stripout-image.jpg'); background-size: cover;"><div class="tile-overlay"></div><div class="tile-content"><i class="fas fa-hammer tile-icon" style="color: var(--yellow-stripout);"></i><h4 class="fw-bold">COMMERCIAL STRIPOUT</h4><p class="small mb-0">Clean Slate: Safe, fast, and compliant deconstruction.</p><span class="fw-normal mt-2 d-block" style="color: var(--yellow-stripout);">Get Stripout Quote &rarr;</span></div></div></a></div>
+                <div class="col-md-6 col-lg-3"><a href="path/to/maintenance-service" class="text-decoration-none"><div class="service-tile tile-maintenance shadow-lg" data-aos="zoom-in" data-aos-delay="400" style="background-image: url('path/to/maintenance-image.jpg'); background-size: cover;"><div class="tile-overlay"></div><div class="tile-content"><i class="fas fa-clock tile-icon" style="color: var(--red-maintenance);"></i><h4 class="fw-bold">REPAIRS & MAINTENANCE</h4><p class="small mb-0">Readiness Partner: 24/7 Rapid Response support.</p><span class="fw-normal mt-2 d-block" style="color: var(--red-maintenance);">Request 24/7 Service &rarr;</span></div></div></a></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-5 py-md-5">
+        <div class="container">
+            <h2 class="text-center display-6 fw-normal mb-5" data-aos="fade-down">Featured Projects: Where Precision Meets Scale</h2>
+            <div class="row g-4">
+                
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card project-card shadow">
+                        <img src="path/to/project-retail.jpg" class="card-img-top project-img" alt="Retail Flagship Fitout" loading="lazy">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold" style="color: var(--primary-color);">Retail Flagship Store</h5>
+                            <p class="card-text small mb-1">**Service:** Commercial Fitout (High-End)</p>
+                            <p class="card-text small mb-1">**Scope:** 800 m², Complete MEP integration.</p>
+                            <a href="path/to/case-study-1" class="btn btn-sm cta-button-gold mt-2">View Case Study</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card project-card shadow">
+                        <img src="path/to/project-stripout.jpg" class="card-img-top project-img" alt="Corporate Stripout" loading="lazy">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold" style="color: var(--primary-color);">Commercial Office Tower</h5>
+                            <p class="card-text small mb-1">**Service:** Commercial Stripout & Demolition</p>
+                            <p class="card-text small mb-1">**Scope:** 3,500 m², 12-Day Schedule, Zero Harm.</p>
+                            <a href="path/to/case-study-2" class="btn btn-sm cta-button-gold mt-2">View Case Study</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card project-card shadow">
+                        <img src="path/to/project-healthcare.jpg" class="card-img-top project-img" alt="Healthcare Upgrade" loading="lazy">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold" style="color: var(--primary-color);">Regional Health Clinic</h5>
+                            <p class="card-text small mb-1">**Service:** Fitout & Services Coordination</p>
+                            <p class="card-text small mb-1">**Scope:** Critical System Upgrade, Live environment.</p>
+                            <a href="path/to/case-study-3" class="btn btn-sm cta-button-gold mt-2">View Case Study</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="text-center mt-5" data-aos="fade-up">
+                <a href="path/to/portfolio" class="btn btn-outline-dark btn-lg fw-bold">VIEW OUR FULL PORTFOLIO <i class="fas fa-arrow-right ms-2"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="py-5 py-md-5 bg-light">
+        <div class="container">
+            <h2 class="text-center display-6 fw-normal mb-5" data-aos="fade-down">Client Testimonials: Trust Built on Delivery</h2>
+            <div class="row g-4">
+                
+                <div class="col-md-6" data-aos="fade-right">
+                    <div class="testimonial-block shadow-lg">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p class="lead fst-italic mt-4">"The in-house teams made all the difference. We avoided the usual site conflicts and finished a week ahead of schedule. Central Build truly controls the process."</p>
+                        <footer class="blockquote-footer mt-3 text-white">
+                            <cite title="Source Title" class="fw-bold" style="color: var(--accent-color);">Jane Doe</cite>, Operations Director, Retail Group
+                        </footer>
+                    </div>
+                </div>
+
+                <div class="col-md-6" data-aos="fade-left">
+                    <div class="testimonial-block shadow-lg">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p class="lead fst-italic mt-4">"Their dedication to safety and compliance was flawless. The project was audited perfectly, and their ongoing maintenance support gives us total peace of mind."</p>
+                        <footer class="blockquote-footer mt-3 text-white">
+                            <cite title="Source Title" class="fw-bold" style="color: var(--accent-color);">Michael Chen</cite>, Facility Manager, Corporate Realty
+                        </footer>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    
+    <section id="advantage" class="py-5 py-md-5 integrated-section">
+        <div class="container">
+            <h2 class="text-center display-6 fw-normal mb-5" data-aos="fade-down">The Central Build Difference: Our In-House Advantage</h2>
+            <div class="row g-4">
+                <div class="col-md-6" data-aos="fade-right"><div class="integrated-panel cb-model shadow-lg"><h3 class="fw-bolder mb-3" style="color: var(--accent-color);">CENTRAL BUILD MODEL: UNIFIED TEAM</h3><i class="fas fa-users-cog fa-4x mb-4" style="color: var(--accent-color);"></i><p class="lead fw-bold">Plumbers, Electricians, and Builders work as one integrated, accountable unit.</p><ul class="list-unstyled"><li class="mb-2"><i class="fas fa-check-circle me-2" style="color: var(--accent-color);"></i> **Faster Timelines:** No waiting for external subs.</li><li class="mb-2"><i class="fas fa-check-circle me-2" style="color: var(--accent-color);"></i> **Zero Conflict:** Coordination happens internally, before site work.</li><li class="mb-2"><i class="fas fa-check-circle me-2" style="color: var(--accent-color);"></i> **Single Point of Contact** for all services.</li></ul></div></div>
+                <div class="col-md-6" data-aos="fade-left"><div class="integrated-panel traditional-model shadow-lg"><h3 class="fw-bolder mb-3" style="color: var(--primary-color);">TRADITIONAL MODEL: FRAGMENTED VENDORS</h3><i class="fas fa-people-arrows fa-4x mb-4" style="color: var(--primary-color);"></i><p class="lead fw-bold">Managing 5+ external sub-contractors on separate contracts.</p><ul class="list-unstyled text-danger"><li class="mb-2"><i class="fas fa-times-circle me-2"></i> **Project Delays** due to scheduling conflicts.</li><li class="mb-2"><i class="fas fa-times-circle me-2"></i> **Cost Overruns** from unforeseen site clashes.</li><li class="mb-2"><i class="fas fa-times-circle me-2"></i> **Multiple Points of Failure** and accountability gaps.</li></ul></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="trust" class="py-5 py-md-5 bg-dark">
+        <div class="container">
+            <h2 class="text-center display-6 fw-normal mb-5 text-white" data-aos="fade-down">Built on Trust and Proven Performance</h2>
+            <div class="row g-4 text-center mb-5">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100"><div class="metric-box"><div class="metric-number" data-count="100">100%</div><p class="lead fw-normal mb-0" style="color: var(--primary-color);">Projects Delivered On-Time</p></div></div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200"><div class="metric-box"><div class="metric-number" data-count="99.8">99.8%</div><p class="lead fw-normal mb-0" style="color: var(--primary-color);">Safety Compliance Rating</p></div></div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300"><div class="metric-box"><div class="metric-number">20+</div><p class="lead fw-normal mb-0" style="color: var(--primary-color);">Years of Industry Experience</p></div></div>
+            </div>
+            
+            <h4 class="text-center fw-normal mt-5 text-white opacity-75">Trusted By Leading Commercial Clients:</h4>
+            <div class="row justify-content-center mt-4" data-aos="zoom-in">
+                <div class="col-10" style="height: 80px; background-color: rgba(255, 255, 255, 0.05); display: flex; align-items: center; justify-content: space-around; border-radius: 8px;">
+                    <i class="fas fa-city fa-2x" style="color: #666;"></i>
+                    <i class="fas fa-industry fa-2x" style="color: #666;"></i>
+                    <i class="fas fa-store-alt fa-2x" style="color: #666;"></i>
+                    <i class="fas fa-hospital-alt fa-2x" style="color: #666;"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="faq" class="py-5 py-md-5">
+        <div class="container">
+            <h2 class="text-center display-6 fw-normal mb-5" data-aos="fade-down">Common Questions About Our Integrated Approach</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-10" data-aos="fade-up">
+                    <div class="accordion" id="faqAccordion">
+                        
+                        <div class="accordion-item shadow-sm mb-3">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <span style="color: var(--accent-color);" class="me-2 fw-bolder">Q:</span> What does "Vertically Integrated" mean for my project?
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    It means Central Build employs most core trades (plumbers, electricians, builders) directly, instead of relying on external sub-contractors. This gives us **total control over quality, scheduling, and accountability**, drastically reducing delays and communication errors.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item shadow-sm mb-3">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <span style="color: var(--accent-color);" class="me-2 fw-bolder">Q:</span> How does your integrated model impact overall project cost?
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    While our upfront quote is competitive, the integrated model often results in **lower total costs** due to reduced project management fees, fewer variations caused by site conflicts, and shorter completion timelines. Efficiency equals savings.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item shadow-sm mb-3">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    <span style="color: var(--accent-color);" class="me-2 fw-bolder">Q:</span> Do you handle ongoing Repairs & Maintenance after handover?
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes. We provide comprehensive, **24/7 commercial Repairs and Maintenance** as a trusted "Readiness Partner," ensuring your operations continue smoothly long after the fit-out is complete.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="text-center mt-4">
+                        <a href="path/to/faq-page" class="btn btn-sm btn-outline-dark fw-bold">SEE ALL FAQ'S</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-5 py-md-5" style="background-color: var(--light-bg);">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
+                    <h2 class="display-5 fw-bolder mb-3" style="color: var(--primary-color);">READY TO EXPERIENCE THE <span style="color: var(--accent-color);">INTEGRATED ADVANTAGE?</span></h2>
+                    <p class="lead mb-4 fw-light">Stop settling for fragmented service. Partner with Central Build for guaranteed control and transparent results on your next commercial project.</p>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="card p-4 shadow-lg">
+                        <h4 class="card-title text-center fw-bold" style="color: var(--primary-color);">Project Kick-off Form (Fast Response)</h4>
+                        <form>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Your Full Name" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" placeholder="Work Email" required>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <select class="form-select" required>
+                                        <option selected disabled>Project Type*</option>
+                                        <option>Commercial Fitout</option>
+                                        <option>Commercial Stripout</option>
+                                        <option>Services Coordination</option>
+                                        <option>Maintenance Contract</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="Estimated Size (m²)" required>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn cta-button-gold w-100 btn-lg">REQUEST A CONSULTATION</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark py-4 text-center" style="color: rgba(255, 255, 255, 0.6);">
+        <div class="container">
+            <p class="mb-2">&copy; 2025 Central Build. All Rights Reserved. | The Integrated Advantage.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+        });
+
+        // Simple Counter-Up Functionality for Stats Section (Metrics)
+        const counters = document.querySelectorAll('.metric-number');
+        const speed = 200; 
+
+        counters.forEach(counter => {
+            if (!counter.getAttribute('data-count')) return;
+            
+            const updateCount = () => {
+                const target = +counter.getAttribute('data-count');
+                const count = +counter.innerText.replace(/[^0-9.]/g, '');
+
+                const inc = target / speed;
+
+                if (count < target) {
+                    counter.innerText = (count + inc).toFixed(counter.innerText.includes('.') ? 1 : 0) + (counter.innerText.includes('%') ? '%' : '');
+                    setTimeout(updateCount, 1);
+                } else {
+                    counter.innerText = target + (counter.innerText.includes('%') ? '%' : '');
+                }
+            };
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        updateCount();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 }); 
+
+            observer.observe(counter);
+        });
+    </script>
+</body>
+</html>

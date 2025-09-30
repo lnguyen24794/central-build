@@ -1,18 +1,23 @@
 <?php
-// Get header settings with fallbacks
-$header_phone = get_option('central_build_header_phone', 'tel:+611234567');
-$header_phone_display = get_option('central_build_header_phone_display', '+61 123 456 789');
-$header_email = get_option('central_build_header_email', 'info@centralbuild.au');
+if (!defined('ABSPATH')) {
+    exit;
+}
 
-$header_facebook = get_option('central_build_header_facebook', '#');
-$header_linkedin = get_option('central_build_header_linkedin', '#');
-$header_instagram = get_option('central_build_header_instagram', '#');
+$header_settings = get_option('central_build_header_settings', array());
+$defaults        = central_build_header_settings_defaults();
+$header_settings = wp_parse_args(is_array($header_settings) ? $header_settings : array(), $defaults);
+$header_settings['phone'] = wp_parse_args($header_settings['phone'] ?? array(), $defaults['phone']);
+$header_settings['cta']   = wp_parse_args($header_settings['cta'] ?? array(), $defaults['cta']);
+$header_settings['logo']  = wp_parse_args($header_settings['logo'] ?? array(), $defaults['logo']);
 
-$header_cta_text = get_option('central_build_header_cta_text', 'Get A quote');
-$header_cta_url = get_option('central_build_header_cta_url', home_url('/contact'));
-
-$header_logo_width = get_option('central_build_header_logo_width', 121);
-$header_logo_height = get_option('central_build_header_logo_height', 38);
+$header_phone        = $header_settings['phone']['link'];
+$header_phone_display = $header_settings['phone']['display'];
+$header_email        = $header_settings['email'];
+$header_social_links = $header_settings['social_links'];
+$header_cta_text     = $header_settings['cta']['text'];
+$header_cta_url      = $header_settings['cta']['url'];
+$header_logo_width   = (int) $header_settings['logo']['width'];
+$header_logo_height  = (int) $header_settings['logo']['height'];
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?> class="w-mod-js">
@@ -33,9 +38,7 @@ $header_logo_height = get_option('central_build_header_logo_height', 38);
     
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
-    
-    <link href="<?php echo get_template_directory_uri(); ?>/images/67624b469230f78408d127c9_66f5ef0f300ba05756664c1f_Untitled%20design%20%282%29%20%28Custom%29.png" rel="shortcut icon" type="image/x-icon">
-    <link href="<?php echo get_template_directory_uri(); ?>/images/67624b50f5ed113a6d144492_66f5eee1b9d1bc07e2c176ba_Untitled%20design%20%282%29.png" rel="apple-touch-icon">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script>
     <script src="<?php echo get_template_directory_uri(); ?>/js/swiper-bundle.min.js"></script>
@@ -59,23 +62,26 @@ $header_logo_height = get_option('central_build_header_logo_height', 38);
                 </div>
                 <div class="header-social-block">
                     <div class="phone-text">Follow Us :</div>
-                    <?php if ($header_facebook) : ?>
-                    <a href="<?php echo esc_url($header_facebook); ?>" target="_blank" class="header-social-link w-inline-block">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/Footer-Fb.svg" alt="Fb Icon" width="7" height="13">
-                    </a>
-                    <?php endif; ?>
-                    
-                    <?php if ($header_linkedin) : ?>
-                    <a href="<?php echo esc_url($header_linkedin); ?>" target="_blank" class="header-social-link w-inline-block">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/Linkedin-Icon-Big.svg" width="14" height="13" alt="Linkedin Icon Big">
-                    </a>
-                    <?php endif; ?>
-                    
-                    <?php if ($header_instagram) : ?>
-                    <a href="<?php echo esc_url($header_instagram); ?>" target="_blank" class="header-social-link w-inline-block">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/Footer-Instra.svg" width="14" height="13" alt="Instra Icon">
-                    </a>
-                    <?php endif; ?>
+                    <?php foreach ($header_social_links as $social) :
+                        $label    = esc_html($social['label']);
+                        $url      = esc_url($social['url']);
+                        $icon_url = esc_url($social['icon_url']);
+                        $icon_alt = esc_attr($social['icon_alt']);
+
+                        if ($url === '' && $icon_url === '') {
+                            continue;
+                        }
+                        ?>
+                        <a href="<?php echo $url ?: '#'; ?>" target="_blank" class="header-social-link w-inline-block" <?php echo $url ? '' : 'aria-disabled="true"'; ?>>
+                            <?php if ($icon_url) : ?>
+                                <img src="<?php echo $icon_url; ?>" alt="<?php echo $icon_alt ?: $label; ?>" width="18" height="18">
+                            <?php else : ?>
+                                <span class="phone-text" style="font-size: 12px; text-transform: uppercase;">
+                                    <?php echo $label ?: esc_html__('Social', 'central-build'); ?>
+                                </span>
+                            <?php endif; ?>
+                        </a>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>
@@ -123,12 +129,8 @@ $header_logo_height = get_option('central_build_header_logo_height', 38);
                     </div>
                 </nav>
                 
-                <a href="<?php echo esc_url($header_cta_url); ?>" class="hero-button mb-0 above-all-else nav-bar-button w-inline-block">
-                    <div class="button-mask">
-                        <div class="link-text-wrp">
-                            <div class="text-block-2"><?php echo esc_html($header_cta_text); ?></div>
-                        </div>
-                    </div>
+                <a href="<?php echo esc_url($header_cta_url); ?>" class="cta-button-emergency mb-0 above-all-else nav-bar-button w-inline-block">
+                    Contact Now
                 </a>
             </div>
         </div>

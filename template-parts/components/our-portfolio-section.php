@@ -4,27 +4,16 @@
    <div class="container">
         <!-- Section Header -->
         <div class="my-container">
-            <div class="home-two-mid-icon-block-2">
-                <?php
-                $checkout_icon = get_option('central_build_checkout_icon');
-                if ($checkout_icon) : ?>
-                    <img width="66" height="83" 
-                        alt="<?php esc_attr_e('Section Icon', 'central-build'); ?>" 
-                        src="<?php echo esc_url($checkout_icon); ?>">
-                <?php else : ?>
-                    <img width="66" height="83" 
-                        alt="<?php esc_attr_e('Innovation Icon', 'central-build'); ?>" 
-                        src="<?php echo esc_url(get_template_directory_uri() . '/images/innovation-icon.svg'); ?>">
-                <?php endif; ?>
-                
-                <div class="large-visible-desktop-hidden home-three-construction-heading">
-                    <h2 class="heading">
-                        <?php
-                        $checkout_title = get_option('central_build_checkout_title', __('Commercial Fitout Sectors', 'central-build'));
-                        echo esc_html($checkout_title);
-                        ?>
-                    </h2>
-                </div>
+            <div class="w-layout-hflex heading-box">
+                <h2 class="nz-div-6">
+                    <span class="title-holder">
+                    <?php
+                        $about_title = get_option('central_build_checkout_title', __('Commercial Fitout Sectors', 'central-build'));
+                        echo esc_html($about_title);
+                    ?>
+                    </span>
+                ?>
+                </h2>
             </div>
         </div>
         
@@ -136,3 +125,4 @@
    </div>
     
 </section>
+aa

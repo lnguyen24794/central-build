@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Central Build | Stop Delays. Start Building Value.</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        /* Custom CSS: Using Bold & Industrial Style */
+        :root {
+            --primary-color: #FB7F28; /* Deep Navy/Charcoal */
+            --accent-color: #FF6B00;  /* Bright Orange/Amber for CTA & Accent */
+            --light-bg: #F4F7F9;
+            --dark-text: #212529;
+            --light-text: #FFFFFF;
+        }
+        
+        .navbar-nav .nav-link:hover {
+            color: var(--accent-color) !important;
+        }
+
+        /* Hero Section - Split Screen Style */
+        .hero-section {
+            height: 90vh;
+            background-color: var(--dark-text);
+            color: var(--light-text);
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero-image-placeholder {
+            height: 100%;
+            background: url('path/to/in-house-trades-video-still.jpg') no-repeat center center/cover;
+            /* Use object-fit: cover for video/image background */
+        }
+
+        .cta-button-accent {
+            background-color: var(--accent-color);
+            border: 2px solid var(--accent-color);
+            color: var(--dark-text);
+            font-weight: 700;
+            padding: 12px 35px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
+        }
+        
+        .cta-button-accent:hover {
+            background-color: #e05e00;
+            border-color: #e05e00;
+            color: var(--light-text);
+        }
+
+        /* Stats Section Styling */
+        .stat-box {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            border-radius: 10px;
+            padding: 30px;
+            height: 100%;
+            transition: transform 0.3s ease;
+        }
+        .stat-box:hover {
+            transform: translateY(-5px);
+            background-color: #2a4968;
+        }
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--accent-color);
+            line-height: 1;
+        }
+
+        /* In-House Advantage */
+        .in-house-feature {
+            background-color: var(--light-bg);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        .in-house-feature:hover {
+            background-color: #E8EDF1;
+        }
+        
+        .process-step-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+        }
+
+        /* Jumbotron Style for Final CTA */
+        .final-cta-jumbotron {
+            background-color: var(--accent-color);
+            color: var(--dark-text);
+            padding: 60px 0;
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#main-nav" data-bs-offset="50">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="main-nav">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">CENTRAL BUILD</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#stats">Trust</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#pillars">Solutions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#inhouse">In-House</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#case-study">Case Studies</a></li>
+                    <li class="nav-item"><a class="nav-link cta-button-accent text-dark ms-lg-3" href="#contact">GET A FREE ANALYSIS</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-section" id="home">
+        <div class="container-fluid h-100">
+            <div class="row h-100">
+                <div class="col-lg-6 d-flex align-items-center p-5 p-lg-5" data-aos="fade-right">
+                    <div class="px-md-5">
+                        <p class="text-uppercase fw-normal text-accent mb-2" style="color: var(--accent-color);">Commercial Fitout Specialists</p>
+                        <h1 class="display-3 fw-bolder mb-4">STOP DELAYS. <br> START BUILDING <span style="color: var(--accent-color);">VALUE.</span></h1>
+                        <p class="lead mb-4 opacity-75">We eliminate the pitfalls of traditional construction – conflict, budget creep, and delays – through our **100% Secured and In-House** delivery model.</p>
+                        
+                        <a href="#contact" class="btn cta-button-accent btn-lg me-3 pulse-animation">CALCULATE YOUR PROJECT TIME & COST</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 hero-image-placeholder d-none d-lg-block" data-aos="fade-left">
+                    </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="stats" class="py-5 py-md-5" style="background-color: var(--light-bg);">
+        <div class="container">
+            <h2 class="text-center display-6 fw-normal mb-5" data-aos="fade-down">Driven by Data. Built on Trust.</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="stat-box text-center" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fas fa-check-circle fa-3x mb-3" style="color: var(--accent-color);"></i>
+                        <div class="stat-number" data-count="50">0</div>
+                        <p class="lead fw-normal mb-0">Successful Projects Delivered</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-box text-center" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-percent fa-3x mb-3" style="color: var(--accent-color);"></i>
+                        <div class="stat-number" data-count="98">0</div>
+                        <p class="lead fw-normal mb-0">Client Satisfaction Rate</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-box text-center" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-shield-alt fa-3x mb-3" style="color: var(--accent-color);"></i>
+                        <div class="stat-number">REG.</div>
+                        <p class="lead fw-normal mb-0">Certified Commercial Builder</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pillars" class="py-5 py-md-5">
+        <div class="container">
+            <h2 class="text-center display-6 fw-normal mb-5" data-aos="fade-down">The Three Pillars of Central Build</h2>
+            
+            <ul class="nav nav-tabs nav-fill mb-4" id="pills-tab" role="tablist" data-aos="fade-up">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active fw-normal text-uppercase" id="tab-1-tab" data-bs-toggle="pill" data-bs-target="#tab-1" type="button" role="tab">Precision Engineering</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link fw-normal text-uppercase" id="tab-2-tab" data-bs-toggle="pill" data-bs-target="#tab-2" type="button" role="tab">Vertical Integration</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link fw-normal text-uppercase" id="tab-3-tab" data-bs-toggle="pill" data-bs-target="#tab-3" type="button" role="tab">Client-Centric Flexibility</button>
+                </li>
+            </ul>
+            
+            <div class="tab-content border p-4 rounded shadow-sm" id="pills-tabContent" data-aos="fade-up" data-aos-delay="300">
+                <div class="tab-pane fade show active" id="tab-1" role="tabpanel">
+                    <h3 class="fw-normal mb-3" style="color: var(--primary-color);">100% Secured Delivery</h3>
+                    <p>Our commitment begins with **meticulous attention to detail**. We ensure full compliance with the highest standards of design, safety, and quality control. Being a **registered commercial builder** means every phase is fully secured, minimizing risk and maximizing lasting value.</p>
+                </div>
+                <div class="tab-pane fade" id="tab-2" role="tabpanel">
+                    <h3 class="fw-normal mb-3" style="color: var(--primary-color);">The In-House Advantage</h3>
+                    <p>We maintain **full control over the project timeline and quality** by having our own **plumbing and electrical teams**. This vertical integration, coordinated with our BIM team, **minimizes friction between trades**, leading to faster execution and superior finish quality.</p>
+                </div>
+                <div class="tab-pane fade" id="tab-3" role="tabpanel">
+                    <h3 class="fw-normal mb-3" style="color: var(--primary-color);">Adaptable & Transparent Management</h3>
+                    <p>We work closely with clients, providing **upfront pricing with no hidden costs**. Our **flexible management system** is designed to meet dynamic project requirements and **accelerate on-site problem solving**, ensuring project targets are hit without compromising on budget or schedule.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="inhouse" class="py-5 py-md-5 bg-dark" style="color: var(--light-text);">
+        <div class="container">
+            <h2 class="text-center display-6 fw-normal mb-5" data-aos="fade-down">WE OWN THE PROCESS: Our In-House Teams</h2>
+            <div class="row g-4">
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="in-house-feature" style="background-color: #333; color: var(--light-text);">
+                        <i class="fas fa-faucet fa-2x mb-3" style="color: var(--accent-color);"></i>
+                        <h4 class="fw-bold">Plumbing Experts</h4>
+                        <p>Specialized Central Build plumbers ensure flawless integration and execution of all water systems, crucial for F&B and retail fit-outs.</p>
+                        <img src="path/to/plumbing-expert-photo.jpg" class="img-fluid rounded mt-3" alt="Plumber working" loading="lazy">
+                    </div>
+                </div>
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="in-house-feature" style="background-color: #333; color: var(--light-text);">
+                        <i class="fas fa-bolt fa-2x mb-3" style="color: var(--accent-color);"></i>
+                        <h4 class="fw-bold">Electrical Specialists</h4>
+                        <p>Our electricians coordinate with BIM plans to manage complex power layouts, ensuring safety and compliance in modern office spaces.</p>
+                        <img src="path/to/electrical-expert-photo.jpg" class="img-fluid rounded mt-3" alt="Electrician working" loading="lazy">
+                    </div>
+                </div>
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="in-house-feature" style="background-color: #333; color: var(--light-text);">
+                        <i class="fas fa-sitemap fa-2x mb-3" style="color: var(--accent-color);"></i>
+                        <h4 class="fw-bold">BIM & Seamless Management</h4>
+                        <p>Our experienced management team, coupled with our BIM architects, ensures every trade is perfectly aligned, guaranteeing efficiency and quality.</p>
+                        <img src="path/to/bim-management-photo.jpg" class="img-fluid rounded mt-3" alt="BIM planning" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="case-study" class="py-5 py-md-5" style="background-color: var(--light-bg);">
+        <div class="container">
+            <h2 class="text-center display-6 fw-normal mb-5" data-aos="fade-down">CASE STUDY SPOTLIGHT: The [Client Name] HQ</h2>
+            <div class="card p-4 shadow-lg border-0" data-aos="zoom-in">
+                <div class="row g-0">
+                    <div class="col-md-5">
+                        <img src="path/to/best-case-study-final-photo.jpg" class="img-fluid rounded-start h-100 object-fit-cover" alt="Case Study Final Project Photo" loading="lazy">
+                    </div>
+                    <div class="col-md-7 p-4">
+                        <h3 class="fw-normal mb-3" style="color: var(--primary-color);">Challenge: 4,000 m² Tech Office Refit in 10 Weeks</h3>
+                        <p class="lead">The client required a rapid, high-quality transformation to meet their expansion deadline, demanding **unprecedented speed** without budget inflation.</p>
+                        
+                        <h4 class="mt-4 fw-bold">The Central Build Solution</h4>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check-circle me-2" style="color: var(--accent-color);"></i> Deployed **In-House** teams concurrently for accelerated timeline.</li>
+                            <li><i class="fas fa-check-circle me-2" style="color: var(--accent-color);"></i> Utilized **Flexible Management** to solve on-site conflicts instantly.</li>
+                        </ul>
+                        
+                        <h4 class="mt-4 fw-bold">Result: Delivered 3 Days Early</h4>
+                        <div class="progress mb-2" style="height: 30px;">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%; background-color: var(--accent-color);" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100% Completion</div>
+                        </div>
+                        <p class="text-muted fst-italic">Achieving maximum speed and quality control.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="journey" class="py-5 py-md-5">
+        <div class="container">
+            <h2 class="text-center display-6 fw-normal mb-5" data-aos="fade-down">The Seamless Client Journey</h2>
+            <div class="row g-4 text-center">
+                <div class="col-md-3" data-aos="fade-right" data-aos-delay="100">
+                    <i class="fas fa-search process-step-icon mb-3"></i>
+                    <h4 class="fw-bold">1. DISCOVERY</h4>
+                    <p class="small">In-depth consultation to define needs and budget.</p>
+                </div>
+                <div class="col-md-1 d-none d-md-block d-flex align-items-center justify-content-center">
+                    <i class="fas fa-chevron-right text-muted"></i>
+                </div>
+                <div class="col-md-3" data-aos="fade-right" data-aos-delay="200">
+                    <i class="fas fa-drafting-compass process-step-icon mb-3"></i>
+                    <h4 class="fw-bold">2. BLUEPRINT</h4>
+                    <p class="small">Transparent quoting, BIM modeling, and design finalization.</p>
+                </div>
+                <div class="col-md-1 d-none d-md-block d-flex align-items-center justify-content-center">
+                    <i class="fas fa-chevron-right text-muted"></i>
+                </div>
+                <div class="col-md-3" data-aos="fade-right" data-aos-delay="300">
+                    <i class="fas fa-industry process-step-icon mb-3"></i>
+                    <h4 class="fw-bold">3. EXECUTE</h4>
+                    <p class="small">Integrated build with In-House trades and strict QA/QC.</p>
+                </div>
+                <div class="col-md-1 d-none d-md-block d-flex align-items-center justify-content-center">
+                    <i class="fas fa-chevron-right text-muted"></i>
+                </div>
+                <div class="col-md-3" data-aos="fade-right" data-aos-delay="400">
+                    <i class="fas fa-rocket process-step-icon mb-3"></i>
+                    <h4 class="fw-bold">4. LAUNCH</h4>
+                    <p class="small">Rapid handover, final commissioning, and warranty support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="final-cta-jumbotron">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7" data-aos="fade-right">
+                    <h2 class="display-5 fw-bolder mb-3">DON'T JUST BUILD. <br> BUILD <span style="color: var(--primary-color);">CENTRAL.</span></h2>
+                    <p class="lead mb-4 fw-bold">We guarantee **On-Time, On-Budget, and On-Spec** delivery. Challenge us with your next project and experience the difference.</p>
+                    <p class="fw-bold">Call us today: +1 (123) 456-7890</p>
+                </div>
+                <div class="col-lg-5 mt-4 mt-lg-0" data-aos="fade-left">
+                    <div class="card p-4 shadow-lg">
+                        <h4 class="card-title text-center fw-bold" style="color: var(--primary-color);">Schedule a Free Analysis</h4>
+                        <form>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" placeholder="Your Name" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" placeholder="Work Email" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="tel" class="form-control" placeholder="Phone Number" required>
+                            </div>
+                            <button type="submit" class="btn btn-dark w-100 btn-lg fw-bold" style="background-color: var(--primary-color);">GET STARTED NOW</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark py-4 text-center" style="color: rgba(255, 255, 255, 0.6);">
+        <div class="container">
+            <p class="mb-2">&copy; 2025 Central Build. All Rights Reserved. | Registered Commercial Contractor.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+        });
+
+        // Simple Counter-Up Functionality for Stats Section (Optional but recommended)
+        const counters = document.querySelectorAll('.stat-number');
+        const speed = 200; // The lower the slower
+
+        counters.forEach(counter => {
+            const updateCount = () => {
+                const target = +counter.getAttribute('data-count');
+                const count = +counter.innerText;
+
+                const inc = target / speed;
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + inc);
+                    setTimeout(updateCount, 1);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+
+            // Only run counter when section is visible
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        updateCount();
+                        observer.unobserve(entry.target); // Stop observing after running
+                    }
+                });
+            }, { threshold: 0.5 }); // Start when 50% visible
+
+            if (counter.getAttribute('data-count')) {
+                observer.observe(counter);
+            }
+        });
+    </script>
+</body>
+</html>

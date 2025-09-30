@@ -394,19 +394,16 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 h1 {
-    margin-top: 20px;
     font-size: 38px;
     line-height: 44px
 }
 
 h2 {
-    margin-top: 20px;
     font-size: 32px;
     line-height: 36px
 }
 
 h3 {
-    margin-top: 20px;
     font-size: 24px;
     line-height: 30px
 }
@@ -799,7 +796,6 @@ textarea.w-input,textarea.w-select {
 .w-hidden-main {
     display: none!important
 }
-
 @media screen and (max-width: 991px) {
     .w-container {
         max-width:728px
@@ -1347,7 +1343,6 @@ textarea.w-input,textarea.w-select {
 
 .w-dropdown {
     text-align: left;
-    z-index: 900;
     margin-left: auto;
     margin-right: auto;
     display: inline-block;
@@ -1597,7 +1592,6 @@ textarea.w-input,textarea.w-select {
     top: 0;
     left: 0
 }
-
 .w-lightbox-thumbnail .w-lightbox-tall {
     width: 100%;
     top: 50%;
@@ -2076,10 +2070,16 @@ textarea.w-input,textarea.w-select {
     --paragraph-light-color: #989eb7;
     --heading-light-color: white;
     --primary: #FB7F28;
+    --primary-color: #FB7F28;
     --secondary: #bb6209f5;
     --button-color: #e3770af5;
     --white: white;
-    --new: var(--paragraph-dark-color)
+    --new: var(--paragraph-dark-color);
+    --accent-color: #B8860B;  /* Metallic Bronze/Gold for Project Inquiry */
+    --emergency-color: #E53935; /* Emergency Red */
+    --light-bg: #F4F7F9;
+    --dark-text: #212529;
+    --light-text: #FFFFFF;
 }
 
 .w-layout-blockcontainer {
@@ -2392,12 +2392,6 @@ textarea.w-input,textarea.w-select {
 .w-commerce-commercecheckoutshippingcountryselector::placeholder {
     color: #999
 }
-
-.w-commerce-commercecheckoutshippingcountryselector:focus {
-    border-color: #3898ec;
-    outline-style: none
-}
-
 .w-commerce-commercecheckoutshippingmethodswrapper {
     margin-bottom: 20px
 }
@@ -2919,7 +2913,6 @@ body {
 h1 {
     color: var(--heading-dark-color);
     text-transform: capitalize;
-    margin-top: 20px;
     margin-bottom: 10px;
     font-family: Oswald Variablefont Wght,sans-serif;
     font-size: 3.75rem;
@@ -2930,7 +2923,6 @@ h1 {
 h2 {
     color: var(--heading-dark-color);
     text-transform: capitalize;
-    margin-top: 20px;
     margin-bottom: 10px;
     font-family: Oswald Variablefont Wght,sans-serif;
     font-size: 2.5rem;
@@ -2941,7 +2933,6 @@ h2 {
 h3 {
     color: var(--heading-dark-color);
     text-transform: capitalize;
-    margin-top: 20px;
     margin-bottom: 10px;
     font-family: Oswald Variablefont Wght,sans-serif;
     font-size: 2.25rem;
@@ -3192,7 +3183,6 @@ blockquote {
     margin-left: auto;
     margin-right: auto
 }
-
 .view-button {
     border: 1px solid #0e0101;
     border-radius: 50%;
@@ -3992,7 +3982,6 @@ blockquote {
     height: auto;
     position: relative
 }
-
 .home-one-why-us-right {
     flex: 0 auto;
     align-self: center;
@@ -4793,7 +4782,6 @@ blockquote {
     margin-top: 20px;
     margin-bottom: 0
 }
-
 .home-two-approach-right {
     grid-row-gap: 25px;
     flex-direction: column;
@@ -5267,10 +5255,7 @@ blockquote {
 }
 
 .home-three-hero-section {
-    background-image: url(/wp-content/themes/central-build/images/fitout-sector-background.jpg);
-    background-position: 0%;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(/wp-content/themes/central-build/images/fitout-sector-background.jpg) center center / cover no-repeat;
     justify-content: center;
     align-items: center;
     padding: 284px 15px 170px;
@@ -5451,10 +5436,7 @@ blockquote {
 }
 
 .about-one-section-four {
-    background-image: url(/wp-content/themes/central-build/images/four-section.jpg);
-    background-position: 0%;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(/wp-content/themes/central-build/images/four-section.jpg) center center / cover no-repeat;
     padding: 90px 15px 120px
 }
 
@@ -5592,7 +5574,6 @@ blockquote {
     max-width: 14%;
     padding-top: 7px
 }
-
 .about-one-bottom-banner-block {
     border-radius: 20px;
     justify-content: center;
@@ -6393,7 +6374,6 @@ blockquote {
 .margin-bottom-thirty-two.error-page-paragraph {
     width: 85%
 }
-
 .margin-bottom-thirty-two.about-three-pogress-paragraph {
     text-shadow: none;
     max-width: 571px
@@ -7192,7 +7172,6 @@ blockquote {
 .service-two-construction-second.border-twenty {
     border-radius: 20px
 }
-
 .service-two-section-three {
     background-color: #000;
     padding-top: 110px;
@@ -7992,7 +7971,6 @@ blockquote {
     grid-column-gap: 30px;
     justify-content: center
 }
-
 .contact-one-hero-left {
     flex: 1;
     max-width: 34%
@@ -8791,7 +8769,6 @@ blockquote {
     position: absolute;
     inset: auto 25px 25px
 }
-
 .project-block {
     flex: 1
 }
@@ -9583,7 +9560,6 @@ blockquote {
     align-items: center;
     display: flex
 }
-
 .project-grid-item {
     flex-direction: column;
     flex: 1;
@@ -10380,7 +10356,6 @@ blockquote {
     margin-left: 40px;
     margin-right: 40px
 }
-
 .autofit-two {
     z-index: 9;
     object-fit: cover
@@ -11179,11 +11154,6 @@ blockquote {
 .heading-four.text-white {
     color: var(--white)
 }
-
-.heading-four.text-white.oil-text {
-    max-width: 7ch
-}
-
 .heading-four.margin-top-twenty.margin-top-bottom {
     margin-top: 25px;
     margin-bottom: 25px
@@ -11978,7 +11948,6 @@ blockquote {
     font-size: 2.5rem;
     line-height: 3.125rem
 }
-
 .heading-two.price-details-faq-heading-wrap {
     max-width: 22ch
 }
@@ -12364,7 +12333,7 @@ blockquote {
     background-color: var(--primary);
     border-radius: 5px;
     align-self: center;
-    max-width: 40%;
+    max-width: 100%;
     margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
@@ -12493,10 +12462,7 @@ blockquote {
 }
 
 .home-one-construction-section-2 {
-    background-image: url(/wp-content/themes/central-build/images/construction-section.jpg);
-    background-position: 0%;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(/wp-content/themes/central-build/images/construction-section.jpg) center center / cover no-repeat;
     padding-top: 115px;
     padding-bottom: 120px;
     position: relative;
@@ -12532,10 +12498,6 @@ blockquote {
 
 .heading-four-2.text-white {
     color: #fff
-}
-
-.heading-four-2.text-white.oil-text {
-    max-width: 7ch
 }
 
 .home-three-project-img-2 {
@@ -12768,7 +12730,6 @@ blockquote {
     width: 100%;
     padding: 40px 50px 100px
 }
-
 .tag-2-different {
     color: #000;
     letter-spacing: 0;
@@ -13565,7 +13526,6 @@ blockquote {
 .text-block-3,.paragraph-14,.heading-2,.paragraph-15 {
     text-shadow: none
 }
-
 .service-two-hero-section-2 {
     background-image: none;
     background-repeat: repeat;
@@ -14174,7 +14134,6 @@ blockquote {
     flex-flow: wrap;
     display: flex
 }
-
 @media screen and (min-width: 1280px) {
     .heading-effect-text {
         text-align:left
@@ -14669,7 +14628,6 @@ blockquote {
         padding-right: 87px
     }
 }
-
 @media screen and (min-width: 1920px) {
     .footer-project-flex-top {
         grid-column-gap:100px
@@ -15468,7 +15426,6 @@ blockquote {
     .contact-three-slider-right-arrow {
         right: 37%
     }
-
     .list-item {
         padding-right: 20px
     }
@@ -16263,7 +16220,6 @@ blockquote {
         padding-top: 60px;
         padding-bottom: 70px
     }
-
     .home-three-icon-block {
         grid-column-gap: 30px;
         grid-row-gap: 30px;
@@ -17060,7 +17016,6 @@ blockquote {
         padding-top: 60px;
         padding-bottom: 70px
     }
-
     .service-two-client-flex {
         grid-column-gap: 15px;
         grid-row-gap: 15px;
@@ -17861,7 +17816,6 @@ blockquote {
     .heading-block-two,.heading-block-one,.heading-block-four,.list-block {
         margin-bottom: 3.6rem
     }
-
     .service-two-section-six {
         padding-bottom: 70px
     }
@@ -18458,11 +18412,6 @@ blockquote {
         width: 100%
     }
 
-    .hero-button-2 {
-        text-align: center;
-        margin-left: 248px
-    }
-
     .hero-button-2.margin-top-twenty {
         font-size: .617284rem;
         line-height: 1.08025rem
@@ -18660,7 +18609,6 @@ blockquote {
         font-size: .540123rem;
         line-height: .925926rem
     }
-
     .heading-box-3 {
         grid-column-gap: 15px;
         grid-row-gap: 15px;
@@ -19458,7 +19406,6 @@ blockquote {
         padding-left: 20px;
         padding-right: 20px
     }
-
     .service-three-service-box-outer {
         margin-bottom: 30px
     }
@@ -20258,7 +20205,6 @@ blockquote {
     .hero-button-2.margin-top-twenty,.hero-button-2.margin-top-twenty-copy,.hero-button-2.hero-button-here {
         margin-left: 10px
     }
-
     .home-one-construction-section-2 {
         background-image: none
     }
@@ -21059,7 +21005,6 @@ blockquote {
         margin-left: auto;
         margin-right: auto
     }
-
     .construction-heading-block {
         flex-direction: column;
         align-items: flex-start;
@@ -21349,7 +21294,7 @@ blockquote {
 
     .hero-button-2 {
         width: 100%;
-        max-width: 80%;
+        max-width: 100%;
         margin-top: 0
     }
 
@@ -21766,4 +21711,16 @@ blockquote {
 
 #w-node-c189d523-6343-740e-d21e-8f72b044bcd7-69f579ee,#w-node-c189d523-6343-740e-d21e-8f72b044bcd8-69f579ee,#w-node-c189d523-6343-740e-d21e-8f72b044bcd9-69f579ee,#w-node-c189d523-6343-740e-d21e-8f72b044bcdb-69f579ee,#w-node-c189d523-6343-740e-d21e-8f72b044bcdc-69f579ee,#w-node-c189d523-6343-740e-d21e-8f72b044bcdd-69f579ee,#w-node-c189d523-6343-740e-d21e-8f72b044bcdf-69f579ee,#w-node-c189d523-6343-740e-d21e-8f72b044bce0-69f579ee,#w-node-c189d523-6343-740e-d21e-8f72b044bce1-69f579ee,#w-node-ec32e688-d932-cdaa-98ea-d24ef030e1d8-69f579f3,#w-node-ec32e688-d932-cdaa-98ea-d24ef030e1db-69f579f3,#w-node-ec32e688-d932-cdaa-98ea-d24ef030e1dc-69f579f3,#w-node-ec32e688-d932-cdaa-98ea-d24ef030e1e0-69f579f3,#w-node-ec32e688-d932-cdaa-98ea-d24ef030e1e3-69f579f3,#w-node-ec32e688-d932-cdaa-98ea-d24ef030e1e6-69f579f3,#w-node-ec32e688-d932-cdaa-98ea-d24ef030e1ea-69f579f3,#w-node-ec32e688-d932-cdaa-98ea-d24ef030e1ed-69f579f3,#w-node-ec32e688-d932-cdaa-98ea-d24ef030e1f0-69f579f3,#w-node-e0d5682a-b615-edf6-f417-8b92f4d0296e-69f579f6,#w-node-e0d5682a-b615-edf6-f417-8b92f4d02970-69f579f6,#w-node-e0d5682a-b615-edf6-f417-8b92f4d02972-69f579f6,#w-node-e0d5682a-b615-edf6-f417-8b92f4d02975-69f579f6,#w-node-e0d5682a-b615-edf6-f417-8b92f4d02977-69f579f6,#w-node-e0d5682a-b615-edf6-f417-8b92f4d02979-69f579f6,#w-node-e0d5682a-b615-edf6-f417-8b92f4d0297c-69f579f6,#w-node-e0d5682a-b615-edf6-f417-8b92f4d0297e-69f579f6,#w-node-e0d5682a-b615-edf6-f417-8b92f4d02980-69f579f6,#w-node-fcbd9ef4-7cbb-50cd-487d-29706f0b8f0c-69f579f7,#w-node-fcbd9ef4-7cbb-50cd-487d-29706f0b8f0d-69f579f7,#w-node-fcbd9ef4-7cbb-50cd-487d-29706f0b8f0e-69f579f7,#w-node-_8ac2cdb8-1b30-05a8-84c5-2d38e4f721e6-69f579f7,#w-node-_8ac2cdb8-1b30-05a8-84c5-2d38e4f721e7-69f579f7,#w-node-_8ac2cdb8-1b30-05a8-84c5-2d38e4f721e8-69f579f7,#w-node-e7c8bc5d-e49a-00f8-9ed7-f1a67fb0d30a-69f579f7,#w-node-e7c8bc5d-e49a-00f8-9ed7-f1a67fb0d30b-69f579f7,#w-node-e7c8bc5d-e49a-00f8-9ed7-f1a67fb0d30c-69f579f7 {
     grid-area: span 1/span 1/span 1/span 1
+}
+
+.cta-button-primary {
+    color: white;
+    background: var(--primary);
+}
+.cta-button-primary:hover {
+    background: white !important;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    box-shadow: 0 0 0 0 rgba(229, 57, 53, 0.4);
+    transition: all 0.3s ease;
 }

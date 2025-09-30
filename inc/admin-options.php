@@ -1016,7 +1016,7 @@ function central_build_hero_tab()
             <tr>
                 <th scope="row"><?php esc_html_e('Button URL', 'central-build'); ?></th>
                 <td>
-                    <input type="url" name="central_build_hero_button_url" value="<?php echo esc_url(get_option('central_build_hero_button_url')); ?>" class="regular-text" />
+                    <input type="text" name="central_build_hero_button_url" value="<?php echo esc_url(get_option('central_build_hero_button_url')); ?>" class="regular-text" />
                 </td>
             </tr>
         </table>
@@ -1157,7 +1157,7 @@ function central_build_trust_tab()
                             <tr>
                                 <th scope="row"><?php esc_html_e('Icon URL', 'central-build'); ?></th>
                                 <td>
-                                    <input type="url" name="central_build_trust_features[<?php echo $index; ?>][icon]" value="<?php echo esc_url($feature['icon'] ?? ''); ?>" class="large-text image-upload-field" />
+                                    <input type="text" name="central_build_trust_features[<?php echo $index; ?>][icon]" value="<?php echo esc_url($feature['icon'] ?? ''); ?>" class="large-text image-upload-field" />
                                     <button type="button" class="button upload-image-button"><?php esc_html_e('Upload Image', 'central-build'); ?></button>
                                     <?php if (!empty($feature['icon'])) : ?>
                                         <br><img src="<?php echo esc_url($feature['icon']); ?>" class="central-build-image-preview" alt="Feature Icon" />
@@ -1197,7 +1197,7 @@ function central_build_trust_tab()
                     <tr>
                         <th scope="row"><?php esc_html_e('Icon URL', 'central-build'); ?></th>
                         <td>
-                            <input type="url" name="central_build_trust_features[{INDEX}][icon]" value="" class="large-text image-upload-field" />
+                            <input type="text" name="central_build_trust_features[{INDEX}][icon]" value="" class="large-text image-upload-field" />
                             <button type="button" class="button upload-image-button"><?php esc_html_e('Upload Image', 'central-build'); ?></button>
                         </td>
                     </tr>
@@ -1246,7 +1246,7 @@ function central_build_partners_tab()
                             <tr>
                                 <th scope="row"><?php esc_html_e('Logo URL', 'central-build'); ?></th>
                                 <td>
-                                    <input type="url" name="central_build_partners[<?php echo $index; ?>][logo]" value="<?php echo esc_url($partner['logo'] ?? ''); ?>" class="large-text image-upload-field" />
+                                    <input type="text" name="central_build_partners[<?php echo $index; ?>][logo]" value="<?php echo esc_url($partner['logo'] ?? ''); ?>" class="large-text image-upload-field" />
                                     <button type="button" class="button upload-image-button"><?php esc_html_e('Upload Image', 'central-build'); ?></button>
                                     <?php if (!empty($partner['logo'])) : ?>
                                         <br><img src="<?php echo esc_url($partner['logo']); ?>" class="central-build-image-preview" alt="Partner Logo" />
@@ -1262,7 +1262,7 @@ function central_build_partners_tab()
                             <tr>
                                 <th scope="row"><?php esc_html_e('Website URL', 'central-build'); ?></th>
                                 <td>
-                                    <input type="url" name="central_build_partners[<?php echo $index; ?>][url]" value="<?php echo esc_url($partner['url'] ?? ''); ?>" class="regular-text" />
+                                    <input type="text" name="central_build_partners[<?php echo $index; ?>][url]" value="<?php echo esc_url($partner['url'] ?? ''); ?>" class="regular-text" />
                                 </td>
                             </tr>
                         </table>
@@ -1286,7 +1286,7 @@ function central_build_partners_tab()
                     <tr>
                         <th scope="row"><?php esc_html_e('Logo URL', 'central-build'); ?></th>
                         <td>
-                            <input type="url" name="central_build_partners[{INDEX}][logo]" value="" class="large-text image-upload-field" />
+                            <input type="text" name="central_build_partners[{INDEX}][logo]" value="" class="large-text image-upload-field" />
                             <button type="button" class="button upload-image-button"><?php esc_html_e('Upload Image', 'central-build'); ?></button>
                         </td>
                     </tr>
@@ -1299,7 +1299,7 @@ function central_build_partners_tab()
                     <tr>
                         <th scope="row"><?php esc_html_e('Website URL', 'central-build'); ?></th>
                         <td>
-                            <input type="url" name="central_build_partners[{INDEX}][url]" value="" class="regular-text" />
+                            <input type="text" name="central_build_partners[{INDEX}][url]" value="" class="regular-text" />
                         </td>
                     </tr>
                 </table>
@@ -1355,13 +1355,13 @@ function central_build_testimonials_tab()
             <tr>
                 <th scope="row"><?php esc_html_e('Button URL', 'central-build'); ?></th>
                 <td>
-                    <input type="url" name="central_build_testimonials_button_url" value="<?php echo esc_url(get_option('central_build_testimonials_button_url')); ?>" class="regular-text" />
+                    <input type="text" name="central_build_testimonials_button_url" value="<?php echo esc_url(get_option('central_build_testimonials_button_url')); ?>" class="regular-text" />
                 </td>
             </tr>
             <tr>
                 <th scope="row"><?php esc_html_e('Section Image', 'central-build'); ?></th>
                 <td>
-                    <input type="url" name="central_build_testimonials_image" value="<?php echo esc_url(get_option('central_build_testimonials_image')); ?>" class="large-text" />
+                    <input type="text" name="central_build_testimonials_image" value="<?php echo esc_url(get_option('central_build_testimonials_image')); ?>" class="large-text" />
                     <?php 
                     $testimonials_image = get_option('central_build_testimonials_image');
                     if ($testimonials_image) : ?>
@@ -1405,7 +1405,7 @@ function central_build_testimonials_tab()
                             <tr>
                                 <th scope="row"><?php esc_html_e('Author Image', 'central-build'); ?></th>
                                 <td>
-                                    <input type="url" name="central_build_testimonials[<?php echo $index; ?>][image]" value="<?php echo esc_url($testimonial['image'] ?? ''); ?>" class="large-text image-upload-field" />
+                                    <input type="text" name="central_build_testimonials[<?php echo $index; ?>][image]" value="<?php echo esc_url($testimonial['image'] ?? ''); ?>" class="large-text image-upload-field" />
                                     <button type="button" class="button upload-image-button"><?php esc_html_e('Upload Image', 'central-build'); ?></button>
                                     <?php if (!empty($testimonial['image'])) : ?>
                                         <br><img src="<?php echo esc_url($testimonial['image']); ?>" class="central-build-image-preview" alt="Testimonial Image" />
@@ -1451,7 +1451,7 @@ function central_build_testimonials_tab()
                     <tr>
                         <th scope="row"><?php esc_html_e('Author Image', 'central-build'); ?></th>
                         <td>
-                            <input type="url" name="central_build_testimonials[{INDEX}][image]" value="" class="large-text image-upload-field" />
+                            <input type="text" name="central_build_testimonials[{INDEX}][image]" value="" class="large-text image-upload-field" />
                             <button type="button" class="button upload-image-button"><?php esc_html_e('Upload Image', 'central-build'); ?></button>
                         </td>
                     </tr>
@@ -1500,7 +1500,7 @@ function central_build_projects_tab()
                             <tr>
                                 <th scope="row"><?php esc_html_e('Icon URL', 'central-build'); ?></th>
                                 <td>
-                                    <input type="url" name="central_build_process_steps[<?php echo $index; ?>][icon]" value="<?php echo esc_url($step['icon'] ?? ''); ?>" class="large-text image-upload-field" />
+                                    <input type="text" name="central_build_process_steps[<?php echo $index; ?>][icon]" value="<?php echo esc_url($step['icon'] ?? ''); ?>" class="large-text image-upload-field" />
                                     <button type="button" class="button upload-image-button"><?php esc_html_e('Upload Image', 'central-build'); ?></button>
                                     <?php if (!empty($step['icon'])) : ?>
                                         <br><img src="<?php echo esc_url($step['icon']); ?>" class="central-build-image-preview" alt="Step Icon" />
@@ -1540,7 +1540,7 @@ function central_build_projects_tab()
                     <tr>
                         <th scope="row"><?php esc_html_e('Icon URL', 'central-build'); ?></th>
                         <td>
-                            <input type="url" name="central_build_process_steps[{INDEX}][icon]" value="" class="large-text image-upload-field" />
+                            <input type="text" name="central_build_process_steps[{INDEX}][icon]" value="" class="large-text image-upload-field" />
                             <button type="button" class="button upload-image-button"><?php esc_html_e('Upload Image', 'central-build'); ?></button>
                         </td>
                     </tr>
@@ -1577,7 +1577,7 @@ function central_build_projects_tab()
                             <tr>
                                 <th scope="row"><?php esc_html_e('Image URL', 'central-build'); ?></th>
                                 <td>
-                                    <input type="url" name="central_build_project_images[<?php echo $index; ?>][image]" value="<?php echo esc_url($image['image'] ?? ''); ?>" class="large-text image-upload-field" />
+                                    <input type="text" name="central_build_project_images[<?php echo $index; ?>][image]" value="<?php echo esc_url($image['image'] ?? ''); ?>" class="large-text image-upload-field" />
                                     <button type="button" class="button upload-image-button"><?php esc_html_e('Upload Image', 'central-build'); ?></button>
                                     <?php if (!empty($image['image'])) : ?>
                                         <br><img src="<?php echo esc_url($image['image']); ?>" class="central-build-image-preview" alt="Project Image" />
@@ -1611,7 +1611,7 @@ function central_build_projects_tab()
                     <tr>
                         <th scope="row"><?php esc_html_e('Image URL', 'central-build'); ?></th>
                         <td>
-                            <input type="url" name="central_build_project_images[{INDEX}][image]" value="" class="large-text image-upload-field" />
+                            <input type="text" name="central_build_project_images[{INDEX}][image]" value="" class="large-text image-upload-field" />
                             <button type="button" class="button upload-image-button"><?php esc_html_e('Upload Image', 'central-build'); ?></button>
                         </td>
                     </tr>
@@ -1642,7 +1642,7 @@ function central_build_projects_tab()
             <tr>
                 <th scope="row"><?php esc_html_e('Button URL', 'central-build'); ?></th>
                 <td>
-                    <input type="url" name="central_build_projects_button_url" value="<?php echo esc_url(get_option('central_build_projects_button_url')); ?>" class="regular-text" />
+                    <input type="text" name="central_build_projects_button_url" value="<?php echo esc_url(get_option('central_build_projects_button_url')); ?>" class="regular-text" />
                 </td>
             </tr>
         </table>
@@ -1736,13 +1736,13 @@ function central_build_projects_tab()
             <tr>
                 <th scope="row"><?php esc_html_e('CTA Button URL', 'central-build'); ?></th>
                 <td>
-                    <input type="url" name="central_build_cta_button_url" value="<?php echo esc_url(get_option('central_build_cta_button_url')); ?>" class="regular-text" />
+                    <input type="text" name="central_build_cta_button_url" value="<?php echo esc_url(get_option('central_build_cta_button_url')); ?>" class="regular-text" />
                 </td>
             </tr>
             <tr>
                 <th scope="row"><?php esc_html_e('CTA Background Image', 'central-build'); ?></th>
                 <td>
-                    <input type="url" name="central_build_cta_background_image" value="<?php echo esc_url(get_option('central_build_cta_background_image')); ?>" class="large-text" />
+                    <input type="text" name="central_build_cta_background_image" value="<?php echo esc_url(get_option('central_build_cta_background_image')); ?>" class="large-text" />
                     <?php 
                     $cta_bg_image = get_option('central_build_cta_background_image');
                     if ($cta_bg_image) : ?>
@@ -1794,7 +1794,7 @@ function central_build_commercial_tab()
                             <tr>
                                 <th scope="row"><?php esc_html_e('Project Image', 'central-build'); ?></th>
                                 <td>
-                                    <input type="url" name="central_build_commercial_projects[<?php echo $index; ?>][image]" value="<?php echo esc_url($project['image'] ?? ''); ?>" class="large-text image-upload-field" />
+                                    <input type="text" name="central_build_commercial_projects[<?php echo $index; ?>][image]" value="<?php echo esc_url($project['image'] ?? ''); ?>" class="large-text image-upload-field" />
                                     <button type="button" class="button upload-image-button"><?php esc_html_e('Upload Image', 'central-build'); ?></button>
                                     <?php if (!empty($project['image'])) : ?>
                                         <br><img src="<?php echo esc_url($project['image']); ?>" class="central-build-image-preview" alt="Commercial Project" />
@@ -1810,7 +1810,7 @@ function central_build_commercial_tab()
                             <tr>
                                 <th scope="row"><?php esc_html_e('Project URL', 'central-build'); ?></th>
                                 <td>
-                                    <input type="url" name="central_build_commercial_projects[<?php echo $index; ?>][url]" value="<?php echo esc_url($project['url'] ?? ''); ?>" class="regular-text" />
+                                    <input type="text" name="central_build_commercial_projects[<?php echo $index; ?>][url]" value="<?php echo esc_url($project['url'] ?? ''); ?>" class="regular-text" />
                                 </td>
                             </tr>
                             <tr>
@@ -1840,7 +1840,7 @@ function central_build_commercial_tab()
                     <tr>
                         <th scope="row"><?php esc_html_e('Project Image', 'central-build'); ?></th>
                         <td>
-                            <input type="url" name="central_build_commercial_projects[{INDEX}][image]" value="" class="large-text image-upload-field" />
+                            <input type="text" name="central_build_commercial_projects[{INDEX}][image]" value="" class="large-text image-upload-field" />
                             <button type="button" class="button upload-image-button"><?php esc_html_e('Upload Image', 'central-build'); ?></button>
                         </td>
                     </tr>
@@ -1853,7 +1853,7 @@ function central_build_commercial_tab()
                     <tr>
                         <th scope="row"><?php esc_html_e('Project URL', 'central-build'); ?></th>
                         <td>
-                            <input type="url" name="central_build_commercial_projects[{INDEX}][url]" value="" class="regular-text" />
+                            <input type="text" name="central_build_commercial_projects[{INDEX}][url]" value="" class="regular-text" />
                         </td>
                     </tr>
                     <tr>
@@ -1879,7 +1879,7 @@ function central_build_sectors_tab()
             <tr>
                 <th scope="row"><?php esc_html_e('Section Icon', 'central-build'); ?></th>
                 <td>
-                    <input type="url" name="central_build_checkout_icon" value="<?php echo esc_url(get_option('central_build_checkout_icon')); ?>" class="large-text" />
+                    <input type="text" name="central_build_checkout_icon" value="<?php echo esc_url(get_option('central_build_checkout_icon')); ?>" class="large-text" />
                     <?php 
                     $checkout_icon = get_option('central_build_checkout_icon');
                     if ($checkout_icon) : ?>
@@ -1908,7 +1908,7 @@ function central_build_sectors_tab()
             <tr>
                 <th scope="row"><?php esc_html_e('Button URL', 'central-build'); ?></th>
                 <td>
-                    <input type="url" name="central_build_checkout_button_url" value="<?php echo esc_url(get_option('central_build_checkout_button_url')); ?>" class="regular-text" />
+                    <input type="text" name="central_build_checkout_button_url" value="<?php echo esc_url(get_option('central_build_checkout_button_url')); ?>" class="regular-text" />
                 </td>
             </tr>
         </table>
@@ -1930,7 +1930,7 @@ function central_build_sectors_tab()
                             <tr>
                                 <th scope="row"><?php esc_html_e('Sector Icon', 'central-build'); ?></th>
                                 <td>
-                                    <input type="url" name="central_build_sectors[<?php echo $index; ?>][icon]" value="<?php echo esc_url($sector['icon'] ?? ''); ?>" class="large-text image-upload-field" />
+                                    <input type="text" name="central_build_sectors[<?php echo $index; ?>][icon]" value="<?php echo esc_url($sector['icon'] ?? ''); ?>" class="large-text image-upload-field" />
                                     <button type="button" class="button upload-image-button"><?php esc_html_e('Upload Image', 'central-build'); ?></button>
                                     <?php if (!empty($sector['icon'])) : ?>
                                         <br><img src="<?php echo esc_url($sector['icon']); ?>" class="central-build-image-preview" alt="Sector Icon" />
@@ -1958,7 +1958,7 @@ function central_build_sectors_tab()
                             <tr>
                                 <th scope="row"><?php esc_html_e('Sector Image', 'central-build'); ?></th>
                                 <td>
-                                    <input type="url" name="central_build_sectors[<?php echo $index; ?>][image]" value="<?php echo esc_url($sector['image'] ?? ''); ?>" class="large-text image-upload-field" />
+                                    <input type="text" name="central_build_sectors[<?php echo $index; ?>][image]" value="<?php echo esc_url($sector['image'] ?? ''); ?>" class="large-text image-upload-field" />
                                     <button type="button" class="button upload-image-button"><?php esc_html_e('Upload Image', 'central-build'); ?></button>
                                     <?php if (!empty($sector['image'])) : ?>
                                         <br><img src="<?php echo esc_url($sector['image']); ?>" class="central-build-image-preview" alt="Sector Image" />
@@ -1974,7 +1974,7 @@ function central_build_sectors_tab()
                             <tr>
                                 <th scope="row"><?php esc_html_e('Sector URL', 'central-build'); ?></th>
                                 <td>
-                                    <input type="url" name="central_build_sectors[<?php echo $index; ?>][url]" value="<?php echo esc_url($sector['url'] ?? ''); ?>" class="regular-text" />
+                                    <input type="text" name="central_build_sectors[<?php echo $index; ?>][url]" value="<?php echo esc_url($sector['url'] ?? ''); ?>" class="regular-text" />
                                 </td>
                             </tr>
                         </table>
@@ -1998,7 +1998,7 @@ function central_build_sectors_tab()
                     <tr>
                         <th scope="row"><?php esc_html_e('Sector Icon', 'central-build'); ?></th>
                         <td>
-                            <input type="url" name="central_build_sectors[{INDEX}][icon]" value="" class="large-text image-upload-field" />
+                            <input type="text" name="central_build_sectors[{INDEX}][icon]" value="" class="large-text image-upload-field" />
                             <button type="button" class="button upload-image-button"><?php esc_html_e('Upload Image', 'central-build'); ?></button>
                         </td>
                     </tr>
@@ -2023,7 +2023,7 @@ function central_build_sectors_tab()
                     <tr>
                         <th scope="row"><?php esc_html_e('Sector Image', 'central-build'); ?></th>
                         <td>
-                            <input type="url" name="central_build_sectors[{INDEX}][image]" value="" class="large-text image-upload-field" />
+                            <input type="text" name="central_build_sectors[{INDEX}][image]" value="" class="large-text image-upload-field" />
                             <button type="button" class="button upload-image-button"><?php esc_html_e('Upload Image', 'central-build'); ?></button>
                         </td>
                     </tr>
@@ -2036,7 +2036,7 @@ function central_build_sectors_tab()
                     <tr>
                         <th scope="row"><?php esc_html_e('Sector URL', 'central-build'); ?></th>
                         <td>
-                            <input type="url" name="central_build_sectors[{INDEX}][url]" value="" class="regular-text" />
+                            <input type="text" name="central_build_sectors[{INDEX}][url]" value="" class="regular-text" />
                         </td>
                     </tr>
                 </table>
@@ -2144,7 +2144,7 @@ function central_build_faq_tab()
             <tr>
                 <th scope="row"><?php esc_html_e('Transform Button URL', 'central-build'); ?></th>
                 <td>
-                    <input type="url" name="central_build_transform_button_url" value="<?php echo esc_url(get_option('central_build_transform_button_url')); ?>" class="regular-text" />
+                    <input type="text" name="central_build_transform_button_url" value="<?php echo esc_url(get_option('central_build_transform_button_url')); ?>" class="regular-text" />
                 </td>
             </tr>
         </table>
@@ -2166,7 +2166,7 @@ function central_build_faq_tab()
                             <tr>
                                 <th scope="row"><?php esc_html_e('Feature Icon', 'central-build'); ?></th>
                                 <td>
-                                    <input type="url" name="central_build_transform_features[<?php echo $index; ?>][icon]" value="<?php echo esc_url($feature['icon'] ?? ''); ?>" class="large-text image-upload-field" />
+                                    <input type="text" name="central_build_transform_features[<?php echo $index; ?>][icon]" value="<?php echo esc_url($feature['icon'] ?? ''); ?>" class="large-text image-upload-field" />
                                     <button type="button" class="button upload-image-button"><?php esc_html_e('Upload Image', 'central-build'); ?></button>
                                     <?php if (!empty($feature['icon'])) : ?>
                                         <br><img src="<?php echo esc_url($feature['icon']); ?>" class="central-build-image-preview" alt="Transform Feature Icon" />
@@ -2206,7 +2206,7 @@ function central_build_faq_tab()
                     <tr>
                         <th scope="row"><?php esc_html_e('Feature Icon', 'central-build'); ?></th>
                         <td>
-                            <input type="url" name="central_build_transform_features[{INDEX}][icon]" value="" class="large-text image-upload-field" />
+                            <input type="text" name="central_build_transform_features[{INDEX}][icon]" value="" class="large-text image-upload-field" />
                             <button type="button" class="button upload-image-button"><?php esc_html_e('Upload Image', 'central-build'); ?></button>
                         </td>
                     </tr>
