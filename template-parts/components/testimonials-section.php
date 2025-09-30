@@ -43,14 +43,6 @@
                 $testimonials_button_subtext = get_option('central_build_testimonials_button_subtext', __('Learn more', 'central-build'));
                 $testimonials_button_url = get_option('central_build_testimonials_button_url', home_url('/testimonials'));
                 ?>
-                <a href="<?php echo esc_url($testimonials_button_url); ?>" role="button" class="hero-button-2 w-inline-block">
-                    <div class="button-mask">
-                        <div class="link-text-wrp">
-                            <div><?php echo esc_html($testimonials_button_text); ?></div>
-                            <div class="secondt-btn-text"><?php echo esc_html($testimonials_button_subtext); ?></div>
-                        </div>
-                    </div>
-                </a>
                 <!-- Swiper -->
                 <div class="swiper mySwiper mt-3" style="width: 100%;">
                     <?php
