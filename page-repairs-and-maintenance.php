@@ -45,7 +45,6 @@ get_header();
         color: var(--light-text);
         display: flex;
         align-items: center;
-        background: linear-gradient(135deg, rgba(15,43,75,0.85), rgba(15,43,75,0.55)), url('<?php echo esc_url($hero['background']); ?>') center/cover no-repeat;
         position: relative;
         overflow: hidden;
     }
@@ -97,12 +96,12 @@ get_header();
             <h1 class="display-3 fw-bolder mb-3"><?php echo wp_kses_post($hero['title']); ?></h1>
             <p class="lead mb-4 fw-bold" style="color: var(--accent-color); "><?php echo esc_html($hero['subtitle']); ?></p>
             <p class="mb-5 fs-5 opacity-75"><?php echo wp_kses_post($hero['description']); ?></p>
-            <div class="d-flex flex-column flex-md-row gap-3">
+            <div class="">
                 <?php if (!empty($hero['primary_cta']['label'])) : ?>
-                    <a href="<?php echo esc_url($hero['primary_cta']['url']); ?>" class="btn cta-button-emergency btn-lg me-md-3 mb-2 mb-md-0"> <?php echo esc_html($hero['primary_cta']['label']); ?></a>
+                    <a href="<?php echo esc_url($hero['primary_cta']['url']); ?>" class="d-inline-block mr-3 btn cta-button-emergency btn-lg"> <?php echo esc_html($hero['primary_cta']['label']); ?></a>
                 <?php endif; ?>
                 <?php if (!empty($hero['secondary_cta']['label'])) : ?>
-                    <a href="<?php echo esc_url($hero['secondary_cta']['url']); ?>" class="btn btn-outline-light btn-lg ms-md-3"><?php echo esc_html($hero['secondary_cta']['label']); ?></a>
+                    <a href="<?php echo esc_url($hero['secondary_cta']['url']); ?>" class="ml-3 d-inline-block btn btn-outline-light btn-lg" style="padding: .85rem 1rem; margin-left: 50px;"><?php echo esc_html($hero['secondary_cta']['label']); ?></a>
                 <?php endif; ?>
             </div>
         </div>
