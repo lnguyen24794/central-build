@@ -1,8 +1,8 @@
 <!-- Problem Aware Section -->
-<section class="problem-aware-section">
+<section class="problem-aware-section" data-aos="fade-up" data-aos-duration="800">
         <div class="container">
             <div class="home-one-why-us-flex">
-                <div class="home-one-why-us-left">
+                <div class="home-one-why-us-left" data-aos="fade-right" data-aos-delay="100">
                     <div class="image-hover-block">
                         <?php
                         $about_image = get_option('central_build_about_image');
@@ -13,7 +13,7 @@
                         <?php endif; ?>
                     </div>
                 </div>
-                <div class="home-one-why-us-right">
+                <div class="home-one-why-us-right" data-aos="fade-left" data-aos-delay="150">
                     <div class="w-layout-hflex heading-box">
                         <h2 class="nz-div-6">
                             <span class="title-holder">
@@ -25,7 +25,7 @@
                         ?>
                         </h2>
                     </div>
-                    <p class="way-us-paragraph margin-top-twenty">
+                    <p class="way-us-paragraph margin-top-twenty" data-aos="fade-up" data-aos-delay="200">
                         <?php
                             $about_description = get_option(
                                 'central_build_about_description',
@@ -34,7 +34,7 @@
                         echo esc_html($about_description);
                         ?>
                     </p>
-                    <div class="devider-one"></div>
+                    <div class="devider-one" data-aos="fade-up" data-aos-delay="220"></div>
                     
                     <!-- Features Grid -->
                     <div class="row g-4">
@@ -42,9 +42,10 @@
                     <?php
                     $about_features = central_build_get_about_features();
                         if (!empty($about_features)) :
-                            foreach ($about_features as $feature) :
+                            foreach ($about_features as $index => $feature) :
+                                $delay = 250 + ($index * 50);
                                 ?>
-                            <div class="col-md-6">
+                            <div class="col-md-6" data-aos="zoom-in" data-aos-delay="<?php echo esc_attr($delay); ?>">
                                 <div class="problem-aware-block card h-100 shadow-sm border-0 ">
                                     <div class="card-body home-one-project-block">
                                         <div class="heading-six">
@@ -64,8 +65,8 @@
                 </div>
             </div>
         </div>
-        <div class="devider-one"></div>
-        <a href="<?php echo esc_url(get_permalink(get_page_by_path('about'))); ?>" class="hero-button">
+        <div class="devider-one" data-aos="fade-up" data-aos-delay="250"></div>
+        <a href="<?php echo esc_url(get_permalink(get_page_by_path('about'))); ?>" class="hero-button" data-aos="fade-up" data-aos-delay="300">
             <div class="button-mask">
                 <div class="link-text-wrp">
                     <div><?php esc_html_e('Learn More About Us', 'central-build'); ?></div>

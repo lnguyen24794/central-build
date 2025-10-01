@@ -1,58 +1,48 @@
 <!-- Trust Process Section -->
-<section id="Home-One-Section-Two" class="home-one-section-two">
-    <div class="w-layout-blockcontainer trust-in-process-container custom-container">
-        <div class="w-layout-vflex home-one-section-two-main-wrap">
-            
-            <!-- Section Heading -->
-            <div class="w-layout-hflex heading-box">
-                <h2 class="nz-div-6">
-                    <span class="title-holder">
-                    <?php
-                    $trust_title = get_option('central_build_trust_title', __('Trust in<br>Central Build Process', 'central-build'));
-                    echo wp_kses($trust_title, array('br' => array()));
-                    ?>
-                    </span>
-                </h2>
-            </div>
-            
-            <!-- Features Grid -->
-            <div class="w-layout-hflex home-one-box-flex margin-top-negative">
-                <?php
-                // Get trust features from the new array format
-                $trust_features = central_build_get_trust_features();
-
-                    if (!empty($trust_features)) :
-                        foreach ($trust_features as $index => $feature) :
-                            $box_class = 'home-one-box-one shadow';
-                            ?>
-                
-                <!-- Trust Feature <?php echo $index + 1; ?> -->
-                <div class="<?php echo esc_attr($box_class); ?>">
-                    <?php if (!empty($feature['icon'])) : ?>
-                        <img src="<?php echo esc_url($feature['icon']); ?>" 
-                             alt="<?php echo esc_attr($feature['title'] ?? ''); ?>" 
-                             width="66" height="66" 
-                             class="autofit financial-icon">
-                    <?php endif; ?>
-                    
-                    <?php if (!empty($feature['title'])) : ?>
-                        <div class="heading-six">
-                            <?php echo esc_html($feature['title']); ?>
-                        </div>
-                    <?php endif; ?>
-                    
-                    <?php if (!empty($feature['description'])) : ?>
-                        <p>
-                            <?php echo esc_html($feature['description']); ?>
-                        </p>
-                    <?php endif; ?>
+<section class="home-two-our-promise-section" data-aos="fade-up" data-aos-duration="800">
+    <div class="w-layout-blockcontainer container w-container">
+        <div class="home-two-promise-top">
+            <div class="promise-left" data-aos="fade-right" data-aos-delay="120">
+                <div class="section-title" data-aos="fade-down" data-aos-delay="150">
+                    <div class="section-tag">
+                        <?php echo esc_html(get_option('central_build_trust_tag', __('Trusted Delivery', 'central-build'))); ?>
+                    </div>
+                    <h2 class="section-heading">
+                        <?php echo esc_html(get_option('central_build_trust_title', __('What Sets Central Build Apart', 'central-build'))); ?>
+                    </h2>
                 </div>
-                
-                <?php
-                        endforeach;
-                    endif;
-                    ?>
+                <p class="promise-description" data-aos="fade-up" data-aos-delay="180">
+                    <?php echo esc_html(get_option('central_build_trust_description', __('From concept to completion, our vertically integrated team ensures quality, speed, and accountability at every step.', 'central-build'))); ?>
+                </p>
             </div>
+            <div class="promise-right" data-aos="fade-left" data-aos-delay="200">
+                <div class="promise-video">
+                    <div class="video-overlay">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="promise-points">
+            <?php
+            $trust_points = central_build_get_trust_points();
+            if (!empty($trust_points)) :
+                foreach ($trust_points as $index => $point) :
+                    $delay = 220 + ($index * 70);
+            ?>
+            <div class="promise-item" data-aos="zoom-in" data-aos-delay="<?php echo esc_attr($delay); ?>">
+                <div class="promise-icon">
+                    <i class="<?php echo esc_attr($point['icon'] ?? 'fas fa-check-circle'); ?>"></i>
+                </div>
+                <div class="promise-content">
+                    <h4 class="promise-heading"><?php echo esc_html($point['title'] ?? ''); ?></h4>
+                    <p class="promise-text"><?php echo esc_html($point['description'] ?? ''); ?></p>
+                </div>
+            </div>
+            <?php
+                endforeach;
+            endif;
+            ?>
         </div>
     </div>
 </section>
