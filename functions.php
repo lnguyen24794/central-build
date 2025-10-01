@@ -12,7 +12,7 @@ if (!defined('ABSPATH')) {
 }
 
 if (!defined('CENTRAL_BUILD_VERSION')) {
-    define('CENTRAL_BUILD_VERSION', '1.0.1');
+    define('CENTRAL_BUILD_VERSION', '1.0.2');
 }
 
 /**
