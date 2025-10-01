@@ -198,7 +198,7 @@ get_header();
         <div class="container">
             <h2 class="text-center display-6 fw-normal mb-5" data-aos="fade-down"><?php echo esc_html($office['address_title']); ?></h2>
             <div class="row">
-                <div class="col-lg-6 mb-4 mb-lg-0 text-right" data-aos="fade-right">
+                <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
                     <?php foreach ($office['address_lines'] as $line) : ?>
                         <p class="lead"><?php echo esc_html($line); ?></p>
                     <?php endforeach; ?>

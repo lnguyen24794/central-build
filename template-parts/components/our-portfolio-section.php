@@ -1,8 +1,9 @@
 <!-- Our Portfolio/Fitout Sectors Section -->
-<section class="home-three-section-two-2" data-aos="fade-up" data-aos-duration="800">
+<section class="home-three-section-two-2">
+    
    <div class="container">
         <!-- Section Header -->
-        <div class="my-container" data-aos="fade-down" data-aos-delay="100">
+        <div class="my-container">
             <div class="w-layout-hflex heading-box">
                 <h2 class="nz-div-6">
                     <span class="title-holder">
@@ -17,7 +18,7 @@
         </div>
         
         <!-- Portfolio/Sectors Grid -->
-        <div class="project-grid-item" data-aos="fade-up" data-aos-delay="150">
+        <div class="project-grid-item">
             <div class="w-layout-vflex project-card-main-wrap">
                 
                 <?php
@@ -29,9 +30,9 @@
                             $opacity_style = ($i == 0) ? 'opacity: 1;' : 'opacity: 0;';
                             $line_opacity = ($i == 0) ? 'opacity: 0;' : 'opacity: 1;';
                             $line_class = ($i <= 0) ? 'one' : (($i <= 2) ? 'two' : 'three');
-                            $delay = 200 + ($i * 80);
+                            $data_w_id = ($i > 0) ? 'data-w-id="' . uniqid('portfolio-item-') . '"' : '';
                 ?>
-                    <div data-w-id="<?php echo esc_attr(uniqid('portfolio-item-')); ?>" class="project-accodian-item <?php echo $active_class; ?>" data-aos="fade-up" data-aos-delay="<?php echo esc_attr($delay); ?>">
+                    <div <?php echo $data_w_id; ?> class="project-accodian-item <?php echo $active_class; ?>">
                         <div class="w-layout-hflex project-card-wrap">
                             
                             <!-- Sector Content -->
@@ -69,7 +70,7 @@
                             
                             <!-- Sector Image -->
                             <?php if (!empty($sector['image'])) : ?>
-                                <div class="w-layout-hflex project-accodian-image" data-aos="zoom-in" data-aos-delay="<?php echo esc_attr($delay + 40); ?>">
+                                <div class="w-layout-hflex project-accodian-image">
                                     <a href="<?php echo esc_url($sector['url'] ?? '#'); ?>" class="<?php echo ($i == 0) ? 'link-block-2 ' : ''; ?>w-inline-block">
                                         <img class="autofit project-card-image <?php echo $active_class; ?>" 
                                             src="<?php echo esc_url($sector['image']); ?>" 
@@ -90,8 +91,8 @@
                         </div>
                         
                         <!-- Background and Lines -->
-                        <div style="<?php echo $opacity_style; ?>" class="project-card-background <?php echo $active_class; ?>" data-aos="fade" data-aos-delay="<?php echo esc_attr($delay + 60); ?>"></div>
-                        <div style="<?php echo $line_opacity; ?>" class="line-<?php echo $line_class; ?>" data-aos="fade" data-aos-delay="<?php echo esc_attr($delay + 80); ?>"></div>
+                        <div style="<?php echo $opacity_style; ?>" class="project-card-background <?php echo $active_class; ?>"></div>
+                        <div style="<?php echo $line_opacity; ?>" class="line-<?php echo $line_class; ?>"></div>
                     </div>
                 <?php 
                         endif;
@@ -110,7 +111,7 @@
             <a href="<?php echo esc_url($checkout_button_url); ?>" 
             role="button" 
             data-w-id="2e6f549c-b1ce-c583-ccf2-c3472985986c" 
-            class="hero-button w-inline-block" data-aos="fade-up" data-aos-delay="400">
+            class="hero-button w-inline-block">
                 <div class="button-mask">
                     <div style="transform: translate3d(0px, 0%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg); transform-style: preserve-3d;" 
                         class="link-text-wrp">
@@ -124,3 +125,4 @@
    </div>
     
 </section>
+aa

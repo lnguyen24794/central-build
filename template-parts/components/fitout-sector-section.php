@@ -1,8 +1,8 @@
 <!-- Fitout Sectors Section -->
-<section class="home-three-section-two-2 bg-light" data-aos="fade-up" data-aos-duration="800">
+<section class="home-three-section-two-2 bg-light">
     <div class="container">
         <!-- Section Header -->
-        <div class="my-container container" data-aos="fade-down" data-aos-delay="100">
+        <div class="my-container container">
             <div class="w-layout-hflex heading-box">
                 <h2 class="nz-div-6 mt-5">
                     <span class="title-holder">
@@ -16,7 +16,7 @@
         </div>
         
         <!-- Fitout Sectors Grid -->
-        <div class="project-grid-item" data-aos="fade-up" data-aos-delay="150">
+        <div class="project-grid-item">
             <div class="text-center">
                 
                 <?php
@@ -28,9 +28,8 @@
                             $opacity_style = ($i == 0) ? 'opacity: 1;' : 'opacity: 0;';
                             $line_opacity = ($i == 0) ? 'opacity: 0;' : 'opacity: 1;';
                             $line_class = ($i <= 0) ? 'one' : (($i <= 2) ? 'two' : 'three');
-                            $delay = 200 + ($i * 50);
                 ?>
-                    <div class="project-accodian-item active" data-aos="zoom-in" data-aos-delay="<?php echo esc_attr($delay); ?>">
+                    <div class="project-accodian-item active">
                         <div class="w-layout-hflex project-card-wrap">
                             
                             <!-- Sector Content -->
@@ -66,7 +65,7 @@
                             
                             <!-- Sector Image -->
                             <?php if (!empty($sector['image'])) : ?>
-                                <div class="w-layout-hflex project-accodian-image" data-aos="fade-left" data-aos-delay="<?php echo esc_attr($delay + 50); ?>">
+                                <div class="w-layout-hflex project-accodian-image">
                                     <a href="<?php echo esc_url($sector['url'] ?? '#'); ?>" class="w-inline-block">
                                         <img class="autofit project-card-image <?php echo $active_class; ?>" 
                                             src="<?php echo esc_url($sector['image']); ?>" 
@@ -97,7 +96,7 @@
             $checkout_button_subtext = get_option('central_build_checkout_button_subtext', __('Learn more', 'central-build'));
             $checkout_button_url = get_option('central_build_checkout_button_url', home_url('/contact'));
             ?>
-            <a href="<?php echo esc_url($checkout_button_url); ?>" role="button" class="hero-button w-inline-block" data-aos="fade-up" data-aos-delay="400">
+            <a href="<?php echo esc_url($checkout_button_url); ?>" role="button" class="hero-button w-inline-block">
                 <div class="button-mask">
                     <div class="link-text-wrp">
                         <div><?php echo esc_html($checkout_button_text); ?></div>

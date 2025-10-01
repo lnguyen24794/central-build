@@ -1,10 +1,10 @@
-<section id="faq" class="py-5 py-md-5" data-aos="fade-up" data-aos-duration="800">
+<section id="faq" class="py-5 py-md-5">
     <div class="container">
         <h2 class="text-center display-6 fw-normal mb-5" data-aos="fade-down">Common Questions About Our Integrated Approach</h2>
-        <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
-            <div class="col-lg-10" data-aos="fade-up" data-aos-delay="150">
+        <div class="row justify-content-center">
+            <div class="col-lg-10" data-aos="fade-up">
                 <div class="accordion" id="faqAccordion">
-                    <div class="accordion-item shadow-sm mb-3" data-aos="fade-up" data-aos-delay="180">
+                    <div class="accordion-item shadow-sm mb-3">
                         <h2 class="accordion-header" id="headingOne">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                  What does "Vertically Integrated" mean for my project?
@@ -17,7 +17,7 @@
                         </div>
                     </div>
 
-                    <div class="accordion-item shadow-sm mb-3" data-aos="fade-up" data-aos-delay="220">
+                    <div class="accordion-item shadow-sm mb-3">
                         <h2 class="accordion-header" id="headingTwo">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                  How does your integrated model impact overall project cost?
@@ -30,7 +30,7 @@
                         </div>
                     </div>
                     
-                    <div class="accordion-item shadow-sm mb-3" data-aos="fade-up" data-aos-delay="260">
+                    <div class="accordion-item shadow-sm mb-3">
                         <h2 class="accordion-header" id="headingThree">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                  Do you handle ongoing Repairs & Maintenance after handover?
@@ -44,7 +44,7 @@
                     </div>
 
                 </div>
-                <div class="text-center mt-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="text-center mt-4">
                     <a href="path/to/faq-page" class="btn btn-sm btn-outline-dark fw-bold">SEE ALL FAQ'S</a>
                 </div>
             </div>
