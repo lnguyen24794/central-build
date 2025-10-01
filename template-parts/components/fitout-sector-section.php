@@ -17,7 +17,7 @@
         
         <!-- Fitout Sectors Grid -->
         <div class="project-grid-item">
-            <div class="w-layout-vflex project-card-main-wrap">
+            <div class="w-layout-vflex project-card-main-wrap items-center justify-content-center">
                 
                 <?php
                 $sectors = central_build_get_sectors();
