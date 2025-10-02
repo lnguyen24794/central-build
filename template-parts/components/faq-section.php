@@ -44,9 +44,9 @@
                     </div>
 
                 </div>
-                <div class="text-center mt-4">
+                <!-- <div class="text-center mt-4">
                     <a href="path/to/faq-page" class="btn btn-sm btn-outline-dark fw-bold">SEE ALL FAQ'S</a>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
