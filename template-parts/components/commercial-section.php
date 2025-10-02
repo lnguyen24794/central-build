@@ -2,7 +2,7 @@
 <section class="home-one-construction-section-2 ">
     <div class="container">
         <!-- Section Header -->
-        <div class="row gap-3">
+        <div class="row gap-3" data-aos="fade-down" data-aos-duration="1000">
             <div class="p-0 p relative" style="width: 30px">
                 <div class="tag-wrap w-100 absolute" style="top: 70px; left: -20px;">
                     <div class="tag-2-different dark-tab">
@@ -17,24 +17,24 @@
                 <h2 class="home-three-testimonial-heading text-white margin-none">
                     <?php
                     $commercial_title = get_option('central_build_commercial_title', __('Check out <br>our latest work', 'central-build'));
-                    echo wp_kses($commercial_title, array('br' => array()));
-                    ?>
+                        echo wp_kses($commercial_title, array('br' => array()));
+                        ?>
                 </h2>
             </div>
         </div>
         
         <!-- Fitout Projects Carousel -->
-        <div class="w-layout-blockcontainer home-three-project-container w-container">
+        <div class="w-layout-blockcontainer home-three-project-container w-container" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
             <div class="fitout-carousel-container">
                 <div class="fitout-carousel-track">
                     <?php
-                    $fitout_projects = central_build_get_fitout_projects(12);
-                    if (!empty($fitout_projects)) :
-                        // Duplicate projects for seamless loop
-                        $all_projects = array_merge($fitout_projects, $fitout_projects);
-                        foreach ($all_projects as $project) :
-                            if (!empty($project['image']) && !empty($project['title'])) :
-                    ?>
+                        $fitout_projects = central_build_get_fitout_projects(12);
+                        if (!empty($fitout_projects)) :
+                            // Duplicate projects for seamless loop
+                            $all_projects = array_merge($fitout_projects, $fitout_projects);
+                            foreach ($all_projects as $project) :
+                                if (!empty($project['image']) && !empty($project['title'])) :
+                                    ?>
                         <div class="fitout-project-card">
                             <a href="<?php echo esc_url($project['url']); ?>" class="project-card-two w-inline-block">
                                 <div class="project-card-2">
@@ -58,11 +58,11 @@
                                 </div>
                             </a>
                         </div>
-                    <?php 
-                            endif;
-                        endforeach;
-                    else :
-                    ?>
+                    <?php
+                                endif;
+                            endforeach;
+                        else :
+                            ?>
                         <!-- Fallback content if no fitout projects exist -->
                         <div class="fitout-project-card">
                             <div class="project-card-two">

@@ -5,7 +5,7 @@
             <div class="freely-ask-right-2">
                 
                 <!-- Section Header -->
-                <div class="w-layout-hflex heading-box-3">
+                <div class="w-layout-hflex heading-box-3" data-aos="fade-left" data-aos-duration="1200">
                     <div class="tag-wrap tag-type-five right-side-tag"></div>
                     <h2 class="heading-wrap margin-none header-to-the-right">
                         <?php
@@ -18,11 +18,11 @@
                 <!-- Transform Features -->
                 <?php
                 $transform_features = central_build_get_transform_features();
-                if (!empty($transform_features)) :
-                    foreach ($transform_features as $i => $feature) :
-                        if (!empty($feature['title']) && !empty($feature['description'])) :
-                            $margin_class = ($i == (count($transform_features) - 1)) ? 'margin-bottom-none' : 'freely-text-flex-margin';
-                ?>
+                        if (!empty($transform_features)) :
+                            foreach ($transform_features as $i => $feature) :
+                                if (!empty($feature['title']) && !empty($feature['description'])) :
+                                    $margin_class = ($i == (count($transform_features) - 1)) ? 'margin-bottom-none' : 'freely-text-flex-margin';
+                                    ?>
                     <div class="w-layout-hflex freely-text-flex <?php echo $margin_class; ?>">
                         <?php if (!empty($feature['icon'])) : ?>
                             <img width="30" height="30" 
@@ -41,18 +41,18 @@
                             <?php echo wp_kses($feature['description'], array('br' => array())); ?>
                         </p>
                     </div>
-                <?php 
+                <?php
+                                            endif;
+                            endforeach;
                         endif;
-                    endforeach;
-                endif;
-                ?>
+                        ?>
                 
                 <!-- CTA Button -->
                 <?php
-                $transform_button_text = get_option('central_build_transform_button_text', __('Check out our Portfolio', 'central-build'));
-                $transform_button_subtext = get_option('central_build_transform_button_subtext', __('Learn more', 'central-build'));
-                $transform_button_url = get_option('central_build_transform_button_url', home_url('/contact'));
-                ?>
+                        $transform_button_text = get_option('central_build_transform_button_text', __('Check out our Portfolio', 'central-build'));
+                        $transform_button_subtext = get_option('central_build_transform_button_subtext', __('Learn more', 'central-build'));
+                        $transform_button_url = get_option('central_build_transform_button_url', home_url('/contact'));
+                        ?>
                 <a href="<?php echo esc_url($transform_button_url); ?>" role="button" class="hero-button w-inline-block">
                     <div class="button-mask">
                         <div class="link-text-wrp">

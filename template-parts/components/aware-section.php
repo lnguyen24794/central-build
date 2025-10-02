@@ -2,7 +2,7 @@
 <section class="problem-aware-section">
         <div class="container">
             <div class="home-one-why-us-flex">
-                <div class="home-one-why-us-left">
+                <div class="home-one-why-us-left" data-aos="fade-right" data-aos-duration="1200">
                     <div class="image-hover-block">
                         <?php
                         $about_image = get_option('central_build_about_image');
@@ -13,7 +13,7 @@
                         <?php endif; ?>
                     </div>
                 </div>
-                <div class="home-one-why-us-right">
+                <div class="home-one-why-us-right" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="200">
                     <div class="w-layout-hflex heading-box">
                         <h2 class="nz-div-6">
                             <span class="title-holder">
@@ -37,7 +37,7 @@
                     <div class="devider-one"></div>
                     
                     <!-- Features Grid -->
-                    <div class="row g-4">
+                    <div class="row g-4" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400">
                     <!-- Features -->
                     <?php
                     $about_features = central_build_get_about_features();

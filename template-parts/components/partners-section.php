@@ -3,13 +3,13 @@
 <?php
     $partners = central_build_get_partners();
 ?>
-<div class="swiper-container">
+<div class="swiper-container" data-aos="fade-up" data-aos-duration="1200">
   <div class="swiper-wrapper">
     <div class="swiper-slide">
         <div class="w-layout-hflex home-two-partners-marquee-main-wrap branches">
             <!-- First Row of Partners -->
-            <?php foreach ($partners as $partner) : 
-            ?>
+            <?php foreach ($partners as $partner) :
+                ?>
             <div class="w-layout-hflex home-two-partners-marquee-box-2">
         
                 <div class="home-two-partners-block-2">
@@ -33,8 +33,8 @@
     <div class="swiper-slide">
         <div class="w-layout-hflex home-two-partners-marquee-main-wrap branches">
             <!-- Second Row of Partners -->
-            <?php foreach ($partners as $partner) : 
-            ?>
+            <?php foreach ($partners as $partner) :
+                ?>
             <div class="w-layout-hflex home-two-partners-marquee-box-2">
         
                 <div class="home-two-partners-block-2">
@@ -58,8 +58,8 @@
     <div class="swiper-slide">
         <div class="w-layout-hflex home-two-partners-marquee-main-wrap branches">
             <!-- Third Row of Partners -->
-            <?php foreach ($partners as $partner) : 
-            ?>
+            <?php foreach ($partners as $partner) :
+                ?>
             <div class="w-layout-hflex home-two-partners-marquee-box-2">
         
                 <div class="home-two-partners-block-2">

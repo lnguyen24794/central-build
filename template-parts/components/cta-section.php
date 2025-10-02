@@ -3,7 +3,7 @@
     <div class="w-layout-blockcontainer container-one cta-container w-container">
         
         <!-- CTA Content -->
-        <div class="cta">
+        <div class="cta" data-aos="zoom-in" data-aos-duration="1200">
             <h3 class="color-white margin-bottom-twenty">
                 <?php
                 $cta_title = get_option('central_build_cta_title', __('Fitouts Shouldn\'t Be This Hard', 'central-build'));
@@ -22,9 +22,9 @@
             
             <?php
             $cta_button_text = get_option('central_build_cta_button_text', __('Start Today!', 'central-build'));
-            $cta_button_subtext = get_option('central_build_cta_button_subtext', __('Learn more', 'central-build'));
-            $cta_button_url = get_option('central_build_cta_button_url', home_url('/contact'));
-            ?>
+                $cta_button_subtext = get_option('central_build_cta_button_subtext', __('Learn more', 'central-build'));
+                $cta_button_url = get_option('central_build_cta_button_url', home_url('/contact'));
+                ?>
             <a href="<?php echo esc_url($cta_button_url); ?>" role="button" class="cta-hero-button w-inline-block">
                 <div class="button-mask">
                     <div class="link-text-wrp">
@@ -38,7 +38,7 @@
         <!-- Background Image -->
         <?php
         $cta_background_image = get_option('central_build_cta_background_image');
-        if ($cta_background_image) : ?>
+                if ($cta_background_image) : ?>
             <img src="<?php echo esc_url($cta_background_image); ?>" 
                  loading="lazy" 
                  alt="<?php esc_attr_e('CTA Background', 'central-build'); ?>" 

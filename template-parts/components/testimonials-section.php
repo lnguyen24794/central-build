@@ -1,7 +1,7 @@
 <!-- Testimonials Section -->
 <section class="home-three-testimonial-section-2">
     <div class="my-container container">
-        <div class="row">
+        <div class="row" data-aos="fade-up" data-aos-duration="1200">
             
             <!-- Left Content -->
             <div class="col-md-6 mt-5">
@@ -22,8 +22,8 @@
                         <h2 class="home-three-testimonial-heading margin-none">
                             <?php
                             $testimonials_title = get_option('central_build_testimonials_title', __('Words from Those Who\'ve Trusted Us', 'central-build'));
-                            echo esc_html($testimonials_title);
-                            ?>
+                                echo esc_html($testimonials_title);
+                                ?>
                         </h2>
                     </div>
                 </div>
@@ -34,25 +34,25 @@
                         'central_build_testimonials_description',
                         __('Discover why clients trust us for their Fitouts. Our commitment to quality and on-time delivery is reflected in their positive feedback.', 'central-build')
                     );
-                    echo esc_html($testimonials_description);
-                    ?>
+                                echo esc_html($testimonials_description);
+                                ?>
                 </p>
                 
                 <?php
                 $testimonials_button_text = get_option('central_build_testimonials_button_text', __('Testimonials', 'central-build'));
-                $testimonials_button_subtext = get_option('central_build_testimonials_button_subtext', __('Learn more', 'central-build'));
-                $testimonials_button_url = get_option('central_build_testimonials_button_url', home_url('/testimonials'));
-                ?>
+                                $testimonials_button_subtext = get_option('central_build_testimonials_button_subtext', __('Learn more', 'central-build'));
+                                $testimonials_button_url = get_option('central_build_testimonials_button_url', home_url('/testimonials'));
+                                ?>
                 <!-- Swiper -->
                 <div class="swiper mySwiper mt-3" style="width: 100%;">
                     <?php
-                        $testimonials = central_build_get_testimonials();
-                    ?>
+                                        $testimonials = central_build_get_testimonials();
+                                ?>
                     <div class="swiper-wrapper">
                         <?php  if (!empty($testimonials)) :
                             foreach ($testimonials as $testimonial) :
                                 if (!empty($testimonial['content'])) :
-                        ?>
+                                    ?>
                         
                         <div class="swiper-slide h-100 home-three-testimonial-box">
                             <div class="testimonial-content-block" style="min-height: 112px;">
@@ -80,11 +80,11 @@
                             </div>
                         </div>
 
-                        <?php 
-                            endif;
+                        <?php
+                                endif;
                             endforeach;
                         endif;
-                        ?>
+                                ?>
                     </div>
 
                     <div class="swiper-pagination"></div>
@@ -95,7 +95,7 @@
             <div class="col-md-6">
                 <?php
                 $testimonials_image = get_option('central_build_testimonials_image');
-                if ($testimonials_image) : ?>
+                                if ($testimonials_image) : ?>
                     <img
                          alt="<?php esc_attr_e('Testimonials Image', 'central-build'); ?>" 
                          src="<?php echo esc_url($testimonials_image); ?>" 

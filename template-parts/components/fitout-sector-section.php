@@ -3,7 +3,7 @@
     <div class="container">
         <!-- Section Header -->
         <div class="my-container container">
-            <div class="w-layout-hflex heading-box">
+            <div class="w-layout-hflex heading-box" data-aos="fade-down" data-aos-duration="1000">
                 <h2 class="nz-div-6 mt-5">
                     <span class="title-holder">
                         <?php
@@ -16,19 +16,19 @@
         </div>
         
         <!-- Fitout Sectors Grid -->
-        <div class="project-grid-item">
+        <div class="project-grid-item" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
             <div class="text-center">
                 
                 <?php
                 $sectors = central_build_get_sectors();
-                if (!empty($sectors)) :
-                    foreach ($sectors as $i => $sector) :
-                        if (!empty($sector['title'])) :
-                            $active_class = ($i == 0) ? 'active' : '';
-                            $opacity_style = ($i == 0) ? 'opacity: 1;' : 'opacity: 0;';
-                            $line_opacity = ($i == 0) ? 'opacity: 0;' : 'opacity: 1;';
-                            $line_class = ($i <= 0) ? 'one' : (($i <= 2) ? 'two' : 'three');
-                ?>
+                        if (!empty($sectors)) :
+                            foreach ($sectors as $i => $sector) :
+                                if (!empty($sector['title'])) :
+                                    $active_class = ($i == 0) ? 'active' : '';
+                                    $opacity_style = ($i == 0) ? 'opacity: 1;' : 'opacity: 0;';
+                                    $line_opacity = ($i == 0) ? 'opacity: 0;' : 'opacity: 1;';
+                                    $line_class = ($i <= 0) ? 'one' : (($i <= 2) ? 'two' : 'three');
+                                    ?>
                     <div class="project-accodian-item active">
                         <div class="w-layout-hflex project-card-wrap">
                             
@@ -82,20 +82,20 @@
                         <!-- Background and Lines -->
                         <div class="project-card-background <?php echo $active_class; ?>"></div>
                     </div>
-                <?php 
+                <?php
+                                endif;
+                            endforeach;
                         endif;
-                    endforeach;
-                endif;
-                ?>
+                        ?>
                 
             </div>
             
             <!-- CTA Button -->
             <?php
             $checkout_button_text = get_option('central_build_checkout_button_text', __('Check out our Portfolio', 'central-build'));
-            $checkout_button_subtext = get_option('central_build_checkout_button_subtext', __('Learn more', 'central-build'));
-            $checkout_button_url = get_option('central_build_checkout_button_url', home_url('/contact'));
-            ?>
+                        $checkout_button_subtext = get_option('central_build_checkout_button_subtext', __('Learn more', 'central-build'));
+                        $checkout_button_url = get_option('central_build_checkout_button_url', home_url('/contact'));
+                        ?>
             <a href="<?php echo esc_url($checkout_button_url); ?>" role="button" class="hero-button w-inline-block">
                 <div class="button-mask">
                     <div class="link-text-wrp">

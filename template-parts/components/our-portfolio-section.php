@@ -4,12 +4,12 @@
    <div class="container">
         <!-- Section Header -->
         <div class="my-container">
-            <div class="w-layout-hflex heading-box">
+            <div class="w-layout-hflex heading-box" data-aos="fade-down" data-aos-duration="1000">
                 <h2 class="nz-div-6">
                     <span class="title-holder">
                     <?php
                         $about_title = get_option('central_build_checkout_title', __('Commercial Fitout Sectors', 'central-build'));
-                        echo esc_html($about_title);
+                    echo esc_html($about_title);
                     ?>
                     </span>
                 ?>
@@ -18,20 +18,20 @@
         </div>
         
         <!-- Portfolio/Sectors Grid -->
-        <div class="project-grid-item">
+        <div class="project-grid-item" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
             <div class="w-layout-vflex project-card-main-wrap">
                 
                 <?php
                 $sectors = central_build_get_sectors();
-                if (!empty($sectors)) :
-                    foreach ($sectors as $i => $sector) :
-                        if (!empty($sector['title'])) :
-                            $active_class = ($i == 0) ? 'active' : '';
-                            $opacity_style = ($i == 0) ? 'opacity: 1;' : 'opacity: 0;';
-                            $line_opacity = ($i == 0) ? 'opacity: 0;' : 'opacity: 1;';
-                            $line_class = ($i <= 0) ? 'one' : (($i <= 2) ? 'two' : 'three');
-                            $data_w_id = ($i > 0) ? 'data-w-id="' . uniqid('portfolio-item-') . '"' : '';
-                ?>
+                    if (!empty($sectors)) :
+                        foreach ($sectors as $i => $sector) :
+                            if (!empty($sector['title'])) :
+                                $active_class = ($i == 0) ? 'active' : '';
+                                $opacity_style = ($i == 0) ? 'opacity: 1;' : 'opacity: 0;';
+                                $line_opacity = ($i == 0) ? 'opacity: 0;' : 'opacity: 1;';
+                                $line_class = ($i <= 0) ? 'one' : (($i <= 2) ? 'two' : 'three');
+                                $data_w_id = ($i > 0) ? 'data-w-id="' . uniqid('portfolio-item-') . '"' : '';
+                                ?>
                     <div <?php echo $data_w_id; ?> class="project-accodian-item <?php echo $active_class; ?>">
                         <div class="w-layout-hflex project-card-wrap">
                             
@@ -94,20 +94,20 @@
                         <div style="<?php echo $opacity_style; ?>" class="project-card-background <?php echo $active_class; ?>"></div>
                         <div style="<?php echo $line_opacity; ?>" class="line-<?php echo $line_class; ?>"></div>
                     </div>
-                <?php 
-                        endif;
-                    endforeach;
-                endif;
-                ?>
+                <?php
+                                        endif;
+                        endforeach;
+                    endif;
+                    ?>
                 
             </div>
             
             <!-- CTA Button -->
             <?php
             $checkout_button_text = get_option('central_build_checkout_button_text', __('Check out our Portfolio', 'central-build'));
-            $checkout_button_subtext = get_option('central_build_checkout_button_subtext', __('Learn more', 'central-build'));
-            $checkout_button_url = get_option('central_build_checkout_button_url', home_url('/contact'));
-            ?>
+                    $checkout_button_subtext = get_option('central_build_checkout_button_subtext', __('Learn more', 'central-build'));
+                    $checkout_button_url = get_option('central_build_checkout_button_url', home_url('/contact'));
+                    ?>
             <a href="<?php echo esc_url($checkout_button_url); ?>" 
             role="button" 
             data-w-id="2e6f549c-b1ce-c583-ccf2-c3472985986c" 

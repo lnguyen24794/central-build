@@ -4,7 +4,7 @@
         <div class="w-layout-vflex home-one-section-two-main-wrap">
             
             <!-- Section Heading -->
-            <div class="w-layout-hflex heading-box">
+            <div class="w-layout-hflex heading-box" data-aos="fade-down" data-aos-duration="1000">
                 <h2 class="nz-div-6">
                     <span class="title-holder">
                     <?php
@@ -16,7 +16,7 @@
             </div>
             
             <!-- Features Grid -->
-            <div class="w-layout-hflex home-one-box-flex margin-top-negative">
+            <div class="w-layout-hflex home-one-box-flex margin-top-negative" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
                 <?php
                 // Get trust features from the new array format
                 $trust_features = central_build_get_trust_features();
