@@ -7690,6 +7690,15 @@ blockquote {
     display: flex
 }
 
+@media screen and (max-width: 768px) {
+    .cta {
+        width: 100%;
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
 .cta.contact-one-faq-heading {
     width: 65%
 }
