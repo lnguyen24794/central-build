@@ -266,7 +266,7 @@ get_header(); ?>
                                 <input type="email" class="form-control" placeholder="Work Email" required>
                             </div>
                             <div class="row mb-3">
-                                <div class="col-md-6">
+                                <div class="col-md-6 mb-3">
                                     <select class="form-select" required>
                                         <option selected disabled>Project Type*</option>
                                         <option>Commercial Fitout</option>
