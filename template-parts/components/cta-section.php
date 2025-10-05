@@ -42,12 +42,12 @@
             <img src="<?php echo esc_url($cta_background_image); ?>" 
                  loading="lazy" 
                  alt="<?php esc_attr_e('CTA Background', 'central-build'); ?>" 
-                 class="image-5">
+                 class="image-5 d-none d-md-block">
         <?php else : ?>
             <img src="<?php echo esc_url(get_template_directory_uri() . '/images/cta-default.jpg'); ?>" 
                  loading="lazy" 
                  alt="<?php esc_attr_e('CTA Background', 'central-build'); ?>" 
-                 class="image-5">
+                 class="image-5 d-none d-md-block">
         <?php endif; ?>
         
     </div>
