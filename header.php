@@ -129,7 +129,7 @@ $header_logo_height  = (int) $header_settings['logo']['height'];
                     </div>
                 </nav>
                 
-                <a href="<?php echo esc_url($header_cta_url); ?>" class="cta-button-emergency mb-0 above-all-else nav-bar-button w-inline-block">
+                <a href="<?php echo esc_url($header_cta_url); ?>" class="cta-button-emergency mb-0 above-all-else nav-bar-button d-none d-md-block">
                     Contact Now
                 </a>
             </div>
