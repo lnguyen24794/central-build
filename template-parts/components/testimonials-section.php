@@ -7,7 +7,7 @@
             <div class="col-md-6 mt-5">
                 
                 <!-- Section Header -->
-                <div class="row gap-3 m-3">
+                <div class="d-block d-md-flex gap-3 m-3">
                     <div class="p-0 relative" style="width: 30px">
                         <div class="tag-wrap w-100 absolute" style="top: 70px; left: -20px;">
                             <div class="tag-2-different dark-tab">
@@ -100,7 +100,7 @@
                          alt="<?php esc_attr_e('Testimonials Image', 'central-build'); ?>" 
                          src="<?php echo esc_url($testimonials_image); ?>" 
                          loading="lazy" 
-                         class="autofit-3 responsive-full-width">
+                         class="autofit-3 responsive-full-width d-none d-md-block">
                 <?php endif; ?>
             </div>
             
