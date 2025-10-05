@@ -103,7 +103,7 @@ $header_logo_height  = (int) $header_settings['logo']['height'];
                 </a>
                 
                  <!-- Navigation -->
-                 <nav class="nav">
+                 <nav class="nav p-3">
                     <?php
                         // Check if primary menu is set
                         if (has_nav_menu('primary')) {
