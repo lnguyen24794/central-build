@@ -1,0 +1,18 @@
+# Secrets / credentials
+.env
+**/.env
+.docs/hostinger/.env
+.docs/hostinger/*.sql
+.docs/hostinger/*.sql.gz
+public_html/wp-config.php
+
+# WordPress bulky / generated
+public_html/
+
+# OS / editor
+.DS_Store
+*.swp
+.idea/
+.vscode/
+
+base_repository/
