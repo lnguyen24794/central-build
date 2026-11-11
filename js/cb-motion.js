@@ -106,7 +106,8 @@
             trigger: fact, start: 'top 92%', once: true,
             onEnter: function () {
                 gsap.to(fact, { y: 0, opacity: 1, duration: 0.7, ease: EASE, onComplete: function () { shown(fact); } });
-                if (!m) {
+                // Years ("Jul 2026") and other plain labels are shown as they are, not counted.
+                if (!m || /^(19|20)\d{2}$/.test(m[2])) {
                     return;
                 }
                 var target = parseFloat(m[2].replace(/,/g, ''));

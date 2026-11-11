@@ -132,6 +132,12 @@ function cb_ce_prune_for_new_layout(array $pages): array
             unset($pages[$page]['sections'][$section]);
         }
     }
+    // The new layouts always show these parts, so their on/off switches would do nothing.
+    foreach ($pages as $key => $page) {
+        foreach ((array) ($page['sections'] ?? array()) as $sk => $section) {
+            unset($pages[$key]['sections'][$sk]['visible']);
+        }
+    }
     if (isset($pages['home']['sections']['intro'])) {
         $pages['home']['sections']['intro']['label'] = '"Why Central Build" introduction';
         $pages['home']['sections']['intro']['help']  = 'Heading and text next to the photo in the "Why Central Build" section.';
