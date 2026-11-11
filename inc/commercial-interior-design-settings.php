@@ -7,7 +7,7 @@ function central_build_cid_settings_defaults(): array
 {
     return array(
         'hero' => array(
-            'title'        => 'COMMERCIAL INTERIOR DESIGN & CONSTRUCTION',
+            'title'        => 'COMMERCIAL INTERIOR DESIGN',
             'subtitle'     => 'ENGINEERING SPACES, DELIVERING EXCEPTIONAL VALUE.',
             'description'  => 'Central Build — dedication and expertise in every detail, ensuring quality, safety, and timeliness.',
             'primary_cta'  => array('label' => 'Get a Free Quote Today', 'url' => '#contact'),
@@ -21,7 +21,7 @@ function central_build_cid_settings_defaults(): array
                 'text'   => 'Our commitment to fulfilling promises and nurturing trust forms the cornerstone of our philosophy. True reputation is built through unwavering attention to detail.',
                 'author' => 'Central Build Management',
             ),
-            'image'      => get_template_directory_uri() . '/images/default-about-team.jpg',
+            'image'      => get_template_directory_uri() . '/images/cb/cb-team.jpg',
         ),
         'strengths' => array(
             array(
@@ -71,7 +71,7 @@ function central_build_cid_settings_defaults(): array
             'heading'     => 'Ready to Transform Your Commercial Space?',
             'description' => 'Let Central Build provide the optimal solution. Get your free, non-binding consultation today.',
             'items'       => array(
-                array('icon' => 'fas fa-phone-alt', 'text' => '+1 (123) 456-7890'),
+                array('icon' => 'fas fa-phone-alt', 'text' => '1300 31 8888'),
                 array('icon' => 'fas fa-envelope', 'text' => 'info@centralbuild.com'),
                 array('icon' => 'fas fa-map-marker-alt', 'text' => '123 Commercial Drive, Suite 100 — Metropolis, Anytown 12345'),
             ),

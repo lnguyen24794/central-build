@@ -228,7 +228,7 @@ function central_build_header_settings_page_render(): void
                             <p>
                                 <label>
                                     <?php esc_html_e('Icon URL', 'central-build'); ?><br />
-                                    <input type="text" name="central_build_header_settings[social_links][<?php echo esc_attr($index); ?>][icon_url]" class="regular-text" value="<?php echo esc_url($link['icon_url']); ?>" placeholder="<?php echo esc_url(get_template_directory_uri() . '/images/social-icon.svg'); ?>" />
+                                    <input type="text" name="central_build_header_settings[social_links][<?php echo esc_attr($index); ?>][icon_url]" class="regular-text" value="<?php echo esc_url($link['icon_url']); ?>" placeholder="<?php echo esc_url(get_template_directory_uri() . '/images/Footer-Fb.svg'); ?>" />
                                 </label>
                                 <span class="description"><?php esc_html_e('Provide an absolute URL to the icon image.', 'central-build'); ?></span>
                             </p>

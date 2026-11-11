@@ -9,7 +9,7 @@
                         if ($about_image) : ?>
                             <img src="<?php echo esc_url($about_image); ?>" alt="<?php esc_attr_e('Central Build team on site', 'central-build'); ?>" class="single-img hovered">
                         <?php else : ?>
-                            <img src="<?php echo esc_url(get_template_directory_uri() . '/images/about-image.jpg'); ?>" alt="<?php esc_attr_e('Central Build team on site', 'central-build'); ?>" class="single-img hovered">
+                            <img src="<?php echo esc_url(get_template_directory_uri() . '/images/cb/cb-dining.jpg'); ?>" alt="<?php esc_attr_e('Central Build team on site', 'central-build'); ?>" class="single-img hovered">
                         <?php endif; ?>
                     </div>
                 </div>

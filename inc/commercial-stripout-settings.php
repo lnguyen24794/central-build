@@ -11,7 +11,7 @@ function central_build_cs_settings_defaults(): array
             'subtitle'    => 'Commercial Stripouts: preparing your perfect foundation.',
             'description' => 'Central Build specialises in controlled, compliant, and efficient commercial stripouts, ensuring your space is ready for Phase II fit-out without compromises on safety or timeline.',
             'cta'         => array('label' => 'Get a Fast & Compliant Quote', 'url' => '#contact'),
-            'background'  => get_template_directory_uri() . '/images/stripout-hero.jpg',
+            'background'  => get_template_directory_uri() . '/images/cb/cb-demolition.jpg',
         ),
         'promise' => array(
             array(
@@ -69,9 +69,9 @@ function central_build_cs_settings_defaults(): array
             'subtitle'    => 'Scalable solutions, guaranteed.',
             'description' => 'We leverage specialised equipment suited for internal commercial environments. From 50 m² to 5,000 m², we deliver with precision and efficiency.',
             'images'      => array(
-                get_template_directory_uri() . '/images/stripout-equipment-1.jpg',
-                get_template_directory_uri() . '/images/stripout-equipment-2.jpg',
-                get_template_directory_uri() . '/images/stripout-equipment-3.jpg',
+                get_template_directory_uri() . '/images/cb/cb-demolition.jpg',
+                get_template_directory_uri() . '/images/cb/cb-construction.jpg',
+                get_template_directory_uri() . '/images/cb/cb-shopfront.jpg',
             ),
             'cta_label'   => 'See Our Capabilities',
             'cta_url'     => '#contact',
@@ -79,7 +79,7 @@ function central_build_cs_settings_defaults(): array
         'contact' => array(
             'title'        => 'Your fit-out begins with a perfect stripout.',
             'description'  => 'Secure a safe, clean, and certified space for your next construction phase. We guarantee compliance and readiness.',
-            'contact_line' => '+1 (123) 456-7890',
+            'contact_line' => '1300 31 8888',
             'form_title'   => 'Request a Clean Slate Quote',
             'button_label' => 'Get Started Now',
         ),

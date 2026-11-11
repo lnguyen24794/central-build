@@ -10,8 +10,8 @@ function central_build_rm_settings_defaults(): array
             'title'       => 'YOUR BUSINESS CONTINUITY. <span style="color: var(--accent-color);">OUR PRIORITY.</span>',
             'subtitle'    => 'Commercial Repairs &amp; Maintenance: rapid response, lasting solutions.',
             'description' => 'When critical faults occur or preventative maintenance is due, Central Build provides the reliable, professional service you need to keep your operations running smoothly.',
-            'background'  => get_template_directory_uri() . '/images/repairs-hero.jpg',
-            'primary_cta' => array('label' => 'Call Emergency Service (24/7)', 'url' => 'tel:+11234567890'),
+            'background'  => get_template_directory_uri() . '/images/cb/cb-kitchen.jpg',
+            'primary_cta' => array('label' => 'Call Emergency Service (24/7)', 'url' => 'tel:+61413058861'),
             'secondary_cta' => array('label' => 'Request Scheduled Maintenance', 'url' => '#contact'),
         ),
         'guarantee' => array(
@@ -60,7 +60,7 @@ function central_build_rm_settings_defaults(): array
         'contact' => array(
             'heading'       => 'Failures happen. Downtime is optional.',
             'description'   => 'Partner with Central Build today for guaranteed responsiveness and peace of mind.',
-            'contact_line'  => '+1 (123) 456-7890',
+            'contact_line'  => '1300 31 8888',
             'form_title'    => 'Get a Maintenance Quote',
             'button_label'  => 'Submit Request',
             'service_options' => array('Emergency Service', 'Scheduled Maintenance Contract', 'General Repair Quote'),

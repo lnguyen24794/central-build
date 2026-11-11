@@ -8,24 +8,27 @@ function central_build_footer_settings_defaults(): array
     return array(
         'company' => array(
             'logo_url'   => get_template_directory_uri() . '/images/674e51fad943a77607127b0b_ENP%20transparent%20white%20cropped.webp',
-            'description' => 'Central Build, established in 2018, crafts lasting fitout solutions with value, efficiency, and transparency. Discover the ENP difference.',
+            'description' => 'Central Build crafts lasting commercial fitout solutions with value, efficiency, and transparency.',
+            'licence'     => 'Builder Licence No. CCB-L 100410',
             'email'      => 'info@centralbuild.au',
             'phone'      => array(
-                'display' => '0123 456 789',
-                'link'    => 'tel:0123456789',
+                'display' => '1300 31 8888',
+                'link'    => 'tel:1300318888',
+            ),
+            'mobile'     => array(
+                'display' => 'Mobile: +61 413 058 861',
+                'link'    => 'tel:+61413058861',
             ),
         ),
         'quick_links' => array(
             array('label' => 'Home', 'url' => home_url('/')),
-            array('label' => 'About Us', 'url' => home_url('/our-values')),
-            array('label' => 'Policy', 'url' => 'https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/676248fadfdb334304c54e6e_ENP%20Fitouts%20Privacy%20Policy.pdf'),
-            array('label' => 'Services', 'url' => home_url('/commercial-shop-fitting')),
-            array('label' => 'Portfolio', 'url' => ''),
+            array('label' => 'About Us', 'url' => home_url('/about-us/')),
+            array('label' => 'Projects', 'url' => home_url('/projects/')),
+            array('label' => 'Contact', 'url' => home_url('/contact/')),
         ),
         'support_links' => array(
-            array('label' => 'CSR Commitment', 'url' => home_url('/enp-fitouts-csr-commitments')),
-            array('label' => 'Our Values', 'url' => home_url('/our-values')),
-            array('label' => 'Our Blog', 'url' => ''),
+            array('label' => 'Repairs & Maintenance', 'url' => home_url('/repairs-and-maintenance/')),
+            array('label' => 'Get a Quote', 'url' => home_url('/contact/')),
         ),
     );
 }
@@ -39,6 +42,7 @@ function central_build_get_footer_settings(): array
 
     $settings['company'] = wp_parse_args($settings['company'] ?? array(), $defaults['company']);
     $settings['company']['phone'] = wp_parse_args($settings['company']['phone'] ?? array(), $defaults['company']['phone']);
+    $settings['company']['mobile'] = wp_parse_args($settings['company']['mobile'] ?? array(), $defaults['company']['mobile']);
 
     $links = array('quick_links', 'support_links');
     foreach ($links as $link_group) {
@@ -66,15 +70,25 @@ function central_build_sanitize_footer_settings(array $input): array
     $company = array(
         'logo_url'    => isset($input['company']['logo_url']) ? esc_url_raw(wp_unslash($input['company']['logo_url'])) : $defaults['company']['logo_url'],
         'description' => isset($input['company']['description']) ? wp_kses_post(wp_unslash($input['company']['description'])) : $defaults['company']['description'],
+        'licence'     => isset($input['company']['licence']) ? sanitize_text_field(wp_unslash($input['company']['licence'])) : $defaults['company']['licence'],
         'email'       => isset($input['company']['email']) ? sanitize_email(wp_unslash($input['company']['email'])) : $defaults['company']['email'],
         'phone'       => array(
             'display' => isset($input['company']['phone']['display']) ? sanitize_text_field(wp_unslash($input['company']['phone']['display'])) : $defaults['company']['phone']['display'],
             'link'    => isset($input['company']['phone']['link']) ? sanitize_text_field(wp_unslash($input['company']['phone']['link'])) : $defaults['company']['phone']['link'],
         ),
+        'mobile'      => array(
+            'display' => isset($input['company']['mobile']['display']) ? sanitize_text_field(wp_unslash($input['company']['mobile']['display'])) : $defaults['company']['mobile']['display'],
+            'link'    => isset($input['company']['mobile']['link']) ? sanitize_text_field(wp_unslash($input['company']['mobile']['link'])) : $defaults['company']['mobile']['link'],
+        ),
     );
 
     if (empty($company['email'])) {
         $company['email'] = $defaults['company']['email'];
+    }
+
+    if ($company['mobile']['display'] !== '' && empty($company['mobile']['link'])) {
+        $digits = preg_replace('/[^0-9+]/', '', $company['mobile']['display']);
+        $company['mobile']['link'] = $digits ? 'tel:' . $digits : '';
     }
 
     if (empty($company['phone']['link'])) {

@@ -1,0 +1,51 @@
+/*
+ * Heading system – one scale for every page (loaded last).
+ * Family: Oswald (unchanged). Weights: 600 page titles & call-to-action headings,
+ * 500 section and card headings. Sizes scale with the screen.
+ */
+:root {
+    --cb-h1: clamp(2.375rem, 2.4vw + 1.6rem, 4rem);      /* 38 → 64px */
+    --cb-h2: clamp(1.75rem, 1.2vw + 1.3rem, 2.5rem);     /* 28 → 40px */
+    --cb-h3: clamp(1.25rem, 0.6vw + 1rem, 1.75rem);      /* 20 → 28px */
+}
+
+/* Page titles (hero) */
+#primary h1,
+main h1 {
+    font-size: var(--cb-h1) !important;
+    font-weight: 600 !important;
+    line-height: 1.08 !important;
+    letter-spacing: 0.01em !important;
+    text-transform: uppercase !important;
+    text-wrap: balance;
+}
+
+/* Section headings (small label headings like "About Us" and FAQ question rows keep their own style) */
+#primary h2:not(.nz-div-6):not(.accordion-header),
+main h2:not(.nz-div-6):not(.accordion-header) {
+    font-size: var(--cb-h2) !important;
+    font-weight: 500 !important;
+    line-height: 1.15 !important;
+    letter-spacing: 0 !important;
+    text-wrap: balance;
+}
+
+/* Call-to-action headings at the bottom of service pages */
+#primary h2.display-5:not(.nz-div-6):not(.accordion-header),
+main h2.display-5:not(.nz-div-6):not(.accordion-header) {
+    font-weight: 600 !important;
+}
+
+/* Sub-headings and card titles */
+#primary h3,
+main h3 {
+    font-size: var(--cb-h3) !important;
+    font-weight: 500 !important;
+    line-height: 1.2 !important;
+}
+
+/* Footer contact lines: let a long line (e.g. the mobile number) wrap instead of being cut off */
+.home-two-footer-call-block .footer-link {
+    height: auto;
+    min-height: 24px;
+}

@@ -13,8 +13,8 @@ function central_build_contact_settings_defaults(): array
         'contact_info' => array(
             'email' => 'info@centralbuild.au',
             'phone' => array(
-                'link'    => 'tel:0123456789',
-                'display' => '0123 456 789',
+                'link'    => 'tel:1300318888',
+                'display' => '1300 31 8888',
             ),
         ),
         'channels' => array(
@@ -33,12 +33,12 @@ function central_build_contact_settings_defaults(): array
             array(
                 'title'       => 'Urgent Repairs (24/7)',
                 'description' => 'For critical faults: electrical failure, burst pipes, or immediate site issues.',
-                'highlight'   => '+1 (123) 456-7890',
+                'highlight'   => '+61 413 058 861',
                 'icon'        => 'fas fa-headset',
                 'style'       => 'emergency',
                 'cta'         => array(
                     'label' => 'Call now',
-                    'url'   => 'tel:+11234567890',
+                    'url'   => 'tel:+61413058861',
                     'type'  => 'tel',
                 ),
             ),
@@ -53,7 +53,7 @@ function central_build_contact_settings_defaults(): array
                     'url'   => 'mailto:info@centralbuild.com',
                     'type'  => 'mail',
                 ),
-                'secondary'   => '+1 (123) 456-7899',
+                'secondary'   => '1300 31 8888',
             ),
         ),
         'form' => array(

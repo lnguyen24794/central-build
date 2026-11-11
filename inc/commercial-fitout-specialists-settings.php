@@ -11,7 +11,7 @@ function central_build_cfs_settings_defaults(): array
             'title'        => "STOP DELAYS. <br> START BUILDING <span style=\"color: var(--accent-color);\">VALUE.</span>",
             'description'  => 'We eliminate the pitfalls of traditional construction – conflict, budget creep, and delays – through our 100% Secured and In-House delivery model.',
             'cta'          => array('label' => 'Calculate Your Project Time & Cost', 'url' => '#contact'),
-            'background'   => get_template_directory_uri() . '/images/fitout-specialists-hero.jpg',
+            'background'   => get_template_directory_uri() . '/images/cb/cb-project-hero.jpg',
         ),
         'stats' => array(
             array('icon' => 'fas fa-check-circle', 'number' => 50, 'suffix' => '', 'label' => 'Successful Projects Delivered'),
@@ -40,19 +40,19 @@ function central_build_cfs_settings_defaults(): array
                 'icon'        => 'fas fa-faucet',
                 'title'       => 'Plumbing Experts',
                 'description' => 'Specialised Central Build plumbers ensure flawless integration of critical water systems for F&B and retail fitouts.',
-                'image'       => get_template_directory_uri() . '/images/fitout-plumbing.jpg',
+                'image'       => get_template_directory_uri() . '/images/cb/cb-kitchen.jpg',
             ),
             array(
                 'icon'        => 'fas fa-bolt',
                 'title'       => 'Electrical Specialists',
                 'description' => 'Electrical teams coordinate with BIM plans to handle complex power layouts safely and efficiently for modern office spaces.',
-                'image'       => get_template_directory_uri() . '/images/fitout-electrical.jpg',
+                'image'       => get_template_directory_uri() . '/images/cb/cb-construction.jpg',
             ),
             array(
                 'icon'        => 'fas fa-sitemap',
                 'title'       => 'BIM & Seamless Management',
                 'description' => 'Experienced management aligned with BIM architects keeps every trade synchronised, guaranteeing efficiency and quality.',
-                'image'       => get_template_directory_uri() . '/images/fitout-bim.jpg',
+                'image'       => get_template_directory_uri() . '/images/cb/cb-team.jpg',
             ),
         ),
         'case_study' => array(
@@ -67,7 +67,7 @@ function central_build_cfs_settings_defaults(): array
             'result_text'    => 'Achieving maximum speed and quality control.',
             'progress_label' => '100% Completion',
             'progress_value' => 100,
-            'image'          => get_template_directory_uri() . '/images/fitout-case-study.jpg',
+            'image'          => get_template_directory_uri() . '/images/cb/cb-interior.jpg',
         ),
         'journey' => array(
             array('icon' => 'fas fa-search', 'title' => '1. Discovery', 'description' => 'In-depth consultation to define needs and budget.'),
@@ -78,7 +78,7 @@ function central_build_cfs_settings_defaults(): array
         'final_cta' => array(
             'title'       => "DON'T JUST BUILD. <br> BUILD <span style=\"color: var(--primary-color);\">CENTRAL.</span>",
             'description' => 'We guarantee On-Time, On-Budget, and On-Spec delivery. Challenge us with your next project and experience the difference.',
-            'contact'     => '+1 (123) 456-7890',
+            'contact'     => '1300 31 8888',
             'form_title'  => 'Schedule a Free Analysis',
             'button_label'=> 'Get Started Now',
         ),

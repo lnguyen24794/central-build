@@ -44,7 +44,7 @@
                  alt="<?php esc_attr_e('CTA Background', 'central-build'); ?>" 
                  class="image-5 d-none d-md-block">
         <?php else : ?>
-            <img src="<?php echo esc_url(get_template_directory_uri() . '/images/cta-default.jpg'); ?>" 
+            <img src="<?php echo esc_url(get_template_directory_uri() . '/images/cb/cb-project-hero.jpg'); ?>" 
                  loading="lazy" 
                  alt="<?php esc_attr_e('CTA Background', 'central-build'); ?>" 
                  class="image-5 d-none d-md-block">

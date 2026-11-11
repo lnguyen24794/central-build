@@ -8,6 +8,7 @@ $defaults        = central_build_footer_settings_defaults();
 $footer_settings = wp_parse_args(is_array($footer_settings) ? $footer_settings : array(), $defaults);
 $footer_settings['company'] = wp_parse_args($footer_settings['company'] ?? array(), $defaults['company']);
 $footer_settings['company']['phone'] = wp_parse_args($footer_settings['company']['phone'] ?? array(), $defaults['company']['phone']);
+$footer_settings['company']['mobile'] = wp_parse_args($footer_settings['company']['mobile'] ?? array(), $defaults['company']['mobile']);
 
 $sanitize_links = function ($links, $fallback) {
     $collection = array();
@@ -35,6 +36,7 @@ $footer_email       = $company['email'];
 $footer_phone       = $company['phone']['display'];
 $footer_phone_link  = $company['phone']['link'];
 $footer_phone_clean = preg_replace('/[^0-9+]/', '', $footer_phone_link);
+$footer_mobile      = wp_parse_args($company['mobile'] ?? array(), array('display' => '', 'link' => ''));
 ?>
 
 <footer class="home-two-footer-section">
@@ -46,6 +48,9 @@ $footer_phone_clean = preg_replace('/[^0-9+]/', '', $footer_phone_link);
                         <img src="<?php echo esc_url($footer_logo); ?>" sizes="220px" width="220" height="70" alt="<?php bloginfo('name'); ?>" srcset="<?php echo esc_url($footer_logo); ?> 500w, <?php echo esc_url($footer_logo); ?> 800w, <?php echo esc_url($footer_logo); ?> 1080w, <?php echo esc_url($footer_logo); ?> 1529w" class="autofit">
                     </a>
                     <p class="footer-two-paragraph text-light-grey"><?php echo esc_html($footer_description); ?></p>
+                    <?php if (!empty($company['licence'])) : ?>
+                        <p class="footer-two-paragraph text-light-grey" style="margin-top: -6px;"><?php echo esc_html($company['licence']); ?></p>
+                    <?php endif; ?>
                     <a href="mailto:<?php echo esc_attr($footer_email); ?>" class="footer-link with-underline w-inline-block">
                         <div class="footer-link-text color-white"><?php echo esc_html($footer_email); ?></div>
                     </a>
@@ -90,6 +95,11 @@ $footer_phone_clean = preg_replace('/[^0-9+]/', '', $footer_phone_link);
                         <a href="<?php echo esc_attr($footer_phone_link); ?>" class="footer-link w-inline-block">
                             <div class="footer-link-text text-light-grey"><?php echo esc_html($footer_phone); ?></div>
                         </a>
+                        <?php if (!empty($footer_mobile['display'])) : ?>
+                            <a href="<?php echo esc_attr($footer_mobile['link'] ?: 'tel:' . preg_replace('/[^0-9+]/', '', $footer_mobile['display'])); ?>" class="footer-link w-inline-block">
+                                <div class="footer-link-text text-light-grey"><?php echo esc_html($footer_mobile['display']); ?></div>
+                            </a>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

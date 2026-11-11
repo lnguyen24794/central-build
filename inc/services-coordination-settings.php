@@ -53,7 +53,7 @@ function central_build_sc_settings_defaults(): array
             'title'       => 'Precision in Pixels: The Power of BIM',
             'subtitle'    => 'Virtual Conflict Resolution, Real-World Savings.',
             'description' => 'Building Information Modelling (BIM) is our primary risk mitigation tool. We use advanced clash detection to identify and resolve every potential conflict between MEP services, structures, and architectural elements.',
-            'image'       => get_template_directory_uri() . '/images/services-coordination-bim.jpg',
+            'image'       => get_template_directory_uri() . '/images/cb/cb-construction.jpg',
             'accordion'   => array(
                 array(
                     'heading' => 'How Clash Detection Works',
@@ -84,7 +84,7 @@ function central_build_sc_settings_defaults(): array
         'contact' => array(
             'heading'       => 'Unify Your Trades. Secure Your Success.',
             'description'   => 'Stop wasting time and budget on site conflicts. Let Central Build manage the complexity and guarantee a smooth delivery.',
-            'contact_line'  => '+1 (123) 456-7890',
+            'contact_line'  => '1300 31 8888',
             'form_title'    => 'Claim Your Project Control',
             'button_label'  => 'Request Consultation',
         ),

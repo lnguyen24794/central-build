@@ -13,6 +13,7 @@ function central_build_form_notifications_defaults(): array
         'commercial_stripout'           => array('recipients' => array(), 'reply_to' => ''),
         'repairs_maintenance'           => array('recipients' => array(), 'reply_to' => ''),
         'services_coordination'         => array('recipients' => array(), 'reply_to' => ''),
+        'design_solutions'              => array('recipients' => array(), 'reply_to' => ''),
     );
 }
 
@@ -119,6 +120,7 @@ function central_build_form_notifications_page_render(): void
         'commercial_stripout'           => __('Commercial Stripout – Quote Request Form', 'central-build'),
         'repairs_maintenance'           => __('Repairs & Maintenance – Quote Form', 'central-build'),
         'services_coordination'         => __('Services Coordination – Consultation Form', 'central-build'),
+        'design_solutions'              => __('Commercial Design and Solutions – Design Consultation Form', 'central-build'),
     );
     ?>
     <div class="wrap">

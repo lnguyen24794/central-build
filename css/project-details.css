@@ -1,0 +1,70 @@
+/*
+ * Project page: photos are always shown whole (never cropped).
+ * The photo keeps its own shape; the text card next to it takes the remaining
+ * width and stretches to the photo's height.
+ */
+.project-details-flex-one,
+.project-details-flex-two {
+    display: flex;
+    align-items: stretch;
+    gap: 32px;
+}
+
+.cb-project-media {
+    flex: 0 1 auto;
+    max-width: 62%;
+    margin: 0;
+    padding: 0;
+    border-radius: 20px;
+    overflow: hidden;
+    background: none !important;
+    height: auto !important;
+    align-self: center;
+}
+
+.cb-project-media img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: min(80vh, 760px);
+    border-radius: 20px;
+}
+
+/* Fact card and "About the project" text fill the space left by the photo */
+.project-details-flex-one .project-details-right,
+.project-details-flex-two .about-project-text-block {
+    flex: 1 1 0;
+    min-width: 32%;
+    max-width: none;
+    align-self: stretch;
+}
+
+.project-details-flex-one .project-details-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.project-details-flex-two .about-project-text-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media (max-width: 991px) {
+    .project-details-flex-one,
+    .project-details-flex-two {
+        flex-direction: column;
+        gap: 24px;
+    }
+    .cb-project-media {
+        max-width: 100%;
+        align-self: stretch;
+        margin-bottom: 0 !important;
+    }
+    .cb-project-media img {
+        width: 100%;
+        max-height: none;
+    }
+}

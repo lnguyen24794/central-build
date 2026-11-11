@@ -145,7 +145,7 @@ function central_build_set_default_options()
         update_option('central_build_about_description', 'We know commercial fitouts inside and out. With years of experience and a commitment to quality, we deliver spaces that work for your business. Our approach is straightforward: understand your needs, create a plan, and execute it flawlessly.');
     }
     if (!get_option('central_build_about_image')) {
-        update_option('central_build_about_image', get_template_directory_uri() . '/images/about-image.jpg');
+        update_option('central_build_about_image', get_template_directory_uri() . '/images/cb/cb-dining.jpg');
     }
     if (!get_option('central_build_about_feature_1_title')) {
         update_option('central_build_about_feature_1_title', 'Expert Team');
@@ -204,17 +204,17 @@ function central_build_set_default_options()
     if (!get_option('central_build_trust_features')) {
         $trust_features = array(
             array(
-                'icon' => get_template_directory_uri() . '/images/66f1ffecdef9310969f579e0_Engg-Icon.svg',
+                'icon' => get_template_directory_uri() . '/images/Engg-Icon.svg',
                 'title' => __('A Structured Fitout Process', 'central-build'),
                 'description' => __('Most delays happen because of poor planning. We solve that with a clear, step-by-step process built around your business needs. From the start, you\'ll know what\'s happening, when it\'s happening, and what to expect next. With built-in approvals and check-ins along the way, there\'s no confusion or chaos — just structure you can rely on.', 'central-build')
             ),
             array(
-                'icon' => get_template_directory_uri() . '/images/66f1ffecdef9310969f57a0a_Project-Icon.svg',
+                'icon' => get_template_directory_uri() . '/images/Project-Icon.svg',
                 'title' => __('Hands-On Project Support', 'central-build'),
                 'description' => __('You won\'t be chasing trades or wondering what\'s going on onsite. You\'ll have a dedicated project manager who coordinates everything from permits and council approvals to joinery installation. We deal with the issues before they affect your timeline, and keep you informed without overwhelming you.', 'central-build')
             ),
             array(
-                'icon' => get_template_directory_uri() . '/images/66f1ffecdef9310969f579df_Financial-Icon.svg',
+                'icon' => get_template_directory_uri() . '/images/Financial-Icon.svg',
                 'title' => __('Transparent Cost Management', 'central-build'),
                 'description' => __('We don\'t do vague quotes or "TBC" allowances. Every quote is detailed, costed properly, and confirmed with our trades. That means you know where every dollar is going before the build starts. If anything changes, we talk it through with you — no surprise charges or last-minute add-ons.', 'central-build')
             )
@@ -320,7 +320,7 @@ function central_build_set_default_options()
                 'url' => '/fitout-sectors/office-fitout'
             ),
             array(
-                'icon' => get_template_directory_uri() . '/images/674e4af6a81ec22fb406f986_2.svg',
+                'icon' => get_template_directory_uri() . '/images/Hospitality.svg',
                 'tag' => __('Hospitality', 'central-build'),
                 'title' => __('Hospitality Fitout', 'central-build'),
                 'description' => __('Create an inviting ambiance that impresses guests with our custom Hospitality Fitouts.', 'central-build'),
@@ -338,7 +338,7 @@ function central_build_set_default_options()
                 'url' => '/fitout-sectors/retail-fitout'
             ),
             array(
-                'icon' => get_template_directory_uri() . '/images/674e4af6a81ec22fb406f983_3.svg',
+                'icon' => get_template_directory_uri() . '/images/Mezzanine-Icon.svg',
                 'tag' => __('Mezzanine', 'central-build'),
                 'title' => __('Mezzanine Fitout', 'central-build'),
                 'description' => __('Maximize space efficiently with our functional and innovative Mezzanine Fitouts.', 'central-build'),
@@ -347,7 +347,7 @@ function central_build_set_default_options()
                 'url' => '/fitout-sectors/mezzanine-fitout'
             ),
             array(
-                'icon' => get_template_directory_uri() . '/images/674e4af6a81ec22fb406f984_1.svg',
+                'icon' => get_template_directory_uri() . '/images/Home-Three-Icon.svg',
                 'tag' => __('Medical', 'central-build'),
                 'title' => __('Medical Fitout', 'central-build'),
                 'description' => __('Transform healthcare spaces with Central Build. We specialize in functional, patient-focused medical fitouts tailored to your practice\'s needs.', 'central-build'),
@@ -361,7 +361,7 @@ function central_build_set_default_options()
     
     // Set default checkout section settings
     if (!get_option('central_build_checkout_icon')) {
-        update_option('central_build_checkout_icon', get_template_directory_uri() . '/images/66e8b10d2841cb4cd4932dbe_Innovation-Icon.svg');
+        update_option('central_build_checkout_icon', get_template_directory_uri() . '/images/Quality-Icon.svg');
     }
     if (!get_option('central_build_checkout_title')) {
         update_option('central_build_checkout_title', __('Commercial Fitout Sectors', 'central-build'));
@@ -419,17 +419,17 @@ function central_build_set_default_options()
     if (!get_option('central_build_transform_features')) {
         $transform_features = array(
             array(
-                'icon' => get_template_directory_uri() . '/images/66f1ffecdef9310969f579e3_Freely-Icon.svg',
+                'icon' => get_template_directory_uri() . '/images/Freely-Icon.svg',
                 'title' => __('Free Consultation', 'central-build'),
                 'description' => __('Schedule a no-obligation Consultation', 'central-build')
             ),
             array(
-                'icon' => get_template_directory_uri() . '/images/66f1ffecdef9310969f579e3_Freely-Icon.svg',
+                'icon' => get_template_directory_uri() . '/images/Freely-Icon.svg',
                 'title' => __('Custom Design', 'central-build'),
                 'description' => __('Tailored solutions to fit your vision.', 'central-build')
             ),
             array(
-                'icon' => get_template_directory_uri() . '/images/66f1ffecdef9310969f579e3_Freely-Icon.svg',
+                'icon' => get_template_directory_uri() . '/images/Freely-Icon.svg',
                 'title' => __('Quick Start', 'central-build'),
                 'description' => __('Projects commence as soon as designs are finalized.', 'central-build')
             )

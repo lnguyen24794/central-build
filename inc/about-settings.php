@@ -8,6 +8,7 @@ function central_build_about_settings_defaults(): array
     return array(
         'hero' => array(
             'title'       => 'We Are Central Build',
+            'tagline'     => 'The Central Build Story: Reliability Engineered.',
             'description' => 'A specialized commercial contractor delivering outstanding results in interior fit-outs. Precision, efficiency, and excellence are at the heart of everything we do.',
         ),
         'mission' => array(
@@ -27,11 +28,12 @@ function central_build_about_settings_defaults(): array
             ),
         ),
         'services' => array(
-            array('title' => 'Interior Design & Construction', 'url' => '/interior-design-construction'),
-            array('title' => 'Commercial Fitouts', 'url' => '/commercial-fitouts'),
-            array('title' => 'Services Coordination', 'url' => '/services-coordination'),
-            array('title' => 'Commercial Stripout', 'url' => '/commercial-stripout'),
-            array('title' => 'Repairs & Maintenance', 'url' => '/repairs-and-maintenance'),
+            array('title' => 'Commercial Design and Solutions', 'url' => '/commercial-design-and-solutions/'),
+            array('title' => 'Commercial Interior Design', 'url' => '/commercial-interior-design-construction/'),
+            array('title' => 'Commercial Fitouts', 'url' => '/commercial-fitouts/'),
+            array('title' => 'Services Coordination', 'url' => '/services-coordination/'),
+            array('title' => 'Commercial Stripout', 'url' => '/commercial-stripout/'),
+            array('title' => 'Repairs & Maintenance', 'url' => '/repairs-and-maintenance/'),
         ),
         'cta' => array(
             'text' => 'Contact Us Today!',
@@ -89,6 +91,7 @@ function central_build_sanitize_about_settings(array $input): array
 
     $settings['hero'] = array(
         'title'       => $sanitize_text($input['hero']['title'] ?? '', $defaults['hero']['title']),
+        'tagline'     => $sanitize_text($input['hero']['tagline'] ?? '', $defaults['hero']['tagline']),
         'description' => $sanitize_rich_text($input['hero']['description'] ?? '', $defaults['hero']['description']),
     );
 

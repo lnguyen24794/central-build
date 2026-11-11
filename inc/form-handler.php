@@ -111,6 +111,15 @@ function central_build_get_form_definitions(): array
                 'message'   => array('label' => __('Coordination Challenge', 'central-build'), 'sanitize' => 'central_build_sanitize_textarea', 'required' => false),
             ),
         ),
+        'design_solutions' => array(
+            'label'  => __('Commercial Design and Solutions – Design Consultation', 'central-build'),
+            'fields' => array(
+                'full_name' => array('label' => __('Full Name', 'central-build'), 'sanitize' => 'sanitize_text_field', 'required' => true),
+                'email'     => array('label' => __('Work Email', 'central-build'), 'sanitize' => 'sanitize_email', 'required' => true),
+                'phone'     => array('label' => __('Phone Number', 'central-build'), 'sanitize' => 'sanitize_text_field', 'required' => false),
+                'message'   => array('label' => __('Project Details', 'central-build'), 'sanitize' => 'central_build_sanitize_textarea', 'required' => false),
+            ),
+        ),
     );
 }
 

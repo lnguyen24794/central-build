@@ -17,37 +17,37 @@ if (!defined('ABSPATH')) {
 function central_build_register_fitout_sector_post_type()
 {
     $labels = array(
-        'name'                  => _x('Fitout Sectors', 'Post Type General Name', 'central-build'),
-        'singular_name'         => _x('Fitout Sector', 'Post Type Singular Name', 'central-build'),
-        'menu_name'             => __('Fitout Sectors', 'central-build'),
-        'name_admin_bar'        => __('Fitout Sector', 'central-build'),
-        'archives'              => __('Fitout Sector Archives', 'central-build'),
-        'attributes'            => __('Fitout Sector Attributes', 'central-build'),
-        'parent_item_colon'     => __('Parent Fitout Sector:', 'central-build'),
-        'all_items'             => __('All Fitout Sectors', 'central-build'),
-        'add_new_item'          => __('Add New Fitout Sector', 'central-build'),
+        'name'                  => _x('Projects', 'Post Type General Name', 'central-build'),
+        'singular_name'         => _x('Project', 'Post Type Singular Name', 'central-build'),
+        'menu_name'             => __('Projects', 'central-build'),
+        'name_admin_bar'        => __('Project', 'central-build'),
+        'archives'              => __('Project Archives', 'central-build'),
+        'attributes'            => __('Project Attributes', 'central-build'),
+        'parent_item_colon'     => __('Parent Project:', 'central-build'),
+        'all_items'             => __('All Projects', 'central-build'),
+        'add_new_item'          => __('Add New Project', 'central-build'),
         'add_new'               => __('Add New', 'central-build'),
-        'new_item'              => __('New Fitout Sector', 'central-build'),
-        'edit_item'             => __('Edit Fitout Sector', 'central-build'),
-        'update_item'           => __('Update Fitout Sector', 'central-build'),
-        'view_item'             => __('View Fitout Sector', 'central-build'),
-        'view_items'            => __('View Fitout Sectors', 'central-build'),
-        'search_items'          => __('Search Fitout Sector', 'central-build'),
+        'new_item'              => __('New Project', 'central-build'),
+        'edit_item'             => __('Edit Project', 'central-build'),
+        'update_item'           => __('Update Project', 'central-build'),
+        'view_item'             => __('View Project', 'central-build'),
+        'view_items'            => __('View Projects', 'central-build'),
+        'search_items'          => __('Search Project', 'central-build'),
         'not_found'             => __('Not found', 'central-build'),
         'not_found_in_trash'    => __('Not found in Trash', 'central-build'),
         'featured_image'        => __('Featured Image', 'central-build'),
         'set_featured_image'    => __('Set featured image', 'central-build'),
         'remove_featured_image' => __('Remove featured image', 'central-build'),
         'use_featured_image'    => __('Use as featured image', 'central-build'),
-        'insert_into_item'      => __('Insert into fitout sector', 'central-build'),
-        'uploaded_to_this_item' => __('Uploaded to this fitout sector', 'central-build'),
+        'insert_into_item'      => __('Insert into project', 'central-build'),
+        'uploaded_to_this_item' => __('Uploaded to this project', 'central-build'),
         'items_list'            => __('Fitout sectors list', 'central-build'),
         'items_list_navigation' => __('Fitout sectors list navigation', 'central-build'),
-        'filter_items_list'     => __('Filter fitout sectors list', 'central-build'),
+        'filter_items_list'     => __('Filter projects list', 'central-build'),
     );
 
     $args = array(
-        'label'                 => __('Fitout Sector', 'central-build'),
+        'label'                 => __('Project', 'central-build'),
         'description'           => __('Fitout sector projects and case studies', 'central-build'),
         'labels'                => $labels,
         'supports'              => array('title', 'editor', 'thumbnail', 'excerpt', 'revisions'),
@@ -84,9 +84,9 @@ add_action('init', 'central_build_register_fitout_sector_post_type', 0);
 function central_build_register_fitout_category_taxonomy()
 {
     $labels = array(
-        'name'                       => _x('Fitout Categories', 'Taxonomy General Name', 'central-build'),
-        'singular_name'              => _x('Fitout Category', 'Taxonomy Singular Name', 'central-build'),
-        'menu_name'                  => __('Fitout Categories', 'central-build'),
+        'name'                       => _x('Project Categories', 'Taxonomy General Name', 'central-build'),
+        'singular_name'              => _x('Project Category', 'Taxonomy Singular Name', 'central-build'),
+        'menu_name'                  => __('Project Categories', 'central-build'),
         'all_items'                  => __('All Categories', 'central-build'),
         'parent_item'                => __('Parent Category', 'central-build'),
         'parent_item_colon'          => __('Parent Category:', 'central-build'),
@@ -183,7 +183,7 @@ function central_build_fitout_sector_details_callback($post)
     ?>
     <table class="form-table">
         <tr>
-            <th><label for="fitout_client"><?php _e('Client Name', 'central-build'); ?></label></th>
+            <th><label for="fitout_client"><?php _e('Client', 'central-build'); ?></label></th>
             <td><input type="text" id="fitout_client" name="fitout_client" value="<?php echo esc_attr($client); ?>" class="regular-text" /></td>
         </tr>
         <tr>
@@ -191,53 +191,53 @@ function central_build_fitout_sector_details_callback($post)
             <td><input type="text" id="fitout_location" name="fitout_location" value="<?php echo esc_attr($location); ?>" class="regular-text" /></td>
         </tr>
         <tr>
-            <th><label for="fitout_sqm"><?php _e('SQM', 'central-build'); ?></label></th>
+            <th><label for="fitout_sqm"><?php _e('Size (m²)', 'central-build'); ?></label></th>
             <td><input type="text" id="fitout_sqm" name="fitout_sqm" value="<?php echo esc_attr($sqm); ?>" class="regular-text" /></td>
         </tr>
         <tr>
-            <th><label for="fitout_created_date"><?php _e('Created Date', 'central-build'); ?></label></th>
+            <th><label for="fitout_created_date"><?php _e('Completion date', 'central-build'); ?></label></th>
             <td><input type="date" id="fitout_created_date" name="fitout_created_date" value="<?php echo esc_attr($created_date); ?>" class="regular-text" /></td>
         </tr>
         <tr>
-            <th><label for="fitout_hero_image"><?php _e('Hero Image URL', 'central-build'); ?></label></th>
+            <th><label for="fitout_hero_image"><?php _e('Main photo', 'central-build'); ?></label></th>
             <td>
-                <input type="text" id="fitout_hero_image" name="fitout_hero_image" value="<?php echo esc_url($hero_image); ?>" class="regular-text" />
-                <p class="description"><?php _e('URL for the hero section background image', 'central-build'); ?></p>
+                <?php central_build_project_image_picker('fitout_hero_image', $hero_image); ?>
+                <p class="description"><?php _e('Shown behind the project name at the top of the page and next to the project details. If empty, the Featured image is used.', 'central-build'); ?></p>
             </td>
         </tr>
         <tr>
-            <th><label for="fitout_about_image"><?php _e('About Project Image URL', 'central-build'); ?></label></th>
+            <th><label for="fitout_about_image"><?php _e('"About the project" photo', 'central-build'); ?></label></th>
             <td>
-                <input type="text" id="fitout_about_image" name="fitout_about_image" value="<?php echo esc_url($about_image); ?>" class="regular-text" />
-                <p class="description"><?php _e('URL for the about project section image', 'central-build'); ?></p>
+                <?php central_build_project_image_picker('fitout_about_image', $about_image); ?>
+                <p class="description"><?php _e('Shown next to the "About the project" text.', 'central-build'); ?></p>
             </td>
         </tr>
         <tr>
             <th><label for="fitout_about_project"><?php _e('About the Project', 'central-build'); ?></label></th>
             <td>
                 <textarea id="fitout_about_project" name="fitout_about_project" rows="8" cols="50" class="large-text"><?php echo esc_textarea($about_project); ?></textarea>
-                <p class="description"><?php _e('Description about the project for the About section', 'central-build'); ?></p>
+                <p class="description"><?php _e('Shown under the heading "About the project". Press Enter for a new line.', 'central-build'); ?></p>
             </td>
         </tr>
         <tr>
             <th><label for="fitout_key_elements"><?php _e('Key Elements', 'central-build'); ?></label></th>
             <td>
                 <textarea id="fitout_key_elements" name="fitout_key_elements" rows="8" cols="50" class="large-text"><?php echo esc_textarea($key_elements); ?></textarea>
-                <p class="description"><?php _e('Enter each key element on a new line', 'central-build'); ?></p>
+                <p class="description"><?php _e('One item per line. Each line becomes a bullet point under "Key Elements".', 'central-build'); ?></p>
             </td>
         </tr>
         <tr>
-            <th><label for="fitout_cta_text"><?php _e('CTA Text', 'central-build'); ?></label></th>
+            <th><label for="fitout_cta_text"><?php _e('Call-to-action line', 'central-build'); ?></label></th>
             <td>
                 <textarea id="fitout_cta_text" name="fitout_cta_text" rows="3" cols="50" class="large-text"><?php echo esc_textarea($cta_text); ?></textarea>
-                <p class="description"><?php _e('Call-to-action text for the project', 'central-build'); ?></p>
+                <p class="description"><?php _e('The short invitation near the bottom of the page, e.g. "Planning a fitout project? Let\'s talk."', 'central-build'); ?></p>
             </td>
         </tr>
         <tr>
-            <th><label for="fitout_final_result"><?php _e('Final Result Description', 'central-build'); ?></label></th>
+            <th><label for="fitout_final_result"><?php _e('Final result', 'central-build'); ?></label></th>
             <td>
                 <textarea id="fitout_final_result" name="fitout_final_result" rows="5" cols="50" class="large-text"><?php echo esc_textarea($final_result); ?></textarea>
-                <p class="description"><?php _e('Description of the final project result', 'central-build'); ?></p>
+                <p class="description"><?php _e('A sentence or two about the finished result, shown near the photo gallery.', 'central-build'); ?></p>
             </td>
         </tr>
     </table>
@@ -255,33 +255,18 @@ function central_build_fitout_sector_gallery_callback($post)
     }
 
     ?>
-    <div id="fitout-gallery-container">
-        <div id="fitout-gallery-images">
-            <?php foreach ($gallery_images as $index => $image_url) : ?>
-                <div class="gallery-image-item" style="margin-bottom: 10px;">
-                    <input type="text" name="fitout_gallery_images[]" value="<?php echo esc_url($image_url); ?>" class="regular-text" placeholder="<?php _e('Image URL', 'central-build'); ?>" />
-                    <button type="button" class="button remove-gallery-image"><?php _e('Remove', 'central-build'); ?></button>
-                </div>
-            <?php endforeach; ?>
-        </div>
-        <button type="button" id="add-gallery-image" class="button"><?php _e('Add Gallery Image', 'central-build'); ?></button>
-    </div>
-
-    <script>
-    jQuery(document).ready(function($) {
-        $('#add-gallery-image').click(function() {
-            var newField = '<div class="gallery-image-item" style="margin-bottom: 10px;">' +
-                '<input type="text" name="fitout_gallery_images[]" value="" class="regular-text" placeholder="<?php _e('Image URL', 'central-build'); ?>" />' +
-                '<button type="button" class="button remove-gallery-image"><?php _e('Remove', 'central-build'); ?></button>' +
-                '</div>';
-            $('#fitout-gallery-images').append(newField);
-        });
-
-        $(document).on('click', '.remove-gallery-image', function() {
-            $(this).parent().remove();
-        });
-    });
-    </script>
+    <p class="description" style="margin-top:0"><?php _e('These photos are shown in the gallery at the bottom of the project page, in this order. Drag a photo to move it.', 'central-build'); ?></p>
+    <ul id="cb-project-gallery" class="cb-project-gallery">
+        <?php foreach ($gallery_images as $image_url) : if (!$image_url) { continue; } ?>
+            <li>
+                <img src="<?php echo esc_url($image_url); ?>" alt="" />
+                <input type="hidden" name="fitout_gallery_images[]" value="<?php echo esc_url($image_url); ?>" />
+                <button type="button" class="cb-project-gallery__remove" title="<?php esc_attr_e('Remove this photo', 'central-build'); ?>">&times;</button>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+    <input type="hidden" name="fitout_gallery_images_present" value="1" />
+    <p><button type="button" class="button button-primary" id="cb-project-gallery-add"><?php _e('+ Add photos', 'central-build'); ?></button></p>
     <?php
 }
 
@@ -300,14 +285,15 @@ function central_build_fitout_sector_quote_callback($post)
             <th><label for="fitout_quote_text"><?php _e('Quote Text', 'central-build'); ?></label></th>
             <td>
                 <textarea id="fitout_quote_text" name="fitout_quote_text" rows="4" cols="50" class="large-text"><?php echo esc_textarea($quote_text); ?></textarea>
+                <p class="description"><?php _e('The quote only appears on the website when "Quote by (name)" is filled in too.', 'central-build'); ?></p>
             </td>
         </tr>
         <tr>
-            <th><label for="fitout_quote_author"><?php _e('Quote Author', 'central-build'); ?></label></th>
+            <th><label for="fitout_quote_author"><?php _e('Quote by (name)', 'central-build'); ?></label></th>
             <td><input type="text" id="fitout_quote_author" name="fitout_quote_author" value="<?php echo esc_attr($quote_author); ?>" class="regular-text" /></td>
         </tr>
         <tr>
-            <th><label for="fitout_quote_position"><?php _e('Author Position', 'central-build'); ?></label></th>
+            <th><label for="fitout_quote_position"><?php _e('Their role or company', 'central-build'); ?></label></th>
             <td><input type="text" id="fitout_quote_position" name="fitout_quote_position" value="<?php echo esc_attr($quote_position); ?>" class="regular-text" /></td>
         </tr>
     </table>
@@ -365,9 +351,105 @@ function central_build_save_fitout_sector_meta($post_id)
 
     // Save gallery images
     if (isset($_POST['fitout_gallery_images'])) {
-        $gallery_images = array_filter(array_map('esc_url_raw', $_POST['fitout_gallery_images']));
+        $gallery_images = array_values(array_filter(array_map('esc_url_raw', wp_unslash((array) $_POST['fitout_gallery_images']))));
         update_post_meta($post_id, '_fitout_gallery_images', $gallery_images);
+    } elseif (isset($_POST['fitout_gallery_images_present'])) {
+        // Every photo was removed.
+        update_post_meta($post_id, '_fitout_gallery_images', array());
     }
+}
+
+/**
+ * Image picker used in the Project Details box (stores the image address, as before).
+ */
+function central_build_project_image_picker(string $name, $value): void
+{
+    $value = (string) $value;
+    ?>
+    <div class="cb-project-image<?php echo $value ? ' has-image' : ''; ?>">
+        <div class="cb-project-image__preview"><?php if ($value) : ?><img src="<?php echo esc_url($value); ?>" alt="" /><?php else : ?><span><?php esc_html_e('No photo', 'central-build'); ?></span><?php endif; ?></div>
+        <input type="hidden" id="<?php echo esc_attr($name); ?>" name="<?php echo esc_attr($name); ?>" value="<?php echo esc_url($value); ?>" />
+        <button type="button" class="button button-primary cb-project-image__choose"><?php echo $value ? esc_html__('Change photo', 'central-build') : esc_html__('Choose photo', 'central-build'); ?></button>
+        <button type="button" class="button-link cb-project-image__remove"><?php esc_html_e('Remove', 'central-build'); ?></button>
+    </div>
+    <?php
+}
+
+/**
+ * Scripts & styles for the project edit screen: photo pickers and the gallery.
+ */
+function central_build_project_editor_assets(): void
+{
+    $screen = get_current_screen();
+    if (!$screen || $screen->post_type !== 'fitout_sector' || $screen->base !== 'post') {
+        return;
+    }
+    wp_enqueue_media();
+    wp_enqueue_script('jquery-ui-sortable');
+    add_action('admin_footer', 'central_build_project_editor_footer');
+}
+add_action('admin_enqueue_scripts', 'central_build_project_editor_assets');
+
+function central_build_project_editor_footer(): void
+{
+    ?>
+    <style>
+        .cb-project-image { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        .cb-project-image__preview { width: 160px; height: 100px; border: 1px solid #dcdcde; border-radius: 6px; background: #f6f7f7; display: grid; place-items: center; overflow: hidden; }
+        .cb-project-image__preview img { width: 100%; height: 100%; object-fit: cover; }
+        .cb-project-image__preview span { color: #8c8f94; font-size: 12px; }
+        .cb-project-image:not(.has-image) .cb-project-image__remove { display: none; }
+        .cb-project-image__remove, .cb-project-gallery__remove { color: #b32d2e !important; }
+        .cb-project-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; margin: 10px 0; }
+        .cb-project-gallery li { position: relative; margin: 0; border: 1px solid #dcdcde; border-radius: 6px; overflow: hidden; height: 100px; cursor: move; background: #f6f7f7; }
+        .cb-project-gallery li img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .cb-project-gallery__remove { position: absolute; top: 4px; right: 4px; width: 26px; height: 26px; border-radius: 50%; border: 0; background: rgba(255,255,255,.92); font-size: 18px; line-height: 24px; cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,.3); }
+        .cb-project-gallery-placeholder { border: 2px dashed #fb7f28 !important; background: #fff7f1 !important; }
+        #external_featured_image { display: none; }
+    </style>
+    <script>
+    jQuery(function ($) {
+        function pick(multiple, done) {
+            var frame = wp.media({ title: multiple ? 'Choose photos' : 'Choose a photo', button: { text: multiple ? 'Add these photos' : 'Use this photo' }, library: { type: 'image' }, multiple: multiple ? 'add' : false });
+            frame.on('select', function () {
+                done(frame.state().get('selection').toJSON().map(function (a) {
+                    return (a.sizes && a.sizes.large) ? (a.width > 2560 ? a.sizes.large.url : a.url) : a.url;
+                }));
+            });
+            frame.open();
+        }
+        $(document).on('click', '.cb-project-image__choose', function () {
+            var $box = $(this).closest('.cb-project-image');
+            pick(false, function (urls) {
+                $box.find('input').val(urls[0]);
+                $box.find('.cb-project-image__preview').html('<img src="' + urls[0] + '" alt="">');
+                $box.addClass('has-image').find('.cb-project-image__choose').text('Change photo');
+            });
+        });
+        $(document).on('click', '.cb-project-image__remove', function () {
+            var $box = $(this).closest('.cb-project-image');
+            $box.find('input').val('');
+            $box.find('.cb-project-image__preview').html('<span>No photo</span>');
+            $box.removeClass('has-image').find('.cb-project-image__choose').text('Choose photo');
+        });
+        var $gallery = $('#cb-project-gallery');
+        $gallery.sortable({ placeholder: 'cb-project-gallery-placeholder', tolerance: 'pointer' });
+        $('#cb-project-gallery-add').on('click', function () {
+            pick(true, function (urls) {
+                urls.forEach(function (url) {
+                    var $li = $('<li><img alt=""><input type="hidden" name="fitout_gallery_images[]"><button type="button" class="cb-project-gallery__remove" title="Remove this photo">&times;</button></li>');
+                    $li.find('img').attr('src', url);
+                    $li.find('input').val(url);
+                    $gallery.append($li);
+                });
+            });
+        });
+        $gallery.on('click', '.cb-project-gallery__remove', function () {
+            if (window.confirm('Remove this photo from the gallery?')) { $(this).closest('li').remove(); }
+        });
+    });
+    </script>
+    <?php
 }
 add_action('save_post', 'central_build_save_fitout_sector_meta');
 
@@ -457,7 +539,7 @@ function central_build_add_fitout_category_fields()
 {
     ?>
     <div class="form-field">
-        <label for="category_hero_image"><?php _e('Hero Image URL', 'central-build'); ?></label>
+        <label for="category_hero_image"><?php _e('Main photo', 'central-build'); ?></label>
         <input type="text" name="category_hero_image" id="category_hero_image" value="" />
         <p class="description"><?php _e('Enter the URL for the hero section background image', 'central-build'); ?></p>
     </div>
@@ -487,7 +569,7 @@ function central_build_edit_fitout_category_fields($term)
     $custom_description = get_term_meta($term->term_id, 'category_description_custom', true);
     ?>
     <tr class="form-field">
-        <th scope="row"><label for="category_hero_image"><?php _e('Hero Image URL', 'central-build'); ?></label></th>
+        <th scope="row"><label for="category_hero_image"><?php _e('Main photo', 'central-build'); ?></label></th>
         <td>
             <input type="text" name="category_hero_image" id="category_hero_image" value="<?php echo esc_url($hero_image); ?>" class="regular-text" />
             <p class="description"><?php _e('Enter the URL for the hero section background image', 'central-build'); ?></p>

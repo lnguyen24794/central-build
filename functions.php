@@ -181,6 +181,8 @@ function central_build_scripts()
 
     // Enqueue Bootstrap CSS (before webflow-overrides so it can be overridden)
     wp_enqueue_style('bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css', array('central-build-components', 'animation'), '5.3.2');
+    // Font Awesome (icons such as "fas fa-tools" used across the service pages).
+    wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css', array(), '6.5.2');
     wp_enqueue_style('bootstrap-icons', 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css', array('bootstrap'), '1.11.3');
     wp_enqueue_style('jquery-ui', 'https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css', array('bootstrap'), '1.14.1');
 
@@ -192,6 +194,14 @@ function central_build_scripts()
 
     // Enqueue Webflow overrides CSS (this will override Bootstrap when needed)
     wp_enqueue_style('central-build-webflow-overrides', get_template_directory_uri() . '/css/webflow-overrides.css', array('bootstrap-custom', 'swiper-bundle', 'animation'), true);
+
+    // One heading scale for every page (loaded after all other theme styles).
+    wp_enqueue_style('central-build-typography', get_template_directory_uri() . '/css/typography.css', array('central-build-webflow-overrides'), (string) filemtime(get_template_directory() . '/css/typography.css'));
+    wp_enqueue_style('central-build-videos', get_template_directory_uri() . '/css/videos.css', array('central-build-typography'), (string) filemtime(get_template_directory() . '/css/videos.css'));
+    wp_enqueue_style('central-build-system', get_template_directory_uri() . '/css/cb-system.css', array('central-build-videos'), (string) filemtime(get_template_directory() . '/css/cb-system.css'));
+    if (is_singular('fitout_sector')) {
+        wp_enqueue_style('central-build-project-details', get_template_directory_uri() . '/css/project-details.css', array('central-build-typography'), (string) filemtime(get_template_directory() . '/css/project-details.css'));
+    }
 
     // Enqueue Google Fonts (Roboto) and Oswald from template
     wp_enqueue_style('central-build-fonts', 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap', array(), null);
@@ -377,7 +387,7 @@ function central_build_get_fitout_projects($limit = 8)
                 $hero_image = get_the_post_thumbnail_url(get_the_ID(), 'large');
             }
             if (!$hero_image) {
-                $hero_image = 'https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f579c4_Image-Bg-Section.webp';
+                $hero_image = get_template_directory_uri() . '/images/cb/cb-interior.jpg';
             }
 
             $projects[] = array(
@@ -886,3 +896,19 @@ require_once get_template_directory() . '/inc/commercial-stripout-settings.php';
 require_once get_template_directory() . '/inc/repairs-maintenance-settings.php';
 require_once get_template_directory() . '/inc/form-notifications-settings.php';
 require_once get_template_directory() . '/inc/form-handler.php';
+require_once get_template_directory() . '/inc/home-content.php';
+require_once get_template_directory() . '/inc/design-solutions-settings.php';
+require_once get_template_directory() . '/inc/project-videos.php';
+require_once get_template_directory() . '/inc/cb-ui.php';
+require_once get_template_directory() . '/inc/content-editor/editor.php';
+
+/**
+ * "Commercial Interior Design" was merged into "Commercial Design and Solutions" (client feedback, Nov 2026).
+ * Old links keep working.
+ */
+add_action('template_redirect', static function () {
+    if (is_page('commercial-interior-design-construction')) {
+        wp_safe_redirect(home_url('/commercial-design-and-solutions/'), 301);
+        exit;
+    }
+});

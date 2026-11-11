@@ -68,7 +68,7 @@
                             <div class="project-card-two">
                                 <div class="project-card-2">
                                     <img class="home-three-project-img-2" 
-                                        src="https://cdn.prod.website-files.com/66f1ffebdef9310969f57940/66f1ffecdef9310969f579c4_Image-Bg-Section.webp" 
+                                        src="<?php echo esc_url(get_template_directory_uri()); ?>/images/cb/cb-interior.jpg" 
                                         width="780" 
                                         height="1120" 
                                         alt="Sample Fitout Project" 
