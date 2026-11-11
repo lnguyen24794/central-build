@@ -463,7 +463,7 @@ function central_build_customize_register($wp_customize)
     ));
 
     $wp_customize->add_setting('central_build_email', array(
-        'default'           => 'info@centralbuild.com',
+        'default'           => 'thangt@centralbuild.au',
         'sanitize_callback' => 'sanitize_email',
     ));
 

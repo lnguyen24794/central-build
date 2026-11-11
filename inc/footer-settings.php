@@ -10,7 +10,7 @@ function central_build_footer_settings_defaults(): array
             'logo_url'   => get_template_directory_uri() . '/images/674e51fad943a77607127b0b_ENP%20transparent%20white%20cropped.webp',
             'description' => 'Central Build crafts lasting commercial fitout solutions with value, efficiency, and transparency.',
             'licence'     => 'Builder Licence No. CCB-L 100410',
-            'email'      => 'info@centralbuild.au',
+            'email'      => 'thangt@centralbuild.au',
             'phone'      => array(
                 'display' => '1300 31 8888',
                 'link'    => 'tel:1300318888',
@@ -29,6 +29,9 @@ function central_build_footer_settings_defaults(): array
         'support_links' => array(
             array('label' => 'Repairs & Maintenance', 'url' => home_url('/repairs-and-maintenance/')),
             array('label' => 'Get a Quote', 'url' => home_url('/contact/')),
+        ),        'social_links' => array(
+            array('label' => 'Facebook', 'url' => 'https://www.facebook.com/profile.php?id=61580407266348'),
+            array('label' => 'YouTube', 'url' => 'https://www.youtube.com/@CENTRALBUILD'),
         ),
     );
 }
@@ -59,6 +62,15 @@ function central_build_get_footer_settings(): array
 
         $settings[$link_group] = $collection;
     }
+
+    $social = array();
+    foreach ((array) ($settings['social_links'] ?? array()) as $link) {
+        $link = wp_parse_args((array) $link, array('label' => '', 'url' => ''));
+        if (trim($link['url']) !== '') {
+            $social[] = $link;
+        }
+    }
+    $settings['social_links'] = $social;
 
     return $settings;
 }
@@ -125,6 +137,9 @@ function central_build_sanitize_footer_settings(array $input): array
         'company'       => $company,
         'quick_links'   => $sanitize_links($input['quick_links'] ?? array(), $defaults['quick_links']),
         'support_links' => $sanitize_links($input['support_links'] ?? array(), $defaults['support_links']),
+        'social_links'  => array_values(array_filter($sanitize_links($input['social_links'] ?? array(), array()), static function ($l) {
+            return $l['url'] !== '';
+        })),
     );
 }
 
@@ -357,3 +372,16 @@ function central_build_footer_settings_menu(): void
     );
 }
 add_action('admin_menu', 'central_build_footer_settings_menu');
+
+/** Brand icon (Font Awesome) for a social link, from its address or name. */
+function central_build_social_icon(string $url, string $label = ''): string
+{
+    $hay = strtolower($url . ' ' . $label);
+    foreach (array('facebook' => 'fab fa-facebook-f', 'youtube' => 'fab fa-youtube', 'youtu.be' => 'fab fa-youtube', 'linkedin' => 'fab fa-linkedin-in',
+        'instagram' => 'fab fa-instagram', 'tiktok' => 'fab fa-tiktok', 'x.com' => 'fab fa-x-twitter', 'twitter' => 'fab fa-x-twitter') as $needle => $icon) {
+        if (strpos($hay, $needle) !== false) {
+            return $icon;
+        }
+    }
+    return 'fas fa-link';
+}

@@ -343,9 +343,13 @@ a.cb-card:hover { transform: translateY(-2px); border-color: #cfcfe0; }
     letter-spacing: .06em;
     text-transform: uppercase;
 }
+.cb-tile__body { flex: 1; display: flex; flex-direction: column; gap: 8px; }
 .cb-tile h3 { font-size: 1.3rem !important; }
 .cb-tile p { color: var(--cb-muted); font-size: .97rem; line-height: 1.55; }
 .cb-tile__meta { font-size: .875rem; color: var(--cb-muted); }
+.cb-tile__body .cb-tile__meta { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--cb-line); display: flex; gap: 8px; align-items: center; }
+.cb-tile__body .cb-tile__meta i { color: var(--cb-orange-dark); font-size: .8rem; }
+.is-navy .cb-tile__body .cb-tile__meta { border-color: rgba(255, 255, 255, .16); }
 .is-navy .cb-tile { color: #fff; }
 .is-navy .cb-tile p, .is-navy .cb-tile__meta { color: rgba(255, 255, 255, .72); }
 .cb-empty { padding: 40px; border: 1px dashed #cfcfe0; border-radius: var(--cb-radius); color: var(--cb-muted); text-align: center; }
@@ -449,3 +453,22 @@ a.cb-card:hover { transform: translateY(-2px); border-color: #cfcfe0; }
 
 /* footer: very dark navy, so the navy band above it and the footer read as one family */
 footer.footer, .site-footer, footer .home-two-footer, .home-two-footer-section { background-color: #07062e !important; }
+
+/* footer social menu */
+.cb-footer-social { margin-top: 22px; display: grid; gap: 12px; }
+.cb-footer-social__title { font-size: .8125rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: rgba(255, 255, 255, .7); }
+.cb-footer-social ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 10px; }
+.cb-footer-social a {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, .28);
+    color: #fff !important;
+    font-size: 1.05rem;
+    text-decoration: none !important;
+    transition: background-color .2s ease, border-color .2s ease, transform .15s ease;
+}
+.cb-footer-social a:hover { background: var(--cb-orange); border-color: var(--cb-orange); transform: translateY(-2px); }
+.cb-footer-social a:focus-visible { outline: 3px solid var(--cb-orange); outline-offset: 3px; }

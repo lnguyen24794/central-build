@@ -12,7 +12,7 @@ function central_build_header_settings_defaults(): array
             'link'    => 'tel:+61431465090',
             'display' => '+61 431 465 090',
         ),
-        'email' => 'info@centralbuild.au',
+        'email' => 'thangt@centralbuild.au',
         'social_links' => array(
             array(
                 'label'    => 'Facebook',

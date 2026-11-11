@@ -11,7 +11,7 @@ function central_build_contact_settings_defaults(): array
             'description' => "Reach out to Central Build to start your journey. Whether you're looking for a bespoke design, a seamless build, or expert advice, we're here to help make your vision a reality. Let's create something exceptional together.",
         ),
         'contact_info' => array(
-            'email' => 'info@centralbuild.au',
+            'email' => 'thangt@centralbuild.au',
             'phone' => array(
                 'link'    => 'tel:1300318888',
                 'display' => '1300 31 8888',
@@ -49,8 +49,8 @@ function central_build_contact_settings_defaults(): array
                 'icon'        => 'fas fa-envelope-open-text',
                 'style'       => 'primary',
                 'cta'         => array(
-                    'label' => 'info@centralbuild.com',
-                    'url'   => 'mailto:info@centralbuild.com',
+                    'label' => 'thangt@centralbuild.au',
+                    'url'   => 'mailto:thangt@centralbuild.au',
                     'type'  => 'mail',
                 ),
                 'secondary'   => '1300 31 8888',

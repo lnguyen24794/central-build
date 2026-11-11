@@ -54,6 +54,17 @@ $footer_mobile      = wp_parse_args($company['mobile'] ?? array(), array('displa
                     <a href="mailto:<?php echo esc_attr($footer_email); ?>" class="footer-link with-underline w-inline-block">
                         <div class="footer-link-text color-white"><?php echo esc_html($footer_email); ?></div>
                     </a>
+                    <?php $footer_social = central_build_get_footer_settings()['social_links']; ?>
+                    <?php if ($footer_social) : ?>
+                        <nav class="cb-footer-social" aria-label="<?php esc_attr_e('Central Build on social media', 'central-build'); ?>">
+                            <span class="cb-footer-social__title"><?php esc_html_e('Follow us', 'central-build'); ?></span>
+                            <ul>
+                                <?php foreach ($footer_social as $social) : ?>
+                                    <li><a href="<?php echo esc_url($social['url']); ?>" target="_blank" rel="noopener" aria-label="<?php echo esc_attr(sprintf(__('%s (opens in a new tab)', 'central-build'), $social['label'] ?: $social['url'])); ?>" title="<?php echo esc_attr($social['label']); ?>"><i class="<?php echo esc_attr(central_build_social_icon($social['url'], $social['label'])); ?>" aria-hidden="true"></i></a></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </nav>
+                    <?php endif; ?>
                 </div>
                 <div class="home-two-footer-two">
                     <div class="quick-links-text">Quick Links</div>

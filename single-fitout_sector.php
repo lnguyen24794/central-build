@@ -15,7 +15,7 @@ while (have_posts()) :
     $hero_img = $meta('_fitout_hero_image') ?: cb_ui_project_image($id, 'full');
     $about    = $meta('_fitout_about_image') ?: $hero_img;
     $location = cb_ui_plain($meta('_fitout_location'));
-    $suburb   = preg_replace('/^\d+[-\d]*\s+|\s+\d{4}$/', '', $location);
+    $suburb   = cb_ui_short_location($location);
     $status   = cb_ui_project_status($id);
     $gallery  = array_values(array_filter((array) get_post_meta($id, '_fitout_gallery_images', true)));
     $videos   = array_values(array_filter((array) get_post_meta($id, '_fitout_videos', true)));

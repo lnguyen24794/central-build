@@ -72,7 +72,7 @@ function central_build_cid_settings_defaults(): array
             'description' => 'Let Central Build provide the optimal solution. Get your free, non-binding consultation today.',
             'items'       => array(
                 array('icon' => 'fas fa-phone-alt', 'text' => '1300 31 8888'),
-                array('icon' => 'fas fa-envelope', 'text' => 'info@centralbuild.com'),
+                array('icon' => 'fas fa-envelope', 'text' => 'thangt@centralbuild.au'),
                 array('icon' => 'fas fa-map-marker-alt', 'text' => '123 Commercial Drive, Suite 100 — Metropolis, Anytown 12345'),
             ),
             'form_title'   => 'Request a Free Quote',

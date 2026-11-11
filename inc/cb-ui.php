@@ -268,11 +268,29 @@ function cb_ui_project_image(int $post_id, string $size = 'large'): string
     return $url;
 }
 
+/** Street and suburb only: no shop/unit, house number, state or postcode. */
+function cb_ui_short_location(string $location): string
+{
+    $parts = array();
+    foreach (explode(',', cb_ui_plain($location)) as $part) {
+        $part = trim($part);
+        if ($part === '' || preg_match('/^(shop|unit|suite|level|lot)\b/i', $part) || preg_match('/^(VIC|NSW|QLD|SA|WA|TAS|NT|ACT)(\s+\d{4})?$/i', $part)) {
+            continue;
+        }
+        $part = preg_replace('/^\d+[\-\/\d]*[a-z]?\s+/i', '', $part);            // house number
+        $part = trim(preg_replace('/\s+(VIC|NSW|QLD|SA|WA|TAS|NT|ACT)?\s*\d{4}$/i', '', $part)); // state + postcode
+        $part = trim(preg_replace('/\s+(VIC|NSW|QLD|SA|WA|TAS|NT|ACT)$/i', '', $part));
+        if ($part !== '') {
+            $parts[] = $part;
+        }
+    }
+    return implode(', ', $parts);
+}
+
 function cb_ui_project_tile(int $post_id, bool $show_status = false): void
 {
     $img      = cb_ui_project_image($post_id);
-    $location = cb_ui_plain(get_post_meta($post_id, '_fitout_location', true));
-    $location = preg_replace('/^\d+[-\d]*\s+|\s+\d{4}$/', '', $location); // street and suburb, no house number or postcode
+    $location = cb_ui_short_location((string) get_post_meta($post_id, '_fitout_location', true));
     $excerpt  = cb_ui_plain(get_the_excerpt($post_id));
     echo '<a class="cb-tile" href="' . esc_url(get_permalink($post_id)) . '">';
     echo '<span class="cb-tile__img">';
@@ -282,13 +300,13 @@ function cb_ui_project_tile(int $post_id, bool $show_status = false): void
     if ($show_status) {
         echo '<span class="cb-tile__status">' . esc_html(cb_ui_project_status($post_id)) . '</span>';
     }
-    echo '</span><span>';
-    if ($location !== '') {
-        echo '<span class="cb-tile__meta">' . esc_html($location) . '</span>';
-    }
+    echo '</span><span class="cb-tile__body">';
     echo '<h3>' . esc_html(get_the_title($post_id)) . '</h3>';
     if ($excerpt !== '') {
-        echo '<p>' . esc_html(wp_trim_words($excerpt, 22)) . '</p>';
+        echo '<p>' . esc_html(wp_trim_words($excerpt, 20)) . '</p>';
+    }
+    if ($location !== '') {
+        echo '<span class="cb-tile__meta">' . cb_ui_icon('fas fa-map-marker-alt') . esc_html($location) . '</span>';
     }
     echo '</span></a>';
 }
@@ -366,7 +384,7 @@ function cb_ui_company_contacts(): array
         'phone_link'   => (string) ($h['phone']['link'] ?? 'tel:1300318888'),
         'mobile'       => trim(str_ireplace('Mobile:', '', (string) ($f['company']['mobile']['display'] ?? '+61 413 058 861'))),
         'mobile_link'  => (string) ($f['company']['mobile']['link'] ?? 'tel:+61413058861'),
-        'email'        => (string) ($h['email'] ?? 'admin@centralbuild.au'),
+        'email'        => (string) ($h['email'] ?? 'thangt@centralbuild.au'),
     );
 }
 
