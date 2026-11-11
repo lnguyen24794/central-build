@@ -19,3 +19,6 @@ base_repository/
 
 # Malware quarantined by scripts/scan-malware.sh
 .quarantine/
+
+# Client video sources (large; uploaded to the Media Library instead)
+.docs/*.mp4
