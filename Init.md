@@ -13,11 +13,11 @@ Starter kit đã chuyển sang repo riêng:
 git clone https://github.com/lnguyen24794/base_hostinger.git ~/GitHub/base_hostinger
 
 # Cách 1 — helper
-~/GitHub/base_hostinger/scripts/new-site.sh anthomevn.vn ~/GitHub
+~/GitHub/base_hostinger/scripts/new-site.sh centralbuild.au ~/GitHub
 
 # Cách 2 — copy tay
-cp -R ~/GitHub/base_hostinger ~/GitHub/anthomevn.vn
-cd ~/GitHub/anthomevn.vn
+cp -R ~/GitHub/base_hostinger ~/GitHub/centralbuild.au
+cd ~/GitHub/centralbuild.au
 rm -rf .git
 git init
 cp .docs/hostinger/.env.example .docs/hostinger/.env
@@ -27,7 +27,7 @@ cp .docs/hostinger/.env.example .docs/hostinger/.env
 ## Lấy source
 
 ```bash
-cd ~/GitHub/anthomevn.vn
+cd ~/GitHub/centralbuild.au
 chmod +x scripts/*.sh
 ./scripts/init-from-hostinger.sh --list-domains
 ./scripts/init-from-hostinger.sh --with-db

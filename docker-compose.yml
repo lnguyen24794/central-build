@@ -1,17 +1,19 @@
+name: centralbuild
+
 services:
   db:
     image: mysql:8.0
-    container_name: evoplumb-db
+    container_name: centralbuild-db
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: evoplumb
-      MYSQL_USER: evoplumb
-      MYSQL_PASSWORD: evoplumb
+      MYSQL_DATABASE: centralbuild
+      MYSQL_USER: centralbuild
+      MYSQL_PASSWORD: centralbuild
       MYSQL_ROOT_PASSWORD: rootpass
     ports:
       - "3307:3306"
     volumes:
-      - evoplumb_db_data:/var/lib/mysql
+      - centralbuild_db_data:/var/lib/mysql
     command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-prootpass"]
@@ -21,7 +23,7 @@ services:
 
   wordpress:
     image: wordpress:php8.2-apache
-    container_name: evoplumb-wp
+    container_name: centralbuild-wp
     restart: unless-stopped
     depends_on:
       db:
@@ -30,18 +32,18 @@ services:
       - "8080:80"
     environment:
       WORDPRESS_DB_HOST: db:3306
-      WORDPRESS_DB_USER: evoplumb
-      WORDPRESS_DB_PASSWORD: evoplumb
-      WORDPRESS_DB_NAME: evoplumb
-      WORDPRESS_TABLE_PREFIX: wpzh_
-      EVO_DOCKER: "1"
+      WORDPRESS_DB_USER: centralbuild
+      WORDPRESS_DB_PASSWORD: centralbuild
+      WORDPRESS_DB_NAME: centralbuild
+      WORDPRESS_TABLE_PREFIX: wp_
+      WP_DOCKER: "1"
     volumes:
       - ./public_html:/var/www/html
       - ./docker/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini:ro
 
   phpmyadmin:
     image: phpmyadmin:5
-    container_name: evoplumb-pma
+    container_name: centralbuild-pma
     restart: unless-stopped
     depends_on:
       - db
@@ -49,27 +51,26 @@ services:
       - "8081:80"
     environment:
       PMA_HOST: db
-      PMA_USER: evoplumb
-      PMA_PASSWORD: evoplumb
+      PMA_USER: centralbuild
+      PMA_PASSWORD: centralbuild
 
   wpcli:
     image: wordpress:cli-php8.2
-    container_name: evoplumb-wpcli
+    container_name: centralbuild-wpcli
     depends_on:
       - wordpress
     environment:
       WORDPRESS_DB_HOST: db:3306
-      WORDPRESS_DB_USER: evoplumb
-      WORDPRESS_DB_PASSWORD: evoplumb
-      WORDPRESS_DB_NAME: evoplumb
-      WORDPRESS_TABLE_PREFIX: wpzh_
-      EVO_DOCKER: "1"
+      WORDPRESS_DB_USER: centralbuild
+      WORDPRESS_DB_PASSWORD: centralbuild
+      WORDPRESS_DB_NAME: centralbuild
+      WORDPRESS_TABLE_PREFIX: wp_
+      WP_DOCKER: "1"
     volumes:
       - ./public_html:/var/www/html
-      - ./docker/scripts:/scripts:ro
       - ./.docs:/docs:ro
     user: "33:33"
     entrypoint: ["sleep", "infinity"]
 
 volumes:
-  evoplumb_db_data:
+  centralbuild_db_data:

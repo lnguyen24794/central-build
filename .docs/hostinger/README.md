@@ -1,8 +1,8 @@
-# Hostinger — evoplumbenergysaver.com
+# Hostinger — centralbuild.au
 
 ## SSH
 
-Credentials: `.docs/hostinger/.env` (not committed).
+Credentials: `.docs/hostinger/.env` (not committed — copy from `.env.example`).
 
 | Field | Value |
 |-------|--------|
@@ -13,45 +13,37 @@ Credentials: `.docs/hostinger/.env` (not committed).
 Remote web root:
 
 ```text
-~/domains/evoplumbenergysaver.com/public_html
+~/domains/centralbuild.au/public_html
 ```
+
+| Item | Value |
+|------|-------|
+| WordPress | 7.1.x |
+| Theme | `wp-content/themes/central-build` (git clone of `lnguyen24794/central-build`) |
+| Plugins | classic-editor, litespeed-cache, hostinger-* |
+| Table prefix | `wp_` |
 
 ## Pull source (local edit)
 
-From repo root (password from `.env`):
-
 ```bash
-rsync -avz \
-  -e "ssh -p $SSH_PORT" \
-  --exclude 'wp-content/ai1wm-backups/' \
-  --exclude 'wp-content/uploads/' \
-  --exclude 'wp-content/cache/' \
-  --exclude '*.zip' \
-  --exclude '*.sql' \
-  "$SSH_USERNAME@$SERVER_NAME:domains/evoplumbenergysaver.com/public_html/" \
-  ./public_html/
+./scripts/init-from-hostinger.sh                           # code only
+./scripts/init-from-hostinger.sh --with-uploads --with-db  # + media + DB dump
 ```
+
+DB dump lands in `.docs/hostinger/centralbuild.au_fresh.sql.gz` (gitignored).
 
 ## Push edits
 
 ```bash
-./scripts/deploy.sh
-```
-
-CSS only:
-
-```bash
+./scripts/deploy.sh --dry-run   # preview
+./scripts/deploy.sh             # whole theme
 ./scripts/deploy.sh --css --flush
+./scripts/deploy.sh front-page.php css/components.css
 ```
 
-Specific files under `porto-child`:
-
-```bash
-./scripts/deploy.sh front-page.php assets/css/evo-brand.css
-```
+Only `themes/central-build` is deployed (`.git/`, `Html_pages/` excluded).
 
 ## Custom code focus
 
-- Theme: `public_html/wp-content/themes/porto-child/`
-- Parent: `public_html/wp-content/themes/porto/`
+- Theme: `public_html/wp-content/themes/central-build/`
 - Plugins: `public_html/wp-content/plugins/`

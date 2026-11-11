@@ -1,53 +1,38 @@
-# Local Docker (WordPress)
+# centralbuild.au — WordPress
 
-## New domain starter kit
+`public_html/` = source của `centralbuild.au` trên Hostinger (gitignored).
+Theme custom: `public_html/wp-content/themes/central-build/`.
 
-Starter kit nằm ở repo riêng: **[lnguyen24794/base_hostinger](https://github.com/lnguyen24794/base_hostinger)**
+## Init / refresh từ Hostinger
 
 ```bash
-git clone https://github.com/lnguyen24794/base_hostinger.git ~/GitHub/base_hostinger
-~/GitHub/base_hostinger/scripts/new-site.sh anthomevn.vn ~/GitHub
-cd ~/GitHub/anthomevn.vn
-# điền password trong .docs/hostinger/.env nếu cần
-./scripts/init-from-hostinger.sh --with-db
+cp .docs/hostinger/.env.example .docs/hostinger/.env   # điền SSH_PASSWORD
+./scripts/init-from-hostinger.sh --with-uploads --with-db
 ```
 
-`public_html/` = source domain đích. Chi tiết: [Init.md](./Init.md)
+Chi tiết: [.docs/hostinger/README.md](./.docs/hostinger/README.md), [Init.md](./Init.md).
 
-## Init from Hostinger (this repo)
-
-```bash
-./scripts/init-from-hostinger.sh --list-domains
-./scripts/init-from-hostinger.sh --with-db
-```
-
-## Quick start (local)
+## Local (Docker)
 
 ```bash
-chmod +x docker/scripts/bootstrap.sh
 ./docker/scripts/bootstrap.sh
 ```
 
-- Site: http://localhost:8080  
-- phpMyAdmin: http://localhost:8081  
-- DB: `evoplumb` / user `evoplumb` / pass `evoplumb` (port `3307`)
+- Site: http://localhost:8080
+- WP Admin: http://localhost:8080/wp-admin/
+- phpMyAdmin: http://localhost:8081
+- DB: `centralbuild` / user `centralbuild` / pass `centralbuild` (port `3307`), prefix `wp_`
 
-## What bootstrap does
+Bootstrap: khởi động containers → import `.docs/hostinger/centralbuild.au_fresh.sql.gz`
+→ đổi URL `https://centralbuild.au` → `http://localhost:8080` → tắt LiteSpeed / Hostinger plugins ở local.
 
-1. Starts `db`, `wordpress`, `phpmyadmin`, `wpcli`
-2. Imports `.docs/hostinger/evoplumb_fresh.sql.gz`
-3. Rewrites URLs to `http://localhost:8080`
-4. Runs `docker/scripts/setup-content.php` (creates `/heat-pump-hot-water/...` pages)
+`wp-config.php` local tự dùng DB Docker khi có biến `WP_DOCKER` / `WORDPRESS_DB_HOST`;
+trên server vẫn dùng DB production.
 
-## Redeploy content only
-
-```bash
-docker compose exec -T wpcli wp eval-file /scripts/setup-content.php --allow-root
-```
-
-## Production theme sync
+## Deploy theme
 
 ```bash
+./scripts/deploy.sh --dry-run
 ./scripts/deploy.sh
 ./scripts/deploy.sh --css --flush
 ```

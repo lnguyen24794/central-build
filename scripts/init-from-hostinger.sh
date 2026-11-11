@@ -108,6 +108,9 @@ fi
 
 hostinger_rsync_from "$REMOTE_PUBLIC_HTML" "$LOCAL_PUBLIC" "${RSYNC_EXCLUDES[@]}"
 
+echo "==> Scanning pulled source for malware"
+"$ROOT/scripts/scan-malware.sh" || true
+
 if [[ "$WITH_DB" -eq 1 ]]; then
   echo "==> Exporting database via remote mysqldump (from wp-config.php)"
   DUMP_REMOTE="/tmp/${DOMAIN:-site}_fresh.sql.gz"
@@ -226,7 +229,7 @@ services:
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpress
-      EVO_DOCKER: "1"
+      WP_DOCKER: "1"
     volumes:
       - ./public_html:/var/www/html
       - ./docker/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini:ro

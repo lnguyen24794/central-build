@@ -16,3 +16,6 @@ public_html/
 .vscode/
 
 base_repository/
+
+# Malware quarantined by scripts/scan-malware.sh
+.quarantine/

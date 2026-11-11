@@ -15,7 +15,7 @@ hostinger_load_env() {
   SSH_PORT="22"
   DOMAIN=""
   REMOTE_PUBLIC_HTML=""
-  THEME_SLUG="porto-child"
+  THEME_SLUG="central-build"
 
   local line key val
   while IFS= read -r line || [[ -n "$line" ]]; do
@@ -46,11 +46,14 @@ hostinger_load_env() {
   fi
 
   if [[ -z "$THEME_SLUG" ]]; then
-    THEME_SLUG="porto-child"
+    THEME_SLUG="central-build"
   fi
 
   REMOTE_HOST="${SSH_USERNAME}@${SERVER_NAME}"
-  RSYNC_SSH="ssh -p ${SSH_PORT} -o StrictHostKeyChecking=accept-new"
+  # Reuse one authenticated connection for 10 minutes: the host rate-limits repeated log-ins.
+  mkdir -p "${HOME}/.ssh/cm" && chmod 700 "${HOME}/.ssh/cm"
+  SSH_MUX_OPTS="-o ControlMaster=auto -o ControlPath=${HOME}/.ssh/cm/%r@%h:%p -o ControlPersist=10m"
+  RSYNC_SSH="ssh -p ${SSH_PORT} -o StrictHostKeyChecking=accept-new ${SSH_MUX_OPTS}"
 }
 
 hostinger_run() {
@@ -87,7 +90,8 @@ EOF
 }
 
 hostinger_ssh() {
-  hostinger_run ssh -p "$SSH_PORT" -o StrictHostKeyChecking=accept-new "$REMOTE_HOST" "$@"
+  # shellcheck disable=SC2086
+  hostinger_run ssh -p "$SSH_PORT" -o StrictHostKeyChecking=accept-new $SSH_MUX_OPTS "$REMOTE_HOST" "$@"
 }
 
 hostinger_rsync_from() {
