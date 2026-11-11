@@ -120,6 +120,7 @@ function cb_ce_prune_for_new_layout(array $pages): array
     );
     $drop = array(
         'cfs' => array('stats'),
+        'about' => array('team'),
     );
     foreach ($keep as $page => $sections) {
         if (isset($pages[$page]['sections'])) {
@@ -327,6 +328,8 @@ function cb_ce_pages_raw(): array
                 'cta'          => array('label' => 'Contact button', 'labels' => array('text' => 'Button text', 'url' => 'Button link')),
                 'team'         => array('label' => 'Team members', 'labels' => array('show' => 'Show the team on the page'), 'types' => array('image' => 'image'),
                     'items' => array('members' => array('name' => '', 'role' => '', 'image' => ''))),
+                'licence'      => array('label' => 'Builder licence and insurances', 'help' => 'Shown on the About page and as a short row on the home page. Keep it in line with the current certificates of currency.',
+                    'labels' => array('abn' => 'ABN line (leave empty to hide)', 'items' => 'Licence and insurance cards', 'icon' => 'Icon')),
             ),
         ),
 

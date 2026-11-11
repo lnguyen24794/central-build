@@ -49,12 +49,14 @@ get_header();
     cb_ui_cards($why, 3);
     cb_ui_section_close();
 
-    cb_ui_section_open('services', 'white');
+    cb_ui_licence_section('white');
+
+    cb_ui_section_open('services', 'mist');
     cb_ui_head('Services', 'Five services, one team', 'Design, build, coordinate, strip out and maintain, all with the same people.');
     cb_ui_cards($services, 3);
     cb_ui_section_close();
 
-    cb_ui_section_open('projects', 'mist');
+    cb_ui_section_open('projects', 'white');
     cb_ui_head('Our work', 'Recent projects', '');
     cb_ui_projects(array('count' => 3, 'category' => 'fitout-projects'));
     cb_ui_section_close();

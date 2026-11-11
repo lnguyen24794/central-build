@@ -31,7 +31,7 @@ while (have_posts()) :
         if (preg_match('/^(scope|scopes|project value|value|duration|type)\s*:\s*(.+)$/i', $line, $m)) {
             $label = ucfirst(strtolower(rtrim($m[1], 's')));
             $label = $label === 'Project value' ? 'Value' : $label;
-            $facts[$label] = preg_replace('/\s*\(.*\)$/', '', $m[2]);
+            $facts[$label] = ucfirst(preg_replace('/\s*\(.*\)$/', '', $m[2]));
         } else {
             $list[] = $line;
         }

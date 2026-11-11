@@ -199,7 +199,12 @@ function central_build_scripts()
     wp_enqueue_style('central-build-typography', get_template_directory_uri() . '/css/typography.css', array('central-build-webflow-overrides'), (string) filemtime(get_template_directory() . '/css/typography.css'));
     wp_enqueue_style('central-build-videos', get_template_directory_uri() . '/css/videos.css', array('central-build-typography'), (string) filemtime(get_template_directory() . '/css/videos.css'));
     wp_enqueue_style('central-build-system', get_template_directory_uri() . '/css/cb-system.css', array('central-build-videos'), (string) filemtime(get_template_directory() . '/css/cb-system.css'));
+    // Motion layer: GSAP + ScrollTrigger (pinned versions), then our reveal script.
+    wp_enqueue_script('gsap', 'https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js', array(), '3.12.5', true);
+    wp_enqueue_script('gsap-scrolltrigger', 'https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js', array('gsap'), '3.12.5', true);
+    wp_enqueue_script('central-build-motion', get_template_directory_uri() . '/js/cb-motion.js', array('gsap-scrolltrigger'), (string) filemtime(get_template_directory() . '/js/cb-motion.js'), true);
     if (is_singular('fitout_sector')) {
+        wp_enqueue_script('central-build-lightbox', get_template_directory_uri() . '/js/cb-lightbox.js', array(), (string) filemtime(get_template_directory() . '/js/cb-lightbox.js'), true);
         wp_enqueue_style('central-build-project-details', get_template_directory_uri() . '/css/project-details.css', array('central-build-typography'), (string) filemtime(get_template_directory() . '/css/project-details.css'));
     }
 
@@ -304,41 +309,34 @@ add_action('after_setup_theme', 'central_build_image_sizes');
  */
 function central_build_page_assets()
 {
-    // Home page assets
+    // Legacy page assets: only enqueue files that still exist (missing ones caused 404s).
+    $dir   = get_template_directory();
+    $uri   = get_template_directory_uri();
+    $style = static function ($handle, $rel, $deps) use ($dir, $uri) {
+        if (file_exists($dir . '/' . $rel)) {
+            wp_enqueue_style($handle, $uri . '/' . $rel, $deps, (string) filemtime($dir . '/' . $rel));
+        }
+    };
+    $script = static function ($handle, $rel) use ($dir, $uri) {
+        if (file_exists($dir . '/' . $rel)) {
+            wp_enqueue_script($handle, $uri . '/' . $rel, array('jquery'), (string) filemtime($dir . '/' . $rel), true);
+        }
+    };
+
     if (is_front_page()) {
-        wp_enqueue_style('central-build-home-min', get_template_directory_uri() . '/css/home.min.css', array('central-build-webflow'), true);
-        wp_enqueue_script('central-build-home-js', get_template_directory_uri() . '/js/home.js', array('jquery'), true, true);
+        $style('central-build-home-min', 'css/home.min.css', array('central-build-webflow'));
+        $script('central-build-home-js', 'js/home.js');
     }
-
-    // Contact page assets
     if (is_page_template('page-contact.php')) {
-        wp_enqueue_style('central-build-contact', get_template_directory_uri() . '/css/contact.css', array('central-build-style'), true);
-        wp_enqueue_script('central-build-contact-js', get_template_directory_uri() . '/js/contact.js', array('jquery'), true, true);
+        $style('central-build-contact', 'css/contact.css', array('central-build-style'));
+        $script('central-build-contact-js', 'js/contact.js');
     }
-
-    // Service pages assets
-    if (is_page_template('page-commercial-shop-fitting.php') ||
-        is_page_template('page-concreet.php') ||
-        is_page_template('page-custom-joinery.php')) {
-        wp_enqueue_style('central-build-services', get_template_directory_uri() . '/css/services.css', array('central-build-style'), true);
-        wp_enqueue_script('central-build-services-js', get_template_directory_uri() . '/js/services.js', array('jquery'), true, true);
-    }
-
-    // About pages assets
     if (is_page_template('page-our-values.php') || is_page_template('page-testimonials.php')) {
-        wp_enqueue_style('central-build-about', get_template_directory_uri() . '/css/about.css', array('central-build-style'), true);
+        $style('central-build-about', 'css/about.css', array('central-build-style'));
     }
-
-    // Portfolio/Fitout sectors assets
-    if (is_page_template('page-fitout-sectors.php')) {
-        wp_enqueue_style('central-build-portfolio', get_template_directory_uri() . '/css/portfolio.css', array('central-build-style'), true);
-        wp_enqueue_script('central-build-portfolio-js', get_template_directory_uri() . '/js/portfolio.js', array('jquery'), true, true);
-    }
-
-    // Blog/Archive pages assets
-    if (is_home() || is_archive() || is_search() || is_category() || is_tag() || is_author() || is_date()) {
-        wp_enqueue_style('central-build-home-min', get_template_directory_uri() . '/css/home.min.css', array('central-build-webflow'), true);
-        wp_enqueue_style('central-build-blog', get_template_directory_uri() . '/css/blog-styles.css', array('central-build-home-min'), true);
+    if (is_home() || is_search() || is_category() || is_tag() || is_author() || is_date()) {
+        $style('central-build-home-min', 'css/home.min.css', array('central-build-webflow'));
+        $style('central-build-blog', 'css/blog-styles.css', array('central-build-style'));
     }
 }
 add_action('wp_enqueue_scripts', 'central_build_page_assets');
@@ -912,3 +910,14 @@ add_action('template_redirect', static function () {
         exit;
     }
 });
+
+/**
+ * Motion layer switch: animations (and their hidden start states) only run when the visitor has not
+ * asked for reduced motion. If GSAP or the motion script does not run, everything is shown after 4 seconds.
+ */
+add_action('wp_head', static function () {
+    if (is_admin()) {
+        return;
+    }
+    echo "<script>(function(d){if(window.matchMedia&&!matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('cb-motion');setTimeout(function(){if(!window.cbMotionReady){d.classList.remove('cb-motion');}},4000);}})(document.documentElement);</script>\n";
+}, 1);

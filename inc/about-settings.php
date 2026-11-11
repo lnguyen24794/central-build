@@ -47,6 +47,18 @@ function central_build_about_settings_defaults(): array
             'show' => true,
             'members' => array(),
         ),
+        // Capability Statement 2026, slide 4 (BPC registration letter, MECON and Allianz certificates).
+        'licence' => array(
+            'heading' => 'Builder licence and insurances',
+            'text'    => 'Central Build Pty Ltd is a registered commercial builder in Victoria and carries the insurances below on every project. Certificates of currency are available on request.',
+            'abn'     => 'ABN 51 689 772 629',
+            'items'   => array(
+                array('icon' => 'fas fa-id-card', 'title' => 'Registered Commercial Builder', 'text' => 'Registered with the Building and Plumbing Commission (BPC), Victoria. Registration CCB-L 100410, limited to non-structural fit-out work.'),
+                array('icon' => 'fas fa-shield-alt', 'title' => 'Public Liability $20 million', 'text' => '$20 million each and every occurrence, including products liability. Underwritten by AIG Australia through MECON Insurance.'),
+                array('icon' => 'fas fa-hard-hat', 'title' => 'Contract Works Insurance', 'text' => 'Annual construction policy covering material damage on projects up to $500,000 in Victoria.'),
+                array('icon' => 'fas fa-user-shield', 'title' => 'WorkCover Insurance', 'text' => 'Registered for WorkCover with WorkSafe Victoria, so our workers are covered on every site.'),
+            ),
+        ),
     );
 }
 
@@ -69,6 +81,8 @@ function central_build_get_about_settings(): array
     $settings['right_column'] = wp_parse_args($settings['right_column'] ?? array(), $defaults['right_column']);
     $settings['team']         = wp_parse_args($settings['team'] ?? array(), $defaults['team']);
     $settings['team']['members'] = array_values(array_filter($settings['team']['members'] ?? array(), 'is_array'));
+    $settings['licence']      = wp_parse_args(is_array($settings['licence'] ?? null) ? $settings['licence'] : array(), $defaults['licence']);
+    $settings['licence']['items'] = is_array($settings['licence']['items']) ? array_values(array_filter($settings['licence']['items'], 'is_array')) : $defaults['licence']['items'];
 
     return $settings;
 }
@@ -173,6 +187,25 @@ function central_build_sanitize_about_settings(array $input): array
     $settings['team'] = array(
         'show'    => !empty($input['team']['show']),
         'members' => $members,
+    );
+
+    $items = array();
+    foreach ((array) ($input['licence']['items'] ?? array()) as $item) {
+        $title = sanitize_text_field(wp_unslash($item['title'] ?? ''));
+        if ($title === '') {
+            continue;
+        }
+        $items[] = array(
+            'icon'  => sanitize_text_field(wp_unslash($item['icon'] ?? '')),
+            'title' => $title,
+            'text'  => sanitize_textarea_field(wp_unslash($item['text'] ?? '')),
+        );
+    }
+    $settings['licence'] = array(
+        'heading' => $sanitize_text($input['licence']['heading'] ?? '', $defaults['licence']['heading']),
+        'text'    => sanitize_textarea_field(wp_unslash($input['licence']['text'] ?? $defaults['licence']['text'])),
+        'abn'     => sanitize_text_field(wp_unslash($input['licence']['abn'] ?? $defaults['licence']['abn'])),
+        'items'   => $items ?: $defaults['licence']['items'],
     );
 
     return $settings;

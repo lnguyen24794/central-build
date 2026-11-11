@@ -288,7 +288,7 @@ a.cb-card:hover { transform: translateY(-2px); border-color: #cfcfe0; }
     gap: var(--cb-gap);
     counter-reset: cbstep;
 }
-.cb-steps li { border-top: 3px solid var(--cb-orange); padding-top: 22px; display: grid; gap: 10px; align-content: start; counter-increment: cbstep; }
+.cb-steps li { position: relative; border-top: 3px solid var(--cb-line); padding-top: 22px; display: grid; gap: 10px; align-content: start; counter-increment: cbstep; }
 .cb-steps li::before { content: counter(cbstep, decimal-leading-zero); font-family: var(--cb-display); font-size: 1.75rem; font-weight: 600; color: var(--cb-orange-dark); line-height: 1; }
 .cb-steps p { color: var(--cb-muted); line-height: 1.6; }
 .is-navy .cb-steps p { color: rgba(255, 255, 255, .76); }
@@ -472,3 +472,105 @@ footer.footer, .site-footer, footer .home-two-footer, .home-two-footer-section {
 }
 .cb-footer-social a:hover { background: var(--cb-orange); border-color: var(--cb-orange); transform: translateY(-2px); }
 .cb-footer-social a:focus-visible { outline: 3px solid var(--cb-orange); outline-offset: 3px; }
+
+/* home trust row: licence and insurances */
+.cb-trust .cb-wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px 40px; flex-wrap: wrap; }
+.cb-trust__list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 16px 36px; }
+.cb-trust__list li { display: flex; align-items: center; gap: 12px; font-weight: 600; color: var(--cb-navy); }
+.cb-trust__list .cb-card__icon { width: 40px; height: 40px; font-size: 1rem; }
+.cb-trust + .cb-section.is-white { border-top: 1px solid var(--cb-line); }
+@media (max-width: 640px) { .cb-trust__list { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; } }
+
+/* project gallery lightbox */
+.cb-gallery a { cursor: zoom-in; }
+.cb-lightbox {
+    width: 100vw;
+    height: 100vh;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    overflow: hidden;
+}
+.cb-lightbox::backdrop { background: rgba(5, 4, 30, .92); }
+.cb-lightbox[open] { display: grid; place-items: center; }
+.cb-lightbox__stage { margin: 0; width: 100%; height: 100%; display: grid; place-items: center; padding: 72px 88px 64px; box-sizing: border-box; }
+.cb-lightbox__img { max-width: calc(100vw - 176px); max-height: calc(100vh - 136px); max-height: calc(100dvh - 136px); width: auto; height: auto; object-fit: contain; border-radius: 10px; box-shadow: 0 20px 60px rgba(0, 0, 0, .45); transition: opacity .2s ease; }
+.cb-lightbox.is-loading .cb-lightbox__img { opacity: .35; }
+.cb-lightbox__count { position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%); margin: 0; color: rgba(255, 255, 255, .85); font-size: .95rem; font-variant-numeric: tabular-nums; }
+.cb-lightbox__btn {
+    position: fixed;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, .3);
+    background: rgba(255, 255, 255, .08);
+    color: #fff;
+    font-size: 1.1rem;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: background-color .2s ease, border-color .2s ease;
+}
+.cb-lightbox__btn:hover { background: var(--cb-orange); border-color: var(--cb-orange); }
+.cb-lightbox__btn:focus-visible { outline: 3px solid var(--cb-orange); outline-offset: 3px; }
+.cb-lightbox__close { top: 18px; right: 18px; }
+.cb-lightbox__prev { left: 18px; top: 50%; transform: translateY(-50%); }
+.cb-lightbox__next { right: 18px; top: 50%; transform: translateY(-50%); }
+.cb-lightbox__btn[hidden] { display: none; }
+html.cb-lightbox-open { overflow: hidden; }
+@media (max-width: 640px) {
+    .cb-lightbox__stage { padding: 64px 12px 72px; }
+    .cb-lightbox__img { max-width: calc(100vw - 24px); max-height: calc(100dvh - 136px); }
+    .cb-lightbox__prev, .cb-lightbox__next { top: auto; bottom: 12px; transform: none; }
+    .cb-lightbox__prev { left: 12px; }
+    .cb-lightbox__next { right: 12px; }
+}
+
+/* step line: orange fill over the grey track (drawn in by the motion layer) */
+.cb-steps li::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -3px;
+    height: 3px;
+    background: var(--cb-orange);
+    transform-origin: left center;
+    transform: scaleX(var(--cb-line, 1));
+}
+.is-navy .cb-steps li { border-top-color: rgba(255, 255, 255, .16); }
+
+/* ---------------------------------------------------------------- motion layer (js/cb-motion.js, GSAP)
+   Start states apply only while <html> has .cb-motion (never for reduced motion or without JS). */
+.cb-motion .cb-hero__inner { animation: none; }
+.cb-motion .cb-hero__inner > *,
+.cb-motion .cb-head > div > *,
+.cb-motion .cb-head > .cb-lead,
+.cb-motion .cb-head > .cb-btns,
+.cb-motion .cb-card,
+.cb-motion .cb-tile,
+.cb-motion .cb-split__body > *,
+.cb-motion .cb-list li,
+.cb-motion .cb-split__media,
+.cb-motion .cb-video,
+.cb-motion .cb-gallery a,
+.cb-motion .cb-photos img,
+.cb-motion .cb-faq details,
+.cb-motion .cb-contact__aside > *,
+.cb-motion .cb-form,
+.cb-motion .cb-cta > *,
+.cb-motion .cb-trust__list li,
+.cb-motion .cb-trust .cb-link,
+.cb-motion .cb-filter a,
+.cb-motion .cb-steps li,
+.cb-motion .cb-fact { opacity: 0; }
+
+/* header shadow once the page scrolls */
+header.cb-header-scrolled { box-shadow: 0 8px 30px rgba(2, 1, 90, .10) !important; transition: box-shadow .3s ease; }
+
+@media (prefers-reduced-motion: reduce) {
+    .cb-steps li::after { transform: none; }
+}

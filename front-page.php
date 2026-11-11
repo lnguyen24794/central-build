@@ -36,6 +36,8 @@ get_header();
         ),
     ));
 
+    cb_ui_trust_strip();
+
     cb_ui_section_open('services', 'white');
     cb_ui_head('Services', 'Five services, one team', 'Design, build, coordinate, strip out and maintain, all with the same people and one point of contact.');
     cb_ui_cards(cb_ui_service_cards(), 3);

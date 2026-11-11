@@ -527,6 +527,42 @@ function cb_ui_service_cards(): array
     return $cards;
 }
 
+/** Builder licence and insurances (Website Content > About Us > Builder licence and insurances). */
+function cb_ui_licence(): array
+{
+    $about = function_exists('central_build_get_about_settings') ? central_build_get_about_settings() : array();
+    return (array) ($about['licence'] ?? array());
+}
+
+function cb_ui_licence_section(string $ground = 'white'): void
+{
+    $l = cb_ui_licence();
+    if (empty($l['items'])) {
+        return;
+    }
+    cb_ui_section_open('licence', $ground);
+    cb_ui_head('Licence & insurance', $l['heading'] ?? 'Builder licence and insurances', $l['text'] ?? '');
+    cb_ui_cards((array) $l['items'], 4);
+    if (cb_ui_plain($l['abn'] ?? '') !== '') {
+        echo '<p class="cb-tile__meta" style="margin-top:24px">Central Build Pty Ltd · ' . esc_html(cb_ui_plain($l['abn'])) . '</p>';
+    }
+    cb_ui_section_close();
+}
+
+/** Short trust row for the home page, linking to the full section on About. */
+function cb_ui_trust_strip(): void
+{
+    $l = cb_ui_licence();
+    if (empty($l['items'])) {
+        return;
+    }
+    echo '<section class="cb-section is-white is-tight cb-trust" aria-label="' . esc_attr__('Licence and insurance', 'central-build') . '"><div class="cb-wrap"><ul class="cb-trust__list">';
+    foreach ((array) $l['items'] as $item) {
+        echo '<li>' . '<span class="cb-card__icon">' . cb_ui_icon($item['icon'] ?? '') . '</span><span>' . esc_html(cb_ui_plain($item['title'] ?? '')) . '</span></li>';
+    }
+    echo '</ul><a class="cb-link" href="' . esc_url(home_url('/about-us/#licence')) . '">' . esc_html__('Licence and insurance details', 'central-build') . '</a></div></section>';
+}
+
 /** Body class for pages built with the system (lets legacy CSS step aside). */
 add_filter('body_class', static function (array $classes): array {
     if (is_front_page() || is_singular('fitout_sector') || is_post_type_archive('fitout_sector') || is_tax('fitout_category')
