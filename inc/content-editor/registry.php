@@ -462,6 +462,7 @@ function cb_ce_pages_raw(): array
                 'company'       => array('label' => 'Company details', 'labels' => array('licence' => 'Builder licence line', 'description' => 'Short description', 'phone' => 'Company phone', 'mobile' => 'Mobile (second line, leave empty to hide)')),
                 'quick_links'   => array('label' => 'Quick links', 'labels' => array('label' => 'Link text', 'url' => 'Link')),
                 'support_links' => array('label' => 'Support links', 'labels' => array('label' => 'Link text', 'url' => 'Link')),
+                'copyright'     => array('label' => 'Copyright line (very bottom)', 'help' => 'Write {year} where the current year should appear; it updates by itself every January. Leave empty to hide the line.'),
                 'social_links'  => array('label' => 'Social media ("Follow us")', 'help' => 'Round icons under the email address. The icon is picked from the link (Facebook, YouTube, LinkedIn, Instagram, TikTok). Remove a row to hide that icon.', 'labels' => array('items' => 'Social links', 'label' => 'Name (e.g. Facebook)', 'url' => 'Page address')),
             ),
         ),

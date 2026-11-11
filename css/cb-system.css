@@ -574,3 +574,9 @@ header.cb-header-scrolled { box-shadow: 0 8px 30px rgba(2, 1, 90, .10) !importan
 @media (prefers-reduced-motion: reduce) {
     .cb-steps li::after { transform: none; }
 }
+
+/* footer copyright line */
+.home-two-footer-section .home-two-footer-flex-one { padding-bottom: 44px; border-bottom-color: rgba(255, 255, 255, .14); }
+.cb-footer-bottom { padding-top: 22px; text-align: center; }
+.cb-footer-bottom p { margin: 0; font-size: .875rem; color: rgba(255, 255, 255, .62); }
+

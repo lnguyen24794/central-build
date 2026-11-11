@@ -115,6 +115,12 @@ $footer_mobile      = wp_parse_args($company['mobile'] ?? array(), array('displa
                 </div>
             </div>
         </div>
+        <?php $footer_copyright = central_build_footer_copyright(); ?>
+        <?php if ($footer_copyright !== '') : ?>
+            <div class="cb-footer-bottom">
+                <p><?php echo esc_html($footer_copyright); ?></p>
+            </div>
+        <?php endif; ?>
     </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

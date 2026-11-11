@@ -29,7 +29,9 @@ function central_build_footer_settings_defaults(): array
         'support_links' => array(
             array('label' => 'Repairs & Maintenance', 'url' => home_url('/repairs-and-maintenance/')),
             array('label' => 'Get a Quote', 'url' => home_url('/contact/')),
-        ),        'social_links' => array(
+        ),        // Bottom line of the footer. {year} becomes the current year.
+        'copyright' => '© {year} Central Build. All rights reserved.',
+        'social_links' => array(
             array('label' => 'Facebook', 'url' => 'https://www.facebook.com/profile.php?id=61580407266348'),
             array('label' => 'YouTube', 'url' => 'https://www.youtube.com/@CENTRALBUILD'),
         ),
@@ -137,6 +139,7 @@ function central_build_sanitize_footer_settings(array $input): array
         'company'       => $company,
         'quick_links'   => $sanitize_links($input['quick_links'] ?? array(), $defaults['quick_links']),
         'support_links' => $sanitize_links($input['support_links'] ?? array(), $defaults['support_links']),
+        'copyright'     => sanitize_text_field(wp_unslash($input['copyright'] ?? $defaults['copyright'])),
         'social_links'  => array_values(array_filter($sanitize_links($input['social_links'] ?? array(), array()), static function ($l) {
             return $l['url'] !== '';
         })),
@@ -384,4 +387,12 @@ function central_build_social_icon(string $url, string $label = ''): string
         }
     }
     return 'fas fa-link';
+}
+
+/** Footer copyright line with {year} replaced by the current year. */
+function central_build_footer_copyright(): string
+{
+    $settings = central_build_get_footer_settings();
+    $line     = trim((string) ($settings['copyright'] ?? ''));
+    return str_replace('{year}', wp_date('Y'), $line);
 }
