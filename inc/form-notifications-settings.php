@@ -14,6 +14,8 @@ function central_build_form_notifications_defaults(): array
         'repairs_maintenance'           => array('recipients' => array(), 'reply_to' => ''),
         'services_coordination'         => array('recipients' => array(), 'reply_to' => ''),
         'design_solutions'              => array('recipients' => array(), 'reply_to' => ''),
+        // Every email the website sends: sender name, and the main address that receives form messages.
+        'sender'                        => array('name' => 'Support-CentralBuild', 'recipient' => 'thangt@centralbuild.au'),
     );
 }
 
@@ -25,6 +27,9 @@ function central_build_get_form_notifications(): array
     $settings = wp_parse_args(is_array($saved) ? $saved : array(), $defaults);
 
     foreach ($defaults as $key => $default) {
+        if ($key === 'sender') {
+            continue;
+        }
         if (!isset($settings[$key]) || !is_array($settings[$key])) {
             $settings[$key] = $default;
         }
@@ -49,6 +54,12 @@ function central_build_get_form_notifications(): array
         $settings[$key]['reply_to']   = sanitize_email($settings[$key]['reply_to'] ?? '');
     }
 
+    $sender = is_array($settings['sender'] ?? null) ? $settings['sender'] : array();
+    $settings['sender'] = array(
+        'name'      => trim((string) ($sender['name'] ?? '')) !== '' ? sanitize_text_field($sender['name']) : $defaults['sender']['name'],
+        'recipient' => is_email($sender['recipient'] ?? '') ? sanitize_email($sender['recipient']) : $defaults['sender']['recipient'],
+    );
+
     return $settings;
 }
 
@@ -58,6 +69,16 @@ function central_build_sanitize_form_notifications(array $input): array
     $settings = array();
 
     foreach ($defaults as $key => $default) {
+        if ($key === 'sender') {
+            $raw = is_array($input['sender'] ?? null) ? $input['sender'] : array();
+            $name = sanitize_text_field(wp_unslash((string) ($raw['name'] ?? '')));
+            $to   = sanitize_email(wp_unslash((string) ($raw['recipient'] ?? '')));
+            $settings['sender'] = array(
+                'name'      => $name !== '' ? $name : $default['name'],
+                'recipient' => is_email($to) ? $to : $default['recipient'],
+            );
+            continue;
+        }
         $raw = $input[$key] ?? array();
         $recipients_input = '';
         if (is_array($raw) && isset($raw['recipients'])) {
@@ -175,3 +196,37 @@ function central_build_form_notifications_menu(): void
     );
 }
 add_action('admin_menu', 'central_build_form_notifications_menu');
+
+/** Sender name and main recipient for every email the website sends (Website Content > Form emails > Sender). */
+function central_build_mail_sender(): array
+{
+    $settings = central_build_get_form_notifications();
+    return (array) $settings['sender'];
+}
+
+/**
+ * All website emails go out as "Support-CentralBuild" (or the name set in Form emails).
+ * GoSMTP keeps this name unless "Force From Name" is switched on in its own settings.
+ */
+add_filter('wp_mail_from_name', static function ($name) {
+    $sender = central_build_mail_sender();
+    return $sender['name'] !== '' ? $sender['name'] : $name;
+}, 20);
+
+/**
+ * Sender address: when GoSMTP sends through an SMTP account that logs in with an email address
+ * (for example Gmail), send from that address, which the mail server requires. GoSMTP's own
+ * "Force From Email" setting still wins when it is switched on.
+ */
+add_filter('wp_mail_from', static function ($from) {
+    if (!function_exists('is_plugin_active')) {
+        require_once ABSPATH . 'wp-admin/includes/plugin.php';
+    }
+    if (!is_plugin_active('gosmtp/gosmtp.php')) {
+        return $from;
+    }
+    $o    = get_option('gosmtp_options');
+    $m    = is_array($o['mailer'][0] ?? null) ? $o['mailer'][0] : array();
+    $user = (string) ($m['smtp_username'] ?? '');
+    return ($m['mail_type'] ?? '') === 'smtp' && is_email($user) ? $user : $from;
+}, 20);

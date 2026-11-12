@@ -233,11 +233,21 @@ function central_build_send_form_emails(string $form_id, array $data): void
             $fields_def,
             __('If you need to reach us urgently, please call our team.', 'central-build')
         );
-        wp_mail($user_email, $subject, $body);
+        $sender = function_exists('central_build_mail_sender') ? central_build_mail_sender() : array();
+        $thanks_headers = array('Content-Type: text/plain; charset=UTF-8');
+        if (!empty($sender['recipient']) && is_email($sender['recipient'])) {
+            // Replies from the visitor go to the company inbox, not to the SMTP account.
+            $thanks_headers[] = 'Reply-To: ' . $sender['name'] . ' <' . $sender['recipient'] . '>';
+        }
+        wp_mail($user_email, $subject, $body, $thanks_headers);
     }
 
     // Notify admin recipients
     $recipients = $notifications[$form_id]['recipients'] ?? array();
+    if (!$recipients && function_exists('central_build_mail_sender')) {
+        // No address set for this form: send to the main address (Form emails > Sender).
+        $recipients = array_filter(array(central_build_mail_sender()['recipient'] ?? ''));
+    }
     $reply_to   = $notifications[$form_id]['reply_to'] ?? '';
 
     if (!empty($recipients)) {
