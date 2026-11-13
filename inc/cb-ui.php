@@ -497,8 +497,11 @@ function cb_ui_contact(array $a): void
 /** CTA band (no form): title, text, buttons. */
 function cb_ui_cta(array $a): void
 {
-    cb_ui_section_open($a['id'] ?? 'get-started', $a['ground'] ?? 'navy');
-    echo '<div class="cb-cta"><div>';
+    // Charcoal band with a photo beside the text (image => '' hides the photo).
+    $image = array_key_exists('image', $a) ? (string) $a['image'] : 'cb/cb-cta-interior.jpg';
+    $image = $image !== '' ? cb_ui_img_url($image) : '';
+    cb_ui_section_open($a['id'] ?? 'get-started', 'navy', 'cb-cta-band');
+    echo '<div class="cb-cta' . ($image ? ' has-media' : '') . '"><div class="cb-cta__body">';
     if (!empty($a['eyebrow'])) {
         echo '<span class="cb-eyebrow">' . esc_html(cb_ui_plain($a['eyebrow'])) . '</span>';
     }
@@ -506,8 +509,11 @@ function cb_ui_cta(array $a): void
     if (!empty($a['text'])) {
         echo '<p class="cb-lead">' . esc_html(cb_ui_plain($a['text'])) . '</p>';
     }
-    echo '</div>';
     cb_ui_buttons((array) ($a['buttons'] ?? array()));
+    echo '</div>';
+    if ($image) {
+        echo '<figure class="cb-cta__media"><img src="' . esc_url($image) . '" alt="" loading="lazy" decoding="async"></figure>';
+    }
     echo '</div>';
     cb_ui_section_close();
 }
