@@ -273,6 +273,8 @@ a.cb-card:hover { transform: translateY(-2px); border-color: #cfcfe0; }
 .is-navy .cb-list li::before { background-color: rgba(251, 127, 40, .18); }
 
 /* whole photo (project pages): never cropped, the text column takes the rest */
+.cb-split__media.is-stack { display: grid; gap: 16px; }
+.cb-split__media.is-stack img { aspect-ratio: 16 / 7; max-height: none; }
 .cb-split.is-whole { grid-template-columns: auto minmax(320px, 1fr); }
 .cb-split.is-whole .cb-split__media { display: flex; justify-content: center; }
 .cb-split.is-whole .cb-split__media img { width: auto; max-width: min(100%, 720px); max-height: min(80vh, 760px); object-fit: contain; }

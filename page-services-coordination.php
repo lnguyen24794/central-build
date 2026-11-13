@@ -53,6 +53,7 @@ get_header();
     }, (array) ($bim['accordion'] ?? array()));
     cb_ui_split(array(
         'image'   => $bim['image'] ?? '',
+        'image_2' => $bim['second_image'] ?? '',
         'eyebrow' => $bim['subtitle'] ?? 'BIM',
         'title'   => $bim['title'] ?? 'The power of BIM',
         'text'    => $bim['description'] ?? '',

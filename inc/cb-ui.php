@@ -193,8 +193,15 @@ function cb_ui_split(array $a): void
 {
     $image = cb_ui_img_url((string) ($a['image'] ?? ''));
     echo '<div class="cb-split' . (!empty($a['reverse']) ? ' is-reverse' : '') . '">';
+    // An optional second photo (image_2) sits under the first one.
+    $image_2 = cb_ui_img_url((string) ($a['image_2'] ?? ''));
     if ($image) {
-        echo '<div class="cb-split__media"><img src="' . esc_url($image) . '" alt="' . esc_attr(cb_ui_plain($a['image_alt'] ?? ($a['title'] ?? ''))) . '" loading="lazy" decoding="async"></div>';
+        $alt = esc_attr(cb_ui_plain($a['image_alt'] ?? ($a['title'] ?? '')));
+        echo '<div class="cb-split__media' . ($image_2 ? ' is-stack' : '') . '"><img src="' . esc_url($image) . '" alt="' . $alt . '" loading="lazy" decoding="async">';
+        if ($image_2) {
+            echo '<img src="' . esc_url($image_2) . '" alt="' . $alt . '" loading="lazy" decoding="async">';
+        }
+        echo '</div>';
     }
     echo '<div class="cb-split__body">';
     if (!empty($a['eyebrow']) || !empty($a['title'])) {

@@ -54,6 +54,7 @@ function central_build_sc_settings_defaults(): array
             'subtitle'    => 'Virtual Conflict Resolution, Real-World Savings.',
             'description' => 'Building Information Modelling (BIM) is our primary risk mitigation tool. We use advanced clash detection to identify and resolve every potential conflict between MEP services, structures, and architectural elements.',
             'image'       => get_template_directory_uri() . '/images/cb/cb-construction.jpg',
+            'second_image' => '',
             'accordion'   => array(
                 array(
                     'heading' => 'How Clash Detection Works',
@@ -217,6 +218,7 @@ function central_build_sanitize_sc_settings(array $input): array
         'subtitle'    => $sanitize_text($input['bim']['subtitle'] ?? '', $defaults['bim']['subtitle']),
         'description' => $sanitize_rich_text($input['bim']['description'] ?? '', $defaults['bim']['description']),
         'image'       => esc_url_raw(wp_unslash($input['bim']['image'] ?? $defaults['bim']['image'])),
+        'second_image' => esc_url_raw(wp_unslash($input['bim']['second_image'] ?? '')),
         'accordion'   => $accordion_items,
     );
 

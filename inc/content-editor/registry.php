@@ -383,7 +383,7 @@ function cb_ce_pages_raw(): array
                 'hero'          => array('label' => 'Top banner'),
                 'problems'      => array('label' => 'Problems we solve'),
                 'methodology'   => array('label' => 'Our method (steps)'),
-                'bim'           => array('label' => 'The power of BIM'),
+                'bim'           => array('label' => 'The power of BIM', 'labels' => array('image' => 'Photo', 'second_image' => 'Second photo (shown under the first, optional)')),
                 'metrics'       => array('label' => 'Results (numbers)'),
                 'contact'       => array('label' => 'Contact & form at the bottom'),
                 'show_projects' => array('label' => 'Projects strip'),
