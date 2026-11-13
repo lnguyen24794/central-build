@@ -53,9 +53,9 @@ function central_build_about_settings_defaults(): array
             'text'    => 'Central Build Pty Ltd is a registered commercial builder in Victoria and carries the insurances below on every project. Certificates of currency are available on request.',
             'abn'     => 'ABN 51 689 772 629',
             'items'   => array(
-                array('icon' => 'fas fa-id-card', 'title' => 'Registered Commercial Builder', 'text' => 'Registered with the Building and Plumbing Commission (BPC), Victoria. Registration CCB-L 100410, limited to non-structural fit-out work.'),
-                array('icon' => 'fas fa-shield-alt', 'title' => 'Public Liability $20 million', 'text' => '$20 million each and every occurrence, including products liability. Underwritten by AIG Australia through MECON Insurance.'),
-                array('icon' => 'fas fa-hard-hat', 'title' => 'Contract Works Insurance', 'text' => 'Annual construction policy covering material damage on projects up to $500,000 in Victoria.'),
+                array('icon' => 'fas fa-id-card', 'title' => 'Registered Commercial Builder', 'text' => 'Registered with the Building and Plumbing Commission (BPC), Victoria. Registration CCB-L 100410.'),
+                array('icon' => 'fas fa-shield-alt', 'title' => 'Public Liability $20 million', 'text' => '$20 million each and every occurrence, including products liability.'),
+                array('icon' => 'fas fa-hard-hat', 'title' => 'Contract Works Insurance', 'text' => 'Annual construction policy covering material damage.'),
                 array('icon' => 'fas fa-user-shield', 'title' => 'WorkCover Insurance', 'text' => 'Registered for WorkCover with WorkSafe Victoria, so our workers are covered on every site.'),
             ),
         ),
