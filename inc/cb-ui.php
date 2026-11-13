@@ -97,6 +97,29 @@ function cb_ui_buttons(array $buttons): void
 /**
  * @param array $a eyebrow, title (may contain <br>/<span>), text, fact, image, buttons, size ('home'|'page')
  */
+/**
+ * Hero headline. Each sentence ("Demolition Done Right." / "Ready to Build.") is kept together as
+ * one block, so a word such as "Right." never drops onto the next sentence's line. Sentences that
+ * fit side by side still share a line; a sentence longer than the line wraps inside its block.
+ */
+function cb_ui_hero_title(string $title): string
+{
+    $html  = trim(cb_ui_inline($title));
+    $parts = preg_split('/(?<=[.!?])\s+(?=\S)/u', $html) ?: array($html);
+    if (count($parts) < 2) {
+        return $html;
+    }
+    foreach ($parts as $part) {
+        // Only split where no <span>/<strong>/<em> is left open.
+        if (preg_match_all('~<(span|strong|em)>~', $part) !== preg_match_all('~</(span|strong|em)>~', $part)) {
+            return $html;
+        }
+    }
+    return implode(' ', array_map(static function ($part) {
+        return '<span class="cb-hero__line">' . $part . '</span>';
+    }, $parts));
+}
+
 function cb_ui_hero(array $a): void
 {
     $image = cb_ui_img_url((string) ($a['image'] ?? ''));
@@ -106,7 +129,7 @@ function cb_ui_hero(array $a): void
     if (!empty($a['eyebrow'])) {
         echo '<span class="cb-eyebrow">' . esc_html(cb_ui_plain($a['eyebrow'])) . '</span>';
     }
-    echo '<h1>' . cb_ui_inline((string) ($a['title'] ?? '')) . '</h1>';
+    echo '<h1>' . cb_ui_hero_title((string) ($a['title'] ?? '')) . '</h1>';
     if (!empty($a['text'])) {
         echo '<p class="cb-hero__text">' . esc_html(cb_ui_plain($a['text'])) . '</p>';
     }
@@ -321,8 +344,8 @@ function cb_ui_projects(array $a = array()): int
         'post_status'    => 'publish',
         'posts_per_page' => (int) ($a['count'] ?? 6),
         'post__not_in'   => array_map('intval', (array) ($a['exclude'] ?? array())),
-        'orderby'        => $a['orderby'] ?? 'date',
-        'order'          => 'DESC',
+        // The order set on each project (Projects > Edit > Order: 1 first), newest first after that.
+        'orderby'        => $a['orderby'] ?? array('menu_order' => 'ASC', 'date' => 'DESC'),
         'fields'         => 'ids',
         'no_found_rows'  => true,
     );

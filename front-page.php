@@ -15,7 +15,7 @@ $contact = (array) $home['contact'];
 $chez       = get_posts(array('post_type' => 'fitout_sector', 'post_status' => 'publish', 'title' => 'Chez Ami Restaurant', 'numberposts' => 1, 'fields' => 'ids'));
 $chez_id    = $chez ? (int) $chez[0] : 0;
 $chez_video = $chez_id ? array_slice((array) get_post_meta($chez_id, '_fitout_videos', true), 0, 2) : array();
-$hero_image = $chez_id ? cb_ui_project_image($chez_id, 'full') : 'cb/cb-project-hero.jpg';
+$hero_image = cb_ui_plain($hero['background'] ?? '') !== '' ? (string) $hero['background'] : content_url('uploads/2025/09/central-build_background-scaled.jpg');
 $about_img  = function_exists('central_build_get_about_settings') ? (string) (central_build_get_about_settings()['philosophy']['image'] ?? '') : '';
 $steps      = function_exists('central_build_get_cds_settings') ? (array) (central_build_get_cds_settings()['process']['steps'] ?? array()) : array();
 
@@ -27,7 +27,6 @@ get_header();
         'eyebrow' => 'Registered commercial builder · Victoria',
         'title'   => $hero['title'] ?? 'Commercial spaces built for you',
         'text'    => trim(cb_ui_plain($hero['tagline'] ?? '') . ' ' . cb_ui_plain($hero['description'] ?? '')),
-        'fact'    => 'Chez Ami, Sale: office to 80-seat restaurant in 12 weeks',
         'image'   => $hero_image,
         'size'    => 'home',
         'buttons' => array(

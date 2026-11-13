@@ -180,6 +180,7 @@
     margin: 0 0 20px !important;
 }
 .cb-page .cb-hero h1 span, .cb-page .cb-hero h1 * { color: inherit !important; }
+.cb-page .cb-hero h1 .cb-hero__line { display: inline-block; }
 .cb-hero__text { font-size: 1.1875rem; line-height: 1.6; color: rgba(255, 255, 255, .88); max-width: 60ch; }
 .cb-hero__fact {
     display: inline-flex;

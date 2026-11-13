@@ -38,7 +38,20 @@
             y: 0, opacity: 1, duration: 0.9, ease: EASE, stagger: 0.09, delay: 0.1,
             onComplete: function () { shown(items); }
         });
-        gsap.fromTo(hero, { backgroundSize: '112%' }, { backgroundSize: '100%', duration: 2.2, ease: 'power2.out', clearProps: 'backgroundSize' });
+        // Slow zoom-out of the photo. Sizes are worked out from the photo itself so it always
+        // covers the banner (a plain "112%" width leaves gaps and repeats on tall phone banners).
+        var src = (getComputedStyle(hero).backgroundImage.match(/url\(["']?(.*?)["']?\)/) || [])[1];
+        if (src) {
+            var img = new Image();
+            img.onload = function () {
+                var s = Math.max(hero.offsetWidth / img.naturalWidth, hero.offsetHeight / img.naturalHeight);
+                var w = img.naturalWidth * s, h = img.naturalHeight * s;
+                gsap.fromTo(hero, { backgroundSize: (w * 1.12) + 'px ' + (h * 1.12) + 'px' }, {
+                    backgroundSize: w + 'px ' + h + 'px', duration: 2.2, ease: 'power2.out', clearProps: 'backgroundSize'
+                });
+            };
+            img.src = src;
+        }
     });
 
     /* ---------------------------------------------------------------- generic reveal in batches */

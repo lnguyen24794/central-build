@@ -27,7 +27,6 @@ get_header();
         'eyebrow' => $hero['badge'] ?? 'Commercial Fitouts',
         'title'   => $hero['title'] ?? '',
         'text'    => $hero['description'] ?? '',
-        'fact'    => 'Chez Ami: office to 80-seat restaurant in 12 weeks',
         'image'   => $hero['background'] ?? '',
         'size'    => 'home',
         'buttons' => array(

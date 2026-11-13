@@ -19,6 +19,7 @@ function central_build_home_content_defaults(): array
             'tagline'     => 'CENTRAL BUILD makes fitouts straightforward, with no surprises along the way.',
             'description' => 'We bring our experience and passion into every project, tailoring spaces built with safety, quality, and within budget.',
             'button'      => array('label' => 'START YOUR PROJECT CONSULTATION', 'url' => '#contact'),
+            'background'  => content_url('uploads/2025/09/central-build_background-scaled.jpg'),
         ),
         'intro' => array(
             'heading' => 'About Us',

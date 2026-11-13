@@ -8,7 +8,7 @@
 $term     = is_tax('fitout_category') ? get_queried_object() : null;
 $current  = $term ? $term->slug : '';
 $terms    = get_terms(array('taxonomy' => 'fitout_category', 'hide_empty' => false, 'slug' => array('fitout-projects', 'upcoming-projects')));
-$all_ids  = get_posts(array('post_type' => 'fitout_sector', 'post_status' => 'publish', 'numberposts' => 1, 'fields' => 'ids', 'orderby' => 'date'));
+$all_ids  = get_posts(array('post_type' => 'fitout_sector', 'post_status' => 'publish', 'numberposts' => 1, 'fields' => 'ids', 'orderby' => array('menu_order' => 'ASC', 'date' => 'DESC')));
 $hero_img = $all_ids ? cb_ui_project_image((int) $all_ids[0], 'full') : 'cb/cb-project-hero.jpg';
 $title    = $term ? $term->name : __('Our Projects', 'central-build');
 $text     = $term && cb_ui_plain($term->description) !== ''

@@ -50,7 +50,7 @@ function central_build_register_fitout_sector_post_type()
         'label'                 => __('Project', 'central-build'),
         'description'           => __('Fitout sector projects and case studies', 'central-build'),
         'labels'                => $labels,
-        'supports'              => array('title', 'editor', 'thumbnail', 'excerpt', 'revisions'),
+        'supports'              => array('title', 'editor', 'thumbnail', 'excerpt', 'revisions', 'page-attributes'),
         'taxonomies'            => array('fitout_category'),
         'hierarchical'          => false,
         'public'                => true,

@@ -93,3 +93,9 @@
         padding: 60px 15px;
     }
 }
+
+/* A single video sits centred at a comfortable size instead of filling the whole width. */
+.cb-video-wall > .cb-video:only-child {
+    flex: 0 1 960px;
+    margin: 0 auto;
+}

@@ -38,7 +38,6 @@ get_header();
         'eyebrow' => $hero['badge'] ?? 'Commercial Design and Solutions',
         'title'   => $hero['title'] ?? '',
         'text'    => $hero['description'] ?? '',
-        'fact'    => 'Chez Ami: walked through in 3D and VR, built in 12 weeks',
         'image'   => $hero['background'] ?? '',
         'size'    => 'home',
         'buttons' => array(
