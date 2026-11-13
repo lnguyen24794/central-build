@@ -23,6 +23,7 @@ function central_build_home_content_defaults(): array
         ),
         'intro' => array(
             'heading' => 'About Us',
+            'image'   => '',
             'text'    => 'Central Build is a specialized commercial contractor, formed by dedicated team of professionals, bringing together passion and expertise to deliver outstanding results in commercial interior fit-outs.',
             'cards'   => array(
                 array(

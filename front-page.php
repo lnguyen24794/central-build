@@ -16,7 +16,9 @@ $chez       = get_posts(array('post_type' => 'fitout_sector', 'post_status' => '
 $chez_id    = $chez ? (int) $chez[0] : 0;
 $chez_video = $chez_id ? array_slice((array) get_post_meta($chez_id, '_fitout_videos', true), 0, 2) : array();
 $hero_image = cb_ui_plain($hero['background'] ?? '') !== '' ? (string) $hero['background'] : cb_ui_default_hero_image();
-$about_img  = function_exists('central_build_get_about_settings') ? (string) (central_build_get_about_settings()['philosophy']['image'] ?? '') : '';
+// "Why Central Build" photo: its own field, falling back to the About page "Who We Are" photo.
+$about_img  = cb_ui_plain($intro['image'] ?? '') !== '' ? (string) $intro['image']
+    : (function_exists('central_build_get_about_settings') ? (string) (central_build_get_about_settings()['philosophy']['image'] ?? '') : '');
 $steps      = function_exists('central_build_get_cds_settings') ? (array) (central_build_get_cds_settings()['process']['steps'] ?? array()) : array();
 
 get_header();
