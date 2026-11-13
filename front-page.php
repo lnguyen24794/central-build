@@ -15,7 +15,7 @@ $contact = (array) $home['contact'];
 $chez       = get_posts(array('post_type' => 'fitout_sector', 'post_status' => 'publish', 'title' => 'Chez Ami Restaurant', 'numberposts' => 1, 'fields' => 'ids'));
 $chez_id    = $chez ? (int) $chez[0] : 0;
 $chez_video = $chez_id ? array_slice((array) get_post_meta($chez_id, '_fitout_videos', true), 0, 2) : array();
-$hero_image = cb_ui_plain($hero['background'] ?? '') !== '' ? (string) $hero['background'] : content_url('uploads/2025/09/central-build_background-scaled.jpg');
+$hero_image = cb_ui_plain($hero['background'] ?? '') !== '' ? (string) $hero['background'] : cb_ui_default_hero_image();
 $about_img  = function_exists('central_build_get_about_settings') ? (string) (central_build_get_about_settings()['philosophy']['image'] ?? '') : '';
 $steps      = function_exists('central_build_get_cds_settings') ? (array) (central_build_get_cds_settings()['process']['steps'] ?? array()) : array();
 

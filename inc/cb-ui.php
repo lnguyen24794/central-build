@@ -102,6 +102,12 @@ function cb_ui_buttons(array $buttons): void
  * one block, so a word such as "Right." never drops onto the next sentence's line. Sentences that
  * fit side by side still share a line; a sentence longer than the line wraps inside its block.
  */
+/** The Central Build photo used behind the top banner of every page except single projects. */
+function cb_ui_default_hero_image(): string
+{
+    return content_url('uploads/2025/09/central-build_background-scaled.jpg');
+}
+
 function cb_ui_hero_title(string $title): string
 {
     $html  = trim(cb_ui_inline($title));

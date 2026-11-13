@@ -38,7 +38,7 @@ get_header();
         'eyebrow' => $hero['badge'] ?? 'Commercial Design and Solutions',
         'title'   => $hero['title'] ?? '',
         'text'    => $hero['description'] ?? '',
-        'image'   => $hero['background'] ?? '',
+        'image'   => cb_ui_plain($hero['background'] ?? '') !== '' ? $hero['background'] : cb_ui_default_hero_image(),
         'size'    => 'home',
         'buttons' => array(
             array('label' => $hero['cta']['label'] ?? 'Talk to our design team', 'url' => $hero['cta']['url'] ?? '#contact'),

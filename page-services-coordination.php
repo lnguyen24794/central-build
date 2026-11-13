@@ -25,7 +25,7 @@ get_header();
         'title'   => $hero['title'] ?? '',
         'text'    => $hero['description'] ?? '',
         'fact'    => 'Gas, fire, electrical, mechanical and hydraulic services under one plan',
-        'image'   => $hero['background'] ?? 'cb/cb-construction.jpg',
+        'image'   => cb_ui_plain($hero['background'] ?? '') !== '' ? $hero['background'] : cb_ui_default_hero_image(),
         'size'    => 'home',
         'buttons' => array(
             array('label' => $hero['cta']['label'] ?? 'Request a risk assessment', 'url' => $hero['cta']['url'] ?? '#contact'),

@@ -25,7 +25,7 @@ get_header();
         'title'   => $hero['title'] ?? '',
         'text'    => $hero['description'] ?? '',
         'fact'    => 'Urgent repairs line, 24 hours a day, 7 days a week',
-        'image'   => $hero['background'] ?? 'cb/cb-kitchen.jpg',
+        'image'   => cb_ui_plain($hero['background'] ?? '') !== '' ? $hero['background'] : cb_ui_default_hero_image(),
         'size'    => 'home',
         'buttons' => array(
             array('label' => $hero['primary_cta']['label'] ?? 'Call for urgent repairs', 'url' => $hero['primary_cta']['url'] ?? 'tel:+61413058861'),

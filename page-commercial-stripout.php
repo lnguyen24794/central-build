@@ -27,7 +27,7 @@ get_header();
         'title'   => $hero['title'] ?? '',
         'text'    => $hero['description'] ?? '',
         'fact'    => 'Services made safe by our own licensed plumbers and electricians',
-        'image'   => $hero['background'] ?? 'cb/cb-demolition.jpg',
+        'image'   => cb_ui_plain($hero['background'] ?? '') !== '' ? $hero['background'] : cb_ui_default_hero_image(),
         'size'    => 'home',
         'buttons' => array(
             array('label' => $hero['cta']['label'] ?? 'Get a stripout quote', 'url' => $hero['cta']['url'] ?? '#contact'),

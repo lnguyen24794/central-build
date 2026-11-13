@@ -43,7 +43,7 @@ get_header();
         'eyebrow' => 'Contact',
         'title'   => $hero['title'] ?? 'Let\'s work together',
         'text'    => $hero['description'] ?? '',
-        'image'   => $office['image'] ?? '',
+        'image'   => cb_ui_default_hero_image(),
     ));
 
     cb_ui_section_open('channels', 'white');

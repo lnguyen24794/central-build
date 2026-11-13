@@ -28,7 +28,7 @@ get_header();
         'title'   => $hero['title'] ?? 'We are Central Build',
         'text'    => $hero['description'] ?? '',
         'fact'    => 'Registered commercial builder · Licence CCB-L 100410',
-        'image'   => 'cb/cb-team.jpg',
+        'image'   => cb_ui_default_hero_image(),
     ));
 
     cb_ui_section_open('who-we-are', 'white');
