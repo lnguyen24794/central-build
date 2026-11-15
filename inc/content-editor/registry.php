@@ -303,6 +303,14 @@ function cb_ce_pages_raw(): array
                         'image'          => array('option' => 'central_build_cta_background_image', 'default' => '', 'type' => 'image', 'label' => 'Background photo'),
                     ),
                 ),
+                'reviews' => array(
+                    'label'  => 'Client reviews',
+                    'help'   => 'Quotes from clients and Google reviews, with the Google star rating. Update the rating and number of reviews when they change on Google. "Source" is Client or Google.',
+                    'home'   => 'reviews',
+                    'labels' => array('eyebrow' => 'Small title', 'rating' => 'Google rating (e.g. 5.0)', 'review_count' => 'Number of Google reviews', 'google_url' => 'Link to the Google reviews',
+                        'items' => 'Reviews', 'quote' => 'What they said', 'name' => 'Name', 'detail' => 'Project (optional)', 'source' => 'Source (Client or Google)'),
+                    'types'  => array('quote' => 'textarea'),
+                ),
                 'faq' => array(
                     'label' => 'Frequently asked questions',
                     'help'   => 'Questions that open when clicked.',

@@ -613,3 +613,72 @@ add_filter('body_class', static function (array $classes): array {
     }
     return $classes;
 });
+
+/** Five orange stars (decorative; the rating is given in text next to them). */
+function cb_ui_stars(): string
+{
+    $star = '<svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M10 1.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.8l-5.2 2.8 1-5.8L1.5 7.7l5.9-.8z"/></svg>';
+    return '<span class="cb-stars">' . str_repeat($star, 5) . '</span>';
+}
+
+/** One review card: quote, name, project / source. */
+function cb_ui_review_card(array $r, bool $featured = false): void
+{
+    $quote = trim(cb_ui_plain($r['quote'] ?? ''));
+    if ($quote === '') {
+        return;
+    }
+    $google = stripos((string) ($r['source'] ?? ''), 'google') !== false;
+    $meta   = array_filter(array(cb_ui_plain($r['detail'] ?? ''), $google ? __('Google review', 'central-build') : ''));
+    echo '<figure class="cb-review' . ($featured ? ' is-featured' : '') . '">';
+    echo cb_ui_stars();
+    echo '<blockquote><p>&ldquo;' . esc_html($quote) . '&rdquo;</p></blockquote>';
+    echo '<figcaption><b>' . esc_html(cb_ui_plain($r['name'] ?? '')) . '</b>';
+    if ($meta) {
+        echo '<span>' . esc_html(implode(' · ', $meta)) . '</span>';
+    }
+    echo '</figcaption></figure>';
+}
+
+/**
+ * Client reviews section: Google rating summary, a featured client quote and the other reviews.
+ * $data: Website Content → Home Page → Client reviews.
+ */
+function cb_ui_reviews(array $data, string $ground = 'navy'): void
+{
+    $items = array_values(array_filter((array) ($data['items'] ?? array()), static function ($r) {
+        return is_array($r) && trim(cb_ui_plain($r['quote'] ?? '')) !== '';
+    }));
+    if (!$items) {
+        return;
+    }
+    $rating = cb_ui_plain($data['rating'] ?? '');
+    $count  = cb_ui_plain($data['review_count'] ?? '');
+    $url    = (string) ($data['google_url'] ?? '');
+
+    cb_ui_section_open('reviews', $ground);
+    echo '<div class="cb-head"><div>';
+    echo '<span class="cb-eyebrow">' . esc_html(cb_ui_plain($data['eyebrow'] ?? 'Client reviews')) . '</span>';
+    echo '<h2>' . cb_ui_inline((string) ($data['heading'] ?? 'What our clients say')) . '</h2></div>';
+    if ($rating !== '') {
+        $tag = $url !== '' ? 'a' : 'div';
+        echo '<' . $tag . ' class="cb-rating"' . ($url !== '' ? ' href="' . esc_url($url) . '" target="_blank" rel="noopener"' : '') . '>';
+        echo '<span class="cb-rating__score">' . esc_html($rating) . '</span>';
+        echo '<span class="cb-rating__body">' . cb_ui_stars();
+        /* translators: %s: number of reviews */
+        echo '<span>' . esc_html($count !== '' ? sprintf(__('%s Google reviews', 'central-build'), $count) : __('Google reviews', 'central-build')) . '</span>';
+        echo '</span>';
+        if ($url !== '') {
+            echo '<span class="cb-rating__link">' . esc_html__('Read on Google', 'central-build') . ' <span aria-hidden="true">&rarr;</span></span>';
+        }
+        echo '</' . $tag . '>';
+    }
+    echo '</div>';
+
+    echo '<div class="cb-reviews">';
+    foreach ($items as $i => $r) {
+        cb_ui_review_card($r, $i === 0);
+    }
+    echo '</div>';
+    cb_ui_section_close();
+}

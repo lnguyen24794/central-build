@@ -557,6 +557,59 @@ html.cb-lightbox-open { overflow: hidden; }
 }
 .is-navy .cb-steps li { border-top-color: rgba(255, 255, 255, .16); }
 
+/* ---------------------------------------------------------------- client reviews */
+.cb-stars { display: inline-flex; gap: 2px; color: var(--cb-orange); line-height: 0; }
+.cb-rating {
+    justify-self: end;
+    display: inline-grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    gap: 4px 16px;
+    padding: 18px 24px;
+    border: 1px solid var(--cb-line);
+    border-radius: var(--cb-radius);
+    background: var(--cb-white);
+    color: var(--cb-ink);
+    text-decoration: none;
+    transition: border-color .2s ease, background-color .2s ease;
+}
+.cb-rating__score { grid-row: span 2; font-family: var(--cb-display); font-size: 3rem; font-weight: 600; line-height: 1; }
+.cb-rating__body { display: grid; gap: 6px; font-size: .9375rem; }
+.cb-rating__link { grid-column: 2; font-size: .875rem; font-weight: 600; color: var(--cb-orange-dark); }
+a.cb-rating:hover { border-color: var(--cb-orange); }
+.is-navy .cb-rating { background: rgba(255, 255, 255, .05); border-color: rgba(255, 255, 255, .16); color: #fff; }
+.is-navy .cb-rating__link { color: var(--cb-orange); }
+.is-navy a.cb-rating:hover { background: rgba(255, 255, 255, .09); border-color: var(--cb-orange); }
+
+.cb-reviews { display: grid; gap: var(--cb-gap); grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.cb-review {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 28px;
+    border: 1px solid var(--cb-line);
+    border-radius: var(--cb-radius);
+    background: var(--cb-white);
+}
+.cb-review blockquote { margin: 0; padding: 0; border: 0; }
+.cb-review blockquote p { margin: 0; font-size: 1.0625rem; line-height: 1.6; color: var(--cb-ink); }
+.cb-review figcaption { margin-top: auto; display: grid; gap: 2px; font-size: .9375rem; text-align: left; }
+.cb-review figcaption b { font-weight: 600; color: var(--cb-ink); }
+.cb-review figcaption span { color: var(--cb-muted); font-size: .875rem; }
+.cb-review.is-featured { grid-column: 1 / -1; padding: 40px 44px; }
+.cb-review.is-featured blockquote p { font-size: clamp(1.1875rem, 1.6vw, 1.5rem); line-height: 1.55; max-width: 62ch; }
+.is-navy .cb-review { background: rgba(255, 255, 255, .05); border-color: rgba(255, 255, 255, .14); }
+.is-navy .cb-review blockquote p, .is-navy .cb-review figcaption b { color: #fff; }
+.is-navy .cb-review figcaption span { color: rgba(255, 255, 255, .7); }
+.is-navy .cb-review.is-featured { border-left: 4px solid var(--cb-orange); }
+#quote .cb-review.is-featured { padding: 0; border: 0; background: none; margin-top: 12px; }
+@media (max-width: 991px) {
+    .cb-reviews { grid-template-columns: minmax(0, 1fr); }
+    .cb-rating { justify-self: start; }
+    .cb-review.is-featured { padding: 28px; }
+}
+
 /* ---------------------------------------------------------------- motion layer (js/cb-motion.js, GSAP)
    Start states apply only while <html> has .cb-motion (never for reduced motion or without JS). */
 .cb-motion .cb-hero__inner { animation: none; }
@@ -564,6 +617,8 @@ html.cb-lightbox-open { overflow: hidden; }
 .cb-motion .cb-head > div > *,
 .cb-motion .cb-head > .cb-lead,
 .cb-motion .cb-head > .cb-btns,
+.cb-motion .cb-head > .cb-rating,
+.cb-motion .cb-review,
 .cb-motion .cb-card,
 .cb-motion .cb-tile,
 .cb-motion .cb-split__body > *,

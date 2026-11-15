@@ -108,8 +108,8 @@ while (have_posts()) :
         $quote = cb_ui_plain($meta('_fitout_quote_text'));
         if ($quote !== '' && $meta('_fitout_quote_author') !== '') {
             cb_ui_section_open('quote', 'white', 'is-tight');
-            echo '<blockquote style="margin:0;max-width:820px"><p class="cb-lead" style="font-size:1.5rem;color:var(--cb-navy)">&ldquo;' . esc_html($quote) . '&rdquo;</p>';
-            echo '<footer class="cb-tile__meta" style="margin-top:14px">' . esc_html(cb_ui_plain($meta('_fitout_quote_author'))) . ($meta('_fitout_quote_position') !== '' ? ', ' . esc_html(cb_ui_plain($meta('_fitout_quote_position'))) : '') . '</footer></blockquote>';
+            echo '<span class="cb-eyebrow">' . esc_html__('Client review', 'central-build') . '</span>';
+            cb_ui_review_card(array('quote' => $quote, 'name' => $meta('_fitout_quote_author'), 'detail' => $meta('_fitout_quote_position')), true);
             cb_ui_section_close();
         }
 

@@ -1,7 +1,7 @@
 <?php
 /**
  * Home page – what we do, for whom, proof, how we work, contact.
- * Content: Website Content > Home Page (hero, "Why Central Build" intro, FAQ, contact form).
+ * Content: Website Content > Home Page (hero, "Why Central Build" intro, client reviews, FAQ, contact form).
  *
  * @package Central_Build_Pro
  */
@@ -10,6 +10,7 @@ $home    = central_build_get_home_content();
 $hero    = (array) $home['hero'];
 $intro   = (array) $home['intro'];
 $faq     = (array) $home['faq'];
+$reviews = (array) ($home['reviews'] ?? array());
 $contact = (array) $home['contact'];
 
 $chez       = get_posts(array('post_type' => 'fitout_sector', 'post_status' => 'publish', 'title' => 'Chez Ami Restaurant', 'numberposts' => 1, 'fields' => 'ids'));
@@ -78,6 +79,8 @@ get_header();
         'buttons' => array(array('label' => 'About Central Build', 'url' => home_url('/about-us/'), 'style' => 'outline')),
     ));
     cb_ui_section_close();
+
+    cb_ui_reviews($reviews, 'navy');
 
     if ($steps) {
         cb_ui_section_open('process', 'mist');

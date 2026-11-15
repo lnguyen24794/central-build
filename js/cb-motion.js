@@ -87,6 +87,8 @@
     reveal('.cb-photos img', { y: 30, opacity: 0 }, { stagger: 0.1 });
     reveal('.cb-faq details', { y: 18, opacity: 0 }, { stagger: 0.06 });
     reveal('.cb-contact__aside > *, .cb-form', { y: 26, opacity: 0 }, { stagger: 0.08 });
+    reveal('.cb-head > .cb-rating', { y: 26, opacity: 0 });
+    reveal('.cb-review', { y: 30, opacity: 0 }, { stagger: 0.1 });
     reveal('.cb-cta > *', { y: 26, opacity: 0 }, { stagger: 0.1 });
     reveal('.cb-trust__list li, .cb-trust .cb-link', { y: 16, opacity: 0 }, { stagger: 0.07, start: 'top 95%' });
     reveal('.cb-filter a', { y: 12, opacity: 0 }, { stagger: 0.05, start: 'top 95%' });

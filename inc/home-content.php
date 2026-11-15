@@ -1,7 +1,7 @@
 <?php
 /**
  * Home page content that used to be hard-coded in templates
- * (hero banner, "About Us" intro, FAQ list, bottom contact block).
+ * (hero banner, "About Us" intro, client reviews, FAQ list, bottom contact block).
  *
  * Stored in one option: central_build_home_content.
  * Edited from: Website Content → Home Page.
@@ -35,6 +35,39 @@ function central_build_home_content_defaults(): array
                     'icon'        => 'bi bi-shield-check',
                     'title'       => 'Commitment & Trust',
                     'description' => 'Our commitment to fulfilling promises and nurturing trust forms the cornerstone of our philosophy, creating lasting value and successful completion of each project.',
+                ),
+            ),
+        ),
+        'reviews' => array(
+            'eyebrow'      => 'Client reviews',
+            'heading'      => 'What our clients say',
+            'rating'       => '5.0',
+            'review_count' => '20',
+            'google_url'   => 'https://www.google.com/maps?cid=15359967070587945531',
+            'items'        => array(
+                array(
+                    'quote'  => "Thank you so much to the Central Build team for the fantastic job on our renovation. We are thrilled with how everything turned out. Your attention to detail, and professionalism throughout the entire process made such a difference, and we couldn't be happier with the final result. Thanks again for all your hard work – we will gladly recommend you to anyone looking for a great builder!",
+                    'name'   => 'Andy K',
+                    'detail' => 'Mama Tran Dumplings',
+                    'source' => 'Client',
+                ),
+                array(
+                    'quote'  => '[The Central Build team] are very professional in the way how they delivered the work for my coffee shop.',
+                    'name'   => 'H. Kim',
+                    'detail' => 'Coffee shop fitout',
+                    'source' => 'Google',
+                ),
+                array(
+                    'quote'  => 'One stop shop building company, very politely and good salesman.',
+                    'name'   => 'Kim Nguyen',
+                    'detail' => '',
+                    'source' => 'Google',
+                ),
+                array(
+                    'quote'  => 'Reasonable pricing in steel and light steel frames.',
+                    'name'   => 'Vũ Văn Quý',
+                    'detail' => '',
+                    'source' => 'Google',
                 ),
             ),
         ),
@@ -99,7 +132,7 @@ function central_build_sanitize_home_content(array $input): array
     $data = $clean($input);
 
     // Drop empty repeater rows.
-    foreach (array(array('intro', 'cards', 'title'), array('faq', 'items', 'question')) as $rule) {
+    foreach (array(array('intro', 'cards', 'title'), array('faq', 'items', 'question'), array('reviews', 'items', 'quote')) as $rule) {
         list($section, $list, $required) = $rule;
         if (isset($data[$section][$list]) && is_array($data[$section][$list])) {
             $data[$section][$list] = array_values(array_filter($data[$section][$list], static function ($row) use ($required) {
@@ -109,6 +142,9 @@ function central_build_sanitize_home_content(array $input): array
     }
     if (isset($data['contact']['project_types'])) {
         $data['contact']['project_types'] = array_values(array_filter(array_map('trim', (array) $data['contact']['project_types'])));
+    }
+    if (isset($data['reviews']['google_url'])) {
+        $data['reviews']['google_url'] = esc_url_raw($data['reviews']['google_url']);
     }
     if (isset($data['hero']['button']['url'])) {
         $data['hero']['button']['url'] = esc_url_raw($data['hero']['button']['url']) ?: '#contact';
