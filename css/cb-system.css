@@ -168,7 +168,7 @@
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: linear-gradient(0deg, rgba(4, 3, 30, .82) 0%, rgba(4, 3, 30, .55) 55%, rgba(4, 3, 30, .35) 100%);
+    background: linear-gradient(0deg, rgba(20, 22, 25, .82) 0%, rgba(20, 22, 25, .55) 55%, rgba(20, 22, 25, .35) 100%);
 }
 .cb-hero.is-page { min-height: min(58vh, 540px); padding: 200px 0 64px; }
 .cb-hero__inner { max-width: 820px; }
@@ -583,7 +583,7 @@ html.cb-lightbox-open { overflow: hidden; }
 .cb-motion .cb-fact { opacity: 0; }
 
 /* header shadow once the page scrolls */
-header.cb-header-scrolled { box-shadow: 0 8px 30px rgba(2, 1, 90, .10) !important; transition: box-shadow .3s ease; }
+header.cb-header-scrolled { box-shadow: 0 8px 30px rgba(20, 22, 25, .10) !important; transition: box-shadow .3s ease; }
 
 @media (prefers-reduced-motion: reduce) {
     .cb-steps li::after { transform: none; }
