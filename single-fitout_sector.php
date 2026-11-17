@@ -105,11 +105,11 @@ while (have_posts()) :
             cb_ui_section_close();
         }
 
-        $quote = cb_ui_plain($meta('_fitout_quote_text'));
-        if ($quote !== '' && $meta('_fitout_quote_author') !== '') {
+        $reviews = cb_ui_project_reviews($id);
+        if ($reviews) {
             cb_ui_section_open('quote', 'white', 'is-tight');
-            echo '<span class="cb-eyebrow">' . esc_html__('Client review', 'central-build') . '</span>';
-            cb_ui_review_card(array('quote' => $quote, 'name' => $meta('_fitout_quote_author'), 'detail' => $meta('_fitout_quote_position')), true);
+            echo '<span class="cb-eyebrow">' . esc_html(_n('Client review', 'Client reviews', count($reviews), 'central-build')) . '</span>';
+            cb_ui_review_grid($reviews, min(2, count($reviews)));
             cb_ui_section_close();
         }
 

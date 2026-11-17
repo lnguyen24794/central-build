@@ -52,6 +52,12 @@ function central_build_home_content_defaults(): array
                     'source' => 'Client',
                 ),
                 array(
+                    'quote'  => "The store looks fantastic, we're so pleased with the results – well done! … Your contractors have been great to work with, we've really appreciated their communication and approach.",
+                    'name'   => 'South Melbourne Market Management Team',
+                    'detail' => 'City of Port Phillip · Mama Tran Dumplings',
+                    'source' => 'Client',
+                ),
+                array(
                     'quote'  => '[The Central Build team] are very professional in the way how they delivered the work for my coffee shop.',
                     'name'   => 'H. Kim',
                     'detail' => 'Coffee shop fitout',

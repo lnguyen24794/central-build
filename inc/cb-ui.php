@@ -675,10 +675,43 @@ function cb_ui_reviews(array $data, string $ground = 'navy'): void
     }
     echo '</div>';
 
-    echo '<div class="cb-reviews">';
-    foreach ($items as $i => $r) {
-        cb_ui_review_card($r, $i === 0);
+    cb_ui_review_grid($items);
+    cb_ui_section_close();
+}
+
+/**
+ * Review cards in a grid. The first one or two are shown large so the smaller cards fill whole rows of three
+ * (4 reviews: 1 large + 3, 5 reviews: 2 large + 3).
+ */
+function cb_ui_review_grid(array $items, ?int $featured = null): void
+{
+    $n        = count($items);
+    $featured = $featured ?? min(2, (($n - 1) % 3) + 1);
+    echo '<div class="cb-reviews' . ($featured === 2 ? ' has-pair' : '') . '">';
+    foreach (array_values($items) as $i => $r) {
+        cb_ui_review_card($r, $i < $featured);
     }
     echo '</div>';
-    cb_ui_section_close();
+}
+
+/** Reviews for one project: its own client quote plus home page reviews whose project names it. */
+function cb_ui_project_reviews(int $post_id): array
+{
+    $out   = array();
+    $quote = cb_ui_plain(get_post_meta($post_id, '_fitout_quote_text', true));
+    if ($quote !== '' && get_post_meta($post_id, '_fitout_quote_author', true) !== '') {
+        $out[] = array('quote' => $quote, 'name' => get_post_meta($post_id, '_fitout_quote_author', true), 'detail' => get_post_meta($post_id, '_fitout_quote_position', true));
+    }
+    $title = cb_ui_plain(get_the_title($post_id));
+    $home  = function_exists('central_build_get_home_content') ? (array) (central_build_get_home_content()['reviews']['items'] ?? array()) : array();
+    foreach ($home as $r) {
+        if (!is_array($r) || $title === '' || stripos(cb_ui_plain($r['detail'] ?? ''), $title) === false) {
+            continue;
+        }
+        if (trim(cb_ui_plain($r['quote'] ?? '')) === '' || cb_ui_plain($r['quote']) === $quote) {
+            continue;
+        }
+        $out[] = $r;
+    }
+    return $out;
 }
